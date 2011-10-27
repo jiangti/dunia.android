@@ -1,0 +1,136 @@
+@CHARSET "UTF-8";
+
+.overlay-title {
+	
+}
+
+.layout-close, 
+.layout-toggle {
+	
+}
+
+.overlay-content {
+	
+}
+
+.overlayHandle {
+	background : url('/img/stripe.png') repeat;
+	width	   : 30px;
+	height     : 100px; 
+	position   : absolute; 
+	top		   : 40%;
+	left	   : -30px; 
+	z-index	   : 3000;
+}
+
+.mapWrapper {
+height: 100%;
+overflow: hidden;
+position: relative;
+width: 95%;
+margin: auto;
+}
+
+.round {
+	margin  :0;
+	padding :0;	
+	position: absolute;
+}
+
+.round.tl {
+	background-image: url(/img/corners/greyBorder-tls.png);
+	height: 8px;
+	left: 0px;
+	top: 0px;
+	width: 8px;
+	z-index: 10;
+}
+
+.round.t {
+background-image: url(/img/corners/greyBorder-ts.png);
+height: 6px;
+left: 8px;
+width: 100%;
+z-index: 9;
+}
+
+.round.tr {
+background-image: url(/img/corners/greyBorder-trs.png);
+height: 8px;
+right: 0px;
+top: 0px;
+width: 8px;
+z-index: 10;
+}
+
+.round.rt {
+background-image: url(/img/corners/greyBorder-rs.png);
+height: 100%;
+right: 0px;
+top: 8px;
+width: 6px;
+z-index: 9;
+}
+
+.round.rb {
+background-image: url(/img/corners/greyBorder-r.png);
+bottom: 8px;
+height: 27px;
+right: 0px;
+width: 2px;
+z-index: 10;
+}
+
+.round.br {
+background-image: url(/img/corners/greyBorder-br.png);
+bottom: 0px;
+height: 8px;
+right: 0px;
+width: 8px;
+z-index: 10;
+}
+
+.round.bs {
+background-image: url(/img/corners/greyBorder-bs.png);
+bottom: 0px;
+height: 2px;
+width: 100%;
+z-index: 9;
+}
+
+.round.b {
+background-image: url(/img/corners/greyBorder-bs.png);
+bottom: 0px;
+height: 6px;
+left: 0px;
+width: 100%;
+z-index: 9;
+}
+
+.round.bl {
+background-image: url(/img/corners/greyBorder-bl.png);
+bottom: 0px;
+height: 8px;
+left: 0px;
+width: 8px;
+z-index: 10;
+}
+
+.round.lt {
+background-image: url(/img/corners/greyBorder-ls.png);
+height: 100%;
+left: 0px;
+top: 8px;
+width: 6px;
+z-index: 9;
+}
+
+.round.lb {
+background-image: url(/img/corners/greyBorder-l.png);
+bottom: 8px;
+height: 27px;
+left: 0px;
+width: 2px;
+z-index: 10;
+}
+
