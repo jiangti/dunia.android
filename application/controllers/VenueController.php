@@ -202,6 +202,32 @@ class VenueController extends Dol_Controller
         
         die;
     }
+    
+    public function locateAction() {
+        $lon = $this->_getParam('longitude');
+        $lat = $this->_getParam('latitude');
+        
+        $rsm = new Doctrine\ORM\Query\ResultSetMapping();
+        $rsm->addEntityResult('Dol_Model_Entity_Venue', 'v');
+        $rsm->addFieldResult('v', 'id', 'id');
+        $rsm->addMetaResult('v', 'idUserSubmitted', 'idUserSubmitted');
+        $rsm->addFieldResult('v', 'name', 'name');
+        $rsm->addJoinedEntityResult('Dol_Model_Entity_Address' , 'a', 'v', 'address');
+        $rsm->addFieldResult('a', 'idAddress', 'id');
+        $rsm->addScalarResult('distance', 'distance');
+        
+        $sql = 'SELECT v.id, v.name, v.idUserSubmitted, a.id AS idAddress, ((ACOS(SIN(? * PI() / 180) * SIN(latitude * PI() / 180) + COS(? * PI() / 180) * COS(latitude * PI() / 180) * COS((?-longitude) * PI() / 180)) * 180 / PI()) * 60 * 1.1515) AS `distance` FROM venue v ' .
+               'INNER JOIN address a ON v.idAddress = a.id HAVING distance <= 10 ORDER BY `distance` ASC limit 25';
+        $query = $this->_em->createNativeQuery($sql, $rsm);
+        $query->setParameter(1, $lat);
+        $query->setParameter(2, $lat);
+        $query->setParameter(3, $lon);
+        
+        $venues = $query->getResult();
+        
+        $this->view->venues = $venues;
+    }
+    
 
 }
 

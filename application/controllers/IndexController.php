@@ -145,5 +145,9 @@ class IndexController extends Dol_Controller {
 	    }
 	    die;
 	}
+	
+	public function locationAction() {
+	    
+	}
 }
 
