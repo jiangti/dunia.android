@@ -216,12 +216,12 @@ class VenueController extends Dol_Controller
         $rsm->addFieldResult('a', 'idAddress', 'id');
         $rsm->addScalarResult('distance', 'distance');
         
-        $sql = 'SELECT v.id, v.name, v.idUserSubmitted, a.id AS idAddress, ((ACOS(SIN(? * PI() / 180) * SIN(latitude * PI() / 180) + COS(? * PI() / 180) * COS(latitude * PI() / 180) * COS((?-longitude) * PI() / 180)) * 180 / PI()) * 60 * 1.1515) AS `distance` FROM venue v ' .
-               'INNER JOIN address a ON v.idAddress = a.id HAVING distance <= 10 ORDER BY `distance` ASC limit 25';
+        $sql = 'SELECT v.id, v.name, v.idUserSubmitted, a.id AS idAddress, ROUND(((ACOS(SIN(? * PI() / 180) * SIN(latitude * PI() / 180) + COS(? * PI() / 180) * COS(latitude * PI() / 180) * COS((?-longitude) * PI() / 180)) * 180 / PI()) * 60 * 1.1515 * 1.609344 * 1000), 2) AS `distance` FROM venue v ' .
+               'INNER JOIN address a ON v.idAddress = a.id WHERE longitude != "" and latitude != "" ORDER BY `distance` ASC limit 25';
         $query = $this->_em->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $lat);
-        $query->setParameter(2, $lat);
         $query->setParameter(3, $lon);
+        $query->setParameter(2, $lat);
         
         $venues = $query->getResult();
         
