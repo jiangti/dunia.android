@@ -21,9 +21,10 @@
                     data : {longitude: position.coords.longitude, latitude: position.coords.latitude},
                     success : function (data) {
                         $("#venues").html(data);
+                        $("#venues").find('ul').listview();
                     }
                 });
-                console.log(position);
+                
             }, 
             function (msg) {
                 var s = document.querySelector('#info');

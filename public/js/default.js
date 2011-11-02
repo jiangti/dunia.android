@@ -24,7 +24,7 @@ $(document).ready(function() {
     		}
     	});
     	return false;
-    })
+    });
     
     /**
      * Ajax links.

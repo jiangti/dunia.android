@@ -23,5 +23,3 @@
 </script>
 
 <div id="map"></div>
-
-<?php var_dump($this->userAgent()->getDevice()->getType());?>
