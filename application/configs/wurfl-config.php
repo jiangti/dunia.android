@@ -1,14 +1,19 @@
 <?php
 $resourcesDir            = dirname(__FILE__) . '/../../data/wurfl/';
- 
-$wurfl['main-file']      = $resourcesDir  . 'wurfl-2.0.27.zip';
-$wurfl['patches']        = array($resourcesDir . 'web_browsers_patch.xml');
- 
-$persistence['provider'] = 'file';
-$persistence['dir']      = $resourcesDir . '/cache/';
- 
-$cache['provider']       = null;
- 
-$configuration['wurfl']       = $wurfl;
-$configuration['persistence'] = $persistence;
-$configuration['cache']       = $cache;
+
+$configuration = array(
+   'wurfl' => array(
+       'main-file' => $resourcesDir  . 'wurfl.xml',
+       'patches' => array($resourcesDir  . 'web_browsers_patch.xml'),
+    ),
+    'allow-reload' => true,
+    'persistence' => array(
+        'provider' => "file",
+        'params' => array(
+            'dir' => $resourcesDir  . '/cache/',
+        ),
+    ),
+    'cache' => array(
+        'provider' => "null",
+    ),
+);
