@@ -5,7 +5,10 @@ abstract class DOL_Controller extends Zend_Controller_Action
 	protected $_em;
 
     public function preDispatch() {
-        $this->_em = $this->getInvokeArg('bootstrap')->getResource('doctrine');
+        $bootstrap = $this->getInvokeArg('bootstrap');
+        
+        $this->_em        = $bootstrap->getResource('doctrine');
+        
         $this->_helper->viewRenderer->setViewSuffix('php');
         
         if ($this->isAjax()) {
