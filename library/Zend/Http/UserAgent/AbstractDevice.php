@@ -554,7 +554,9 @@ abstract class Zend_Http_UserAgent_AbstractDevice
             if (in_array($result['compatibility_flag'], $apple_device)) {
                 $result['device']           = strtolower($result['compatibility_flag']);
                 $result['device_os_token']  = 'iPhone OS';
-                $result['browser_language'] = trim($comment[3]);
+                if (isset($comment[3])) {
+                    $result['browser_language'] = trim($comment[3]);
+                }
                 $result['browser_version']  = $result['others']['detail'][1][2];
                 if (!empty($result['others']['detail'][2])) {
                     $result['firmware'] = $result['others']['detail'][2][2];
@@ -648,7 +650,9 @@ abstract class Zend_Http_UserAgent_AbstractDevice
                     if (isset($comment[4])) {
                         $result['browser_build'] = trim($comment[4]);
                     }
-                    $result['browser_language'] = trim($comment[3]);
+                    if (isset($comment[3])) {
+                        $result['browser_language'] = trim($comment[3]);
+                    }
                     
                     // Netscape
                     if ($result['browser_name'] == 'Navigator' || $result['browser_name'] == 'Netscape6') {
