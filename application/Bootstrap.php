@@ -2,10 +2,9 @@
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
     protected function _initView() {
-        // Initialize view
         $view = new Zend_View();
         $view->doctype('XHTML1_STRICT');
-        $view->headTitle('My First Zend Framework Application');
+        $view->headTitle("It's Business  Time");
 
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $viewRenderer->setView($view);
@@ -25,8 +24,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         	->appendFile('/js/jquery.jcarousellite.js')
         	->appendFile('/js/jquery.map-overlay.js')
         ;
-
-
+        
         return $view;
     }
 }
