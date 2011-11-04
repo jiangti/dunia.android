@@ -11,8 +11,10 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<?php
 			$this->headLink()->prependStylesheet($this->baseUrl('css/reset.css'));
+			
 			$this->headLink()->appendStylesheet($this->baseUrl('css/mobile.css'));
 			$this->headLink()->appendStylesheet($this->baseUrl('css/jquery.mobile-1.0rc2.min.css'));
+			
 	        $this->headScript()->prependFile($this->baseUrl('js/jquery-1.6.4.min.js'));
 	        $this->headScript()->appendFile($this->baseUrl('js/jquery.corner.js'));
 	        $this->headScript()->appendFile($this->baseUrl('js/default.js'));
@@ -43,7 +45,7 @@
     		</div>
     		
     		<div data-role="footer">
-    			<?php echo $this->partial('/partials/footer.php'); ?>
+    			Footer will go here...
             </div>
         </div>
 	</body>
