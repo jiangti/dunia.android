@@ -1,4 +1,9 @@
 <?php
 abstract class Model_Parser {
-    public function parse($html);
+	/**
+	 * 
+	 * @param string $html
+	 * @return array(pub,promo)|false
+	 */
+    abstract public function parse($html);
 }
