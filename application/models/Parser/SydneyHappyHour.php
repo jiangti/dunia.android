@@ -32,7 +32,7 @@ class Model_Parser_SydneyHappyHour extends Model_Parser {
 				$promo = array();
 				foreach ($elements as $index => $element) {
 					if ($index == 0) {
-						$pub->title = $element->div['title'];
+						$pub->title = (string) $element->div['title'];
 						$pub->address = (string) $element;
 						$pub->phone = ((String) $element->p);
 						
