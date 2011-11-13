@@ -1,5 +1,5 @@
 <?php
-class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
+class Bootstrap extends Aw_BootstrapAbstract {
 	
 	public function _initEnv() {
 		$moduleLoader = new Zend_Application_Module_Autoloader(array(
@@ -17,11 +17,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         $view
         	->headLink()
+        	->appendStylesheet('/css/style.css')
+        	->appendStylesheet('/css/formalize/formalize.css')
         ;
 
         $view
         	->headScript()
         	->appendFile('/js/jquery-1.7.min.js')
+        	->appendFile('/js/formalize/jquery.formalize.js')
         ;
         
         return $view;
