@@ -1,11 +1,13 @@
 <?php
 class Bootstrap extends Aw_BootstrapAbstract {
-	
+
 	public function _initEnv() {
+	    require_once APPLICATION_ROOT . '/application/controllers/ControllerAbstract.php';
+
 		$moduleLoader = new Zend_Application_Module_Autoloader(array(
 				        'namespace' => '',
 				        'basePath'  => APPLICATION_PATH));
-	} 
+	}
 
     public function _initView() {
         $view = new Zend_View();
@@ -26,7 +28,7 @@ class Bootstrap extends Aw_BootstrapAbstract {
         	->appendFile('/js/jquery-1.7.min.js')
         	->appendFile('/js/formalize/jquery.formalize.js')
         ;
-        
+
         return $view;
     }
 }
