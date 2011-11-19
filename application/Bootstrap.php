@@ -1,6 +1,10 @@
 <?php
 class Bootstrap extends Aw_BootstrapAbstract {
+<<<<<<< Updated upstream
 
+=======
+	
+>>>>>>> Stashed changes
 	public function _initEnv() {
 	    require_once APPLICATION_ROOT . '/application/controllers/ControllerAbstract.php';
 
