@@ -1,0 +1,81 @@
+<div style="width:100%; height:5%">
+<?php echo $this->form; ?>
+</div>
+<div id="map_canvas" style="width:100%; height:95%"></div>
+<style type="text/css">
+  html { height: 100% }
+  body { height: 100%; margin: 0; padding: 0 }
+  #map_canvas { height: 100% }
+</style>
+<script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places">
+</script>
+<script type="text/javascript">
+$().ready(function() {
+    var amHere = new google.maps.LatLng(37.387138,-122.083237);
+    var myOptions = {
+	    zoom: 15,
+	    center: amHere,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    
+	thirsty.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	
+	thirsty.infoWindow = new google.maps.InfoWindow();
+
+	customIcons = {
+		restaurant: {
+			icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
+			shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+		},
+		bar: {
+			icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
+			shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+		}
+	};
+
+	$.ajax({success: function(data) {
+		markers = data;
+
+		var customIcons = {
+			restaurant: {
+				icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
+				shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+			},
+			bar: {
+				icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
+				shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+			}
+		};
+
+        for (var i = 0; i < markers.length; i++) {
+            marker = markers[i];
+            var name = marker.name[0];
+            var address = marker.address[0];
+            var type = marker.type[0];
+
+            var point = new google.maps.LatLng(
+                parseFloat(marker.lat[0]),
+                parseFloat(marker.lng[0]));
+
+            
+            var html = "<b>" + name + "</b> <br/>" + address;
+            var icon = customIcons[type] || {};
+            
+            var marker = new google.maps.Marker({
+                map: thirsty.map,
+                position: point,
+                icon: icon.icon,
+                shadow: icon.shadow
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+    	        thirsty.infoWindow.setContent(html);
+    	        thirsty.infoWindow.open(thirsty.map, marker);
+    	    });
+        }
+	}, url: '/map/fetch/lat/' + amHere.Oa + '/long/' + amHere.Pa, dataType: 'json'});
+		
+	    	
+});
+</script>

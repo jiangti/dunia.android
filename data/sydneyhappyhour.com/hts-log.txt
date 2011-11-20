@@ -1,0 +1,33 @@
+HTTrack3.43-9+libhtsjava.so.2 launched on Fri, 04 Nov 2011 21:50:26 at http://www.sydneyhappyhour.com/sydney-bars/
+(httrack http://www.sydneyhappyhour.com/sydney-bars/ )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+21:50:26	Warning: 	Cache: damaged cache, trying to repair
+21:50:26	Warning: 	Cache: 0 bytes successfully recovered in 0 entries
+21:50:26	Warning: 	Cache: error trying to open the cache
+21:50:27	Info: 	Note: due to www.sydneyhappyhour.com remote robots.txt rules, links begining with these path will be forbidden: /wp-admin, /wp-includes, /wp-content, /maps (see in the options to disable this)
+21:50:27	Warning: 	Link www.sydneyhappyhour.com/sydney-bars/ not scanned (follow robots meta tag)
+21:50:29	Warning: 	Link www.sydneyhappyhour.com/sydney-bars/northern-beaches/the-steyne-hotel/ not scanned (follow robots meta tag)
+21:50:34	Warning: 	Link www.sydneyhappyhour.com/sydney-bars/northern-beaches/manly-vale-calabria-bowling-sports-social-club/ not scanned (follow robots meta tag)
+21:50:36	Warning: 	Link www.sydneyhappyhour.com/sydney-bars/northern-beaches/newport-arms-hotel/ not scanned (follow robots meta tag)
+21:50:50	Warning: 	Link www.sydneyhappyhour.com/sydney-bars/greater-western-sydney/ not scanned (follow robots meta tag)
+21:51:12	Warning: 	Link www.sydneyhappyhour.com/sydney-bars/lower-north-shore/crows-nest-hotel/ not scanned (follow robots meta tag)
+21:51:23	Error: 	"Not Found" (404) at link www.sydneyhappyhour.com/sydney-bars/the-eastern-suburbs/beach-palace/ (from www.sydneyhappyhour.com/sydney-bars/the-eastern-suburbs/)
+21:51:52	Warning: 	Link www.sydneyhappyhour.com/sydney-bars/the-inner-west/the-coopers-hotel/ not scanned (follow robots meta tag)
+21:51:58	Error: 	"Not Found" (404) at link www.sydneyhappyhour.com/sydney-bars/the-inner-west/www.tommysbeercafe.com.au (from www.sydneyhappyhour.com/sydney-bars/the-inner-west/)
+21:52:00	Warning: 	Link www.sydneyhappyhour.com/sydney-bars/sydney-cbd/albion-place-hotel/ not scanned (follow robots meta tag)
+21:52:08	Warning: 	Link www.sydneyhappyhour.com/sydney-bars/sydney-cbd/bentley-restuarant-bar/ not scanned (follow robots meta tag)
+21:52:16	Warning: 	File has moved from www.sydneyhappyhour.com/sydney-bars/edinburgh-castle-hotel/ to http://www.sydneyhappyhour.com/sydney-bars/sydney-cbd/edinburgh-castle-hotel/
+21:52:53	Warning: 	File has moved from www.sydneyhappyhour.com/sydney-bars/the-criterion-hotel/ to http://www.sydneyhappyhour.com/sydney-bars/sydney-cbd/the-criterion-hotel/
+21:52:58	Warning: 	File has moved from www.sydneyhappyhour.com/sydney-bars/the-local-taphouse/ to http://www.sydneyhappyhour.com/sydney-bars/sydney-cbd/the-local-taphouse/
+21:53:41	Warning: 	Link www.sydneyhappyhour.com/sydney-bars/greater-western-sydney/wallacia-hotel/ not scanned (follow robots meta tag)
+21:53:42	Error: 	"Not Found" (404) at link www.sydneyhappyhour.com/sydney-bars/the-inner-west/freaky-tiki/174 King St Newtown (from www.sydneyhappyhour.com/sydney-bars/the-inner-west/freaky-tiki/)
+21:53:52	Error: 	"Not Found" (404) at link www.sydneyhappyhour.com/sydney-bars/the-inner-west/tommys-beer-cafe/www.tommysbeercafe.com.au (from www.sydneyhappyhour.com/sydney-bars/the-inner-west/tommys-beer-cafe/)
+No files purged
+
+HTTrack Website Copier/3.43-9 mirror complete in 4 minutes 18 seconds : 385 links scanned, 377 files written (10258481 bytes overall) [2491468 bytes received at 9656 bytes/sec], 10189542 bytes transfered using HTTP compression in 201 files, ratio 20%, 1.9 requests per connection
+(4 errors, 16 warnings, 1 messages)

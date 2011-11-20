@@ -1,41 +1,51 @@
 <?php
+class AdminController extends Zend_Controller_Action {
+	public function hancockAction() {
+		$pubService = new Service_Pub();
 
-class AdminController extends Dol_Controller
-{
+		$file = fopen('/home/jiangti/Downloads/pc_full_lat_long.csv', 'r');
 
-	public function init()
-    {
-        if($this->_request->isXmlHttpRequest())
-			$this->_helper->layout()->disableLayout();
+		$counter = 0;
 
-        $layout = Zend_Layout::getMvcInstance();
-        $view = $layout->getView();
+		while ($row = fgetcsv($file)) {
+		    if ($counter > 0) {
+		       $postCode = $row[0];
+		    }
+		    $counter++;
+		}
 
-        $view->registerForm = new Dol_Model_Forms_Register($this->_em);
-        $view->loginForm    = new Dol_Model_Forms_Login();
+		$file = fopen(APPLICATION_ROOT . '/data/google-refine/530-project.csv', 'r');
+		while ($row = fgetcsv($file)) {
 
-        $this->view->title = 'DOL (Alpha...)';
-        $this->view->windowTitle = 'DOL (Alpha...)';
-    }
+			$pub = new Model_Pub();
 
-	public function postDispatch()
-	{
-		$this->_em->flush();
+			$data['name'] = $row[0];
+			$data['email'] = $row[2];
+			$data['url'] = $row[3];
+
+			$pub->setFromArray($data);
+			$addressData = Model_Address::extract($row[4]);
+
+			//$addressData = array(
+			//	'address1'   => $addressRow[],
+			//	'address2'   => $addressRow[],
+			//	'city'       => $addressRow[],
+			//	'postcode'   => $addressRow[],
+			//	'town'       => $addressRow[],
+			//	'state'      => $addressRow[],
+			//	'country'    => $addressRow[],
+			//	'latitude'   => $addressRow[],
+			//	'longtitude' => $addressRow[]
+			//);
+
+
+			//$address = new Model_Address();
+			//$address->setFromArray($addressData);
+
+			//$pub->setAddress($address);
+
+//			$pubService->savePub($pub);
+		}
+        exit;
 	}
-
-    public function indexAction()
-    {
-    	$venues = $this->_em->createQuery("SELECT v FROM Dol_Model_Entity_Venue v")->getResult();
-		$this->view->venues = $venues;
-    	$deals = $this->_em->createQuery("SELECT d FROM Dol_Model_Entity_Deal d")->getResult();
-		$this->view->deals = $deals;
-    }
-
-	public function verifyAction() {
-        $this->view->venues = $this->_em->createQuery("SELECT v FROM Dol_Model_Entity_Venue v JOIN v.address a where v.verified is null and a.longitude != '' and a.latitude != ''")
-                    ->setMaxResults(20)
-	    		   ->getResult();
-	}
-
 }
-

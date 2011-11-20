@@ -3,14 +3,6 @@
 class ErrorController extends Zend_Controller_Action
 {
 	
-	public function init()
-    {
-
-        $this->_helper->viewRenderer->setViewSuffix('php');
-
-        $this->view->title = 'DOL (Alpha...)';
-        $this->view->windowTitle = 'DOL (Alpha...)';
-    }
 
     public function errorAction()
     {
