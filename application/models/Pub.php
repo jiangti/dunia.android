@@ -1,5 +1,5 @@
 <?php
-class Model_Pub extends Aw_Model_ModelAbtract {
+class Model_Pub extends Aw_Model_ModelAbstract {
 	public $name;
 	/**
 	 * @var Model_Address

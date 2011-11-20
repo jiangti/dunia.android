@@ -1,29 +1,12 @@
 <?php
-class Model_Pub extends Aw_Model_ModelAbtract {
-	public $name;
+class Model_Address extends Aw_Model_ModelAbstract {
+
 	/**
-	 * @var Model_Address
+	 *
+	 * The smart address extractor. Just a utlity, so nothing to do with the actualyl model.
+	 * @param unknown_type $string
 	 */
-	public $address;
-	public $email;
-	public $url;
-	
-	public $promo = array();
-	
-	protected $_idAddress;
-	
-	
-	public function setAddress(Model_Address $address) {
-		$this->address;
+	public static function extract($string) {
 	}
-	
-	public function addPromo(Model_Promo $promo) {
-		$this->promo[] = $promo;
-		
-		
-		/**
-		 * This is where the logic sits, ServiceLayer, POPO, and DAO <= Validation sits here.
-		 */
-	}
-	
+
 }
