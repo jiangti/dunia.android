@@ -1,5 +1,5 @@
 <?php
-class DbTable_Row_Abstract extends Aw_Table_Row {
+class Model_DbTable_Row_RowAbstract extends Aw_Table_Row {
     protected function _save() {}
 
     protected function _postSave() {}
