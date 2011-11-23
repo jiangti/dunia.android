@@ -51,6 +51,8 @@ class AdminController extends Zend_Controller_Action {
 	}
 
 	public function pubImportAction() {
+
+
         $table = new Model_DbTable_Dirty();
 
         $select = $table->select();
@@ -59,18 +61,25 @@ class AdminController extends Zend_Controller_Action {
         $pubService = new Service_Pub();
 
         foreach ($table->fetchAll($select) as $row) {
-            $pub = new Model_Pub();
+            $pub = Model_DbTable_Pub::getRow();
 
             $data['name'] = $row->pub;
-            $data['email'] = $row->email;
+
+            if (filter_var($row->email, FILTER_VALIDATE_EMAIL)) {
+                $data['email'] = $row->email;
+            } else {
+                $data['phone'];
+            }
+
             $data['url'] = $row->website;
 
             $pub->setFromArray($data);
-            $addressData = Model_Address::extract($row->addressJson);
-
+            if ($address = Model_DbTable_Address::extract($row->addressJson)) {
+                $pub->setAddress($address);
+            }
+            $pubService->savePub($pub);
         }
 
-        exit;
 
 	}
 }
