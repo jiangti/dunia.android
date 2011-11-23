@@ -3,6 +3,7 @@ class AdminController extends Zend_Controller_Action {
 	public function hancockAction() {
 		$pubService = new Service_Pub();
 
+
 		$file = fopen('/home/jiangti/Downloads/pc_full_lat_long.csv', 'r');
 
 		$counter = 0;
@@ -47,5 +48,17 @@ class AdminController extends Zend_Controller_Action {
 //			$pubService->savePub($pub);
 		}
         exit;
+	}
+
+	public function pubImportAction() {
+        $table = new Model_DbTable_Dirty();
+
+        $select = $table->select();
+        $select->group('pub');
+
+        foreach ($table->fetchAll($select) as $row) {
+            var_dump($row); exit;
+        }
+
 	}
 }
