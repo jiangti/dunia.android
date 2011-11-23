@@ -56,9 +56,21 @@ class AdminController extends Zend_Controller_Action {
         $select = $table->select();
         $select->group('pub');
 
+        $pubService = new Service_Pub();
+
         foreach ($table->fetchAll($select) as $row) {
-            var_dump($row); exit;
+            $pub = new Model_Pub();
+
+            $data['name'] = $row->pub;
+            $data['email'] = $row->email;
+            $data['url'] = $row->website;
+
+            $pub->setFromArray($data);
+            $addressData = Model_Address::extract($row->addressJson);
+
         }
+
+        exit;
 
 	}
 }
