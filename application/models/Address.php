@@ -66,6 +66,10 @@ class Model_Address extends Aw_Model_ModelAbstract {
         	    }
         	}
         	$location = $results->geometry->location;
+        	$address->latitude = $location->lat;
+        	$address->longtitude = $location->lng;
+
+        	return $address;
 
 	    } else return false;
 	}
