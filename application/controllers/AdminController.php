@@ -67,8 +67,8 @@ class AdminController extends Zend_Controller_Action {
 
             if (filter_var($row->email, FILTER_VALIDATE_EMAIL)) {
                 $data['email'] = $row->email;
-            } else {
-                $data['phone'];
+            } elseif ($row->email) {
+                $data['phone'] = $row->email;
             }
 
             $data['url'] = $row->website;
