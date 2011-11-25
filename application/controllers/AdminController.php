@@ -3,6 +3,7 @@ class AdminController extends Zend_Controller_Action {
 	public function hancockAction() {
 		$pubService = new Service_Pub();
 
+
 		$file = fopen('/home/jiangti/Downloads/pc_full_lat_long.csv', 'r');
 
 		$counter = 0;
@@ -47,5 +48,38 @@ class AdminController extends Zend_Controller_Action {
 //			$pubService->savePub($pub);
 		}
         exit;
+	}
+
+	public function pubImportAction() {
+
+
+        $table = new Model_DbTable_Dirty();
+
+        $select = $table->select();
+        $select->group('pub');
+
+        $pubService = new Service_Pub();
+
+        foreach ($table->fetchAll($select) as $row) {
+            $pub = Model_DbTable_Pub::getRow();
+
+            $data['name'] = $row->pub;
+
+            if (filter_var($row->email, FILTER_VALIDATE_EMAIL)) {
+                $data['email'] = $row->email;
+            } elseif ($row->email) {
+                $data['phone'] = $row->email;
+            }
+
+            $data['url'] = $row->website;
+
+            $pub->setFromArray($data);
+            if ($address = Model_DbTable_Address::extract($row->addressJson)) {
+                $pub->setAddress($address);
+            }
+            $pubService->savePub($pub);
+        }
+
+
 	}
 }

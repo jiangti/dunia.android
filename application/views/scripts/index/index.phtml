@@ -12,41 +12,37 @@
 </script>
 <script type="text/javascript">
 $().ready(function() {
-    var amHere = new google.maps.LatLng(37.387138,-122.083237);
+    var amHere = new google.maps.LatLng(47.608940,-122.340141);
     var myOptions = {
-	    zoom: 15,
-	    center: amHere,
-	    mapTypeId: google.maps.MapTypeId.ROADMAP
+        zoom: 15,
+        center: amHere,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    
-	thirsty.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-	
-	thirsty.infoWindow = new google.maps.InfoWindow();
 
-	customIcons = {
-		restaurant: {
-			icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
-			shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
-		},
-		bar: {
-			icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
-			shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
-		}
-	};
+    thirsty.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-	$.ajax({success: function(data) {
-		markers = data;
+    thirsty.infoWindow = new google.maps.InfoWindow();
 
-		var customIcons = {
-			restaurant: {
-				icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
-				shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
-			},
-			bar: {
-				icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
-				shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
-			}
-		};
+    customIcons = {
+        restaurant: {
+            icon: '/img/icons/markers/steak.png'
+        },
+        bar: {
+            icon: '/img/icons/markers/beer.png'
+        }
+    };
+
+    $.ajax({success: function(data) {
+        markers = data;
+
+        var customIcons = {
+            restaurant: {
+                icon: '/img/icons/markers/steak.png'
+            },
+            bar: {
+                icon: '/img/icons/markers/beer.png'
+            }
+        };
 
         for (var i = 0; i < markers.length; i++) {
             marker = markers[i];
@@ -58,10 +54,10 @@ $().ready(function() {
                 parseFloat(marker.lat[0]),
                 parseFloat(marker.lng[0]));
 
-            
+
             var html = "<b>" + name + "</b> <br/>" + address;
             var icon = customIcons[type] || {};
-            
+
             var marker = new google.maps.Marker({
                 map: thirsty.map,
                 position: point,
@@ -70,12 +66,12 @@ $().ready(function() {
             });
 
             google.maps.event.addListener(marker, 'click', function() {
-    	        thirsty.infoWindow.setContent(html);
-    	        thirsty.infoWindow.open(thirsty.map, marker);
-    	    });
+                thirsty.infoWindow.setContent(html);
+                thirsty.infoWindow.open(thirsty.map, marker);
+            });
         }
-	}, url: '/map/fetch/lat/' + amHere.Oa + '/long/' + amHere.Pa, dataType: 'json'});
-		
-	    	
+    }, url: '/map/fetch/lat/' + amHere.Oa + '/long/' + amHere.Pa, dataType: 'json'});
+
+
 });
 </script>
