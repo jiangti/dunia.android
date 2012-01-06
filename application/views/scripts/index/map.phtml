@@ -1,0 +1,18 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+    	var mobileDemo = { 'center': '-33.8757,151.206', 'zoom': 15 };
+    	
+    	
+    	$('#map_canvas').gmap({'center': mobileDemo.center, 'zoom': mobileDemo.zoom, 'disableDefaultUI':true, 'callback': function() {
+    		var self = this;
+    		<?php foreach ($this->pubs as $pub): ?>
+    		self.addMarker({'position': new google.maps.LatLng(<?php echo $pub['latitude']; ?>, <?php echo $pub['longitude']; ?>) }).click(function() {
+    			self.openInfoWindow({ 'content': '<?php echo addslashes($pub['name']); ?>' }, this);
+    		});
+    		<?php endforeach; ?>
+    	}}); 
+		
+});
+</script>
+
+<div id="map_canvas" style="height:100%;min-height:300px;"></div>

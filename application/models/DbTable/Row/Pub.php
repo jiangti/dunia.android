@@ -18,7 +18,11 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 	 * @return Model_DbTable_Row_Address|null
 	 */
 	public function getAddress() {
-	    return $this->_address;
+	    if ($this->_address) {
+	        return $this->_address;
+	    } else {
+	        return $this->findParentRow('Model_DbTable_Address');
+	    }
 	}
 
 	public function _save() {

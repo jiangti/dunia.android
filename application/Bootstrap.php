@@ -6,6 +6,9 @@ class Bootstrap extends Aw_BootstrapAbstract {
 		$moduleLoader = new Zend_Application_Module_Autoloader(array(
 				        'namespace' => '',
 				        'basePath'  => APPLICATION_PATH));
+		
+		//$pluginLoader = new Zend_Loader_PluginLoader();
+		//$pluginLoader->addPrefixPath('Application_Plugin', APPLICATION_ROOT . '/application/plugins/');
 	}
 
     public function _initView() {

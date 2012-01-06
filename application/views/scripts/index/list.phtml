@@ -1,0 +1,9 @@
+
+
+<div id="info">
+<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="a">
+<?php foreach ($this->pubs as $pub): ?>
+    <li><a href="/index/pub/id/<?php echo $pub['id']; ?>"><?php echo $pub['name']; ?> (<?php echo $pub['distance']; ?> m)</a></li>
+<?php endforeach; ?>
+</ul>
+</div>
