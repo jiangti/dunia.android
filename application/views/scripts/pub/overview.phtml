@@ -1,0 +1,113 @@
+<?php $address = $this->pub->address;?>
+<script type="text/javascript">
+	$(document).ready(function() {
+    	var pub = { 'center': '<?php echo $address->latitude . ',' . $address->longitude; ?>', 'zoom': 16 };
+    	
+    	
+    	$('#map_canvas').gmap({'center': pub.center, 'zoom': pub.zoom, 'disableDefaultUI':true, 'callback': function() {
+    		var self = this;
+    		self.addMarker({'position': new google.maps.LatLng(<?php echo $address->latitude . ',' . $address->longitude; ?>) }).click(function() {
+    			self.openInfoWindow({ 'content': '<?php echo addslashes($this->pub->name); ?>' }, this);
+    		});
+
+    		/*if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+					var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                	var blueIcon = new google.maps.MarkerImage("http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/blank.png");
+                	
+                	self.addMarker({'position': currentPosition, icon:blueIcon }).click(function() {
+            			self.openInfoWindow({ 'content': '<?php echo addslashes($pub['name']); ?>' }, this);
+            		});
+
+                	self.get('map').panTo(currentPosition);
+                });
+            }*/
+    	}}); 
+		
+});
+</script>
+
+<div data-role="page" id="deals">
+	<div data-role="header">
+		<a href="/index/list" data-icon="home" rel="external">Home</a>
+		<h1><?php echo $this->pub->name; ?></h1>
+		<a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">+ Deal</a>
+    </div>
+	
+	<div data-role="content">
+    	<?php 
+    	$promos = $this->pub->getPromos();
+    	if ($promos): ?>
+            <ul data-role="listview" data-inset="true" data-theme="c">
+            	<?php foreach ($promos as $promo): ?>
+                <li><a href="#"><?php echo $promo->description; ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+    	<?php else: ?>
+    	    <p>There are no deals for this venue yet. <a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">Why don't you enter one?</a></p>
+    	<?php endif;?>
+	</div>
+	
+	
+    <div data-role="footer" class="ui-footer-fixed nav-bar" data-grid="d">		
+    	<div data-role="navbar">
+    		<ul>
+    			<li><a id="beer-tab" href="#deals" data-icon="custom" class="ui-btn-active ui-state-persist" data-transition="none">Deals</a></li>
+    			<li><a id="map-tab" href="#map" data-icon="custom" data-transition="none">Map</a></li>
+    			<li><a id="mail-tab" href="#contact" data-icon="custom" data-transition="none">Contact</a></li>
+    		</ul>
+    	</div>
+    </div>
+</div>
+
+
+
+<div data-role="page" id="map">
+	<div data-role="header">
+		<a href="/index/list" data-icon="home" rel="external">Home</a>
+		<h1><?php echo $this->pub->name; ?></h1>
+    </div>
+	
+	<div data-role="content">
+		<div id="map_canvas" style="height:100%;min-height:250px;"></div>
+	</div>
+	
+	
+    <div data-role="footer" class="ui-footer-fixed nav-bar" data-grid="d">		
+    	<div data-role="navbar">
+    		<ul>
+    			<li><a id="beer-tab" href="#deals" data-icon="custom" data-transition="none" >Deals</a></li>
+    			<li><a id="map-tab" href="#map" data-icon="custom" class="ui-btn-active ui-state-persist" data-transition="none" >Map</a></li>
+    			<li><a id="mail-tab" href="#contact" data-icon="custom" data-transition="none"  >Contact</a></li>
+    		</ul>
+    	</div>
+    </div>
+</div>
+
+
+
+<div data-role="page" id="contact">
+	<div data-role="header">
+		<a href="/index/list" data-icon="home" rel="external">Home</a>
+		<h1><?php echo $this->pub->name; ?></h1>
+    </div>
+	
+	<div data-role="content">
+		<h2>Contact</h2>
+		<ul data-role="listview" data-inset="true" data-theme="c">
+			<li><a href="<?php echo $this->pub->url; ?>"><img src="/img/icons/navbar/174-imac.png" alt="Website" class="ui-li-icon"> <?php echo $this->pub->url; ?></a></li>
+			<li><a href="mailto:<?php echo $this->pub->email; ?>"><img src="/img/icons/navbar/123-id-card.png" alt="Email" class="ui-li-icon"> <?php echo $this->pub->email; ?></a></li>
+		</ul>
+	</div>
+	
+	
+    <div data-role="footer" class="ui-footer-fixed nav-bar" data-grid="d">		
+    	<div data-role="navbar">
+    		<ul>
+    			<li><a id="beer-tab" href="#deals" data-icon="custom" data-transition="none"  >Deals</a></li>
+    			<li><a id="map-tab" href="#map" data-icon="custom" data-transition="none" >Map</a></li>
+    			<li><a id="mail-tab" href="#contact" data-icon="custom" class="ui-btn-active ui-state-persist" data-transition="none" >Contact</a></li>
+    		</ul>
+    	</div>
+    </div>
+</div>

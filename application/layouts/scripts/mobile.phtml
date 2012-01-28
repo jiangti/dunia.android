@@ -13,12 +13,12 @@
 			$this->headLink()->prependStylesheet($this->baseUrl('css/reset.css'));
 			
 			$this->headLink()->appendStylesheet($this->baseUrl('css/mobile.css'));
-			$this->headLink()->appendStylesheet($this->baseUrl('css/jquery.mobile-1.0rc2.min.css'));
+			$this->headLink()->appendStylesheet($this->baseUrl('css/jquery.mobile-1.0.min.css'));
 			
 	        $this->headScript()->prependFile($this->baseUrl('js/jquery-1.6.4.min.js'));
 	        $this->headScript()->appendFile($this->baseUrl('js/jquery.corner.js'));
 	        $this->headScript()->appendFile($this->baseUrl('js/default.js'));
-	        $this->headScript()->appendFile($this->baseUrl('js/jquery.mobile-1.0rc2.min.js'));
+	        $this->headScript()->appendFile($this->baseUrl('js/jquery.mobile-1.0.min.js'));
 	        $this->headScript()->appendFile($this->baseUrl('js/jquery.ui.map.full.min.js'));
 	        
 		    echo $this->headLink();
@@ -30,20 +30,13 @@
     		<div id="home" data-role="header" data-add-back-btn="true">
     			<h1>Caturi</h1>
     			<a href="/index/map" class="ui-btn-right" rel="external">Map</a>
-    			<?php /*if (!Zend_Auth::getInstance()->hasIdentity()): ?>
-    			    <a href="<?php echo $this->baseUrl('/index/login');?>">Login</a>
-    			    <a href="<?php echo $this->baseUrl('/index/register');?>">Register</a>
-    			<?php else: ?>
-    				<a href="<?php echo $this->baseUrl('/index/profile');?>">Profile</a>
-    				<a href="<?php echo $this->baseUrl('/index/logout');?>">Logout</a>			    
-    			<?php endif;*/?>
             </div>
     		
     		<div data-role="content">
     			<?php echo $this->layout()->content; ?>
     		</div>
     		
-    		<div data-role="footer" data-position="fixed">
+    		<div id="footer" data-role="footer" data-position="fixed">
     			Footer will go here...
             </div>
         </div>

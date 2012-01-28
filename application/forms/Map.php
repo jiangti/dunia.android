@@ -2,8 +2,6 @@
 class Form_Map extends Zend_Form {
 	public function init() {
 		
-		$this->setDisableLoadDefaultDecorators(true);
-		
 		parent::init();
 		$location = new Zend_Form_Element_Text('location');
 		$location
@@ -27,18 +25,6 @@ class Form_Map extends Zend_Form {
 		
 		$this->addElements($elements);
 		
-		$this->setDecorators(array(
-			'FormElements',
-			'Form'
-		));	
-		
-		$this->setElementDecorators(array(
-			'Label',
-			'ViewHelper',
-			array('HtmlTag', array('tag' => 'span'))
-		));
-		
-		$submit->removeDecorator('label');
 	}
 	
 }

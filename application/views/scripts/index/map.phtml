@@ -10,6 +10,19 @@
     			self.openInfoWindow({ 'content': '<?php echo addslashes($pub['name']); ?>' }, this);
     		});
     		<?php endforeach; ?>
+
+    		if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+					var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                	var blueIcon = new google.maps.MarkerImage("http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/blank.png");
+                	
+                	self.addMarker({'position': currentPosition, icon:blueIcon }).click(function() {
+            			self.openInfoWindow({ 'content': '<?php echo addslashes($pub['name']); ?>' }, this);
+            		});
+
+                	self.get('map').panTo(currentPosition);
+                });
+            }
     	}}); 
 		
 });
