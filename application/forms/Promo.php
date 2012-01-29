@@ -6,9 +6,11 @@ class Form_Promo extends Zend_Form {
         parent::init();
         
         $element = new Zend_Form_Element_Hidden('id');
+        $element->setDecorators(array('ViewHelper'));
         $this->addElement($element);
         
         $element = new Zend_Form_Element_Hidden('idPub');
+        $element->setDecorators(array('ViewHelper'));
         $this->addElement($element);
         
         $element = new Zend_Form_Element_Text('price', array(
@@ -17,27 +19,40 @@ class Form_Promo extends Zend_Form {
         $this->addElement($element);
         
         $element = new Zend_Form_Element_Radio('idLiquorType', array(
-            'multiOptions' => Model_LiquorType::getAllByName()
+            'multiOptions' => Model_LiquorType::getAllByName(),
+            'separator'    => ''
         ));
-        $element->removeDecorator('Label');
+        
+        //if (Zend_Registry::get('device')->getType() == 'mobile') {
+            $element->setDecorators(array('ViewHelper', new Aw_Decorator_JQMobileGroup()));
+        //}
+        
         $this->addElement($element);
         
         $element = new Aw_Form_Element_Time('timeStart', array(
             'label'    => 'From',
-            'required' => true
+            'required' => true,
+            'class'    => 'time'
         ));
         $this->addElement($element);
         
         $element = new Aw_Form_Element_Time('timeEnd', array(
             'label'    => 'To',
-            'required' => true
+            'required' => true,
+        	'class'    => 'time'
         ));
         $this->addElement($element);
         
         $element = new Zend_Form_Element_MultiCheckbox('day', array(
             'label'	       => 'Days',
-            'multiOptions' => Model_Promo::getDaysList()
+            'multiOptions' => Model_Promo::getDaysList(),
+            'separator'    => ''
         ));
+        
+        //if (Zend_Registry::get('device')->getType() == 'mobile') {
+            $element->setDecorators(array('ViewHelper', new Aw_Decorator_JQMobileGroup()));
+        //}
+        
         $this->addElement($element);
         
         

@@ -283,3 +283,4 @@ p.when {
 #beer-tab .ui-icon { background:  url(/img/icons/navbar/88-beer-mug.png) 50% 50% no-repeat;  background-size: 22px 27px; }
 #mail-tab .ui-icon { background:  url(/img/icons/navbar/18-envelope.png) 50% 50% no-repeat;  background-size: 24px 16px; }
 
+.ui-select { width: 45%; display: inline-block; }
