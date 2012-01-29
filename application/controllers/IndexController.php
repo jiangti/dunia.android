@@ -6,6 +6,8 @@ class IndexController extends Zend_Controller_Action {
     
 	public function indexAction() {
 		
+		$this->_helper->layout->setLayout('map');
+		
 		$form = new Form_Map();
 		
 		$this->view->form = $form;
@@ -45,11 +47,17 @@ class IndexController extends Zend_Controller_Action {
 	    $select = $db->select()
 	    ->from(array('p' => 'pub'))
 	    ->join(array('a' => 'address'),
-	           'p.idAddress = a.id', 
+	           'p.idAddress = a.id',
 	           array('longitude' => 'longitude', 'latitude', 'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(latitude)) * cos(radians(longitude) - radians('$longitude')) + sin(radians('$latitude')) * sin(radians(latitude))), 2)")))
 	    ->order('distance');
 	    
 	    return $db->fetchAll($select);
+	}
+	
+	public function shareAction() {
+		$form = new Form_Deal();
+		
+		$this->view->form = $form;
 	}
 }
 

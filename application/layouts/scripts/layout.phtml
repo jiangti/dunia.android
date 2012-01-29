@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<?php
+$this->headLink()->appendStylesheet($this->baseUrl('contrib/adapt-960/assets/css/960.css'), 'screen, projection');
+$this->headLink()->appendStylesheet($this->baseUrl('contrib/blueprint/blueprint/ie.css'), 'screen, projection', "lte IE 9");
+$this->headScript()->appendFile($this->baseUrl('contrib/1140_CssGrid_2/js/css3-mediaqueries.js'));
+$this->headLink()->appendStylesheet($this->baseUrl('css/style.css'), 'screen, projection');
+?>
 <?php echo $this->headLink(); ?>
 <?php echo $this->headScript(); ?>
 <script type="text/javascript">
@@ -11,7 +17,9 @@ thirsty = {};
 </script>
 </head>
 <body>
-  <?php echo $this->layout()->content; ?>
+<div class="container_12">
+<?php echo $this->layout()->content; ?>
+</div>
 </body>
 
 </html>
