@@ -8,6 +8,7 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	public $address;
 	public $email;
 	public $url;
+	public $active;
 
 	public $promo = array();
 
