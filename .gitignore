@@ -1,1 +1,4 @@
 *cachedir*
+.buildpath
+.project
+.settings/
