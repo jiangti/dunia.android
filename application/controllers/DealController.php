@@ -1,11 +1,7 @@
 <?php
-class DealController extends Zend_Controller_Action { 
+class DealController extends Zend_Controller_Action {
 	
     public function indexAction() {
-	    // $id = $this->_getParam('id');
-	    
-	    // $pub = new Model_Pub();
-	    // $this->view->pub = $pub->getById($id);
 	}
 	
 	public function addAction() {

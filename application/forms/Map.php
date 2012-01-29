@@ -20,11 +20,24 @@ class Form_Map extends Zend_Form {
 		$elements = array(
 			$location,
 			$time,
-			$submit
 		);
 		
 		$this->addElements($elements);
 		
+	}
+	
+	public function loadDefaultDecorators() {
+		$return = parent::loadDefaultDecorators();
+		
+		foreach ($this->getElements() as $index => $element) {
+			if ($label = $element->getDecorator('label')) {
+				$label->setOptions(array('tag' => 'span'));
+			}
+			if ($viewHelper = $element->getDecorator('htmlTag')) {
+				$viewHelper->setOptions(array('tag' => 'span'));
+			}
+		}
+		return $return;
 	}
 	
 }

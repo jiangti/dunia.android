@@ -2,8 +2,6 @@
 class AdminController extends Zend_Controller_Action {
 	public function hancockAction() {
 		$pubService = new Service_Pub();
-
-
 		$file = fopen('/home/jiangti/Downloads/pc_full_lat_long.csv', 'r');
 
 		$counter = 0;
@@ -27,25 +25,6 @@ class AdminController extends Zend_Controller_Action {
 			$pub->setFromArray($data);
 			$addressData = Model_Address::extract($row[4]);
 
-			//$addressData = array(
-			//	'address1'   => $addressRow[],
-			//	'address2'   => $addressRow[],
-			//	'city'       => $addressRow[],
-			//	'postcode'   => $addressRow[],
-			//	'town'       => $addressRow[],
-			//	'state'      => $addressRow[],
-			//	'country'    => $addressRow[],
-			//	'latitude'   => $addressRow[],
-			//	'longtitude' => $addressRow[]
-			//);
-
-
-			//$address = new Model_Address();
-			//$address->setFromArray($addressData);
-
-			//$pub->setAddress($address);
-
-//			$pubService->savePub($pub);
 		}
         exit;
 	}
@@ -79,7 +58,6 @@ class AdminController extends Zend_Controller_Action {
             }
             $pubService->savePub($pub);
         }
-
 
 	}
 }
