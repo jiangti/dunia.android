@@ -1,7 +1,14 @@
 <?php
-class Form_Deal extends Aw_Form_Abstract {
+class Form_Deal extends Form_Abstract {
 	public function init() {
 		parent::init();
+		
+		$name = new Aw_Form_Element_Text('name');
+		
+		$name
+			->setLabel('Name')
+			->setRequired(true)
+		;
 		
 		$location = new Zend_Form_Element_Textarea('location');
 		$location
@@ -10,13 +17,24 @@ class Form_Deal extends Aw_Form_Abstract {
 			->setAttrib('style', 'height: 100px;')
 		;
 		
-		for ($i = 0; $i < 3; $i++) {
-			$var = 'file' . $i;
-			$$var = new Aw_Form_Element_File('file' . $i);
-		}
+		$file = new Aw_Form_Element_File('file');
+		$file->setMultiFile(3);
 		
-		$file0->setRequired(true);
 		
-		$this->addElements(array($location, $file0, $file1, $file2));
+		$this->addElements(array($name, $location, $file));
+		
+		$this->setAttrib('enctype', 'multipart/form-data');
+		
+		$subForm = new Form_Deal_Detail();
+		$this->addSubForm($subForm, 'detail0');
+		
+		$subForm = new Form_Deal_Detail();
+		$this->addSubForm($subForm, 'detail1');
+		
+		$subForm = new Form_Deal_Detail();
+		$this->addSubForm($subForm, 'detail2');
+		
+		$subForm = new Form_Deal_Detail();
+		$this->addSubForm($subForm, 'detail3');
 	}
 }

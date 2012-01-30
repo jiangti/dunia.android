@@ -55,7 +55,19 @@ class IndexController extends Zend_Controller_Action {
 	}
 	
 	public function shareAction() {
-		$form = new Form_Deal();
+		$form = new Form_Deal('deal');
+		
+		if ($this->_request->isPost() && $form->isValid($this->_request->getPost())) {
+			$data = $form->getValues();
+			
+			$form->file->receive();
+			
+			$data['file_tmpfile'] = $form->file->getFileName();
+			
+			$service = new Service_Pub();
+			$service->savePubFromShareArray($data);
+			
+		}
 		
 		$this->view->form = $form;
 	}

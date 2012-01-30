@@ -17,4 +17,8 @@ class Model_DbTable_Pub extends Model_DbTable_TableAbstract {
 		$select->where('name = ?', $name);
 		return $this->fetchRow($select);
 	}
+	
+	public static function createFromArray($array) {
+		var_dump($array); exit;
+	}
 }

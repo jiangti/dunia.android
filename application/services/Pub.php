@@ -26,4 +26,56 @@ class Service_Pub {
 
 
 	}
+	
+	/**
+	 * @param unknown_type $data
+	 * array(
+	 * 		location
+	 * 		file0
+	 * 		file1
+	 * 		file2
+	 * 		detail0 =>
+	 * 			value
+	 * 			start
+	 *			end
+	 *			liquorType = array()
+	 *			days = array()
+	 *
+	 * );
+	 */
+	public function savePubFromShareArray($data) {
+		$db = Model_Db::getInstance();
+		
+		try {
+			
+			$db->beginTransaction();
+			
+			
+			$pub = Model_DbTable_Pub::getRow($data);
+			
+			$address = Model_DbTable_Address::createFromString($data['location']);
+			$pub->setAddress($address);
+			
+			foreach ($data as $index => $value) {
+				if (stripos($index, 'detail') !== false) {
+				}
+			}
+			
+			$pub->addDeal();
+			
+			$pub->save();
+			
+			exit('++');
+			
+		} catch (Exception $e) {
+			
+			$db->rollback();
+			
+			throw $e;
+		}
+		
+		
+		
+		
+	}
 }
