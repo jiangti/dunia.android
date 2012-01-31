@@ -43,29 +43,35 @@ class Service_Pub {
 	 *
 	 * );
 	 */
-	public function savePubFromShareArray($data) {
+	public function savePubFromShareArray($data, Model_DbTable_Row_Pub $pub = null) {
 		$db = Model_Db::getInstance();
 		
 		try {
 			
 			$db->beginTransaction();
 			
-			
-			$pub = Model_DbTable_Pub::getRow($data);
-			
-			$address = Model_DbTable_Address::createFromString($data['location']);
-			$pub->setAddress($address);
-			
-			foreach ($data as $index => $value) {
-				if (stripos($index, 'detail') !== false) {
+			if (!$pub) {
+				$pub = Model_DbTable_Pub::getRow($data);
+				
+				$address = Model_DbTable_Address::createFromString($data['location']);
+				$pub->setAddress($address);
+				$pub->save();
+			} else {
+				if ($pub->id == null) {
+					throw new Exception('Pub object needs to be instantiated with persistent data.');
 				}
 			}
 			
-			$pub->addDeal();
+			foreach ($data as $index => $value) {
+				if (stripos($index, 'detail') !== false && $value['value']) {
+					$pub->addDealFromArray($value);
+				}
+			}
 			
-			$pub->save();
 			
-			exit('++');
+			
+			$db->commit();
+			
 			
 		} catch (Exception $e) {
 			

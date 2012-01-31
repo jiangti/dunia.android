@@ -9,9 +9,9 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 			->setLabel('Value')
 		;
 		
-		$timeRanges = array();
+		$timeRanges = array('' => '-- Select --');
 		
-		$timeKeys = range(0, 23.5, 0.5);
+		$timeKeys = range(0, 11.5, 0.5);
 		
 		foreach ($timeKeys as $index => $value) {
 			$val = (int) $value;
@@ -37,6 +37,11 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 			->setLabel('End Time')
 			->setMultiOptions($timeRanges)
 		;
+		
+		$greater = new Aw_Validate_GreaterThanElement();
+		$greater->setElement($start);
+		
+		$end->addValidator($greater);
 		
 		
 		$liquorType = new Zend_Form_Element_MultiCheckbox('liquorType');

@@ -15,4 +15,16 @@ class Model_DbTable_Row_Promo extends Model_DbTable_Row_RowAbstract {
         }
         parent::_save();
     }
+    
+    public function addLiquorTypeById($liquorTypeId) {
+    	return $this->addLiquorType(Model_DbTable_LiquorType::retrieveById($liquorTypeId));
+    }
+    
+    public function addLiquorType(Model_DbTable_Row_LiquorType $liquorType) {
+    	$data['idLiquorType'] = $liquorType->id;
+    	$data['idPromo'] = $this->id;
+    	$row = Model_DbTable_PromoHasLiquorType::getRow($data);
+    	$row->save();
+    	return $row;
+    }
 }

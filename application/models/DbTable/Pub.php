@@ -11,7 +11,6 @@ class Model_DbTable_Pub extends Model_DbTable_TableAbstract {
 	    ),
 	);
 
-
 	public function findByName($name) {
 		$select = $this->select();
 		$select->where('name = ?', $name);
@@ -19,6 +18,5 @@ class Model_DbTable_Pub extends Model_DbTable_TableAbstract {
 	}
 	
 	public static function createFromArray($array) {
-		var_dump($array); exit;
 	}
 }

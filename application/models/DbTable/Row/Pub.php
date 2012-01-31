@@ -13,6 +13,39 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 
 	    $this->_address = $address;
 	}
+	
+	public function addDealFromArray($data) {
+		
+	    $days = array();
+	    foreach ($data['days'] as $day) {
+	    	$dayEnum = new Model_Day($day);
+	    	$days[] = $dayEnum->getAbbr();
+	    }
+	    
+		$array['timeStart']   = $data['start'];
+		$array['timeEnd']     = $data['end'];
+		$array['day']         = $days;
+		$array['price']       = $data['value'];
+		
+		$promo = Model_DbTable_Promo::getRow($array);
+		$promo->save();
+		
+		foreach ($data['liquorType'] as $liquorType) {
+			$promo->addLiquorTypeById($liquorType);
+		}
+		
+		$this->addPromo($promo);
+	}
+	
+	public function addPromo(Model_DbTable_Row_Promo $promo) {
+		$data['idPub'] = $this->id;
+		$data['idPromo'] = $promo->id;
+		
+		$row = Model_DbTable_PubHasPromo::getRow($data);
+		$row->save();
+		
+		return $row;
+	}
 
 	/**
 	 * @return Model_DbTable_Row_Address|null
@@ -37,5 +70,9 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 	            $this->save();
 	        }
 	    }
+	}
+	
+	public function __toString() {
+		return $this->name;
 	}
 }

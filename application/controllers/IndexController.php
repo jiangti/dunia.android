@@ -55,7 +55,17 @@ class IndexController extends Zend_Controller_Action {
 	}
 	
 	public function shareAction() {
+		
+		
 		$form = new Form_Deal('deal');
+		
+		$pub = null;
+		
+		if ($id = $this->_request->getParam('edit')) {
+			if ($pub = Model_DbTable_Pub::retrieveById($id)) {
+				$form->setRecord($pub);
+			}
+		}
 		
 		if ($this->_request->isPost() && $form->isValid($this->_request->getPost())) {
 			$data = $form->getValues();
@@ -65,7 +75,7 @@ class IndexController extends Zend_Controller_Action {
 			$data['file_tmpfile'] = $form->file->getFileName();
 			
 			$service = new Service_Pub();
-			$service->savePubFromShareArray($data);
+			$service->savePubFromShareArray($data, $pub);
 			
 		}
 		

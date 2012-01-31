@@ -1,5 +1,6 @@
 <?php
 class Form_Deal extends Form_Abstract {
+	protected $_record;
 	public function init() {
 		parent::init();
 		
@@ -10,7 +11,7 @@ class Form_Deal extends Form_Abstract {
 			->setRequired(true)
 		;
 		
-		$location = new Zend_Form_Element_Textarea('location');
+		$location = new Aw_Form_Element_Textarea('location');
 		$location
 			->setLabel('Location')
 			->setRequired(true)
@@ -36,5 +37,18 @@ class Form_Deal extends Form_Abstract {
 		
 		$subForm = new Form_Deal_Detail();
 		$this->addSubForm($subForm, 'detail3');
+	}
+	
+	public function setRecord(Model_DbTable_Row_Pub $record) {
+		$this->_record = $record;
+		
+		$this->name
+			->setValue((string) $record)
+			->setReadOnly(true)
+		;
+		
+		$this->location->setValue($record->getAddress()->formatOutput(' '));
+		
+		$this->location->setReadOnly();
 	}
 }
