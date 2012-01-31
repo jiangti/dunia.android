@@ -16,9 +16,9 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 		foreach ($timeKeys as $index => $value) {
 			$val = (int) $value;
 			if ($index % 2) {
-				$timeRanges[$val . ':30'] = $val . ':30';
+				$timeRanges[str_pad($val, 2, '0', STR_PAD_LEFT) . ':30'] = str_pad($val, 2, '0', STR_PAD_LEFT) . ':30';
 			} else {
-				$timeRanges[$val . ':00'] = $val . ':00';
+				$timeRanges[str_pad($val, 2, '0', STR_PAD_LEFT) . ':00'] = str_pad($val, 2, '0', STR_PAD_LEFT) . ':00';
 			}
 		}
 		
@@ -52,7 +52,7 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 			->setSeparator(' ');
 		;
 		
-		$dayOptions = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
+		$dayOptions = Model_Day::$days;
 		
 		$days = new Zend_Form_Element_MultiCheckbox('days');
 		
@@ -66,5 +66,21 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 		$this->addElements(array($deal, $start, $end, $liquorType, $days));
 		
 		return $return;
+	}
+	
+	public function setRecord(Model_DbTable_Row_Promo $record) {
+		parent::setRecord($record);
+		
+		$data['value'] = $record->price;
+		$data['start'] = substr($record->timeStart, 0, 5);
+		$data['end'] = substr($record->timeEnd, 0, 5);
+		
+		$data['liquorType'] = $record->getLiquorTypes()->getCol('id');
+		
+		$data['days'] = Model_Day::csvToInt($record->day);
+		
+		$this->setDefaults($data);
+		
+		
 	}
 }

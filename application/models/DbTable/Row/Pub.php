@@ -14,6 +14,10 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 	    $this->_address = $address;
 	}
 	
+	public function getPromos() {
+		return $this->findManyToManyRowset(new Model_DbTable_Promo(), new Model_DbTable_PubHasPromo());
+	}
+	
 	public function addDealFromArray($data) {
 		
 	    $days = array();

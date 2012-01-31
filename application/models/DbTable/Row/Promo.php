@@ -27,4 +27,8 @@ class Model_DbTable_Row_Promo extends Model_DbTable_Row_RowAbstract {
     	$row->save();
     	return $row;
     }
+    
+    public function getLiquorTypes() {
+    	return $this->findManyToManyRowset(new Model_DbTable_LiquorType(), new Model_DbTable_PromoHasLiquorType());
+    }
 }

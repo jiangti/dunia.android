@@ -34,6 +34,15 @@ class Model_Day extends Aw_Enum_Abstract {
 		self::INT_SUN => self::ABBR_SUN,
 	);
 	
+	public static function csvToInt($csv) {
+		$int = array();
+		foreach (explode(",", $csv) as $abbr) {
+			$abbr = trim($abbr);
+			$int[] = array_search($abbr, self::$days);
+		}
+		return $int;
+	}
+	
 	public function getAbbr() {
 		$consts = $this->_getConstantList();
 		$key = array_search($this->_value, $consts);

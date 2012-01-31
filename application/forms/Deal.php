@@ -40,7 +40,7 @@ class Form_Deal extends Form_Abstract {
 	}
 	
 	public function setRecord(Model_DbTable_Row_Pub $record) {
-		$this->_record = $record;
+		parent::setRecord($record);
 		
 		$this->name
 			->setValue((string) $record)
@@ -48,7 +48,16 @@ class Form_Deal extends Form_Abstract {
 		;
 		
 		$this->location->setValue($record->getAddress()->formatOutput(' '));
-		
 		$this->location->setReadOnly();
+		
+		/**
+		 * Tries to populate as much as possible.
+		 */
+		
+		$promos = $record->getPromos();
+		foreach ($promos as $index => $promo) {
+			$subForm = $this->getSubForm('detail' . $index);
+			$subForm->setRecord($promo);
+		}
 	}
 }
