@@ -41,6 +41,12 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 		$this->addPromo($promo);
 	}
 	
+	public function resetPromo() {
+		foreach ($this->getPromos() as $promo) {
+			$promo->delete();
+		}
+	}
+	
 	public function addPromo(Model_DbTable_Row_Promo $promo) {
 		$data['idPub'] = $this->id;
 		$data['idPromo'] = $promo->id;

@@ -11,6 +11,12 @@ class Form_Deal extends Form_Abstract {
 			->setRequired(true)
 		;
 		
+		$email = new Aw_Form_Element_Email('email');
+		$email->setLabel('Email');
+		
+		$url = new Aw_Form_Element_Url('url');
+		$url->setLabel('Url');
+		
 		$location = new Aw_Form_Element_Textarea('location');
 		$location
 			->setLabel('Location')
@@ -22,7 +28,7 @@ class Form_Deal extends Form_Abstract {
 		$file->setMultiFile(3);
 		
 		
-		$this->addElements(array($name, $location, $file));
+		$this->addElements(array($name, $email, $url, $location, $file));
 		
 		$this->setAttrib('enctype', 'multipart/form-data');
 		

@@ -52,7 +52,6 @@ class Service_Pub {
 			
 			if (!$pub) {
 				$pub = Model_DbTable_Pub::getRow($data);
-				
 				$address = Model_DbTable_Address::createFromString($data['location']);
 				$pub->setAddress($address);
 				$pub->save();
@@ -60,6 +59,12 @@ class Service_Pub {
 				if ($pub->id == null) {
 					throw new Exception('Pub object needs to be instantiated with persistent data.');
 				}
+				$pub->setFromArray($data);
+				$pub->save();
+				
+				//Reset and readd all again. Easiest approach for now.
+				
+				$pub->resetPromo();
 			}
 			
 			foreach ($data as $index => $value) {
@@ -68,11 +73,7 @@ class Service_Pub {
 				}
 			}
 			
-			
-			
 			$db->commit();
-			
-			
 		} catch (Exception $e) {
 			
 			$db->rollback();
@@ -80,7 +81,7 @@ class Service_Pub {
 			throw $e;
 		}
 		
-		
+		return $pub;
 		
 		
 	}

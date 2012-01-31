@@ -75,8 +75,9 @@ class IndexController extends Zend_Controller_Action {
 			$data['file_tmpfile'] = $form->file->getFileName();
 			
 			$service = new Service_Pub();
-			$service->savePubFromShareArray($data, $pub);
+			$pub = $service->savePubFromShareArray($data, $pub);
 			
+			$this->_redirect(sprintf('/index/share/edit/%d', $pub->id));
 		}
 		
 		$this->view->form = $form;
