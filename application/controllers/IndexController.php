@@ -5,12 +5,12 @@ class IndexController extends Zend_Controller_Action {
     const DEFAULT_LONGITUDE = 151.206;
     
 	public function indexAction() {
-		
 		$this->_helper->layout->setLayout('map');
-		
 		$form = new Form_Map();
-		
 		$this->view->form = $form;
+		
+		$this->view->lat = self::DEFAULT_LATITUDE;
+		$this->view->long = self::DEFAULT_LONGITUDE;
 		
 	}
 	
@@ -30,10 +30,10 @@ class IndexController extends Zend_Controller_Action {
 	}
 	
 	public function mapAction() {
-	    $this->view->pubs = $this->getPubs($this->_getParam('latitude'), $this->_getParam('longitude'));
+	    $this->view->pubs = $this->_getPubs($this->_getParam('latitude'), $this->_getParam('longitude'));
 	}
 	
-	protected function getPubs($latitude, $longitude) {
+	protected function _getPubs($latitude, $longitude) {
 	    $pubTable = new Model_DbTable_Pub();
 	    $db       = $pubTable->getAdapter();
 	    
@@ -45,18 +45,15 @@ class IndexController extends Zend_Controller_Action {
 	    }
 	    
 	    $select = $db->select()
-	    ->from(array('p' => 'pub'))
-	    ->join(array('a' => 'address'),
-	           'p.idAddress = a.id',
-	           array('longitude' => 'longitude', 'latitude', 'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(latitude)) * cos(radians(longitude) - radians('$longitude')) + sin(radians('$latitude')) * sin(radians(latitude))), 2)")))
-	    ->order('distance');
+		    ->from(array('p' => 'pub'))
+		    ->join(array('a' => 'address'), 'p.idAddress = a.id', array('longitude' => 'longitude', 'latitude', 'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(latitude)) * cos(radians(longitude) - radians('$longitude')) + sin(radians('$latitude')) * sin(radians(latitude))), 2)")))
+		    ->order('distance');
 	    
 	    return $db->fetchAll($select);
 	}
 	
 	public function shareAction() {
-		
-		
+
 		$form = new Form_Deal('deal');
 		
 		$pub = null;

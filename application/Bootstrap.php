@@ -21,14 +21,17 @@ class Bootstrap extends Aw_BootstrapAbstract {
 
         $view
         	->headLink()
-        	->appendStylesheet('/css/style.css')
-        	->appendStylesheet('/css/formalize/formalize.css')
+        	->appendStylesheet('/css/style.css', 'screen, projection')
+        	->appendStylesheet('/css/formalize/formalize.css', 'screen, projection')
+        	->appendStylesheet('/contrib/jquery-ui-1.8.17.custom/css/custom-theme/jquery-ui-1.8.17.custom.css', 'screen, projection')
         ;
 
         $view
         	->headScript()
-        	->appendFile('/js/jquery-1.7.min.js')
-        	->appendFile('/js/formalize/jquery.formalize.js')
+        	->prependFile('/contrib/jquery-ui-1.8.17.custom/js/jquery-1.7.1.min.js')
+        	->appendFile( '/contrib/jquery-ui-1.8.17.custom/js/jquery-ui-1.8.17.custom.min.js')
+        	->appendFile( '/js/formalize/jquery.formalize.js')
+        
         ;
 
         return $view;

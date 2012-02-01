@@ -56,6 +56,14 @@ class Form_Deal extends Form_Abstract {
 		$this->location->setValue($record->getAddress()->formatOutput(' '));
 		$this->location->setReadOnly();
 		
+		$this->email
+			->setValue($record->email)
+		;
+		
+		$this->url
+			->setValue($record->url)
+		;
+		
 		/**
 		 * Tries to populate as much as possible.
 		 */
