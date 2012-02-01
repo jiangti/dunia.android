@@ -1,29 +1,19 @@
 <?php
-class MapController extends Zend_Controller_Action {
-	
-	const DEFAULT_LATITUDE  = -33.8757;
-	const DEFAULT_LONGITUDE = 151.206;
+class MapController extends Model_Controller_Action {
 	
 	public function fetchAction() {
 		
 		$pubService = new Service_Pub();
 		
-		$pubs = $pubService->findPubByLatLong(self::DEFAULT_LATITUDE, self::DEFAULT_LONGITUDE);
-		$simpleXml = simplexml_load_file(APPLICATION_ROOT . '/data/fetch.xml');
+		$user = $this->_getUser();
+		
+		$lat = $this->_getParam('lat', $user->getLat());
+		$long = $this->_getParam('long', $user->getLong());
+		
+		$pubs = $pubService->findPubByLatLong($lat, $long);
 		//$pubs->loadAddress();
 		
 		$array = array();
-		
-		foreach ($simpleXml as $node) {
-			$array[] = array(
-					                               'name' => $node['name'],
-					                               'address' => $node['address'],
-					                               'lat' => $node['lat'],
-					                               'lng' => $node['lng'],
-					                               'type' => $node['type'],
-					);
-		}
-		
 		
 		foreach ($pubs as $pub) {
 			$array[] = array(

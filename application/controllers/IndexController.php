@@ -1,16 +1,15 @@
 <?php
-class IndexController extends Zend_Controller_Action {
-    
-    const DEFAULT_LATITUDE  = -33.8757;
-    const DEFAULT_LONGITUDE = 151.206;
+class IndexController extends Model_Controller_Action {
     
 	public function indexAction() {
 		$this->_helper->layout->setLayout('map');
 		$form = new Form_Map();
 		$this->view->form = $form;
 		
-		$this->view->lat = self::DEFAULT_LATITUDE;
-		$this->view->long = self::DEFAULT_LONGITUDE;
+		$user = $this->_getUser();
+		
+		$this->view->lat = $user->getLat();
+		$this->view->long = $user->getLong();
 		
 	}
 	
