@@ -2,7 +2,15 @@
 class PubController extends Zend_Controller_Action {
 	public function indexAction() {
 		$pubTable = new Model_DbTable_Pub();
-		$this->view->pubs = $pubTable->fetchAll();
+		
+		$paginator = Zend_Paginator::factory($pubTable->fetchAll());
+		
+		$paginator
+			->setCurrentPageNumber($this->_request->getParam('page'))
+			->setItemCountPerPage($this->_getParam('count', 10))
+		;
+		
+		$this->view->pubs = $paginator;
 	}
 	
 	public function overviewAction() {

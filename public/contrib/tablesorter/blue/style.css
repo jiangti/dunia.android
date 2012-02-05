@@ -31,5 +31,5 @@ table.generic thead tr .headerSortDown {
 	background-image: url(desc.gif);
 }
 table.generic thead tr .headerSortDown, table.generic thead tr .headerSortUp {
-background-color: #8dbdd8;
+    background-color: #8dbdd8;
 }

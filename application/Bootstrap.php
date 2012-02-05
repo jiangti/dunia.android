@@ -37,6 +37,11 @@ class Bootstrap extends Aw_BootstrapAbstract {
         	->appendFile( '/js/formalize/jquery.formalize.js')
         
         ;
+        
+        Zend_Paginator::setDefaultScrollingStyle('Sliding');
+        Zend_View_Helper_PaginationControl::setDefaultViewPartial(
+        	'partials/pagination/item.phtml'
+        );
 
         return $view;
     }
