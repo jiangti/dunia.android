@@ -5,6 +5,9 @@
 <?php
 $this->headLink()->appendStylesheet($this->baseUrl('contrib/adapt-960/assets/css/960.css'), 'screen, projection');
 $this->headLink()->appendStylesheet($this->baseUrl('contrib/blueprint/blueprint/ie.css'), 'screen, projection', "lte IE 9");
+$this->headLink()->appendStylesheet($this->baseUrl('contrib/blueprint/blueprint/plugins/link-icons/screen.css'), 'screen, projection');
+$this->headLink()->appendStylesheet($this->baseUrl('contrib/blueprint/blueprint/plugins/sprites/sprite.css'), 'screen, projection');
+$this->headLink()->appendStylesheet($this->baseUrl('contrib/tablesorter/blue/style.css'), 'screen, projection');
 $this->headScript()->appendFile($this->baseUrl('contrib/1140_CssGrid_2/js/css3-mediaqueries.js'));
 $this->headLink()->appendStylesheet($this->baseUrl('css/style.css'), 'screen, projection');
 ?>

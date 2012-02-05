@@ -1,6 +1,8 @@
 <?php
-class PubController extends Zend_Controller_Action { 
+class PubController extends Zend_Controller_Action {
 	public function indexAction() {
+		$pubTable = new Model_DbTable_Pub();
+		$this->view->pubs = $pubTable->fetchAll();
 	}
 	
 	public function overviewAction() {

@@ -57,7 +57,7 @@ class IndexController extends Model_Controller_Action {
 		
 		$pub = null;
 		
-		if ($id = $this->_request->getParam('edit')) {
+		if ($id = $this->_request->getParam('id')) {
 			if ($pub = Model_DbTable_Pub::retrieveById($id)) {
 				$form->setRecord($pub);
 			}
@@ -73,7 +73,7 @@ class IndexController extends Model_Controller_Action {
 			$service = new Service_Pub();
 			$pub = $service->savePubFromShareArray($data, $pub);
 			
-			$this->_redirect(sprintf('/index/share/edit/%d', $pub->id));
+			$this->_redirect(sprintf('/index/share/id/%d', $pub->id));
 		}
 		
 		$this->view->form = $form;
