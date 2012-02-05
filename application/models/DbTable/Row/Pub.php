@@ -1,6 +1,14 @@
 <?php
 class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
     protected $_address;
+    
+    protected $_referenceMap    = array(
+        'address' => array(
+        	'columns'       => 'idAddress',
+        	'refTableClass' => 'Model_DbTable_Address',
+        	'refColumns'    => 'id'
+        ),
+    );
 
 	public function setAddress(Model_DbTable_Row_Address $address) {
 	    // This should copy over and reuse the existing record.
@@ -58,16 +66,22 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 	}
 
 	/**
+	 * Explicit optimization this takes n+1 problem away. Not suitable for very large dataset.
 	 * @return Model_DbTable_Row_Address|null
 	 */
 	public function getAddress() {
-	    if ($this->_address) {
-	        return $this->_address;
-	    } else {
-	        return $this->findParentRow('Model_DbTable_Address');
+		//return $this->findParentRow(new Model_DbTable_Address());
+		if ($this->_address) { } else {
+			foreach ($this->_rowset->getLoadRows(new Model_DbTable_Address(), 'address') as $row) {
+				if ($row->id == $this->idAddress) {
+					$this->_address = $row;
+					break;
+				}
+			}
 	    }
+	    return $this->_address;
 	}
-
+	
 	public function _save() {
 	    parent::_save();
 	    if ($this->_address) {

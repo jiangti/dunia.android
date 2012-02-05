@@ -4,6 +4,14 @@ class Model_DbTable_Address extends Model_DbTable_TableAbstract {
 
 	protected $_rowClass = 'Model_DbTable_Row_Address';
 	
+	protected $_referenceMap    = array(
+		'pub' => array(
+				'columns'       => 'id',
+				'refTableClass' => 'Model_DbTable_Pub',
+				'refColumns'    => 'idAddress'
+		),
+	);
+	
 	public static function createFromString($string) {
 		$data = Aw_Service_Google_Geocoder::geocodeAddress($string);
 		

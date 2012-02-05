@@ -11,10 +11,8 @@ class MapController extends Model_Controller_Action {
 		$long = $this->_getParam('long', $user->getLong());
 		
 		$pubs = $pubService->findPubByLatLong($lat, $long);
-		//$pubs->loadAddress();
 		
 		$array = array();
-		
 		foreach ($pubs as $pub) {
 			$array[] = array(
 				'name' 		=> array($pub['name']),

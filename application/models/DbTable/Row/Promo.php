@@ -29,6 +29,9 @@ class Model_DbTable_Row_Promo extends Model_DbTable_Row_RowAbstract {
     }
     
     public function getLiquorTypes() {
+    	/**
+    	 * This should be optimized with static storing.
+    	 */
     	return $this->findManyToManyRowset(new Model_DbTable_LiquorType(), new Model_DbTable_PromoHasLiquorType());
     }
 }

@@ -1,6 +1,7 @@
 <?php
 class Model_DbTable_Pub extends Model_DbTable_TableAbstract {
 	protected $_name = 'pub';
+	protected $_rowsetClass = 'Model_DbTable_Rowset_Pub';
 	protected $_rowClass = 'Model_DbTable_Row_Pub';
 
 	protected $_referenceMap    = array(

@@ -10,6 +10,10 @@ class Bootstrap extends Aw_BootstrapAbstract {
 		//$pluginLoader = new Zend_Loader_PluginLoader();
 		//$pluginLoader->addPrefixPath('Application_Plugin', APPLICATION_ROOT . '/application/plugins/');
 	}
+	
+	public function _initLibraries() {
+		require_once APPLICATION_ROOT . '/library/Aw/Contrib/Libphutil/src/utils/utils.php';
+	}
 
     public function _initView() {
         $view = new Zend_View();
