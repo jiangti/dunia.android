@@ -1,5 +1,5 @@
 <div class="container_12">
-	<div class="grid_8">
+	<div class="grid_8 pad_bottom">
 	<form action="" method="get" class="formalize">
 		<input type="text" name="q" /> <input type="submit" value="Search">
 	</form>
@@ -24,7 +24,7 @@
 				<?php foreach($this->pubs as $pub): ?>
 				<tr>
 					<td><?php echo $pub; ?></td>
-					<td><?php echo $pub->getAddress(); ?></td>
+					<td><?php echo $pub->getAddress()->formatOutput(' '); ?></td>
 					<td><a href="<?php echo sprintf('/index/share/id/%d', $pub->id); ?>" class="ss_sprite ss_application_edit"></a></td>
 				</tr>
 				<?php endforeach; ?>
