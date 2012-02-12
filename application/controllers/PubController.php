@@ -3,19 +3,9 @@ class PubController extends Zend_Controller_Action
 {
     public function indexAction()
     {
-        $pubTable = new Model_DbTable_Pub();
+        $service = new Service_Pub();
         
-        $select = $pubTable->select(false);
-        $select->from(array('p' => 'pub'));
-        
-        if ($query = $this->_getParam('q')) {
-            $select->where('p.name like ?', sprintf('%s%%', $query));
-            $select
-                ->setIntegrityCheck(false)
-                ->joinLeft(array('a' => 'address'), 'p.idAddress = a.id', array())
-                ->orWhere(sprintf('a.address1 like "%%%s%%" or a.postcode = "%s" or a.town like "%%%s%%"', $query, $query, $query))
-            ;
-        }
+        $select = $service->searchPub($this->_getParam('q'));
         
         $paginator = Zend_Paginator::factory($select);
         
