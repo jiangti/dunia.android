@@ -18,7 +18,7 @@ class MapController extends Model_Controller_Action {
 				'name' 		=> array($pub['name']),
 				'address' 	=> array((string) $pub->getAddress()),
 				'lat' 		=> array($pub['latitude']),
-				'lng' 		=> array($pub['longtitude']),
+				'lng' 		=> array($pub['longitude']),
 				'type' 		=> array('bar'),
 			);
 		}
