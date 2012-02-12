@@ -5,10 +5,16 @@ class PubController extends Zend_Controller_Action
     {
         $pubTable = new Model_DbTable_Pub();
         
-        $select = $pubTable->select();
+        $select = $pubTable->select(false);
+        $select->from(array('p' => 'pub'));
         
         if ($query = $this->_getParam('q')) {
-            $select->where('name like ?', sprintf('%s%%', $query));
+            $select->where('p.name like ?', sprintf('%s%%', $query));
+            $select
+                ->setIntegrityCheck(false)
+                ->joinLeft(array('a' => 'address'), 'p.idAddress = a.id', array())
+                ->orWhere(sprintf('a.address1 like "%%%s%%" or a.postcode = "%s" or a.town like "%%%s%%"', $query, $query, $query))
+            ;
         }
         
         $paginator = Zend_Paginator::factory($select);
