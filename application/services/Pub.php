@@ -84,13 +84,13 @@ class Service_Pub {
 		return $pub;
 	}
 	
-	public function findPubByLatLong($latitude, $longtitude) {
+	public function findPubByLatLong($latitude, $longitude) {
 		$pubTable = new Model_DbTable_Pub();
 		
 		$select = $pubTable->select()
 			->setIntegrityCheck(false)
 			->from(array('p' => 'pub'))
-			->join(array('a' => 'address'), 'p.idAddress = a.id', array('longtitude' => 'longtitude', 'latitude', 'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(latitude)) * cos(radians(longtitude) - radians('$longtitude')) + sin(radians('$latitude')) * sin(radians(latitude))), 2)")))
+			->join(array('a' => 'address'), 'p.idAddress = a.id', array('longitude' => 'longitude', 'latitude', 'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(latitude)) * cos(radians(longitude) - radians('$longitude')) + sin(radians('$latitude')) * sin(radians(latitude))), 2)")))
 			->order('distance')
 		;
 		 

@@ -61,7 +61,7 @@ class Model_DbTable_Address extends Model_DbTable_TableAbstract {
 			$location = $results['geometry']['location'];
 		
 			$address->latitude   = $location['lat'];
-			$address->longtitude = $location['lng'];
+			$address->longitude = $location['lng'];
 			
 			$address->address1 = trim($address->address1);
 			return $address;
@@ -125,7 +125,7 @@ class Model_DbTable_Address extends Model_DbTable_TableAbstract {
 	        $location = $results->geometry->location;
 
 	        $address->latitude   = $location->lat;
-	        $address->longtitude = $location->lng;
+	        $address->longitude = $location->lng;
 
             $address->address1 = trim($address->address1);
 	        return $address;
