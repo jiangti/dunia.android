@@ -594,7 +594,8 @@ EOS;
         }
 
         // ensure that zf.php loads the Zend_Tool_Project features
-        $configOptions['classesToLoad'] = 'Zend_Tool_Project_Provider_Manifest';
+        //$configOptions['classesToLoad'] = 'Zend_Tool_Project_Provider_Manifest';
+        $configOptions['classesToLoad'] = 'Aw_Tool_Manifest';
         $console = new Zend_Tool_Framework_Client_Console($configOptions);
         $console->dispatch();
     }
@@ -622,8 +623,8 @@ if (!getenv('ZF_NO_MAIN')) {
     require_once __DIR__ . '/../env.php';
     require_once APPLICATION_ROOT . '/library/Zend/Application.php';
     $application = new Zend_Application(
-	    APPLICATION_ENV,
-	    APPLICATION_PATH . '/configs/application.ini'
+    APPLICATION_ENV,
+    APPLICATION_PATH . '/configs/application.ini'
     );
 
     $application->bootstrap();
