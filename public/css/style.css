@@ -20,3 +20,11 @@ form fieldset {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;    
 }
+
+.pad_top {
+	padding-top: 5px;
+}
+
+.pad_bottom {
+	padding-bottom: 5px;
+}

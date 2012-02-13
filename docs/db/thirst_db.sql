@@ -32,7 +32,7 @@ CREATE TABLE `address` (
   `state` varchar(255) DEFAULT NULL,
   `country` varchar(255) DEFAULT NULL,
   `latitude` float DEFAULT NULL,
-  `longtitude` float DEFAULT NULL,
+  `longitude` float DEFAULT NULL,
   `buildingName` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=331 DEFAULT CHARSET=utf8;
