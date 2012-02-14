@@ -27,11 +27,8 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	}
 	
 	public function getPromos() {
-	    $promosTable = new Model_DbTable_Promo();
-	    $select = $promosTable->select()
-	        ->where('idPub = ?', $this->id);
-
-	    return $promosTable->fetchAll($select);
+	    $pubRow = Model_DbTable_Pub::retrieveById($this->id);
+	    return $pubRow->findManyToManyRowset('Model_DbTable_Promo', 'Model_DbTable_PubHasPromo');
 	}
 	
 	public function getById($id) {

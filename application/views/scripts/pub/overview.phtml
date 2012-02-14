@@ -1,10 +1,11 @@
 <?php $address = $this->pub->address;?>
+
 <script type="text/javascript">
 	$(document).ready(function() {
     	var pub = { 'center': '<?php echo $address->latitude . ',' . $address->longitude; ?>', 'zoom': 16 };
     	
     	
-    	$('#map_canvas').gmap({'center': pub.center, 'zoom': pub.zoom, 'disableDefaultUI':true, 'callback': function() {
+    	 $('#map_canvas').gmap({'center': pub.center, 'zoom': pub.zoom, 'disableDefaultUI':true, 'callback': function() {
     		var self = this;
     		self.addMarker({'position': new google.maps.LatLng(<?php echo $address->latitude . ',' . $address->longitude; ?>) }).click(function() {
     			self.openInfoWindow({ 'content': '<?php echo addslashes($this->pub->name); ?>' }, this);
@@ -22,7 +23,11 @@
                 	self.get('map').panTo(currentPosition);
                 });
             }*/
-    	}}); 
+    	}});
+
+        $("#map").live('pageshow', function() {
+            $('#map_canvas').gmap('refresh');
+        }); 
 		
 });
 </script>
@@ -53,14 +58,14 @@
 
 
 
-<div data-role="page" id="map">
+<div data-role="page" id="map" style="height:100%;">
 	<div data-role="header">
 		<a href="/index/list" data-icon="home" rel="external">Home</a>
 		<h1><?php echo $this->pub->name; ?></h1>
     </div>
 	
-	<div data-role="content">
-		<div id="map_canvas" style="height:100%;min-height:250px;"></div>
+	<div data-role="content" style="height:100%;">
+		<div id="map_canvas" style="height:90%;"></div>
 	</div>
 	
     <?php echo $this->partial('pub/partials/footer.php', array('selected' => 'map'))?>
