@@ -10,7 +10,7 @@ class PubController extends Zend_Controller_Action
         $paginator = Zend_Paginator::factory($select);
         
         $paginator->setCurrentPageNumber($this->_request->getParam('page'))
-            ->setItemCountPerPage($this->_getParam('count', 10))
+            ->setItemCountPerPage($this->_getParam('count', 20))
         ;
         
         $this->view->pubs = $paginator;
