@@ -1,4 +1,4 @@
-<div style="width: 100%">
+<div>
 	<div style="margin: 3px; float: left;">
 		<?php echo $this->form; ?>
 	</div>
@@ -21,8 +21,60 @@
 
 thirsty.long = '<?php echo $this->long; ?>';
 thirsty.lat = '<?php echo $this->lat; ?>';
+thirsty.mapMarkers = [];
 
-$().ready(function() {
+function cleanMarkers() {
+    if (thirsty.mapMarkers) {
+        for (var i = 0; i < thirsty.mapMarkers.length; i++ ) {
+            thirsty.mapMarkers[i].setMap(null);
+        }
+    }
+}
+
+function setMarkers(data) {
+    cleanMarkers();
+    markers = data;
+
+    var customIcons = {
+        restaurant: {
+            icon: '/img/icons/markers/steak.png'
+        },
+        bar: {
+            icon: '/img/icons/markers/beer.png'
+        }
+    };
+
+    for (var i = 0; i < markers.length; i++) {
+        var marker = markers[i];
+        var name = marker.name[0];
+        var address = marker.address[0];
+        var type = marker.type[0];
+
+        var point = new google.maps.LatLng(
+            parseFloat(marker.lat[0]),
+            parseFloat(marker.lng[0]));
+
+
+        var icon = customIcons[type] || {};
+
+        var mapMarker = new google.maps.Marker({
+            map: thirsty.map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow,
+            html: "<b>" + name + "</b> <br/>" + address
+        });
+
+        thirsty.mapMarkers.push(mapMarker);
+        google.maps.event.addListener(mapMarker, 'click', function() {
+            thirsty.infoWindow.setContent(this.html);
+            thirsty.infoWindow.open(thirsty.map, this);
+        });
+    }
+}
+
+$(document).ready(function() {
+ 
     var amHere = new google.maps.LatLng(thirsty.lat, thirsty.long);
     var myOptions = {
         zoom: 15,
@@ -43,46 +95,19 @@ $().ready(function() {
         }
     };
 
-    $.ajax({success: function(data) {
-        markers = data;
+    $.ajax({success: function(data) {setMarkers(data);}, 
+            url: '/map/fetch/lat/' + amHere.Oa + '/long/' + amHere.Pa, dataType: 'json'});
 
-        var customIcons = {
-            restaurant: {
-                icon: '/img/icons/markers/steak.png'
-            },
-            bar: {
-                icon: '/img/icons/markers/beer.png'
-            }
-        };
-
-        for (var i = 0; i < markers.length; i++) {
-            var marker = markers[i];
-            var name = marker.name[0];
-            var address = marker.address[0];
-            var type = marker.type[0];
-
-            var point = new google.maps.LatLng(
-                parseFloat(marker.lat[0]),
-                parseFloat(marker.lng[0]));
-
-
-            var icon = customIcons[type] || {};
-
-            var mapMarker = new google.maps.Marker({
-                map: thirsty.map,
-                position: point,
-                icon: icon.icon,
-                shadow: icon.shadow,
-                html: "<b>" + name + "</b> <br/>" + address
-            });
-
-            google.maps.event.addListener(mapMarker, 'click', function() {
-                thirsty.infoWindow.setContent(this.html);
-                thirsty.infoWindow.open(thirsty.map, this);
-            });
-        }
-    }, url: '/map/fetch/lat/' + amHere.Oa + '/long/' + amHere.Pa, dataType: 'json'});
-
+    $("#searchForm").submit(function() {
+        $.ajax({
+            success: function(data) {
+                setMarkers(data);
+            }, 
+            url: '/map/search/q/' + $("#location").val(), dataType: 'json'
+        });
+        
+        return false;
+    });
 
 });
 </script>

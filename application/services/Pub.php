@@ -102,7 +102,11 @@ class Service_Pub
             $select->where('p.name like ?', sprintf('%s%%', $query));
             $select
             ->setIntegrityCheck(false)
-            ->joinLeft(array('a' => 'address'), 'p.idAddress = a.id', array())
+            ->joinLeft(array('a' => 'address'), 'p.idAddress = a.id', array(
+            			'longitude',
+                        'latitude',
+                        //'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(latitude)) * cos(radians(longitude) - radians('$longitude')) + sin(radians('$latitude')) * sin(radians(latitude))), 2)"
+                        ))//)
             ->orWhere(sprintf('a.address1 like "%%%s%%" or a.postcode = "%s" or a.town like "%%%s%%"', $query, $query, $query))
             ;
         }
@@ -120,7 +124,7 @@ class Service_Pub
             ->join(array('a' => 'address'),
                     'p.idAddress = a.id',
                     array(
-                        'longitude' => 'longitude',
+                        'longitude',
                         'latitude',
                         'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(latitude)) * cos(radians(longitude) - radians('$longitude')) + sin(radians('$latitude')) * sin(radians(latitude))), 2)"))
                     )

@@ -11,14 +11,15 @@ class IndexController extends Model_Controller_Action {
 		$this->view->lat = $user->getLat();
 		$this->view->long = $user->getLong();
 		
+		
 	}
 	
 	public function listAction() {
-	    $this->view->pubs = $this->getPubs($this->_getParam('latitude'), $this->_getParam('longitude'));
+	    $this->view->pubs = $this->_getPubs($this->_getParam('latitude'), $this->_getParam('longitude'));
 	}
 	
 	public function locateAction() {
-	    $this->view->pubs = $this->getPubs($this->_getParam('latitude'), $this->_getParam('longitude'));
+	    $this->view->pubs = $this->_getPubs($this->_getParam('latitude'), $this->_getParam('longitude'));
 	    $this->_helper->layout()->disableLayout();
 	}
 	
@@ -35,12 +36,13 @@ class IndexController extends Model_Controller_Action {
 	protected function _getPubs($latitude, $longitude) {
 	    $pubTable = new Model_DbTable_Pub();
 	    $db       = $pubTable->getAdapter();
+	    $user = $this->_getUser();
 	    
 	    if (!$latitude) {
-	        $latitude = self::DEFAULT_LATITUDE;
+	        $latitude = $user->getLat();
 	    }
 	    if (!$longitude) {
-	        $longitude = self::DEFAULT_LONGITUDE;
+	        $longitude = $user->getLong();
 	    }
 	    
 	    $select = $db->select()

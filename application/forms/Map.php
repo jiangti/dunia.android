@@ -3,6 +3,9 @@ class Form_Map extends Zend_Form {
 	public function init() {
 		
 		parent::init();
+		
+		$this->setAttrib('id', 'searchForm');
+		
 		$location = new Zend_Form_Element_Text('location');
 		$location
 			->setLabel('Location')
