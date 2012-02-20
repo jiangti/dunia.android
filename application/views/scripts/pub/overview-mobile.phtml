@@ -1,0 +1,91 @@
+<?php $address = $this->pub->address;?>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+    	var pub = { 'center': '<?php echo $address->latitude . ',' . $address->longitude; ?>', 'zoom': 16 };
+    	
+    	
+    	 $('#map_canvas').gmap({'center': pub.center, 'zoom': pub.zoom, 'disableDefaultUI':true, 'callback': function() {
+    		var self = this;
+    		self.addMarker({'position': new google.maps.LatLng(<?php echo $address->latitude . ',' . $address->longitude; ?>) }).click(function() {
+    			self.openInfoWindow({ 'content': '<?php echo addslashes($this->pub->name); ?>' }, this);
+    		});
+
+    		/*if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+					var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                	var blueIcon = new google.maps.MarkerImage("http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/blank.png");
+                	
+                	self.addMarker({'position': currentPosition, icon:blueIcon }).click(function() {
+            			self.openInfoWindow({ 'content': '<?php echo addslashes($pub['name']); ?>' }, this);
+            		});
+
+                	self.get('map').panTo(currentPosition);
+                });
+            }*/
+    	}});
+
+        $("#map").live('pageshow', function() {
+            $('#map_canvas').gmap('refresh');
+        }); 
+		
+});
+</script>
+
+<div data-role="page" id="deals">
+	<div data-role="header">
+		<a href="/index/list" data-icon="home" rel="external">Home</a>
+		<h1><?php echo $this->pub->name; ?></h1>
+		<a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">+ Deal</a>
+    </div>
+	
+	<div data-role="content">
+    	<?php 
+    	$promos = $this->pub->getPromos();
+    	if (count($promos)): ?>
+    	
+            <ul data-role="listview" data-inset="true" data-theme="c">
+                <?php echo $this->partialLoop('partials/deal.php', $promos) ?> 
+            </ul>
+            
+    	<?php else: ?>
+    	    <p>There are no deals for this venue yet. <a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">Why don't you enter one?</a></p>
+    	<?php endif;?>
+	</div>
+	
+	<?php echo $this->partial('pub/partials/footer.php', array('selected' => 'beer'))?>
+</div>
+
+
+
+<div data-role="page" id="map" style="height:100%;">
+	<div data-role="header">
+		<a href="/index/list" data-icon="home" rel="external">Home</a>
+		<h1><?php echo $this->pub->name; ?></h1>
+    </div>
+	
+	<div data-role="content" style="height:100%;">
+		<div id="map_canvas" style="height:90%;"></div>
+	</div>
+	
+    <?php echo $this->partial('pub/partials/footer.php', array('selected' => 'map'))?>
+</div>
+
+
+
+<div data-role="page" id="contact">
+	<div data-role="header">
+		<a href="/index/list" data-icon="home" rel="external">Home</a>
+		<h1><?php echo $this->pub->name; ?></h1>
+    </div>
+	
+	<div data-role="content">
+		<h2>Contact</h2>
+		<ul data-role="listview" data-inset="true" data-theme="c">
+			<li><a href="<?php echo $this->pub->url; ?>"><img src="/img/icons/navbar/174-imac.png" alt="Website" class="ui-li-icon"> <?php echo $this->pub->url; ?></a></li>
+			<li><a href="mailto:<?php echo $this->pub->email; ?>"><img src="/img/icons/navbar/123-id-card.png" alt="Email" class="ui-li-icon"> <?php echo $this->pub->email; ?></a></li>
+		</ul>
+	</div>
+	
+	<?php echo $this->partial('pub/partials/footer.php', array('selected' => 'contact'))?>
+</div>

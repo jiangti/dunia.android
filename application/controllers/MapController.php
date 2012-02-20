@@ -29,6 +29,7 @@ class MapController extends Model_Controller_Action {
 	    $array = array();
 	    foreach ($pubs as $pub) {
 	        $array[] = array(
+	                    'id'		=> array($pub['id']),
 	    				'name' 		=> array($pub['name']),
 	    				'address' 	=> array((string) $pub->getAddress()),
 	    				'lat' 		=> array($pub['latitude']),
