@@ -24,7 +24,12 @@ class Model_DbTable_Row_Promo extends Model_DbTable_Row_RowAbstract {
     	$data['idLiquorType'] = $liquorType->id;
     	$data['idPromo'] = $this->id;
     	$row = Model_DbTable_PromoHasLiquorType::getRow($data);
+    	try{
     	$row->save();
+    	} catch (Exception $e) {
+    	    echo $e->getMessage();
+    	    var_dump($row->toArray()); exit;
+    	}
     	return $row;
     }
     

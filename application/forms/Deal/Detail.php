@@ -9,6 +9,12 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 			->setLabel('Value')
 		;
 		
+		$description = new Zend_Form_Element_Text('description');
+		
+		$description
+		    ->setLabel('Description')
+		;
+		
 		$timeRanges = array('' => '-- Select --');
 		
 		$timeKeys = range(0, 11.5, 0.5);
@@ -63,7 +69,7 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 		;
 		
 		
-		$this->addElements(array($deal, $start, $end, $liquorType, $days));
+		$this->addElements(array($deal, $description, $start, $end, $liquorType, $days));
 		
 		return $return;
 	}
@@ -71,13 +77,14 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 	public function setRecord(Model_DbTable_Row_Promo $record) {
 		parent::setRecord($record);
 		
-		$data['value'] = $record->price;
-		$data['start'] = substr($record->timeStart, 0, 5);
-		$data['end'] = substr($record->timeEnd, 0, 5);
+		$data['value']       = $record->price;
+		$data['description'] = $record->description;
+		$data['start']       = substr($record->timeStart, 0, 5);
+		$data['end']         = substr($record->timeEnd, 0, 5);
 		
-		$data['liquorType'] = $record->getLiquorTypes()->getCol('id');
+		$data['liquorType']  = $record->getLiquorTypes()->getCol('id');
 		
-		$data['days'] = Model_Day::csvToInt($record->day);
+		$data['days']        = Model_Day::csvToInt($record->day);
 		
 		$this->setDefaults($data);
 		
