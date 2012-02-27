@@ -9,6 +9,7 @@ class Form_Map extends Zend_Form {
 		$location = new Zend_Form_Element_Text('location');
 		$location
 			->setLabel('Location')
+			->setAttrib('class', 'location-suggest')
 		;
 		$time = new Aw_Form_Element_Time('time');
 		$time
