@@ -90,6 +90,7 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 		$array['timeEnd']     = $data['end'];
 		$array['day']         = $days;
 		$array['price']       = $data['value'];
+		$array['description'] = $data['description'];
 		
 		$promo = Model_DbTable_Promo::getRow($array);
 		$promo->save();
