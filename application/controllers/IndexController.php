@@ -64,7 +64,6 @@ class IndexController extends Model_Controller_Action {
 				$form->setRecord($pub);
 			}
 		}
-		
 		if ($this->_request->isPost() && $form->isValid($this->_request->getPost())) {
 			$data = $form->getValues();
 			
@@ -77,7 +76,6 @@ class IndexController extends Model_Controller_Action {
 			
 			$this->_redirect(sprintf('/index/share/id/%d', $pub->id));
 		}
-		
 		$this->view->form = $form;
 	}
 }

@@ -34,6 +34,23 @@ class Model_Day extends Aw_Enum_Abstract {
 		self::INT_SUN => self::ABBR_SUN,
 	);
 	
+	public static $daysName = array(
+		self::INT_MON => self::NAME_MON,
+		self::INT_TUE => self::NAME_TUE,
+		self::INT_WED => self::NAME_WED,
+		self::INT_THU => self::NAME_THU,
+		self::INT_FRI => self::NAME_FRI,
+		self::INT_SAT => self::NAME_SAT,
+		self::INT_SUN => self::NAME_SUN,
+	);
+	
+	/**
+	 * The magical and smart conversion.
+	 */
+	public static function convertToAbbr() {
+		
+	}
+	
 	public static function csvToInt($csv) {
 		$int = array();
 		foreach (explode(",", $csv) as $abbr) {

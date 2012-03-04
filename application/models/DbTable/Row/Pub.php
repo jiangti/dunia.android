@@ -22,6 +22,58 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 	    $this->_address = $address;
 	}
 	
+	/**
+	 * Expands into the string
+	 * @param unknown_type $str
+	 */
+	public function savePromoByParse($str, $days) {
+		/**
+		 * Clears up all line endings
+		 */
+		$promoTable = new Model_DbTable_Promo();
+		
+		$promo = $promoTable->createRow();
+		$promo->day = preg_replace('/\W,/', '', $days);
+
+		foreach (explode("\n", $str) as $lineIndex => $line) {
+			$line = trim($line);
+			
+			if (!$line) continue;
+			
+			if ($lineIndex == 0) {
+				$promo->parseTime($line);
+			} else {
+				$promoClone = clone $promo;
+				
+				$price = explode(" ", $line)[0];
+				
+				$promoClone->price = preg_replace('/[^0-9\.]/', '', $price);
+				$promoClone->price = (float) str_replace('$', '', $promoClone->price);
+				/**
+				 * LiquorType parser.
+				 */
+				
+				$promoClone->save();
+				$this->addPromo($promoClone);
+				
+				if ($liquorType = Model_LiquorType::parse($line)) {
+
+					if ($liquorSize = Service_LiquorSize::parse($line)) {
+						$promoClone->addLiquorType($liquorType, $liquorSize);
+					} else {
+						$promoClone->addLiquorType($liquorType);
+					}
+					
+				} else {
+					throw new Exception('Could not identify the liquorType.');
+				}
+				
+				
+ 			}
+		}
+		
+	}
+	
 	public function getPromos() {
 		return $this->findManyToManyRowset(new Model_DbTable_Promo(), new Model_DbTable_PubHasPromo());
 	}
@@ -43,7 +95,7 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 		$promo->save();
 		
 		foreach ($data['liquorType'] as $liquorType) {
-			$promo->addLiquorTypeById($liquorType);
+			$promo->addLiquorTypeById($liquorType, $data['liquorSize']);
 		}
 		
 		$this->addPromo($promo);

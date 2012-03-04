@@ -11,7 +11,7 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 		
 		$timeRanges = array('' => '-- Select --');
 		
-		$timeKeys = range(0, 11.5, 0.5);
+		$timeKeys = range(0, 12, 0.5);
 		
 		foreach ($timeKeys as $index => $value) {
 			$val = (int) $value;
@@ -52,6 +52,16 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 			->setSeparator(' ');
 		;
 		
+		$liquorSize = new Zend_Form_Element_Radio('liquorSize');
+		
+		$liquorSize
+			->setLabel('Liquor Type')
+			->setMultiOptions(Model_DbTable_LiquorSize::getOptions())
+			->setSeparator(' ');
+		;
+		
+		
+		
 		$dayOptions = Model_Day::$days;
 		
 		$days = new Zend_Form_Element_MultiCheckbox('days');
@@ -63,7 +73,7 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 		;
 		
 		
-		$this->addElements(array($deal, $start, $end, $liquorType, $days));
+		$this->addElements(array($deal, $start, $end, $liquorType, $liquorSize, $days));
 		
 		return $return;
 	}
@@ -76,11 +86,11 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 		$data['end'] = substr($record->timeEnd, 0, 5);
 		
 		$data['liquorType'] = $record->getLiquorTypes()->getCol('id');
+		$data['liquorSize'] = $record->getLiquorSizes()->getCol('id');
+		
 		
 		$data['days'] = Model_Day::csvToInt($record->day);
 		
 		$this->setDefaults($data);
-		
-		
 	}
 }

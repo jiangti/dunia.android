@@ -1,0 +1,36 @@
+<form action="" method="post">
+<div class="container_12">
+<?php echo $this->pager; ?>
+<?php foreach($this->pager as $item): ?>
+<div class="grid_6">
+	<textarea name="promo[]" cols="30" rows="10"><?php echo $item['promo']; ?></textarea>
+	<input name="skip[]" type="checkbox" />
+	<input name="id[]" value="<?php echo $item['id']; ?>" type="text">
+	<input name="idPub[]" value="<?php echo $item['idPub']; ?>" type="text">
+	<input name="days[]" value="<?php echo $item['days']; ?>" type="text">
+	<a href="<?php echo $this->url(array('idSkip' => $item['id'])); ?>">skip</a>
+</div>
+<div class="grid_6">
+	<table>
+		<tr>
+			<th>Pub</th>
+			<td><a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'share', 'id' => $item['idPub'])); ?>"><?php echo $item['idPub']; ?> - <?php echo $item['pub']; ?></a></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td></td>
+		</tr>
+	</table>
+</div>
+<?php endforeach; ?>
+</div>
+<div class="container_12">
+    <div class="grid_12">
+        <input type="submit">
+    </div>
+</div>
+</form>

@@ -15,7 +15,14 @@ class Form_Deal extends Form_Abstract {
 		$email->setLabel('Email');
 		
 		$url = new Aw_Form_Element_Url('url');
-		$url->setLabel('Url');
+		$url
+			->setLabel('Url')
+			->setDescription('<a class="open" ref="">Open</a>')
+		;
+		
+		$description = $url->getDecorator('description');
+		$description->setOption('tag', 'span');
+		$description->setOption('escape', false);
 		
 		$location = new Aw_Form_Element_Textarea('location');
 		$location
@@ -32,17 +39,10 @@ class Form_Deal extends Form_Abstract {
 		
 		$this->setAttrib('enctype', 'multipart/form-data');
 		
-		$subForm = new Form_Deal_Detail();
-		$this->addSubForm($subForm, 'detail0');
-		
-		$subForm = new Form_Deal_Detail();
-		$this->addSubForm($subForm, 'detail1');
-		
-		$subForm = new Form_Deal_Detail();
-		$this->addSubForm($subForm, 'detail2');
-		
-		$subForm = new Form_Deal_Detail();
-		$this->addSubForm($subForm, 'detail3');
+		foreach (range(0, 6) as $index) {
+			$subForm = new Form_Deal_Detail();
+			$this->addSubForm($subForm, 'detail' . $index);
+		}
 	}
 	
 	public function setRecord(Model_DbTable_Row_Pub $record) {

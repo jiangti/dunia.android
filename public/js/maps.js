@@ -17,9 +17,6 @@ function codeAddress(address, map, img) {
 }
 
 function addMarker(map, lat, lng, title) {
-//	if(img == null) {
-//		img = '/img/unvisited.png';
-//	}
 	var latlng = new google.maps.LatLng(lat, lng);
 	    
 	var marker = new google.maps.Marker({
@@ -27,7 +24,6 @@ function addMarker(map, lat, lng, title) {
 	      animation: google.maps.Animation.DROP,
 	      map: map, 
 	      title: title,
-	      //icon : img
 	}); 
 	return marker;
 }

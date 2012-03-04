@@ -1,6 +1,67 @@
 <?php
 class PubController extends Zend_Controller_Action
 {
+	public function manualAction() {
+		$sql = 'SELECT pub, address, GROUP_CONCAT(DAY) FROM dirty GROUP BY pub, promo';
+		$db = Zend_Db_Table_Abstract::getDefaultAdapter();
+		$pubTable = new Model_DbTable_Pub();
+		$dirtyTable = new Model_DbTable_Dirty();
+		if ($this->_request->isPost()) {
+			
+			try {
+				$db->beginTransaction();
+				
+				foreach ($_POST['promo'] as $promoIndex => $promo) {
+					$id = explode(",", $_POST['id'][$promoIndex]);
+					foreach ($dirtyTable->find($id) as $row) {
+						$row->empty = '1';
+						$row->save();
+					}
+					
+					$pubs = $pubTable->find(explode(",", $_POST['idPub'][$promoIndex]));
+					foreach ($pubs as $pub) {
+						$pub->savePromoByParse($_POST['promo'][$promoIndex], $_POST['days'][$promoIndex]);
+					}
+				}
+				
+				$db->commit();
+				
+			} catch (Exception $e) {
+				$db->rollBack();
+				throw $e;
+			}
+		}
+		
+		if ($id = $this->_getParam('idSkip')) {
+			foreach ($dirtyTable->find(explode(",", $id)) as $row) {
+				$row->empty = '2';
+				$row->save();
+			}
+		}
+		
+		$select = $db->select()
+				->from(array('d' => 'dirty'),
+					array('pub', 'address',
+						'days' => new Zend_Db_Expr('GROUP_CONCAT(DAY)'),
+						'id' => new Zend_Db_Expr('GROUP_CONCAT(d.id)'),
+						'promo'
+					)
+				)
+			->join(array('p' => 'pub'), 'p.name = d.pub', array('idPub' => 'id'))
+			->where('d.empty = ""')
+			->group('d.pub')
+			->group('d.promo')
+		;
+		$paginator = Zend_Paginator::factory($select);
+		
+		$paginator->setItemCountPerPage(1)
+			->setCurrentPageNumber($this->_getParam('page'))
+		;
+		
+		
+		$this->view->pager = $paginator;
+	}
+	
     public function indexAction()
     {
         $service = new Service_Pub();

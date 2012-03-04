@@ -14,6 +14,11 @@ class Model_DbTable_PromoHasLiquorType extends Aw_Table_Relation_TableAbstract {
 			'columns'       => 'idLiquorType',
 			'refTableClass' => 'Model_DbTable_LiquorType',
 			'refColumns'    => 'id'
+		),
+		'liquorSize' => array(
+			'columns'       => 'idLiquorSize',
+			'refTableClass' => 'Model_DbTable_LiquorSize',
+			'refColumns'    => 'id'
 		)
 	);
 	
