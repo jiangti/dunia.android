@@ -127,7 +127,7 @@ class Service_Pub
                     'latitude'
                 )
             )
-            ->where('longitude is not null AND latitude is not null')
+            ->where('longitude is not null AND latitude is not null')->limit(25)
             ;
         
         if (isset($options['validated'])) {
