@@ -78,5 +78,41 @@ class IndexController extends Model_Controller_Action {
 		}
 		$this->view->form = $form;
 	}
+	
+	public function foursquareAction() {
+	    $bootstrap  = $this->getInvokeArg('bootstrap');
+	    $foursquare = $bootstrap->getPluginResource('foursquare')->getFoursquare();
+	    
+	    $pubs = $this->_getPubs(null, null);
+	    
+	    $i = 0;
+	    foreach ($pubs as $pub) {
+	        if ($pub['longitude'] && $pub['latitude'] && $i < 10) {
+	            $venue = $foursquare->get('/venues/search', array('query' => $pub['name'], 'categoryId' => '4bf58dd8d48988d11b941735', 'll' => $pub['latitude'] . ',' . $pub['longitude']));
+	            echo $pub['name'] . ' ' . $pub['latitude'] . ',' . $pub['longitude'] . '<br/>';
+                echo "<select>";
+	            foreach ($venue->response->groups[0]->items as $item) {
+	                echo '<option value="' . $item->id . '">' . $item->name . '</option>';
+	            }
+                echo "/<select>";
+	            echo '<br/><br/>';
+	            $i++;
+	        }
+	    }
+	    exit;
+	    
+	    var_dump($venue->response->groups[0]->items[0]); exit;
+	}
+	
+	public function tipsAction() {
+	    $bootstrap  = $this->getInvokeArg('bootstrap');
+	    $foursquare = $bootstrap->getPluginResource('foursquare')->getFoursquare();
+	     
+	    $tips = $foursquare->get('/venues/4b222120f964a520e84324e3/tips');
+	    foreach ($tips->response->tips->items as $tip) {
+	        echo $tip->text . '<br /><br />';
+	    }
+	    exit;
+	}
 }
 

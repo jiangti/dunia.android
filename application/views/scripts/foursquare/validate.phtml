@@ -1,0 +1,47 @@
+<script>
+    $(document).ready(function() {
+        $('select').each(function() {
+            $(this).closest('td').next('td').find('input').val($(this).val());
+            if ($(this).find('option:selected').text() == $(this).closest('td').prev('td').text()) {
+                $(this).closest('td').next('td').find('input').attr('checked', true);
+            }
+        });
+
+        $('select').change(function() {
+            $(this).closest('td').next('td').find('input').val($(this).val()).attr('checked', true);
+        });
+    });
+</script>
+<div class="container_12">
+    <form method="POST">
+	<div class="grid_12">
+		<table class="generic" cellspacing="1px" cellpadding="0px" border="0">
+			<thead>
+				<tr>
+					<th>Dunia Name</th>
+					<th>Foursquare</th>
+					<th>Validate</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach($this->pubs as $pub): ?>
+				<tr>
+					<td><?php echo $pub['dunia']['name']; ?></td>
+					<td>
+					    <select id="">
+					    <?php foreach ($pub['foursquare'] as $option) : ?>
+					        <option value="<?php echo $option->id; ?>"><?php echo $option->name; ?></option>
+                        <?php endforeach; ?>
+                        </select>
+                    </td>
+					<td>
+                        <input type="checkbox" name="pub[<?php echo $pub['dunia']['id']; ?>]" />
+                    </td>
+				</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+    <input type="submit" />
+    </form>
+</div>

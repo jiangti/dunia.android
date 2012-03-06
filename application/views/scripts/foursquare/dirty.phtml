@@ -1,0 +1,77 @@
+<div id="map_canvas" style="height:95%"></div>
+<style type="text/css">
+  html { height: 100% }
+  body { height: 100%; margin: 0; padding: 0 }
+  #map_canvas { height: 100% }
+</style>
+<script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places">
+</script>
+<script type="text/javascript"
+    src="/js/gmapi-suggest.js">
+</script>
+<script type="text/javascript">
+
+
+$(document).ready(function() {
+ 
+    var amHere = new google.maps.LatLng(<?php echo $this->latitude; ?>, <?php echo $this->longitude; ?>);
+    var myOptions = {
+        zoom: 15,
+        center: amHere,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    thirsty.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+    thirsty.infoWindow = new google.maps.InfoWindow();
+
+
+    var bounds = new google.maps.LatLngBounds();
+    var customIcons = {
+        restaurant: {
+            icon: '/img/icons/markers/steak.png'
+        },
+        bar: {
+            icon: '/img/icons/markers/beer.png'
+        }
+    };
+
+    var markers = <?php echo $this->pubs; ?>;
+    
+    for (var i = 0; i < markers.length; i++) {
+        var marker = markers[i];
+        var name = marker.name[0];
+        var type = marker.type[0];
+
+        var point = new google.maps.LatLng(
+            parseFloat(marker.lat[0]),
+            parseFloat(marker.lng[0]));
+
+        if (markers.length < 50) {
+            bounds.extend(point);
+        }
+
+        var icon = customIcons[type] || {};
+
+        var mapMarker = new google.maps.Marker({
+            map: thirsty.map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow,
+            html: "<b>" + name + '</b><br /><a href="/foursquare/crawl/latitude/' + marker.lat[0] + '/longitude/' + marker.lng[0] + '">Find	 near here</a>'
+        });
+
+        google.maps.event.addListener(mapMarker, 'click', function() {
+            thirsty.infoWindow.setContent(this.html);
+            thirsty.infoWindow.open(thirsty.map, this);
+        });
+    }
+
+    if (markers.length < 50) {
+        thirsty.map.fitBounds(bounds);
+    }
+
+
+});
+</script>

@@ -110,6 +110,29 @@ class Service_Pub
             ->orWhere(sprintf('a.address1 like "%%%s%%" or a.postcode = "%s" or a.town like "%%%s%%"', $query, $query, $query))
             ;
         }
+        return $select;
+    }
+    
+    public function getPubs($options) {
+        $pubTable = new Model_DbTable_Pub();
+        
+        $select = $pubTable->select(false);
+        $select->from(array('p' => 'pub'))
+            ->setIntegrityCheck(false)
+            ->joinLeft(
+                array('a' => 'address'), 
+            	'p.idAddress = a.id', 
+                array(
+        			'longitude',
+                    'latitude'
+                )
+            )
+            ->where('longitude is not null AND latitude is not null')->limit(25)
+            ;
+        
+        if (isset($options['validated'])) {
+            $select->where('p.validated = ?', $options['validated']);
+        }
         
         return $select;
     }

@@ -42,7 +42,7 @@ class Bootstrap extends Aw_BootstrapAbstract {
         Zend_View_Helper_PaginationControl::setDefaultViewPartial(
         	'partials/pagination/item.phtml'
         );
-
+        
         return $view;
     }
 }
