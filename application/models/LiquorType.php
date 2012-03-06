@@ -19,7 +19,15 @@ class Model_LiquorType extends Aw_Model_ModelAbstract {
 			}
 		}
 		
-		$localBeer = array('Schooner', 'Middies', 'Blondes');
+		$stout = array('Guinness', 'Kilkenny');
+		
+		foreach ($stout as $beer) {
+			if (stripos($str, $beer) !== false) {
+				return Model_DbTable_LiquorType::retrieveById(array_keys($pairs, 'Stout'));
+			}
+		}
+		
+		$localBeer = array('Schooner', 'Middies', 'Blondes', 'Pint');
 		
 		foreach ($localBeer as $beer) {
 			if (stripos($str, $beer) !== false) {
@@ -32,6 +40,14 @@ class Model_LiquorType extends Aw_Model_ModelAbstract {
 		foreach ($importedBeer as $beer) {
 			if (stripos($str, $beer) !== false) {
 				return Model_DbTable_LiquorType::retrieveById(array_keys($pairs, 'Imported Beer'));
+			}
+		}
+		
+		$champagnes = array('Bubbly');
+		
+		foreach ($champagnes as $beer) {
+			if (stripos($str, $beer) !== false) {
+				return Model_DbTable_LiquorType::retrieveById(array_keys($pairs, 'Champagne'));
 			}
 		}
 		
