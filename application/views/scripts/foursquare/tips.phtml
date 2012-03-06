@@ -1,0 +1,28 @@
+<div class="container_12">
+    <form method="POST">
+	<div class="grid_12">
+		<table class="generic" cellspacing="1px" cellpadding="0px" border="0">
+			<thead>
+				<tr>
+					<th>Pub</th>
+					<th>Tips</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach($this->pubs as $pub): ?>
+				<tr>
+					<td><?php echo $pub['info']['name']; ?></td>
+					<td>
+					    <?php foreach ($pub['tips'] as $tip) : ?>
+                            <input type="checkbox" name="pub[<?php echo $pub['info']['id']; ?>]" />
+					        <?php echo $tip->text; ?><br/>
+                        <?php endforeach; ?>
+                    </td>
+				</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+    <input type="submit" />
+    </form>
+</div>
