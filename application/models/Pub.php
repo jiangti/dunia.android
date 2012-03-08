@@ -11,6 +11,9 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	public $active;
 
 	public $promo = array();
+	
+	public $idFoursuqare;
+	public $validated;
 
 	public $idAddress;
 
