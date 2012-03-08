@@ -12,7 +12,7 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 
 	public $promo = array();
 	
-	public $idFoursuqare;
+	public $idFoursquare;
 	public $validated;
 
 	public $idAddress;
