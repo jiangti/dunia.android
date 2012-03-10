@@ -45,8 +45,8 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 			} else {
 				$promoClone = clone $promo;
 				
-				$price = explode(" ", $line)[0];
-				
+				$price = explode(" ", $line);
+				$price = $price[0];
 				$promoClone->price = preg_replace('/[^0-9\.]/', '', $price);
 				$promoClone->price = (float) str_replace('$', '', $promoClone->price);
 				/**

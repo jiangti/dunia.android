@@ -107,7 +107,7 @@ $(document).ready(function() {
     };
 
     $.ajax({success: function(data) {setMarkers(data);}, 
-            url: '/map/fetch/lat/' + amHere.Oa + '/long/' + amHere.Pa, dataType: 'json'});
+            url: '/map/fetch/lat/' + thirsty.lat + '/long/' + thirsty.long, dataType: 'json'});
 
     $("#searchForm").submit(function() {
         $.ajax({

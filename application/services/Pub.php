@@ -136,10 +136,13 @@ class Service_Pub
         
         return $select;
     }
-    
-    public function findPubByLatLong($latitude, $longitude)
-    {
-        $pubTable = new Model_DbTable_Pub();
+    /**
+     * @param unknown_type $latitude
+     * @param unknown_type $longitude
+     * @return Zend_Db_Table_Select
+     */
+    protected function _getFindPubSelect($latitude, $longitude) {
+    	$pubTable = new Model_DbTable_Pub();
         
         $select = $pubTable->select()
             ->setIntegrityCheck(false)
@@ -153,7 +156,29 @@ class Service_Pub
                     )
             ->order('distance')
         ;
-         
-        return $pubTable->fetchAll($select);
+        
+        return $select;
+    }
+    
+    /**
+     * Promo finder is always using times.
+     * 
+     * @param unknown_type $latitude
+     * @param unknown_type $longitude
+     */
+    public function findPromo($latitude, $longitude) {
+    	$select = $this->_getFindPubSelect($latitude, $longitude);
+    	$select
+    		->join(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array())
+    		->join(array('p0' => 'promo'), 'p0.id = php.idPromo', array())
+    		->where('p0.day = ?', date('D'))
+    	;
+    	return $select->getTable()->fetchAll($select->group('p.id'));
+    }
+    
+    public function findPubByLatLong($latitude, $longitude)
+    {
+        $select = $this->_getFindPubSelect($latitude, $longitude);
+        return $select->getTable()->fetchAll($select);
     }
 }
