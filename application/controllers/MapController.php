@@ -1,16 +1,25 @@
 <?php
 class MapController extends Model_Controller_Action {
 	
+	/**
+	 * Defaults to Sydney
+	 */
+	const LONG = 	-33.8654;
+	const LAT = 	151.2073;
+	
 	public function fetchAction() {
 		
 		$pubService = new Service_Pub();
 		
 		$user = $this->_getUser();
 		
-		$lat  = $this->_getParam('lat', $user->getLat());
-		$long = $this->_getParam('long', $user->getLong());
+		$lat = ($user->getLat() ?: self::LAT);
+		$long = ($user->getLong() ?: self::LONG);
 		
-		$pubs = $pubService->findPubByLatLong($lat, $long);
+		$lat  = $this->_getParam('lat', $lat);
+		$long = $this->_getParam('long', $long);
+		
+		$pubs = $pubService->findPromo($lat, $long);
 		
 		$this->_generateResponse($pubs);
 	}
