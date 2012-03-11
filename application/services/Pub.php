@@ -58,6 +58,8 @@ class Service_Pub
                 $address = Model_DbTable_Address::createFromString($data['location']);
                 $pub->setAddress($address);
                 $pub->save();
+                
+                
             } else {
                 if ($pub->id == null) {
                     throw new Exception('Pub object needs to be instantiated with persistent data.');
@@ -65,9 +67,24 @@ class Service_Pub
                 $pub->setFromArray($data);
                 $pub->save();
                 
+                
                 //Reset and readd all again. Easiest approach for now.
                 
                 $pub->resetPromo();
+            }
+            
+           	$filePath = APPLICATION_ROOT . '/public/images/pub/' . $pub->id;
+           	if (!file_exists($filePath)) {
+           		mkdir($filePath, 0777, true);
+            }
+            	
+            $counter = 0;
+            foreach ($data['files'] as $index => $file) {
+            	if ($tmpName = idx($file, 'tmp_name')) {
+            		$extension = pathinfo($tmpName, PATHINFO_EXTENSION);
+            		copy($tmpName, $filePath . sprintf('/upload%s.%s', $counter, $extension));
+            	}
+            	$counter++;
             }
             
             foreach ($data as $index => $value) {
@@ -105,11 +122,11 @@ class Service_Pub
             ->joinLeft(array('a' => 'address'), 'p.idAddress = a.id', array(
             			'longitude',
                         'latitude',
-                        //'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(latitude)) * cos(radians(longitude) - radians('$longitude')) + sin(radians('$latitude')) * sin(radians(latitude))), 2)"
-                        ))//)
+                        ))
             ->orWhere(sprintf('a.address1 like "%%%s%%" or a.postcode = "%s" or a.town like "%%%s%%"', $query, $query, $query))
             ;
         }
+        
         return $select;
     }
     

@@ -65,7 +65,6 @@ class PubController extends Zend_Controller_Action
     public function indexAction()
     {
         $service = new Service_Pub();
-        
         $select = $service->searchPub($this->_getParam('q'));
         
         $paginator = Zend_Paginator::factory($select);

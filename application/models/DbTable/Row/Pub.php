@@ -135,6 +135,14 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 	    return $this->_address;
 	}
 	
+	public function getImages() {
+		$files = glob(APPLICATION_ROOT . sprintf('/public/images/pub/%d/*', $this->id));
+		foreach ($files as $index => $file) {
+			$files[$index] = basename($file);
+		}
+		return $files;
+	}
+	
 	public function _save() {
 	    parent::_save();
 	    if ($this->_address) {
