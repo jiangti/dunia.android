@@ -69,14 +69,15 @@ class IndexController extends Model_Controller_Action {
 			
 			$form->file->receive();
 			
-			$data['file_tmpfile'] = $form->file->getFileName();
-			
+			$files = $form->file->getFileInfo();
+			$data['files'] = $files;
 			$service = new Service_Pub();
 			$pub = $service->savePubFromShareArray($data, $pub);
 			
 			$this->_redirect(sprintf('/index/share/id/%d', $pub->id));
 		}
 		$this->view->form = $form;
+		$this->view->pub = $pub;
 	}
 	
 	public function foursquareAction() {

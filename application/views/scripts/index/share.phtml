@@ -15,6 +15,11 @@
 			
 			<div id="tabs-1" class="container_12">
 				<div class="grid_6">
+				<?php if($this->pub): ?>
+					<?php foreach($this->pub->getImages() as $image): ?>
+						<img src="<?php echo sprintf('/images/pub/%d/%s', $this->pub->id, $image); ?>" alt="" width="" height="100" />
+					<?php endforeach; ?>
+				<?php endif; ?>
 				<?php echo $this->form; ?>
 				</div>
 			</div>
