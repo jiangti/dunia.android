@@ -45,4 +45,8 @@ class Bootstrap extends Aw_BootstrapAbstract {
         
         return $view;
     }
+    
+    public function _initThumbnail() {
+    	Zend_Registry::set('AW_THUMBNAIL_CACHE', APPLICATION_ROOT . '/public/cache');
+    }
 }
