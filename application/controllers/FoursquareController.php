@@ -42,33 +42,24 @@ class FoursquareController extends Model_Controller_Action {
 	}
 	
 	public function tipsAction() {
-	    $pubTable = new Model_DbTable_Pub();
-	    $tipTable = new Model_DbTable_Tip();
-	     
+	    $pubTable   = new Model_DbTable_Pub();
+	    $tipService = new Service_Tip();
 	    $pubService = new Service_Pub();
-	    $pubs       = $pubTable->fetchAll($pubService->getPubs(array('validated' => true)));
-	     
-	    $foursquarePubs = array();
-	    foreach ($pubs as $pub) {
+	    
+	    foreach ($pubTable->fetchAll($pubService->getPubs(array('validated' => true))) as $pub) {
 	        $tips = $this->foursquare->get('/venues/' . $pub['idFoursquare'] . '/tips');
-	         
 	        foreach ($tips->response->tips->items as $tip) {
-	            $tipRow = $tipTable->getRow(array(
-	                'idPub'       => $pub['id'],
-	                'text'        => $tip->text,
-	                'data'        => json_encode($tip),
-	                'dateUpdated' => date("Y-m-d H:i:s"),
-	                )
-	            );
-	            $tipRow->save();
+                $tipService->saveTipFromFoursquareResult($pub['id'], $tip);
 	        }
-	        //$foursquarePubs[] = array(
-	    	//            'info'  => $pub,
-	    	//            'tips' => $tips->response->tips->items);
 	    }
 	     
-	    //$this->view->pubs = $foursquarePubs;
 	    exit;
+	}
+	
+	public function validateTipsAction() {
+	    $tipService = new Service_Tip();
+	    
+	    $this->view->pubs = $tipService->getNonValidatedTipsByPub();
 	}
 	
 	public function crawlAction() {

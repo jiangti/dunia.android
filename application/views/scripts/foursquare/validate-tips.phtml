@@ -1,0 +1,29 @@
+<div class="container_12">
+    <h1>Non validated tips</h1>
+	<div class="grid_12">
+			
+	    <?php foreach($this->pubs as $name => $tips): ?>
+		<h2><?php echo $name; ?></h2>
+		<table class="generic" cellspacing="1px" cellpadding="0px" border="0">
+			<thead>
+				<tr>
+					<th>Tips</th>
+                    <th></th>
+                    <th></th>
+				</tr>
+			</thead>
+			<tbody>
+			    <?php foreach ($tips as $tip) : ?>
+				<tr>
+					<td>
+					    <?php echo $tip->text; ?>
+                    </td>
+                    <td><a href="#">Approve</a></td>
+                    <td><a href="#">Deny</a></td>
+				</tr>
+                <?php endforeach; ?>
+			</tbody>
+		</table>
+		<?php endforeach; ?>
+	</div>
+</div>
