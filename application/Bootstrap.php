@@ -34,6 +34,7 @@ class Bootstrap extends Aw_BootstrapAbstract {
         	->headScript()
         	->prependFile('/contrib/jquery-ui-1.8.17.custom/js/jquery-1.7.1.min.js')
         	->appendFile( '/contrib/jquery-ui-1.8.17.custom/js/jquery-ui-1.8.17.custom.min.js')
+        	->appendFile( '/js/jquery.corner.js')
         	->appendFile( '/js/formalize/jquery.formalize.js')
         
         ;

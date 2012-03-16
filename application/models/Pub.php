@@ -34,6 +34,26 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	    return $pubRow->findManyToManyRowset('Model_DbTable_Promo', 'Model_DbTable_PubHasPromo');
 	}
 	
+	public function getPromosByDay() {
+	    $promos = $this->getPromos();
+	    
+	    $weekly = array();
+	    foreach ($promos as $promo) {
+	        foreach (Model_Day::$days as $dayInt => $day) {
+	            if (strstr($promo->day, $day) !== false) {
+	                $weekly[$dayInt][] = $promo;
+	            }
+	        }
+	    }
+
+	    return $weekly;
+	}
+	
+	public function getTips() {
+	    $pubRow = Model_DbTable_Pub::retrieveById($this->id);
+	    return $pubRow->findDependentRowset('Model_DbTable_Tip');
+	}
+	
 	public function getById($id) {
 	    $pub = Model_DbTable_Pub::retrieveById($id);
 	    

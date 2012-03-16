@@ -62,6 +62,18 @@ class FoursquareController extends Model_Controller_Action {
 	    $this->view->pubs = $tipService->getNonValidatedTipsByPub();
 	}
 	
+	public function moderateTipAction() {
+	    $action = $this->_getParam('do');
+	    $idTip  = $this->_getParam('idTip');
+	    
+	    if ($idTip && $action) {
+	        $tipService = new Service_Tip();
+            $tipService->moderateTip($idTip, $action);	        
+	    }
+	    
+	    exit;
+	}
+	
 	public function crawlAction() {
 	    $user = $this->_getUser();
 	    

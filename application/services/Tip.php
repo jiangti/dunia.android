@@ -52,7 +52,7 @@ class Service_Tip
                 array('p' => 'pub'),
                 'p.id = tip.idPub', 
                 array('name'))
-            ->where('tip.validated = 0');
+            ->where('tip.validated = ' . Model_DbTable_Tip::TIP_NON_MODERATED);
         
         $tips = $table->fetchAll($select);
         
@@ -62,5 +62,12 @@ class Service_Tip
         }
         
         return $return;
+    }
+    
+    public function moderateTip($idTip, $action)
+    {
+        $table = new Model_DbTable_Tip();
+        
+        $table->update(array('validated' => $action), $table->getAdapter()->quoteInto('id = ?', $idTip));
     }
 }
