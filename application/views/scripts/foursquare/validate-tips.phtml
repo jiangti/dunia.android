@@ -1,0 +1,51 @@
+<script>
+    $(document).ready(function() {
+        $(".approve, .reject").click(function() {
+            var link = $(this);
+            $.ajax({
+                url: link.attr('href'),
+                success: function(data) {
+
+                    if (link.closest('tbody').find('tr').length > 1) {
+                        link.closest('tr').remove();
+                    } else {
+                        var table = link.closest('table');
+                        table.prev('h2').remove();
+                        table.remove();
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+<div class="container_12">
+    <h1>Non validated tips</h1>
+	<div class="grid_12">
+			
+	    <?php foreach($this->pubs as $name => $tips): ?>
+		<h2><?php echo $name; ?></h2>
+		<table class="generic" cellspacing="1px" cellpadding="0px" border="0">
+			<thead>
+				<tr>
+					<th>Tips</th>
+                    <th></th>
+                    <th></th>
+				</tr>
+			</thead>
+			<tbody>
+			    <?php foreach ($tips as $tip) : ?>
+				<tr>
+					<td>
+					    <?php echo $tip->text; ?>
+                    </td>
+                    <td><a class="approve" href="/foursquare/moderate-tip/do/<?php echo Model_DbTable_Tip::TIP_APPROVED; ?>/idTip/<?php echo $tip->id; ?>">Approve</a></td>
+                    <td><a class="reject" href="/foursquare/moderate-tip/do/<?php echo Model_DbTable_Tip::TIP_REJECTED; ?>/idTip/<?php echo $tip->id; ?>">Deny</a></td>
+				</tr>
+                <?php endforeach; ?>
+			</tbody>
+		</table>
+		<?php endforeach; ?>
+	</div>
+</div>

@@ -12,4 +12,7 @@ class Model_DbTable_Tip extends Model_DbTable_TableAbstract {
 	    ),
 	);
 	
+	const TIP_NON_MODERATED = 0;
+	const TIP_APPROVED      = 1;
+	const TIP_REJECTED      = 2;
 }

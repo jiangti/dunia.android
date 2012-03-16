@@ -1,48 +1,98 @@
-<?php $address = $this->pub->address;?>
+<?php $address = $this->pub->address; ?>
 
-<div class="container_12">
-
-    <h1><?php echo $this->pub->name; ?></h1>
+<div class="container_12 content">
 
     <div class="grid_8">
+        <h1><?php echo $this->pub->name; ?></h1>
+        
         <?php 
-    	$promos = $this->pub->getPromos();
-    	if (count($promos)): ?>
-        <table class="generic" cellspacing="1px" cellpadding="0px" border="0">
+            $days   = Model_Day::$daysName; 
+            $promos = $this->pub->getPromosByDay();
+        ?>
+        <!-- <a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">Add Deal</a> -->
+        <table id="promos" class="generic" cellspacing="1px" cellpadding="0px" border="0">
+            
             <thead>
                 <tr>
-                    <th><a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">Add Deal</a></th>
+                    <?php foreach ($days as $day): ?>
+                        <th><?php echo $day; ?></th>
+                    <?php endforeach; ?>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($promos as $promo): ?>
+                <tr>
+                <?php foreach ($days as $dayInt => $day): ?>
+                    <td>
+                    <?php if (isset($promos[$dayInt])) {
+                        foreach ($promos[$dayInt] as $promo): ?>
+                            <div class="promo">
+                                <div class="time">
+                                    <?php echo $this->formatDate($promo->timeStart, 'H:i'); ?> - <?php echo $this->formatDate($promo->timeEnd, 'H:i'); ?>
+                                </div>
+                                <div class="promoContent"><strong><?php echo $this->currency($promo->price); ?></strong><br />
+                                    <?php foreach ($promo->getLiquorTypes() as $liquor) {
+                                        echo ' ' . $liquor->name;
+                                    } ?>
+                                </div> 
+                            </div>
+                        <?php endforeach; ?>
+                    <?php } ?>
+                    </td>
+                <?php endforeach; ?>
+                </tr>
+            </tbody>
+        </table>
+        
+<!-- Remove this br crap -->
+<br />        
+<br />        
+<br />        
+<br />        
+<!-- Remove this br crap -->
+
+        <?php 
+        $tips = $this->pub->getTips();
+        if (count($tips)): ?>
+        <table class="generic" cellspacing="1px" cellpadding="0px" border="0">
+            <thead>
+                <tr>
+                    <th style="height: 20px">
+                        <div class="left">
+                            Tips
+                        </div>
+                        <div class="right">
+                            <img src="/img/icons/social/poweredByFoursquare_gray.png" width="128" height="14" />    
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($tips as $tip) {
+                    if ($tip->validated == Model_DbTable_Tip::TIP_APPROVED) { ?>
                     <tr>
                         <td>
-                            <h4>$ <?php echo $promo->price; ?> 
-                                <?php foreach ($promo->getLiquorTypes() as $liquor) {
-                                    echo ' ' . $liquor->name;
-                                } ?>
-                            </h4> 
-                            <p><?php echo $promo->day; ?> From <?php echo $promo->timeStart; ?> to <?php echo $promo->timeEnd; ?></p>
-                            
+                            <?php echo $tip->text; ?>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                <?php 
+                    }
+                } ?>
             </tbody>
         </table>
             
-    	<?php else: ?>
-    	    <p>There are no deals for this venue yet. <a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">Why don't you enter one?</a></p>
-    	<?php endif;?>
+        <?php endif;?>
+        
     </div>
 
-    <div class="grid_4">
-        <div id="map_canvas" style="width: 100%; height: 200px;"></div>
-        <ul>
-            <li><?php echo $address; ?></li>
-			<li><a href="<?php echo $this->pub->url; ?>"><?php echo $this->pub->url; ?></a></li>
-			<li><a href="mailto:<?php echo $this->pub->email; ?>"><?php echo $this->pub->email; ?></a></li>
-		</ul>
+    <div class="grid_4 sidebar omega" style="width:310px">
+        <div>
+            <div id="map_canvas" style="width: 100%; height: 200px;"></div>
+            <div class="contact">
+                <span class="address"><?php echo $address->formatOutput(); ?></span>
+    			<a href="<?php echo $this->pub->url; ?>"><?php echo $this->pub->url; ?></a>
+    			<a href="mailto:<?php echo $this->pub->email; ?>"><?php echo $this->pub->email; ?></a>
+    		</div>
+        </div>
     </div>
 </div>
 
@@ -55,7 +105,7 @@ $(document).ready(function() {
  
     var center = new google.maps.LatLng(parseFloat(<?php echo $address->latitude; ?>), parseFloat(<?php echo $address->longitude; ?>));
     var myOptions = {
-        zoom: 18,
+        zoom: 16,
         center: center,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -66,8 +116,6 @@ $(document).ready(function() {
         map: map,
         position: center    
     });
-
-
 
 });
 </script>
