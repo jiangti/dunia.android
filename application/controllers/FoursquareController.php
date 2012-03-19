@@ -46,8 +46,34 @@ class FoursquareController extends Model_Controller_Action {
 	
 	public function tipsAction() {
 	     
-	    $pubService = new Service_Pub_Foursquare();
-	    $pubService->updateTips();
+	    $pubTable   = new Model_DbTable_Pub();
+	    $tipService = new Service_Tip();
+	    $pubService = new Service_Pub();
+	    
+	    foreach ($pubTable->fetchAll($pubService->getPubs(array('validated' => true))) as $pub) {
+	        $tips = $this->foursquare->get('/venues/' . $pub['idFoursquare'] . '/tips');
+	        foreach ($tips->response->tips->items as $tip) {
+                $tipService->saveTipFromFoursquareResult($pub['id'], $tip);
+	        }
+	    }
+	     
+	    exit;
+	}
+	
+	public function validateTipsAction() {
+	    $tipService = new Service_Tip();
+	    
+	    $this->view->pubs = $tipService->getNonValidatedTipsByPub();
+	}
+	
+	public function moderateTipAction() {
+	    $action = $this->_getParam('do');
+	    $idTip  = $this->_getParam('idTip');
+	    
+	    if ($idTip && $action) {
+	        $tipService = new Service_Tip();
+            $tipService->moderateTip($idTip, $action);	        
+	    }
 	    
 	    exit;
 	}

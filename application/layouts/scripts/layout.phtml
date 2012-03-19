@@ -20,8 +20,8 @@ thirsty = {};
 </script>
 </head>
 <body>
-<div id="fb-root"></div>
-      <script>
+    <div id="fb-root"></div>
+    <script>
         window.fbAsyncInit = function() {
           FB.init({
             appId      : '373246349359082',
@@ -31,21 +31,26 @@ thirsty = {};
             oauth      : true,
           });
         };
-        (function(d){
-           var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-           js = d.createElement('script'); js.id = id; js.async = true;
-           js.src = "//connect.facebook.net/en_US/all.js";
-           d.getElementsByTagName('head')[0].appendChild(js);
-         }(document));
-      </script>
-<div class="container_12">
-	<div class="grid_12 omega">
-	<div style="float: right; margin: 7px">
-		<a href="/pub/">Pubs (Internal)</a> |
-		<a href="/index/share">Share</a> | <div class="fb-login-button" style="display: inline">Login with Facebook</div> | <a href="#">Tell a friend</a>
-	</div>
-	</div>
-</div>
+        (function(d) {
+            var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+            js = d.createElement('script'); js.id = id; js.async = true;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            d.getElementsByTagName('head')[0].appendChild(js);
+         } (document));
+    </script>
+    <div id="header">
+    <div class="container_12">
+        <div class="grid_1">
+            <a id="logo" href="/">Dunia</a>
+        </div>
+    	<div class="grid_11 omega">
+    	<div style="float: right; margin: 7px">
+    		<a href="/pub/">Pubs (Internal)</a> |
+    		<a href="/index/share">Share</a> | <div class="fb-login-button" style="display: inline">Login with Facebook</div> | <a href="#">Tell a friend</a>
+    	</div>
+    	</div>
+    </div>
+    </div>
 <?php echo $this->layout()->content; ?>
 </body>
 </html>

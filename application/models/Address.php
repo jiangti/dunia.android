@@ -45,4 +45,16 @@ class Model_Address extends Aw_Model_ModelAbstract {
 	    
 	    return $address;
 	}
+	
+	public function formatOutput($separator = '<br />') {
+	    $address = $this->address1 . $separator;
+	     
+	    if ($this->address2) {
+	        $address .= $this->address2 . $separator;
+	         
+	    }
+	     
+	    $address .= $this->town . ' ' . $this->state . ' ' . $this->postcode;
+	    return $address;
+	}
 }
