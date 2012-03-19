@@ -13,6 +13,9 @@ class FoursquareController extends Model_Controller_Action {
         $this->foursquare = $bootstrap->getPluginResource('foursquare')->getFoursquare();
     }
     
+    /**
+     * Lets make controller thin, services fat, models fat.
+     */
 	public function validateAction() {
 	    if ($this->_request->isPost()) {
 	        foreach ($this->_getParam('pub') as $idPub => $idFoursquare) {
@@ -23,8 +26,8 @@ class FoursquareController extends Model_Controller_Action {
 	    
 	    $pubTable = new Model_DbTable_Pub();
 	    
-	    $pubService = new Service_Pub();
-	    $pubs       = $pubTable->fetchAll($pubService->getPubs(array('validated' => false)));
+	    $pubService = new Service_Pub_Foursquare();
+	    $pubs       = $pubTable->fetchAll($pubService->findPubByNotValid());
 	    
 	    $foursquarePubs = array();
 	    foreach ($pubs as $pub) {
@@ -42,32 +45,10 @@ class FoursquareController extends Model_Controller_Action {
 	}
 	
 	public function tipsAction() {
-	    $pubTable = new Model_DbTable_Pub();
-	    $tipTable = new Model_DbTable_Tip();
 	     
-	    $pubService = new Service_Pub();
-	    $pubs       = $pubTable->fetchAll($pubService->getPubs(array('validated' => true)));
-	     
-	    $foursquarePubs = array();
-	    foreach ($pubs as $pub) {
-	        $tips = $this->foursquare->get('/venues/' . $pub['idFoursquare'] . '/tips');
-	         
-	        foreach ($tips->response->tips->items as $tip) {
-	            $tipRow = $tipTable->getRow(array(
-	                'idPub'       => $pub['id'],
-	                'text'        => $tip->text,
-	                'data'        => json_encode($tip),
-	                'dateUpdated' => date("Y-m-d H:i:s"),
-	                )
-	            );
-	            $tipRow->save();
-	        }
-	        //$foursquarePubs[] = array(
-	    	//            'info'  => $pub,
-	    	//            'tips' => $tips->response->tips->items);
-	    }
-	     
-	    //$this->view->pubs = $foursquarePubs;
+	    $pubService = new Service_Pub_Foursquare();
+	    $pubService->updateTips();
+	    
 	    exit;
 	}
 	

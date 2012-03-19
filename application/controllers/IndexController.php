@@ -34,23 +34,7 @@ class IndexController extends Model_Controller_Action {
 	}
 	
 	protected function _getPubs($latitude, $longitude) {
-	    $pubTable = new Model_DbTable_Pub();
-	    $db       = $pubTable->getAdapter();
-	    $user = $this->_getUser();
-	    
-	    if (!$latitude) {
-	        $latitude = $user->getLat();
-	    }
-	    if (!$longitude) {
-	        $longitude = $user->getLong();
-	    }
-	    
-	    $select = $db->select()
-		    ->from(array('p' => 'pub'))
-		    ->join(array('a' => 'address'), 'p.idAddress = a.id', array('longitude' => 'longitude', 'latitude', 'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(latitude)) * cos(radians(longitude) - radians('$longitude')) + sin(radians('$latitude')) * sin(radians(latitude))), 2)")))
-		    ->order('distance');
-	    
-	    return $db->fetchAll($select);
+	    throw new Exception("Deprecated function, use the Service_Pub instead for finding and filtering.");
 	}
 	
 	public function shareAction() {

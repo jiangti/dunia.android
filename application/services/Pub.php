@@ -185,12 +185,25 @@ class Service_Pub
      */
     public function findPromo($latitude, $longitude) {
     	$select = $this->_getFindPubSelect($latitude, $longitude);
+    	
+    	$hour = date("H:00:00");
+    	
+    	$expr = new Zend_Db_Expr(sprintf("CASE
+					WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'NOW'
+					WHEN '%s' < p0.timeStart THEN 'LATER'
+					ELSE 'EARLIER'
+					END", $hour, $hour));
+    	
     	$select
     		->join(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array())
-    		->join(array('p0' => 'promo'), 'p0.id = php.idPromo', array())
+    		->join(array('p0' => 'promo'), 'p0.id = php.idPromo', array('itsOn' => $expr))
     		->where('p0.day = ?', date('D'))
+    		->group('p.id')
     	;
-    	return $select->getTable()->fetchAll($select->group('p.id'));
+    	
+    	
+    	
+    	return $select->getTable()->fetchAll($select);
     }
     
     public function findPubByLatLong($latitude, $longitude)
