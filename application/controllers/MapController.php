@@ -44,6 +44,7 @@ class MapController extends Model_Controller_Action {
 	    				'lat' 		=> array($pub['latitude']),
 	    				'lng' 		=> array($pub['longitude']),
 	    				'type' 		=> array('bar'),
+	        			'itsOn'		=> array($pub['itsOn'])
 	        );
 	    }
 	    
