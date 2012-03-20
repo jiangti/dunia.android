@@ -32,6 +32,15 @@ function setMarkers(data) {
 
     var bounds = new google.maps.LatLngBounds();
     var customIcons = {
+    	now: {
+    		 icon: '/img/icons/famfamfam/user_green.png'
+    	},
+    	earlier: {
+    		 icon: '/img/icons/famfamfam/user_orange.png'
+    	},
+    	later: {
+    		 icon: '/img/icons/famfamfam/user_red.png'
+    	},
         restaurant: {
             icon: '/img/icons/markers/steak.png'
         },
@@ -44,8 +53,7 @@ function setMarkers(data) {
         var marker = markers[i];
         var name = marker.name[0];
         var address = marker.address[0];
-        var type = marker.type[0];
-
+        var type = marker.itsOn[0];
         var point = new google.maps.LatLng(
             parseFloat(marker.lat[0]),
             parseFloat(marker.lng[0]));

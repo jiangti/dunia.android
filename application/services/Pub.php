@@ -189,9 +189,9 @@ class Service_Pub
     	$hour = date("H:00:00");
     	
     	$expr = new Zend_Db_Expr(sprintf("CASE
-					WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'NOW'
-					WHEN '%s' < p0.timeStart THEN 'LATER'
-					ELSE 'EARLIER'
+					WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
+					WHEN '%s' < p0.timeStart THEN 'later'
+					ELSE 'earlier'
 					END", $hour, $hour));
     	
     	$select
