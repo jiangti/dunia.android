@@ -22,7 +22,7 @@
             <tbody>
                 <tr>
                 <?php foreach ($days as $dayInt => $day): ?>
-                    <td>
+                    <td width="<?php echo (1/sizeof($days)) * 100; ?>%">
                     <?php if (isset($promos[$dayInt])) {
                         foreach ($promos[$dayInt] as $promo): ?>
                             <div class="promo">
