@@ -1,11 +1,11 @@
 <?php
 class Service_Pub_Foursquare extends Service_Pub {
 	public function findPubByValid() {
-		return $this->_getPubs(array('validated' => true));
+		return $this->getPubs(array('validated' => true));
 	}
 	
 	public function  findPubByNotValid() {
-		return $this->_getPubs(array('validated' => false));
+		return $this->getPubs(array('validated' => false));
 	}
 	
 	public function updateTips() {
