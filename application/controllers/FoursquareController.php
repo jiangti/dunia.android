@@ -76,6 +76,9 @@ class FoursquareController extends Model_Controller_Action {
 	        $tipService = new Service_Tip();
             $tipService->moderateTip($idTip, $action);	        
 	    }
+	     
+	    $pubService = new Service_Pub_Foursquare();
+	    $pubService->updateTips();
 	    
 	    exit;
 	}
