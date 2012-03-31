@@ -3,13 +3,15 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <?php
-$this->headLink()->appendStylesheet($this->baseUrl('contrib/adapt-960/assets/css/960.css'), 'screen, projection');
-$this->headLink()->appendStylesheet($this->baseUrl('contrib/blueprint/blueprint/ie.css'), 'screen, projection', "lte IE 9");
-$this->headLink()->appendStylesheet($this->baseUrl('contrib/blueprint/blueprint/plugins/link-icons/screen.css'), 'screen, projection');
-$this->headLink()->appendStylesheet($this->baseUrl('contrib/blueprint/blueprint/plugins/sprites/sprite.css'), 'screen, projection');
-$this->headLink()->appendStylesheet($this->baseUrl('contrib/tablesorter/blue/style.css'), 'screen, projection');
+$this->headLink()
+	->appendStylesheet($this->baseUrl('contrib/adapt-960/assets/css/960.css'), 'screen, projection')
+	->appendStylesheet($this->baseUrl('contrib/blueprint/blueprint/ie.css'), 'screen, projection', "lte IE 9")
+	->appendStylesheet($this->baseUrl('contrib/blueprint/blueprint/plugins/link-icons/screen.css'), 'screen, projection')
+	->appendStylesheet($this->baseUrl('contrib/blueprint/blueprint/plugins/sprites/sprite.css'), 'screen, projection')
+	->appendStylesheet($this->baseUrl('contrib/tablesorter/blue/style.css'), 'screen, projection')
+	->appendStylesheet($this->baseUrl('css/style.css'), 'screen, projection')
+;
 $this->headScript()->appendFile($this->baseUrl('contrib/1140_CssGrid_2/js/css3-mediaqueries.js'));
-$this->headLink()->appendStylesheet($this->baseUrl('css/style.css'), 'screen, projection');
 ?>
 <?php echo $this->headLink(); ?>
 <?php echo $this->headScript(); ?>
@@ -45,8 +47,7 @@ thirsty = {};
         </div>
     	<div class="grid_11 omega">
     	<div style="float: right; margin: 7px">
-    		<a href="/pub/">Pubs (Internal)</a> |
-    		<a href="/index/share">Share</a> | <div class="fb-login-button" style="display: inline">Login with Facebook</div> | <a href="#">Tell a friend</a>
+    		<a href="/pub/">Pubs Index</a> | <div class="fb-login-button" style="display: inline">Login with Facebook</div> | <a href="#">Tell a friend</a>
     	</div>
     	</div>
     </div>
