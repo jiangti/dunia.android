@@ -39,7 +39,6 @@ class FoursquareController extends Model_Controller_Action {
 	        $foursquarePubs[] = array(
 	            'dunia'      => $pub,
 	            'foursquare' => $foursquarePub->response->groups[0]->items);
-	    var_dump($foursquarePub); exit;
 	    }
 	    
 	    
