@@ -85,7 +85,7 @@ class PubController extends Zend_Controller_Action
         
         if (Zend_Registry::get('device')->getType() == 'mobile' || $this->_getParam('mobile')) {
             $this->_helper->layout()->setLayout('mobile-min');
-            $this->view->render('pub/overview-mobile.phtml');
+            $this->_helper->viewRenderer->setRender('overview-mobile');
         }
     }
     
