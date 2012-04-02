@@ -40,32 +40,7 @@ class IndexController extends Model_Controller_Action {
 	    throw new Exception("Deprecated function, use the Service_Pub instead for finding and filtering.");
 	}
 	
-	public function shareAction() {
-
-		$form = new Form_Deal('deal');
-		
-		$pub = null;
-		
-		if ($id = $this->_request->getParam('id')) {
-			if ($pub = Model_DbTable_Pub::retrieveById($id)) {
-				$form->setRecord($pub);
-			}
-		}
-		if ($this->_request->isPost() && $form->isValid($this->_request->getPost())) {
-			$data = $form->getValues();
-			
-			$form->file->receive();
-			
-			$files = $form->file->getFileInfo();
-			$data['files'] = $files;
-			$service = new Service_Pub();
-			$pub = $service->savePubFromShareArray($data, $pub);
-			
-			$this->_redirect(sprintf('/index/share/id/%d', $pub->id));
-		}
-		$this->view->form = $form;
-		$this->view->pub = $pub;
-	}
+	
 	
 	public function landingAction() {
         $this->_helper->layout()->disableLayout();
