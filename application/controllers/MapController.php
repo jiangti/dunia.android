@@ -34,7 +34,7 @@ class MapController extends Model_Controller_Action {
 	    $this->_generateResponse($pubs);
 	}
 	
-	private function _generateResponse($pubs) {
+	private function _generateResponse(Zend_Db_Table_Rowset_Abstract $pubs) {
 	    $array = array();
 	    foreach ($pubs as $pub) {
 	        $array[] = array(

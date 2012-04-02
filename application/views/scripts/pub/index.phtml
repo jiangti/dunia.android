@@ -26,7 +26,7 @@
 				<tr>
 					<td><?php echo $pub; ?></td>
 					<td><?php echo $pub->getAddress()->formatOutput(' '); ?></td>
-					<td><a href="<?php echo sprintf('/index/share/id/%d', $pub->id); ?>" class="ss_sprite ss_application_edit"></a></td>
+					<td><a href="<?php echo  $this->url(array('id' => $pub->id, 'action' => 'share')); ?>" class="ss_sprite ss_application_edit"></a></td>
 				</tr>
 				<?php endforeach; ?>
 			</tbody>
