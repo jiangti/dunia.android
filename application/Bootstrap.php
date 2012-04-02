@@ -7,6 +7,7 @@ class Bootstrap extends Aw_BootstrapAbstract {
 				        'namespace' => '',
 				        'basePath'  => APPLICATION_PATH));
 		
+		Zend_Registry::set("Zend_Application", $this);
 		//$pluginLoader = new Zend_Loader_PluginLoader();
 		//$pluginLoader->addPrefixPath('Application_Plugin', APPLICATION_ROOT . '/application/plugins/');
 	}
@@ -50,4 +51,5 @@ class Bootstrap extends Aw_BootstrapAbstract {
     public function _initThumbnail() {
     	Zend_Registry::set('AW_THUMBNAIL_CACHE', APPLICATION_ROOT . '/public/cache');
     }
+    
 }

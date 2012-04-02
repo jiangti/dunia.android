@@ -1,5 +1,5 @@
 <?php
-class Service_Pub
+class Service_Pub extends Aw_Service_ServiceAbstract
 {
     public function savePub(Model_DbTable_Row_Pub $pub)
     {
