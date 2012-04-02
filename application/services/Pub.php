@@ -1,5 +1,5 @@
 <?php
-class Service_Pub
+class Service_Pub extends Aw_Service_ServiceAbstract
 {
     public function savePub(Model_DbTable_Row_Pub $pub)
     {
@@ -197,7 +197,7 @@ class Service_Pub
     	$select
     		->join(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array())
     		->join(array('p0' => 'promo'), 'p0.id = php.idPromo', array('itsOn' => $expr))
-    		->where('find_in_set(?, p0.day) > 0', date('D'))
+    		->where('find_in_set(?, p0.day)', date('D'))
     		->group('p.id')
     	;
     	
