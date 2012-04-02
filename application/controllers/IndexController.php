@@ -68,7 +68,18 @@ class IndexController extends Model_Controller_Action {
 	}
 	
 	public function landingAction() {
-        $this->_helper->layout()->disableLayout();
+        $this->_helper->layout()->setLayout('landing');
+    }
+
+    public function thankyouAction() {
+        $this->_helper->layout()->setLayout('landing');
+
+        $user = new Model_User();
+
+        if ($email = $this->_getParam('email')) {
+            $user->email = $email;
+            $user->save();
+        }
     }
 }
 

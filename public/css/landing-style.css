@@ -172,8 +172,7 @@ a:hover { color: #036; }
  * Author: Sean King
  */
 
-#top {
-	text-align: center;
+header {
 	padding:15px 0 5px 0;
 
     background: #00b7ea; /* Old browsers */
@@ -188,6 +187,11 @@ a:hover { color: #036; }
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+#top {
+    text-align: center;
+    width: 787px;
 }
 
 body {
@@ -208,7 +212,7 @@ body {
 
 #main {
 	width: 787px;
-	margin: 40px auto;
+	margin: 40px auto 0 auto;
 }
 
 #main h1 {
