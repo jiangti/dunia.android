@@ -197,7 +197,7 @@ class Service_Pub
     	$select
     		->join(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array())
     		->join(array('p0' => 'promo'), 'p0.id = php.idPromo', array('itsOn' => $expr))
-    		->where('p0.day = ?', date('D'))
+    		->where('find_in_set(?, p0.day) > 0', date('D'))
     		->group('p.id')
     	;
     	
