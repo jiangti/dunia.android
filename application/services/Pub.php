@@ -197,6 +197,8 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	$select
     		->join(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array())
     		->join(array('p0' => 'promo'), 'p0.id = php.idPromo', array('itsOn' => $expr))
+            ->join(array('phl' => 'promoHasLiquorType'), 'p0.id = phl.idPromo', array())
+            ->join(array('lt' => 'liquorType'), 'lt.id = phl.idLiquorType', array('liquorType' => 'GROUP_CONCAT(lt.name SEPARATOR ", ")'))
     		->where('find_in_set(?, p0.day)', date('D'))
     		->group('p.id')
     	;

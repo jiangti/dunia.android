@@ -4,8 +4,6 @@
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 		<?php
 		    $this->headLink()->appendStylesheet($this->baseUrl('contrib/adapt-960/assets/css/960.css'), 'screen, projection');
-		    $this->headScript()->appendFile('http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places');
-		    $this->headScript()->appendFile($this->baseUrl('js/gmapi-suggest.js'));
 		?>
 		<?php echo $this->headLink(); ?>
 		<?php echo $this->headScript(); ?>

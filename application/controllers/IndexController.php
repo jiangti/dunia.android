@@ -15,13 +15,11 @@ class IndexController extends Model_Controller_Action {
 	}
 	
 	public function listAction() {
-        $service = new Service_Pub();
-	    $this->view->pubs = $service->findPubByLatLong($this->_getParam('latitude'), $this->_getParam('longitude'));
-	}
+
+    }
 	
 	public function locateAction() {
-        $service = new Service_Pub();
-	    $this->view->pubs = $service->findPubByLatLong($this->_getParam('latitude'), $this->_getParam('longitude'));
+        $this->_populatePubs();
 	    $this->_helper->layout()->disableLayout();
 	}
 	
@@ -32,15 +30,22 @@ class IndexController extends Model_Controller_Action {
 	}
 	
 	public function mapAction() {
+        $this->_populatePubs();
+	}
+	
+	protected function _populatePubs() {
         $service = new Service_Pub();
-        $this->view->pubs = $service->findPubByLatLong($this->_getParam('latitude'), $this->_getParam('longitude'));
-	}
-	
-	protected function _getPubs($latitude, $longitude) {
-	    throw new Exception("Deprecated function, use the Service_Pub instead for finding and filtering.");
-	}
-	
-	
+
+        $user = $this->_getUser();
+
+        $lat  = ($user->getLat() ?: self::LAT);
+        $long = ($user->getLong() ?: self::LONG);
+
+        $lat  = $this->_getParam('lat', $lat);
+        $long = $this->_getParam('long', $long);
+
+        $this->view->pubs = $service->findPromo($lat, $long);
+    }
 	
 	public function landingAction() {
         $this->_helper->layout()->setLayout('landing');
