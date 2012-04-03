@@ -12,13 +12,13 @@
 		<?php
 			$this->headLink()->prependStylesheet($this->baseUrl('css/reset.css'));
 			
-			$this->headLink()->appendStylesheet($this->baseUrl('css/jquery.mobile-1.0.min.css'));
+			$this->headLink()->appendStylesheet($this->baseUrl('css/jquery.mobile-1.1.0-rc.css'));
 			$this->headLink()->appendStylesheet($this->baseUrl('css/mobile.css'));
 			
 	        $this->headScript()->prependFile($this->baseUrl('js/jquery-1.6.4.min.js'));
 	        $this->headScript()->appendFile($this->baseUrl('js/jquery.corner.js'));
 	        $this->headScript()->appendFile($this->baseUrl('js/default.js'));
-	        $this->headScript()->appendFile($this->baseUrl('js/jquery.mobile-1.0.min.js'));
+	        $this->headScript()->appendFile($this->baseUrl('js/jquery.mobile-1.1.0-rc.min.js'));
 	        $this->headScript()->appendFile($this->baseUrl('js/jquery.ui.map.full.min.js'));
 	        
 		    echo $this->headLink();
@@ -28,16 +28,16 @@
 	<body>
         <div data-role="page">
     		<div id="home" data-role="header" data-add-back-btn="true">
-    			<h1>Dunia</h1>
-    			<a href="/index/map" class="ui-btn-right" rel="external">Map</a>
+    			<h1><img src="/img/dunia.png" width="82" height="25"/></h1>
+    			<a href="/index/map" class="ui-btn-right" data-theme="a" rel="external"><img src="/img/icons/navbar/103-map.png" height="21" width="26"></a>
             </div>
     		
     		<div data-role="content">
     			<?php echo $this->layout()->content; ?>
     		</div>
     		
-    		<div id="footer" data-role="footer" data-position="fixed">
-    			Footer will go here...
+    		<div id="footer" data-role="footer">
+
             </div>
         </div>
 	</body>

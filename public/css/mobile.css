@@ -54,6 +54,11 @@ blockquote {
      margin-top: 0px;
  }
 
+ #home {
+     -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+     -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+ }
 
 #nav {
 	padding: 0.5em 1em;
@@ -98,7 +103,7 @@ blockquote {
 .separator {
 	border-top: 1px solid #ddd;
 	height    : 1px;
-	width:    : 75%;	
+	width     : 75%;
 }
 
 /**
@@ -156,7 +161,16 @@ a.flag         { background : url('/img/icons/social/flag.png') no-repeat; }
 a.edit         { background : url('/img/icons/social/edit.png') no-repeat; }
 a.favorite     { background : url('/img/icons/social/favorite.png') no-repeat; }
 a.not-favorite { background : url('/img/icons/social/not-favorite.png') no-repeat; }
-	
+
+
+/**
+ *
+ */
+.distance {
+    float       : right;
+    font-weight : normal;
+}
+
 /**
  * Venue specific styles
  */

@@ -16,7 +16,7 @@
 					var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 	var blueIcon = new google.maps.MarkerImage("http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/blank.png");
                 	
-                	self.addMarker({'position': currentPosition, icon:blueIcon }).click(function() {
+                	self.addMarker({'position': currentPosition, icon: '/img/icons/markers/current.png' }).click(function() {
             			self.openInfoWindow({ 'content': '<?php echo addslashes($pub['name']); ?>' }, this);
             		});
 
