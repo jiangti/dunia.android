@@ -6,6 +6,14 @@ class PubController extends Zend_Controller_Action
 		$contextSwitch->addActionContext('search', 'json')->initContext();
 	}
 	
+	public function fetchAction() {
+		$service = new Service_Share_Mail();
+		$shares = $service->fetch();
+		
+		$this->view->shares = $shares;
+		
+	}
+	
 	public function searchAction() {
 		if ($name = $this->_getParam('term')) {
 			$pubTable = new Model_DbTable_Pub();
@@ -166,7 +174,7 @@ class PubController extends Zend_Controller_Action
     		$service = new Service_Pub();
     		$pub = $service->savePubFromShareArray($data, $pub);
     
-    		$this->_redirect(sprintf('/index/share/id/%d', $pub->id));
+    		$this->_redirect($this->view->url(array('id' => $pub->id)));
     	}
     	$this->view->form = $form;
     	$this->view->pub = $pub;

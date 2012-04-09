@@ -88,7 +88,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
             }
             
             foreach ($data as $index => $value) {
-                if (stripos($index, 'detail') !== false && $value['value']) {
+                if (stripos($index, 'detail') !== false && ($value['value'] || $value['description'])) {
                     $pub->addDealFromArray($value);
                 }
             }
