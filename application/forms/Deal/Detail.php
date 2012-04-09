@@ -7,6 +7,7 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 		
 		$deal
 			->setLabel('Value')
+			->addFilter('Null')
 		;
 		
 		$description = new Zend_Form_Element_Text('description');
@@ -79,7 +80,7 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 		;
 		
 		
-		$this->addElements(array($deal, $description, $start, $end, $liquorType, $liquorSize, $days));
+		$this->addElements(array($description, $deal, $start, $end, $liquorType, $liquorSize, $days));
 		
 		return $return;
 	}

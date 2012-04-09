@@ -88,7 +88,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
             }
             
             foreach ($data as $index => $value) {
-                if (stripos($index, 'detail') !== false && $value['value']) {
+                if (stripos($index, 'detail') !== false && ($value['value'] || $value['description'])) {
                     $pub->addDealFromArray($value);
                 }
             }
@@ -188,11 +188,17 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	
     	$hour = date("H:00:00");
     	
-    	$expr = new Zend_Db_Expr(sprintf("CASE
-					WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
-					WHEN '%s' < p0.timeStart THEN 'later'
-					ELSE 'earlier'
-					END", $hour, $hour));
+    	if (time() > strtotime('11am')) {
+	    	$expr = new Zend_Db_Expr(sprintf("CASE
+						WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
+						WHEN '%s' < p0.timeStart THEN 'later'
+						ELSE 'earlier'
+						END", $hour, $hour));
+    		
+    	} else {
+    		$expr = new Zend_Db_Expr('"later"');
+    	}
+    	
     	
     	$select
     		->join(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array())

@@ -18,6 +18,8 @@ class Service_Pub_Foursquare extends Service_Pub {
 	 * Discover and save into discovery table.
 	 */
 	public function crawl() {
+		$this->isNotEmpty(array('Latitude' => $this->latitude, 'Longitude' => $this->longitude));
+		
 		$pubs = $this->_foursquare->get('/venues/search', array(
 				'radius'	 => 1000,
 				'limit'	     => 50,
