@@ -40,17 +40,41 @@
     </div>
 	
 	<div data-role="content">
-    	<?php 
-    	$promos = $this->pub->getPromos();
-    	if (count($promos)): ?>
-    	
-            <ul data-role="listview" data-inset="true" data-theme="c">
-                <?php echo $this->partialLoop('partials/deal.php', $promos) ?> 
-            </ul>
-            
-    	<?php else: ?>
+        <h2>Deals</h2>
+    	<?php
+        $days   = Model_Day::$daysName;
+        $promos = $this->pub->getPromosByDay();
+    	if (count($promos)) {
+            if (isset($promos[date('N')])) { ?>
+                <h3>Today</h3>
+
+                <ul data-role="listview" data-inset="true" data-theme="c">
+                    <?php echo $this->partial('partials/deal.php', array('promos' => $promos[date('N')])); ?>
+                </ul>
+            <?php
+                unset($promos[date('N')]);
+            }
+
+            if (count($promos)) {
+                foreach ($promos as $day => $dailyPromos) { ?>
+                    <h3><?php echo $days[$day]; ?></h3>
+
+                    <ul data-role="listview" data-inset="true" data-theme="c">
+                        <?php echo $this->partial('partials/deal.php', array('promos' => $promos[$day])); ?>
+                    </ul>
+                <?php
+                }
+            }
+
+    	 } else { ?>
     	    <p>There are no deals for this venue yet. <a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">Why don't you enter one?</a></p>
-    	<?php endif;?>
+    	<?php }?>
+
+        <h2>Contact</h2>
+        <ul data-role="listview" data-inset="true" data-theme="c">
+            <li><a href="<?php echo $this->pub->url; ?>"><img src="/img/icons/navbar/174-imac.png" alt="Website" class="ui-li-icon"> <?php echo $this->pub->url; ?></a></li>
+            <li><a href="mailto:<?php echo $this->pub->email; ?>"><img src="/img/icons/navbar/123-id-card.png" alt="Email" class="ui-li-icon"> <?php echo $this->pub->email; ?></a></li>
+        </ul>
 	</div>
 	
 	<?php echo $this->partial('pub/partials/footer.php', array('selected' => 'beer'))?>
@@ -73,19 +97,3 @@
 
 
 
-<div data-role="page" id="contact">
-	<div data-role="header">
-		<a href="/index/list" data-icon="home" rel="external">Home</a>
-		<h1><?php echo $this->pub->name; ?></h1>
-    </div>
-	
-	<div data-role="content">
-		<h2>Contact</h2>
-		<ul data-role="listview" data-inset="true" data-theme="c">
-			<li><a href="<?php echo $this->pub->url; ?>"><img src="/img/icons/navbar/174-imac.png" alt="Website" class="ui-li-icon"> <?php echo $this->pub->url; ?></a></li>
-			<li><a href="mailto:<?php echo $this->pub->email; ?>"><img src="/img/icons/navbar/123-id-card.png" alt="Email" class="ui-li-icon"> <?php echo $this->pub->email; ?></a></li>
-		</ul>
-	</div>
-	
-	<?php echo $this->partial('pub/partials/footer.php', array('selected' => 'contact'))?>
-</div>

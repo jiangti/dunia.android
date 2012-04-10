@@ -32,6 +32,10 @@
                                 <div class="promoContent"><strong><?php echo $this->currency($promo->price); ?></strong><br />
                                     <?php foreach ($promo->getLiquorTypes() as $liquor) {
                                         echo ' ' . $liquor->name;
+                                        $size = $promo->getLiquorSizes();
+                                        foreach ($size as $s) {
+                                            echo ' (' . $s['name'] . ')';
+                                        }
                                     } ?>
                                 </div> 
                             </div>
