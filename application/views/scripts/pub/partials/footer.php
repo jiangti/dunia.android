@@ -15,11 +15,6 @@
                     Map
                 </a>
             </li>
-			<li>
-                <a class="mail-tab <?php if ($this->selected == 'contact') echo $selectedText; ?>" href="#contact" data-icon="custom" data-transition="none" >
-                    Contact
-                </a>
-            </li>
 		</ul>
 	</div>
 </div>
