@@ -5,9 +5,8 @@
 		<?php echo $this->form; ?>
 	</div>
 	<div style="float: right; margin: 7px">
-		<a href="/pub/">Pubs (Internal)</a> |
-		<a href="/index/share">Share</a> | <div class="fb-login-button" style="display: inline">Login with Facebook</div> | <a href="#">Tell a friend</a>
-	</div>
+		<?php echo $this->render('partials/nav.phtml'); ?>
+   	</div>
 	<div style="clear: both;"></div>
 </div>
 <div id="map_canvas" style="height:95%;"></div>

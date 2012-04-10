@@ -1,6 +1,36 @@
 <?php
 class PubController extends Zend_Controller_Action
 {
+	public function init() {
+		$contextSwitch = $this->_helper->getHelper('contextSwitch');
+		$contextSwitch->addActionContext('search', 'json')->initContext();
+	}
+	
+	public function fetchAction() {
+		$service = new Service_Share_Mail();
+		$shares = $service->fetch();
+		
+		$this->view->shares = $shares;
+		
+	}
+	
+	public function searchAction() {
+		if ($name = $this->_getParam('term')) {
+			$pubTable = new Model_DbTable_Pub();
+			$rows = $pubTable->searchByName($name);
+		}
+		$data = array();
+		foreach ($rows as $row) {
+			$data[] = array(
+				'id' => $row->id,
+				'label' => $row->name,
+				'value' => $row->name,
+			);
+		}
+		echo json_encode($data);
+		exit;
+	}
+	
 	public function manualAction() {
 		$sql = 'SELECT pub, address, GROUP_CONCAT(DAY) FROM dirty GROUP BY pub, promo';
 		$db = Zend_Db_Table_Abstract::getDefaultAdapter();
@@ -144,7 +174,7 @@ class PubController extends Zend_Controller_Action
     		$service = new Service_Pub();
     		$pub = $service->savePubFromShareArray($data, $pub);
     
-    		$this->_redirect(sprintf('/index/share/id/%d', $pub->id));
+    		$this->_redirect($this->view->url(array('id' => $pub->id)));
     	}
     	$this->view->form = $form;
     	$this->view->pub = $pub;

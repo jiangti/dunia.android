@@ -11,7 +11,13 @@ class Model_DbTable_Pub extends Model_DbTable_TableAbstract {
 	        'refColumns'        => 'id'
 	    ),
 	);
-
+	
+	public function searchByName($name) {
+		$select = $this->select();
+		$select->where('name like ?', sprintf('%%%s%%', $name));
+		return $this->fetchAll($select);
+	}
+	
 	public function findByName($name) {
 		$select = $this->select();
 		$select->where('name = ?', $name);
