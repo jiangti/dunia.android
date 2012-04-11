@@ -26,16 +26,16 @@
 		    
 	</head>
 	<body>
-        <div data-role="page">
-    		<div id="home" data-role="header" data-add-back-btn="true">
-    			<h1><img src="/img/dunia.png" width="82" height="25"/></h1>
-    			<a href="/index/map" class="ui-btn-right" data-theme="a" rel="external"><img src="/img/icons/navbar/103-map.png" height="21" width="26"></a>
+        <div data-role="page" class="page">
+    		<div class="home" data-role="header" data-add-back-btn="true">
+    			<h1><img src="/img/dunia.png" width="82" height="25" /></h1>
+    			<a href="/index/map" class="ui-btn-right" data-theme="a" data-transition="flip"><img src="/img/icons/navbar/103-map.png" height="21" width="26"></a>
             </div>
-    		
-    		<div data-role="content">
+
+    		<div data-role="content" id="content">
     			<?php echo $this->layout()->content; ?>
     		</div>
-    		
+
     		<div id="footer" data-role="footer" data-position="fixed">
 
             </div>

@@ -1,31 +1,83 @@
-<script type="text/javascript">
-	$(document).ready(function() {
-    	var mobileDemo = { 'center': '-33.8757,151.206', 'zoom': 15 };
-    	
-    	
-    	$('#map_canvas').gmap({'center': mobileDemo.center, 'zoom': mobileDemo.zoom, 'disableDefaultUI':true, 'callback': function() {
-    		var self = this;
-    		<?php foreach ($this->pubs as $pub): ?>
-    		self.addMarker({'position': new google.maps.LatLng(<?php echo $pub['latitude']; ?>, <?php echo $pub['longitude']; ?>) }).click(function() {
-    			self.openInfoWindow({ 'content': '<?php echo addslashes($pub['name']); ?>' }, this);
-    		});
-    		<?php endforeach; ?>
+<div data-role="page" class="page">
+    <div class="home" data-role="header" data-add-back-btn="true">
+        <a href="/" data-icon="home" data-transition="flip">Home</a>
+        <h1><img src="/img/dunia.png" width="82" height="25" /></h1>
+    </div>
 
-    		if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-					var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                	var blueIcon = new google.maps.MarkerImage("http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/blank.png");
-                	
-                	self.addMarker({'position': currentPosition, icon: '/img/icons/markers/current.png' }).click(function() {
-            			self.openInfoWindow({ 'content': '<?php echo addslashes($pub['name']); ?>' }, this);
-            		});
+    <div data-role="content" style="height: 95%; padding: 0">
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var mobileDemo = { 'center': '-33.8757,151.206', 'zoom': 15 };
 
-                	self.get('map').panTo(currentPosition);
-                });
-            }
-    	}}); 
-		
-});
-</script>
+                $('#map_canvas').gmap({'center': mobileDemo.center, 'zoom': mobileDemo.zoom, 'disableDefaultUI':true, 'callback': function() {
+                    var self = this;
 
-<div id="map_canvas" style="height:100%;min-height:300px;"></div>
+                    var customIcons = {
+                        now: {
+                            icon: '/img/icons/famfamfam/user_green.png'
+                        },
+                        earlier: {
+                            icon: '/img/icons/famfamfam/user_orange.png'
+                        },
+                        later: {
+                            icon: '/img/icons/famfamfam/user_red.png'
+                        },
+                        restaurant: {
+                            icon: '/img/icons/markers/steak.png'
+                        },
+                        bar: {
+                            icon: '/img/icons/markers/beer.png'
+                        }
+                    };
+
+                    <?php foreach ($this->pubs as $pub): ?>
+                    var type = '<?php echo $pub['itsOn']; ?>';
+                    var icon = customIcons[type] || {};
+
+                    self.addMarker({'icon' : icon.icon, 'position': new google.maps.LatLng(<?php echo $pub['latitude']; ?>, <?php echo $pub['longitude']; ?>) }).click(function() {
+                        self.openInfoWindow({ 'content': '<?php echo addslashes($pub['name']); ?>' }, this);
+                    });
+                    <?php endforeach; ?>
+
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            var address   = position.address;
+                            var longitude = position.coords.longitude;
+                            var latitude  = position.coords.latitude;
+
+                            if (address) {
+                                $("#footer").html("<p>Near " + address.streetNumber + ' ' + address.street + ' in ' + address.city + '</p>');
+                            } else {
+                                var geocoder = new google.maps.Geocoder();
+                                var latlng   = new google.maps.LatLng(latitude, longitude);
+
+                                geocoder.geocode({'latLng': latlng}, function(results, status) {
+                                    if (status == google.maps.GeocoderStatus.OK) {
+                                        if (results[0]) {
+                                            $("#footer").html("<p>Near " + results[0].formatted_address + '</p>');
+                                        }
+                                    }
+                                });
+                            }
+
+                            var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                            var blueIcon = new google.maps.MarkerImage("http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/blank.png");
+
+                            self.addMarker({'position': currentPosition, icon: '/img/icons/markers/current.png' }).click(function() {
+                                self.openInfoWindow({ 'content': '<?php echo addslashes($pub['name']); ?>' }, this);
+                            });
+
+                            self.get('map').panTo(currentPosition);
+                        });
+                    }
+                }});
+
+        });
+        </script>
+        <div id="map_canvas" style="z-index: 0;height:100%;min-height:300px;"></div>
+    </div>
+
+    <div id="footer" data-role="footer" data-position="fixed"/>
+</div>
+</body>
+</html>
