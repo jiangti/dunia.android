@@ -158,7 +158,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
      * @param unknown_type $longitude
      * @return Zend_Db_Table_Select
      */
-    protected function _getFindPubSelect($latitude, $longitude) {
+    protected function _getFindPubSelect($latitude, $longitude, $query = null) {
     	$pubTable = new Model_DbTable_Pub();
         
         $select = $pubTable->select()
@@ -174,6 +174,13 @@ class Service_Pub extends Aw_Service_ServiceAbstract
             ->order('distance')
         ;
         
+        if ($query) {
+        	$select
+        		->where('p.name like ?', sprintf('%s%%', $query))
+        		->orWhere(sprintf('a.address1 like "%%%s%%" or a.postcode = "%s" or a.town like "%%%s%%"', $query, $query, $query))
+        	;
+        }
+        
         return $select;
     }
     
@@ -182,11 +189,22 @@ class Service_Pub extends Aw_Service_ServiceAbstract
      * 
      * @param unknown_type $latitude
      * @param unknown_type $longitude
+     * @param string $query
+     * @param string day [MON,TUE,WED...]
+     * @param int 0-12
      */
-    public function findPromo($latitude, $longitude) {
-    	$select = $this->_getFindPubSelect($latitude, $longitude);
+    public function findPromo($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null) {
+    	$select = $this->_getFindPubSelect($latitude, $longitude, $query);
     	
-    	$hour = date("H:00:00");
+    	if ($hour) {
+    		$hour = str_pad($hour . ':00:00', 8, '0', STR_PAD_LEFT);
+    	} else {
+	    	$hour = date("H:00:00");
+    	}
+    	
+    	if (!$dayOfWeek) {
+    		$dayOfWeek = date('D');
+    	}
     	
     	if (time() > strtotime('11am')) {
 	    	$expr = new Zend_Db_Expr(sprintf("CASE
@@ -205,7 +223,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     		->join(array('p0' => 'promo'), 'p0.id = php.idPromo', array('itsOn' => $expr))
             ->join(array('phl' => 'promoHasLiquorType'), 'p0.id = phl.idPromo', array())
             ->join(array('lt' => 'liquorType'), 'lt.id = phl.idLiquorType', array('liquorType' => 'GROUP_CONCAT(lt.name SEPARATOR ", ")'))
-    		->where('find_in_set(?, p0.day)', date('D'))
+    		->where('find_in_set(?, p0.day)', $dayOfWeek)
     		->group('p.id')
     	;
     	

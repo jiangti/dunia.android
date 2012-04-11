@@ -33,6 +33,7 @@ class IndexController extends Model_Controller_Action {
 	}
 	
 	public function mapAction() {
+        $this->_helper->layout()->setLayout('mobile-min');
         $this->_populatePubs();
 	}
 	

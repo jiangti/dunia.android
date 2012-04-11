@@ -1,6 +1,3 @@
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="/js/maps.js"></script>
-
 <script type="text/javascript">
 	$(document).ready(function() {
     	var latlng = new google.maps.LatLng(<?php echo $this->options['address']->latitude; ?>, <?php echo $this->options['address']->longitude; ?>);
@@ -22,10 +19,5 @@
   });
 
 </script>
-<div class="mapWrapper">
-<div class="round tl"></div><div class="round t"></div><div class="round tr"></div>
-<div class="round rt"></div><div class="round br"></div><div class="round b"></div>
-<div class="round bl"></div><div class="round lt"></div>
 						   
 <div id="map"></div>
-</div>
