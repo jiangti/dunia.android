@@ -3,20 +3,30 @@
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
-            	var address = position.address;
-                var html = '';
+            	var address   = position.address;
+                var longitude = position.coords.longitude;
+                var latitude  = position.coords.latitude;
 
                 if (address) {
                     $("#footer").html("<p>Near " + address.streetNumber + ' ' + address.street + ' in ' + address.city + '</p>');
+                } else {
+                    var geocoder = new google.maps.Geocoder();
+                    var latlng   = new google.maps.LatLng(latitude, longitude);
+
+                    geocoder.geocode({'latLng': latlng}, function(results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[1]) {
+
+                                $("#footer").html("<p>Near " + results[1].formatted_address + '</p>');
+                            }
+                        }
+                    });
                 }
                 
-                html += "<div id='venues'><p>Please wait while we find your closest venues...</p>";
-                $('#info').html(html);
-
                 $.ajax({
                     type : 'POST',
                     url  : '/index/locate',
-                    data : {longitude: position.coords.longitude, latitude: position.coords.latitude},
+                    data : {long: longitude, lat: latitude},
                     success : function (data) {
                         $("#info").html(data);
                         $("#info").find('ul').listview();
@@ -38,6 +48,7 @@
 </script>
 
 
-<div id="info">
-    Please wait while we locate you and find the closest deals.
+<div id="info" style="text-align: center">
+    <img src="/css/images/ajax-loader.png" width="35" height="35" />
+    <p>Please wait while we locate you and find the closest deals.</p>
 </div>
