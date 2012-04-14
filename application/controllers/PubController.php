@@ -10,7 +10,17 @@ class PubController extends Zend_Controller_Action
 		$service = new Service_Share_Mail();
 		$shares = $service->fetch();
 		
+		
+		
+		
 		$this->view->shares = $shares;
+		
+	}
+	
+	public function parseAction() {
+		
+		$service = new Service_Share_Mail();
+		$service->importDb();
 		
 	}
 	
@@ -156,7 +166,11 @@ class PubController extends Zend_Controller_Action
     public function shareAction() {
     
     	$form = new Form_Deal('deal');
-    
+    	
+    	$defaults = array('name' => $this->_getParam('name'));
+
+    	$form->setDefaults($defaults);
+    	
     	$pub = null;
     
     	if ($id = $this->_request->getParam('id')) {
