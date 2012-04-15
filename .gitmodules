@@ -1,3 +1,6 @@
 [submodule "library/Aw"]
 	path = library/Aw
 	url = diveary@tvb.apu.4pu.com:allweb.git
+[submodule "library/Akrabat"]
+	path = library/Akrabat
+	url = git@github.com:jiangti/Akrabat.git
