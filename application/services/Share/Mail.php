@@ -39,7 +39,7 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 			foreach (new RecursiveIteratorIterator($message) as $part) {
 				$contentType = strtok($part->contentType, ';');
 				if (stripos($contentType, 'text') !== false) {
-					$row->subject = $mesasge->subject;
+					$row->subject = $message->subject;
 					$row->body = $part->getContent();
 					$row->save();
 				}
