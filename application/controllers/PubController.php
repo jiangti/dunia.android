@@ -6,22 +6,10 @@ class PubController extends Zend_Controller_Action
 		$contextSwitch->addActionContext('search', 'json')->initContext();
 	}
 	
-	public function fetchAction() {
-		$service = new Service_Share_Mail();
-		$shares = $service->fetch();
+	public function emailAction() {
+		$table = new Model_DbTable_MailShare();
 		
-		
-		
-		
-		$this->view->shares = $shares;
-		
-	}
-	
-	public function parseAction() {
-		
-		$service = new Service_Share_Mail();
-		$service->importDb();
-		
+		$this->view->emailShares = $table->fetchAll();
 	}
 	
 	public function searchAction() {
