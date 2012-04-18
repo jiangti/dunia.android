@@ -182,3 +182,24 @@ h1 {
     font-size: 15px;
     padding: 5px;
 }
+
+/**
+ * Index page (big map)
+ */
+
+#addThisBar {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    background: rgba(104, 187, 235, 0.9);
+    padding: 5px 5px 5px 15px;
+
+    -moz-border-top-left-radius: 50px 100px;
+    -webkit-border-top-left-radius: 50px 100px;
+    border-top-left-radius: 50px 100px;
+
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}

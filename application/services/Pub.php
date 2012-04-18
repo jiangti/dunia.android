@@ -227,8 +227,6 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     		->group('p.id')
     	;
     	
-    	
-    	
     	return $select->getTable()->fetchAll($select);
     }
     
