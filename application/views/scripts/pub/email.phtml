@@ -1,0 +1,55 @@
+<div class="container_12">
+<div class="grid_12">
+<p>Note: Use this only for merging pictures, because merging all data could be hard and i ain't good programmer.</p>
+</div>
+	<div class="grid_12">
+	<table border="1" width="100%" cellspacing="0" cellpadding="1" id="mail-share">
+		<thead>
+			<tr>
+				<th>Subject</th>
+				<th>Images</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php foreach($this->emailShares as $mail): ?>
+			<tr>
+				<td><input value="<?php echo $mail->subject; ?>" name="name" /></td>
+				<td>
+					<?php foreach($mail->getImages() as $image): ?>
+						<img src="<?php echo $this->webUrl($image); ?>" width="200px" heigt="200px" />
+					<?php endforeach; ?>
+				</td>
+				<td data-mail="<?php echo $mail->id; ?>">
+					<a href="#" class="ss_sprite ss_delete delete"></a>
+					<a href="#" class="ss_sprite ss_arrow_join join"></a>
+					<a href="#" class="ss_sprite ss_add add"></a>
+				</td>
+			</tr>
+		<?php endforeach; ?>
+		</tbody>
+	</table>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+$().ready(function() {
+	var $table = $('#mail-share');
+	$("input[name='name']", $table).autocomplete({
+		source: '/pub/search/format/json',
+		select: function (event, ul) {
+			//document.location = '/pub/share/id/' + ul.item.id;
+		}
+	});
+	
+	
+	$(".delete", $table).click(function() {
+		var $this = $(this);
+		var id = $this.parent().attr('data-mail');
+		$.get('/mailshare/delete/id/' + id);
+		$this.parents('tr').remove();
+		return false;
+	});
+});
+//-->
+</script>
