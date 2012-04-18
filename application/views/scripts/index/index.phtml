@@ -27,9 +27,8 @@ function cleanMarkers() {
 
 function setMarkers(data) {
     cleanMarkers();
-    markers = data;
+    var markers = data;
 
-    var bounds = new google.maps.LatLngBounds();
     var customIcons = {
         now: {
             icon: '/img/icons/markers/half.png'
@@ -39,12 +38,6 @@ function setMarkers(data) {
         },
         later: {
             icon: '/img/icons/markers/full.png'
-        },
-        restaurant: {
-            icon: '/img/icons/markers/steak.png'
-        },
-        bar: {
-            icon: '/img/icons/markers/beer.png'
         }
     };
 
@@ -56,10 +49,6 @@ function setMarkers(data) {
         var point = new google.maps.LatLng(
             parseFloat(marker.lat[0]),
             parseFloat(marker.lng[0]));
-
-        if (markers.length < 50) {
-            bounds.extend(point);
-        }
 
         var icon = customIcons[type] || {};
 
@@ -77,15 +66,29 @@ function setMarkers(data) {
             thirsty.infoWindow.open(thirsty.map, this);
         });
     }
-
-    if (markers.length < 50) {
-        thirsty.map.fitBounds(bounds);
-    }
 }
 
 $(document).ready(function() {
  
     var amHere = new google.maps.LatLng(thirsty.lat, thirsty.long);
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+            var longitude = position.coords.longitude;
+            var latitude  = position.coords.latitude;
+
+            var currentPosition = new google.maps.LatLng(latitude, longitude);
+
+            new google.maps.Marker({
+                map: thirsty.map,
+                position: currentPosition,
+                icon: '/img/icons/markers/current.png'
+            });
+            thirsty.map.panTo(currentPosition);
+        });
+    }
+
     var myOptions = {
         zoom: 15,
         center: amHere,
