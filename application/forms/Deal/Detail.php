@@ -85,7 +85,7 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 		return $return;
 	}
 	
-	public function setRecord(Model_DbTable_Row_Promo $record) {
+	public function setRecord(Zend_Db_Table_Row_Abstract $record) {
 		parent::setRecord($record);
 		
 		$data['value']       = $record->price;

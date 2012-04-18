@@ -20,6 +20,18 @@ body {
 	background: -o-linear-gradient(top, #ececec, #ddd); 
 }
 
+.sticky {
+	border: 1px solid #696;
+	text-align: left;
+	padding: 0px 5px;	
+	-webkit-box-shadow: #666 0px 0px 3px;
+	-moz-box-shadow: #666 0px 0px 3px;
+	box-shadow: #666 0px 0px 3px;
+	background: #EEFF99;
+	behavior: url(/PIE.htc);
+	z-index: 1000;
+}
+
 form dl dd {
     margin: 4px 0px;
 }

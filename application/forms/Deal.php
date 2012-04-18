@@ -43,9 +43,11 @@ class Form_Deal extends Form_Abstract {
 			$subForm = new Form_Deal_Detail();
 			$this->addSubForm($subForm, 'detail' . $index);
 		}
+		
+		$this->dualSubmit();
 	}
 	
-	public function setRecord(Model_DbTable_Row_Pub $record) {
+	public function setRecord(Zend_Db_Table_Row_Abstract $record) {
 		parent::setRecord($record);
 		
 		$this->name
