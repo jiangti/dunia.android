@@ -43,14 +43,27 @@ class PubProvider extends Aw_Tool_Framework_ProviderAbstract {
     	$this->put(sprintf("%d has been imported...", $counter));
     }
     
-    public function buildIndexAction() {
+    public function buildIndexAction($x0, $y0) {
     	
-    	$latitude = -31.94954;
-    	$longitude = 115.857668;
+    	$x0  += 0.5;
+    	$y0  += 0.5;
+    	
+    	$x1 = $x0 - 1; 
+    	$y1 = $y0 - 1;
     	
     	$pubService = new Service_Pub_Foursquare();
-        $pubService->latitude = $latitude;
-        $pubService->longitude = $longitude;
-        $pubService->crawl();
+    	
+    	for ($i = $x0; $i < $x1; $i += 0.01) {
+    		for ($j = $y0; $j < $y1; $j += 0.01) {
+    			$pubService->latitude = $i;
+    			$pubService->longitude = $j;
+    			$pubService->crawl();
+    			echo ".";
+    			sleep(3);
+    		}
+    	}
+    	
+    	
+        
     }
 }
