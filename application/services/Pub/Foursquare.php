@@ -22,10 +22,10 @@ class Service_Pub_Foursquare extends Service_Pub {
 		
 		$pubs = $this->_foursquare->get('/venues/search', array(
 				'radius'	 => 1000,
+				'v'			 => 20111212,
 				'limit'	     => 50,
 				'categoryId' => Aw_Service_Foursquare::CATEGORY_PUB . ',' . Aw_Service_Foursquare::CATEGORY_BAR,
 				'll'         => $this->latitude . ',' . $this->longitude));
-		
 		
 		$discoveryTable = new Model_DbTable_Discover();
 		foreach ($pubs->response->groups[0]->items as $pub) {
