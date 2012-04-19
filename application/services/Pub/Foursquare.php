@@ -36,7 +36,7 @@ class Service_Pub_Foursquare extends Service_Pub {
 				}
 			}
 			
-			if ($isValidCategory) {
+			if (true || $isValidCategory) {
 					
 					$data = array(
 						'id' => $pub->id,
