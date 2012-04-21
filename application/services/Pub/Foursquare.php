@@ -28,7 +28,7 @@ class Service_Pub_Foursquare extends Service_Pub {
 				'll'         => $this->latitude . ',' . $this->longitude));
 		
 		$discoveryTable = new Model_DbTable_Discover();
-		foreach ($pubs->response->groups[0]->items as $pub) {
+		foreach ($pubs->response->venues as $pub) {
 			$isValidCategory = false;
 			foreach ($pub->categories as $category) {
 				if ($category->id == Aw_Service_Foursquare::CATEGORY_PUB || $category->id == Aw_Service_Foursquare::CATEGORY_BAR) {
