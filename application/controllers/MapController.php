@@ -38,13 +38,14 @@ class MapController extends Model_Controller_Action {
 	    $array = array();
 	    foreach ($pubs as $pub) {
 	        $array[] = array(
-	                    'id'		=> array($pub['id']),
-	    				'name' 		=> array($pub['name']),
-	    				'address' 	=> array((string) $pub->getAddress()),
-	    				'lat' 		=> array($pub['latitude']),
-	    				'lng' 		=> array($pub['longitude']),
-	    				'type' 		=> array('bar'),
-	        			'itsOn'		=> array($pub['itsOn'])
+	                    'id'		 => array($pub['id']),
+	    				'name' 		 => array($pub['name']),
+	    				'address' 	 => array((string) $pub->getAddress()),
+	    				'lat' 		 => array($pub['latitude']),
+	    				'lng' 		 => array($pub['longitude']),
+	    				'type' 		 => array('bar'),
+	        			'itsOn'		 => array($pub['itsOn']),
+                        'liquorType' => array($pub['liquorType'])
 	        );
 	    }
 	    

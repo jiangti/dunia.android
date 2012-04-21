@@ -222,11 +222,11 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     		->join(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array())
     		->join(array('p0' => 'promo'), 'p0.id = php.idPromo', array('itsOn' => $expr))
             ->join(array('phl' => 'promoHasLiquorType'), 'p0.id = phl.idPromo', array())
-            ->join(array('lt' => 'liquorType'), 'lt.id = phl.idLiquorType', array('liquorType' => 'GROUP_CONCAT(lt.name SEPARATOR ", ")'))
+            ->join(array('lt' => 'liquorType'), 'lt.id = phl.idLiquorType', array('liquorType' => 'GROUP_CONCAT(DISTINCT lt.name SEPARATOR ", ")'))
     		->where('find_in_set(?, p0.day)', $dayOfWeek)
     		->group('p.id')
     	;
-    	
+
     	return $select->getTable()->fetchAll($select);
     }
     

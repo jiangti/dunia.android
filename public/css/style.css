@@ -186,3 +186,49 @@ h1 {
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
+
+.overlay {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+.overlay h2 {
+  margin: 0 0 5px 0;
+  color: #555;
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.overlay .overlayContent {
+  border: 1px solid rgba(104, 187, 235, 0.9);
+  border-left: 0;
+  border-right: 0;
+  margin: 0;
+}
+.overlay .overlayContent div {
+  padding: 20px 5px;
+  font-family: Georgia, serif;
+  font-size: 20px;
+}
+.overlay .overlayContent h3 {
+  text-align: center;
+  color: #fff;
+  background-color: rgba(104, 187, 235, 0.9);
+  margin: 0;
+  padding: 0;
+}
+.overlay .foot {
+  margin-top: 10px;
+  overflow: auto;
+  position: relative;
+}
+.overlay .foot .address {
+  color: #555;
+  font-size: 80%;
+}
+.overlay .foot a {
+  text-decoration: none;
+  color: #1291ff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

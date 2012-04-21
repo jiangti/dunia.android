@@ -71,16 +71,13 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($tips as $tip) {
-                    if ($tip->validated == Model_DbTable_Tip::TIP_APPROVED) { ?>
+                <?php foreach ($tips as $tip) { ?>
                     <tr>
                         <td>
                             <?php echo $tip->text; ?>
                         </td>
                     </tr>
-                <?php 
-                    }
-                } ?>
+                <?php } ?>
             </tbody>
         </table>
             
