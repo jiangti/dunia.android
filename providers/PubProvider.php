@@ -1,5 +1,12 @@
 <?php
 class PubProvider extends Aw_Tool_Framework_ProviderAbstract {
+	
+	public function importMailShare() {
+		$service = new Service_Share_Mail();
+		$service->fetch();
+		exit;
+	}
+	
     /**
      * @param unknown_type $type
      */
