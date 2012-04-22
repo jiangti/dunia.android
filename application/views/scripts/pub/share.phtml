@@ -42,5 +42,10 @@ $(function() {
 		if (window.focus) { popup.focus(); }
 		return false;
 	});
+
+	$('form fieldset button[name*="delete"]').click(function() {
+		var $this = $(this);
+		$this.parents('fieldset').remove();
+	});
 });
 </script>
