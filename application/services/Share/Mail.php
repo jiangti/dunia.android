@@ -26,10 +26,11 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 				
 				foreach (new RecursiveIteratorIterator($message) as $part) {
 					
+					
 					$row = $this->_saveMessageToDb($message);
 					//$this->notifySharer($row);
-					
-					$mail->moveMessage($index, 'Parsed'); 
+					$uniqueId = $mail->getUniqueId($index);
+					$mail->moveMessage($uniqueId, 'Parsed'); 
 				}
 			}
 			$db->commit();
