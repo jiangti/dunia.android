@@ -11,9 +11,16 @@
 </div>
 <div id="map_canvas" style="height:95%;"></div>
 
-<div id="addThisBar">
+<div id="bottom-info-bar">
+	<div class="left">
+		<script type="text/x-handlebars">
+  			<a href=""><img src="/img/icons/markers/half.png" />{{MyApp.summary.later}}</a>
+			<a href=""><img src="/img/icons/markers/full.png" />{{MyApp.summary.now}}</a>
+			<a href=""><img src="/img/icons/markers/empty.png" />{{MyApp.summary.earlier}}</a>
+		</script>
+	</div>
     <!-- AddThis Button BEGIN -->
-    <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+    <div class="addthis_toolbox addthis_default_style addthis_32x32_style left">
         <a class="addthis_button_preferred_1"></a>
         <a class="addthis_button_preferred_2"></a>
         <a class="addthis_button_preferred_3"></a>
@@ -21,9 +28,12 @@
         <a class="addthis_button_compact"></a>
         <a class="addthis_counter addthis_bubble_style"></a>
     </div>
+    <div class="clear"></div>
     <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f79a8fa1092a51f"></script>
     <!-- AddThis Button END -->
 </div>
+
+
 
 
 
@@ -32,6 +42,13 @@
 thirsty.long = '<?php echo $this->long; ?>';
 thirsty.lat = '<?php echo $this->lat; ?>';
 thirsty.mapMarkers = [];
+
+MyApp = Ember.Application.create();
+MyApp.summary = Em.Object.create({
+	  now: 0,
+	  later: 0,
+	  earlier: 0
+	});
 
 function cleanMarkers() {
     if (thirsty.mapMarkers) {
@@ -67,6 +84,13 @@ function setMarkers(data) {
             parseFloat(marker.lng[0]));
 
         var icon = customIcons[type] || {};
+
+        console.log(type); 
+
+        MyApp.summary.set(type, MyApp.summary.get(type) + 1);
+                
+        
+        
 
         var mapMarker = new google.maps.Marker({
             map: thirsty.map,
