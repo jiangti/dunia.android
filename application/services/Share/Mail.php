@@ -33,7 +33,6 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 					$mail->moveMessage($uniqueId, 'Parsed'); 
 				}
 			}
-			$db->commit();
 		
 		unset($mail);
 		
