@@ -174,8 +174,6 @@ h1 {
  * Index page (big map)
  */
 #bottom-info-bar {
-  font-family: "SnicklesRegular";
-  font-size: 36px;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -186,7 +184,11 @@ h1 {
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
-#bottom-info-bar img {
+#bottom-info-bar .summary {
+  font-family: "SnicklesRegular";
+  font-size: 36px;
+}
+#bottom-info-bar .summary img {
   vertical-align: middle;
   padding-right: 3px;
 }

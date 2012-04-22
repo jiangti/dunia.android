@@ -182,15 +182,16 @@ h1 {
  */
 
 #bottom-info-bar {
-  img {
-    vertical-align: middle;
-    padding-right: 3px;
+  .summary {
+    img {
+      vertical-align: middle;
+      padding-right: 3px;
+    }
+  
+    font-family: "SnicklesRegular";
+    font-size: 36px;
   }
   
-  
-  font-family: "SnicklesRegular";
-  font-size: 36px;
-
   position: fixed;
   bottom: 0;
   right: 0;
