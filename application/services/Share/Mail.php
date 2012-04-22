@@ -21,9 +21,6 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 		
 		$db = Zend_Db_Table_Abstract::getDefaultAdapter();
 		
-		try {
-		
-			$db->beginTransaction();
 		
 			foreach ($mail as $index => $message) {
 				
@@ -37,11 +34,6 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 			}
 			$db->commit();
 		
-		} catch (Exception $e) {
-			$db->rollBack();
-			throw $e;
-		}
-		
 		unset($mail);
 		
 		
@@ -53,12 +45,9 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 	}
 	
 	public function importDb() {
-		
 		foreach ($this->getMessages() as $messageFilePath) {
 			$message = unserialize(file_get_contents($messageFilePath));
-			
 			$this->_saveMessageToDb($message);
-			
 			unlink($messageFilePath);
 		}	
 	}
