@@ -1,12 +1,14 @@
 @CHARSET "UTF-8";
 
-@import url('snickles/stylesheet.css');
-
+<<<<<<< HEAD
 /**
  * Global variables
  */
 
  $blueLink: #1291ff;
+=======
+@import url('snickles/stylesheet.css');
+>>>>>>> bddfdb9aa502fab7c6b37799d7afec6a4c6b38cf
 
 html {
   height: 100%;
@@ -196,6 +198,8 @@ h1 {
     }
 }
 
+
+
 .tip {
     margin-top: 5px;
     font-size: 18px;
@@ -241,6 +245,7 @@ h1 {
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
+<<<<<<< HEAD
 
 .overlay {
     -moz-border-radius: 5px;
@@ -299,3 +304,5 @@ h1 {
         }
     }
 }
+=======
+>>>>>>> bddfdb9aa502fab7c6b37799d7afec6a4c6b38cf
