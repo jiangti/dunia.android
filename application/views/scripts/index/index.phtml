@@ -42,14 +42,24 @@ function setMarkers(data) {
     };
 
     for (var i = 0; i < markers.length; i++) {
-        var marker = markers[i];
-        var name = marker.name[0];
+        var marker  = markers[i];
+        var name    = marker.name[0];
         var address = marker.address[0];
-        var type = marker.itsOn[0];
+        var type    = marker.itsOn[0];
+        var promos  = '';
         var point = new google.maps.LatLng(
             parseFloat(marker.lat[0]),
-            parseFloat(marker.lng[0]));
+            parseFloat(marker.lng[0])
+        );
 
+        for (var j = 0; j < marker.promos.length; j++) {
+            var promo = marker.promos[j];
+            promos += '<div class="deal">';
+            if (promo.price > 0) {
+                promos += '$' + promo.price + ' ';
+            }
+            promos += promo.liquorType + ' (' + promo.timeStart + ' to ' + promo.timeEnd + ')</div>';
+        }
         var icon = customIcons[type] || {};
 
         var mapMarker = new google.maps.Marker({
@@ -61,11 +71,11 @@ function setMarkers(data) {
                     '<h2>' + name + '</h2>' +
                     '<div class="overlayContent">' +
                         '<h3>Today\'s deals</h3>' +
-                        '<div>' + marker.liquorType[0] + '</div>' +
+                        '<div>' + promos + '</div>' +
                     '</div>' +
                     '<div class="foot">' +
                         '<div class="address">' + address + '</div>' +
-                        '<a href="/pub/overview/id/' + marker.id[0] + '" title="' + name + '">Go to Pub page >></a>' +
+                        '<a href="/pub/overview/id/' + marker.id[0] + '" title="' + name + '">More info >></a>' +
                     '</div>' +
                 '</div>'
         });
