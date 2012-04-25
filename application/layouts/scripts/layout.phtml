@@ -12,7 +12,9 @@ $this->headLink()
 	->appendStylesheet($this->baseUrl('contrib/tablesorter/blue/style.css'), 'screen, projection')
 	->appendStylesheet($this->baseUrl('css/style.css'), 'screen, projection')
 ;
-$this->headScript()->appendFile($this->baseUrl('contrib/1140_CssGrid_2/js/css3-mediaqueries.js'));
+$this->headScript()
+	->appendFile($this->baseUrl('contrib/1140_CssGrid_2/js/css3-mediaqueries.js'))
+;
 ?>
 <?php echo $this->headLink(); ?>
 <?php echo $this->headScript(); ?>

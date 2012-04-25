@@ -79,8 +79,11 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 			->setSeparator(' ');
 		;
 		
+		$delete = new Zend_Form_Element_Button('delete');
+		$delete->setLabel('Delete');
 		
-		$this->addElements(array($description, $deal, $start, $end, $liquorType, $liquorSize, $days));
+		
+		$this->addElements(array($description, $deal, $start, $end, $liquorType, $liquorSize, $days, $delete));
 		
 		return $return;
 	}

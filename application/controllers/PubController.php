@@ -8,7 +8,6 @@ class PubController extends Zend_Controller_Action
 	
 	public function emailAction() {
 		$table = new Model_DbTable_MailShare();
-		
 		$this->view->emailShares = $table->fetchAll();
 	}
 	
