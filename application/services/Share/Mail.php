@@ -21,15 +21,10 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 		
 		$db = Zend_Db_Table_Abstract::getDefaultAdapter();
 		
-		
 			foreach ($mail as $index => $message) {
-				
-				foreach (new RecursiveIteratorIterator($message) as $part) {
-					
-					$row = $this->_saveMessageToDb($message);
-					//$this->notifySharer($row);
-					$mail->moveMessage(1, 'Parsed');
-				}
+				$row = $this->_saveMessageToDb($message);
+				//$this->notifySharer($row);
+				$mail->moveMessage($index, 'Parsed');
 			}
 		
 		unset($mail);
@@ -72,7 +67,7 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 		
 				mkdir($path, true);
 				chmod($path, 0777);
-		
+			
 				$filePath = sprintf($path . '/%s', $data['name']);
 				file_put_contents($filePath, base64_decode($part->getContent()));
 				$files[] = $filePath;
