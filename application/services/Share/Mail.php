@@ -21,12 +21,26 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 		
 		$db = Zend_Db_Table_Abstract::getDefaultAdapter();
 		
-			foreach ($mail as $index => $message) {
-				$row = $this->_saveMessageToDb($message);
-				//$this->notifySharer($row);
-				$mail->moveMessage($index, 'Parsed');
-			}
+		$uniqueIds = array();
 		
+		foreach ($mail as $index => $message) {
+			
+			$uniqueIds[] = $mail->getUniqueId($index);
+			$row = $this->_saveMessageToDb($message);
+			//$this->notifySharer($row);
+			if ($index % 5 == 0) {
+				$mail->noop();
+			}
+		}
+		
+		foreach ($uniqueIds as $index => $uniqueId) {
+			$mail->moveMessage($mail->getNumberByUniqueId($uniqueId), 'Parsed');
+			if ($index % 5 == 0) {
+				$mail->noop();
+			}
+		}
+		
+			
 		unset($mail);
 		
 		
