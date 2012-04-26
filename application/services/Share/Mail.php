@@ -1,8 +1,8 @@
 <?php
 /**
- * 
+ *
  * As part of the share family of components.
- * 
+ *
  * @author jiangti
  *
  */
@@ -26,11 +26,9 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 				
 				foreach (new RecursiveIteratorIterator($message) as $part) {
 					
-					
 					$row = $this->_saveMessageToDb($message);
 					//$this->notifySharer($row);
-					$uniqueId = $mail->getUniqueId($index);
-					$mail->moveMessage($uniqueId, 'Parsed'); 
+					$mail->moveMessage(1, 'Parsed');
 				}
 			}
 		
@@ -49,7 +47,7 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 			$message = unserialize(file_get_contents($messageFilePath));
 			$this->_saveMessageToDb($message);
 			unlink($messageFilePath);
-		}	
+		}
 	}
 	
 	protected function _saveMessageToDb(Zend_Mail_Message $message) {
@@ -60,7 +58,7 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 			$contentType = strtok($part->contentType, ';');
 			if (stripos($contentType, 'text') !== false) {
 				$row->subject = $message->subject;
-				$row->body = $part->getContent();				
+				$row->body = $part->getContent();
 				$row->from = $message->from;
 				$row->save();
 			}
