@@ -79,8 +79,10 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 		
 				$path = sprintf(APPLICATION_ROOT . '/public/mail/%d', $row->id);
 		
-				mkdir($path, true);
-				chmod($path, 0777);
+				if (!file_exists($part)) {
+					mkdir($path, true);
+					chmod($path, 0777);
+				}
 			
 				$filePath = sprintf($path . '/%s', $data['name']);
 				file_put_contents($filePath, base64_decode($part->getContent()));
