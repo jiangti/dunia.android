@@ -1,6 +1,9 @@
 <?php
 class Service_Pub extends Aw_Service_ServiceAbstract
 {
+
+    protected $_promoFields = array('timeStart', 'timeEnd', 'price', 'liquorType', 'liquorSize');
+
     public function savePub(Model_DbTable_Row_Pub $pub)
     {
 
@@ -220,16 +223,43 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	
     	$select
     		->join(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array())
-    		->join(array('p0' => 'promo'), 'p0.id = php.idPromo', array('itsOn' => $expr))
+    		->join(array('p0' => 'promo'), 'p0.id = php.idPromo', array(
+                                                                       'timeStart' => 'DATE_FORMAT(timeStart, "%H:%i")',
+                                                                       'timeEnd' => 'DATE_FORMAT(timeEnd, "%H:%i")',
+                                                                       'price', 'itsOn' => $expr))
             ->join(array('phl' => 'promoHasLiquorType'), 'p0.id = phl.idPromo', array())
-            ->join(array('lt' => 'liquorType'), 'lt.id = phl.idLiquorType', array('liquorType' => 'GROUP_CONCAT(lt.name SEPARATOR ", ")'))
+            ->join(array('lt' => 'liquorType'), 'lt.id = phl.idLiquorType', array('liquorType' => 'name'))
+            ->joinLeft(array('ls' => 'liquorSize'), 'phl.idLiquorSize = ls.id', array('liquorSize' => 'name'))
     		->where('find_in_set(?, p0.day)', $dayOfWeek)
-    		->group('p.id')
+    		//->group('p.id')
     	;
-    	
-    	return $select->getTable()->fetchAll($select);
+
+        $data   = $select->getTable()->fetchAll($select);
+        $return = array();
+
+        foreach ($data as $promo) {
+            $newPromo = array();
+            $address  = (string) $promo->getAddress();
+
+            $promo = $promo->toArray();
+            $promo['address'] = $address;
+
+            foreach ($this->_promoFields as $field) {
+                $newPromo[$field] = $promo[$field];
+                unset($promo[$field]);
+            }
+
+            if (isset($return[$promo['id']])) {
+                $return[$promo['id']]['promos'][] = $newPromo;
+            } else {
+                $return[$promo['id']] = $promo;
+                $return[$promo['id']]['promos'] = array($newPromo);
+            }
+        }
+
+        return $return;
     }
-    
+
     public function findPubByLatLong($latitude, $longitude)
     {
         $select = $this->_getFindPubSelect($latitude, $longitude);

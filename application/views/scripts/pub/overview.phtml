@@ -46,7 +46,10 @@
                 </tr>
             </tbody>
         </table>
-        
+
+        <div id="flag">
+            <a href="#" title="Report a problem">Report incorrect data</a>
+        </div>
 <!-- Remove this br crap -->
 <br />        
 <br />        
@@ -71,16 +74,25 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($tips as $tip) {
-                    if ($tip->validated == Model_DbTable_Tip::TIP_APPROVED) { ?>
+                <?php foreach ($tips as $tip) { ?>
                     <tr>
                         <td>
-                            <?php echo $tip->text; ?>
+                            <div class="author">
+                                <?php $data = json_decode($tip->data); ?>
+                                <div>
+                                    <a href="<?php echo $data->user->canonicalUrl;?>">
+                                        <img src="<?php echo $data->user->photo;?>" width="60" height="60"/>
+                                    </a>
+                                </div>
+                                <div class="name""><?php echo $data->user->firstName . ' ' . $data->user->lastName; ?></div>
+                                <div class="from"><?php echo '(' . $data->user->homeCity . ')'; ?></div>
+                            </div>
+                            <div class='tip'>
+                                <?php echo $tip->text; ?>
+                            </div>
                         </td>
                     </tr>
-                <?php 
-                    }
-                } ?>
+                <?php } ?>
             </tbody>
         </table>
             
