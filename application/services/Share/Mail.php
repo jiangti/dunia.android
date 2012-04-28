@@ -1,8 +1,8 @@
 <?php
 /**
- * 
+ *
  * As part of the share family of components.
- * 
+ *
  * @author jiangti
  *
  */
@@ -21,19 +21,26 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 		
 		$db = Zend_Db_Table_Abstract::getDefaultAdapter();
 		
+		$uniqueIds = array();
 		
-			foreach ($mail as $index => $message) {
-				
-				foreach (new RecursiveIteratorIterator($message) as $part) {
-					
-					
-					$row = $this->_saveMessageToDb($message);
-					//$this->notifySharer($row);
-					$uniqueId = $mail->getUniqueId($index);
-					$mail->moveMessage($uniqueId, 'Parsed'); 
-				}
+		foreach ($mail as $index => $message) {
+			
+			$uniqueIds[] = $mail->getUniqueId($index);
+			$row = $this->_saveMessageToDb($message);
+			//$this->notifySharer($row);
+			if ($index % 5 == 0) {
+				$mail->noop();
 			}
+		}
 		
+		foreach ($uniqueIds as $index => $uniqueId) {
+			$mail->moveMessage($mail->getNumberByUniqueId($uniqueId), 'Parsed');
+			if ($index % 5 == 0) {
+				$mail->noop();
+			}
+		}
+		
+			
 		unset($mail);
 		
 		
@@ -49,7 +56,7 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 			$message = unserialize(file_get_contents($messageFilePath));
 			$this->_saveMessageToDb($message);
 			unlink($messageFilePath);
-		}	
+		}
 	}
 	
 	protected function _saveMessageToDb(Zend_Mail_Message $message) {
@@ -60,7 +67,7 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 			$contentType = strtok($part->contentType, ';');
 			if (stripos($contentType, 'text') !== false) {
 				$row->subject = $message->subject;
-				$row->body = $part->getContent();				
+				$row->body = $part->getContent();
 				$row->from = $message->from;
 				$row->save();
 			}
@@ -72,9 +79,11 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 		
 				$path = sprintf(APPLICATION_ROOT . '/public/mail/%d', $row->id);
 		
-				mkdir($path, true);
-				chmod($path, 0777);
-		
+				if (!file_exists($part)) {
+					mkdir($path, true);
+					chmod($path, 0777);
+				}
+			
 				$filePath = sprintf($path . '/%s', $data['name']);
 				file_put_contents($filePath, base64_decode($part->getContent()));
 				$files[] = $filePath;
