@@ -180,4 +180,28 @@ class PubController extends Zend_Controller_Action
     	$this->view->form = $form;
     	$this->view->pub = $pub;
     }
+
+    public function flagAction() {
+        $this->_helper->layout()->disableLayout();
+
+        $form  = new Form_Flag();
+        $idPub = $this->_getParam('idPub');
+
+        if ($idPub) {
+            $pub = Model_DbTable_Pub::retrieveById($idPub);
+            $default = array(
+                'idPub'   => $idPub,
+                'address' => $pub->getAddress()->toArray()
+            );
+
+            $form->setDefaults($default);
+
+            if ($this->_request->isPost()) {
+                $flagService = new Service_Flag();
+                $flag = $flagService->create($this->_request->getPost());
+                $flag->save();
+            }
+        }
+        $this->view->form = $form;
+    }
 }

@@ -112,6 +112,8 @@
     </div>
 </div>
 
+<div id="dialog"></div>
+
 <script type="text/javascript"
     src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places">
 </script>
@@ -131,6 +133,24 @@ $(document).ready(function() {
     new google.maps.Marker({
         map: map,
         position: center    
+    });
+
+    $('#dialog').dialog({
+        autoOpen: false,
+        width: 600,
+        position: ['center', 100]
+    });
+
+    $("#flag a").click(function() {
+        $.ajax({
+            url: '/pub/flag',
+            data: {idPub: <?php echo $this->pub->id; ?>},
+            success: function (data) {
+                $('#dialog').html(data);
+                $('#dialog').dialog('open');
+            }
+        })
+        return false;
     });
 
 });

@@ -1,0 +1,56 @@
+<div id="flagForm">
+    <form method="post" action="/pub/flag">
+    <?php echo $this->element->type; ?>
+
+    <hr />
+
+    <div id="flagAddress">
+        <?php echo $this->element->getSubForm('address'); ?>
+    </div>
+
+    <div id="flagDeal">
+        <?php echo $this->element->getSubForm('detail'); ?>
+    </div>
+
+    <div style="text-align: right">
+        <?php echo $this->element->submit; ?>
+    </div>
+    <?php echo $this->element->idPub; ?>
+    </form>
+</div>
+
+<script type="text/javascript">
+
+    $('#flagAddress, #flagDeal').hide();
+    $(document).ready(function() {
+        $('input[name="type"]').change(function() {
+            switch (parseInt($(this).val())) {
+                case <?php echo Model_Flag::FLAG_TYPE_CLOSED ?>:
+                    $('#flagAddress, #flagDeal').hide();
+                    break;
+                case <?php echo Model_Flag::FLAG_TYPE_ADDRESS ?>:
+                    $('#flagAddress').show();
+                    $("#flagDeal").hide();
+                    break;
+                case <?php echo Model_Flag::FLAG_TYPE_PROMO ?>:
+                    $('#flagAddress').hide();
+                    $("#flagDeal").show();
+                    break;
+            }
+        });
+
+        $("#flagForm form").submit(function() {
+            $.ajax({
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                type: 'post',
+                success: function() {
+                    if ($("#dialog").length) {
+                        $("#dialog").dialog('close');
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>

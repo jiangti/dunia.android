@@ -18,7 +18,7 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 		
 		$timeRanges = array('' => '-- Select --');
 		
-		$timeKeys = range(0, 12, 0.5);
+		$timeKeys = range(0, 23.5, 0.5);
 		
 		foreach ($timeKeys as $index => $value) {
 			$val = (int) $value;

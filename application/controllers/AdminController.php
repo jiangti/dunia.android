@@ -1,5 +1,23 @@
 <?php
 class AdminController extends Zend_Controller_Action {
+
+
+    public function init() {
+        parent::init();
+
+        $filter = new Zend_Filter_Word_CamelCaseToDash();
+
+        $adminMethods = array();
+        foreach (get_class_methods(__CLASS__) as $method) {
+            if (strpos($method, 'manage') === 0) {
+                $adminMethods[] = strtolower($filter->filter(substr($method, 0, -6)));
+            }
+        }
+
+        $this->view->methods = $adminMethods;
+        $this->view->current = $this->_request->getActionName();
+
+    }
 	public function hancockAction() {
 		$pubService = new Service_Pub();
 		$file = fopen('/home/jiangti/Downloads/pc_full_lat_long.csv', 'r');
@@ -31,7 +49,6 @@ class AdminController extends Zend_Controller_Action {
 
 	public function pubImportAction() {
 
-
         $table = new Model_DbTable_Dirty();
 
         $select = $table->select();
@@ -60,7 +77,28 @@ class AdminController extends Zend_Controller_Action {
         }
 
 	}
-	
+
+    public function manageFlagsAction() {
+        $service = new Service_Flag();
+        $select = $service->getNonModeratedFlags();
+
+        $paginator = Zend_Paginator::factory($select);
+
+        $paginator->setCurrentPageNumber($this->_request->getParam('page'))
+            ->setItemCountPerPage($this->_getParam('count', 20))
+        ;
+
+        $this->view->flags = $paginator;
+    }
+
+    public function manageTipsAction() {
+
+    }
+
+    public function manageShitAction() {
+
+    }
+
 	public function pubAction() {
 		
 	}

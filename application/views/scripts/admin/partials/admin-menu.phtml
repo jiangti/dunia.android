@@ -1,0 +1,9 @@
+<ul class="admin-nav">
+    <?php foreach ($this->actions as $action): ?>
+    <li>
+        <a href="/admin/<?php echo $action; ?>" <?php if ($this->current == $action) echo 'class="selected"'; ?>>
+           <?php echo ucwords(str_replace('-', ' ', $action)); ?>
+        </a>
+    </li>
+    <?php endforeach; ?>
+</ul>

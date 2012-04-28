@@ -7,13 +7,17 @@ $configuration = array(
        'patches' => array($resourcesDir  . 'web_browsers_patch.xml'),
     ),
     'allow-reload' => true,
-    'persistence' => array(
-        'provider' => "file",
-        'params' => array(
-            'dir' => $resourcesDir  . '/cache/',
-        ),
-    ),
+//    'persistence' => array(
+//        'provider' => "file",
+//        'params' => array(
+//            'dir' => $resourcesDir  . '/cache/',
+//        ),
+//    ),
     'cache' => array(
-        'provider' => "null",
+        'provider' => "mysql",
+        'params' => array(
+            'user'     => "root",
+            'db'       => "thirst_dev"
+        )
     ),
 );
