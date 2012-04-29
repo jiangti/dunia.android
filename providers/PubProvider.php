@@ -49,7 +49,13 @@ class PubProvider extends Aw_Tool_Framework_ProviderAbstract {
     	$this->put(sprintf("%d has been imported...", $counter));
     }
     
-    public function buildIndexAction($x0, $y0) {
+    public function buildIndexAction($coordinate) {
+    	
+    	$coors = explode(',', $coordinate);
+    	
+    	$x0 = $coors[0];
+    	$y0 = $coors[1];
+    	
     	$pubService = new Service_Pub_Foursquare();
     	
     	$x0  -= 0.5;
