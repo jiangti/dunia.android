@@ -58,8 +58,8 @@ class PubProvider extends Aw_Tool_Framework_ProviderAbstract {
     	$x1 = $x0 + 1;
     	$y1 = $y0 + 1;
     	
-    	for ($i = $x0; $i < $x1; $i += 0.01) {
-    		for ($j = $y0; $j < $y1; $j += 0.01) {
+    	for ($i = $x0; $i < $x1; $i += 0.02) {
+    		for ($j = $y0; $j < $y1; $j += 0.02) {
     			$pubService->latitude = $i;
     			$pubService->longitude = $j;
     			$pubService->crawlLinear();
