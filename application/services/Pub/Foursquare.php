@@ -17,6 +17,10 @@ class Service_Pub_Foursquare extends Service_Pub {
 	private function _crawl($pubs) {
 		$discoveryTable = new Model_DbTable_Discover();
 		
+		if (!is_array($pubs->response->venues)) {
+			var_dump($pubs->response); exit;
+		}
+		
 		foreach ($pubs->response->venues as $pub) {
 		
 			$isValidCategory = false;
