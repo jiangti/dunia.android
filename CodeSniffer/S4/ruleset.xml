@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+
+<ruleset name="MagicalMoments">
+    <description>Solution4 PHP CodeSniffer Ruleset</description>
+
+    <!-- rule ref="Generic.ControlStructures.InlineControlStructure" / -->
+    <rule ref="Generic.Files.LineEndings" />
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="300" />
+            <property name="absoluteLineLimit" value="400" />
+        </properties>
+    </rule>
+    <rule ref="Generic.Formatting.DisallowMultipleStatements" />
+    <rule ref="Generic.Formatting.SpaceAfterCast" />
+    <!--
+    <rule ref="Generic.Functions.FunctionCallArgumentSpacing">
+        <properties>
+            <property name="spacesAfterCommaLimit" value="20" />
+        </properties>
+    </rule>
+    -->
+    <rule ref="S4.Functions.FunctionCallArgumentSpacing">
+        <properties>
+            <property name="spacesAfterCommaLimit" value="20" />
+        </properties>
+    </rule>
+    <rule ref="Generic.Functions.CallTimePassByReference" />
+    <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
+    <rule ref="Generic.NamingConventions.ConstructorName" />
+    <rule ref="Generic.PHP.DeprecatedFunctions" />
+    <rule ref="Generic.PHP.DisallowShortOpenTag" />
+    <rule ref="Generic.PHP.LowerCaseConstant" />
+    <rule ref="Generic.WhiteSpace.DisallowTabIndent" />
+    <rule ref="Generic.WhiteSpace.ScopeIndent" />
+    <rule ref="PEAR.Commenting.InlineComment" />
+    <rule ref="PEAR.NamingConventions.ValidClassName" />
+    <rule ref="Squiz.Arrays.ArrayBracketSpacing" />
+    <!-- rule ref="Squiz.Classes.ClassDeclaration" / -->
+    <!-- rule ref="Squiz.Classes.ValidClassName" / -->
+    <!-- rule ref="Squiz.Commenting.BlockComment" / -->
+    <rule ref="Squiz.Commenting.DocCommentAlignment" />
+    <!-- rule ref="Squiz.ControlStructures.ControlSignature" / -->
+    <rule ref="S4.ControlStructures.ControlSignature" />
+    <!-- rule ref="Squiz.ControlStructures.ElseIfDeclaration" / -->
+    <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration" />
+    <rule ref="Squiz.ControlStructures.ForLoopDeclaration" />
+    <!-- rule ref="Squiz.ControlStructures.InlineIfDeclaration" / -->
+    <rule ref="Squiz.ControlStructures.LowercaseDeclaration" />
+    <!-- rule ref="Squiz.ControlStructures.ElseIfDeclaration" / -->
+    <rule ref="Squiz.Scope.StaticThisUsage" />
+    <!-- rule ref="Squiz.WhiteSpace.ControlStructureSpacing" / -->
+    <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing" />
+    <!--
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
+        <properties>
+            <property name="multipleEmptyLinesLimit" value="4" />
+        </properties>
+    </rule>
+    -->
+    <rule ref="S4.WhiteSpace.SuperfluousWhitespace">
+        <properties>
+            <property name="multipleEmptyLinesLimit" value="4" />
+        </properties>
+        <!--
+        <message>Functions must not contain too many empty lines in a row; found %s empty lines</message>
+        -->
+    </rule>
+    <rule ref="S4.PHP.ForbiddenFunctions" />
+
+</ruleset>

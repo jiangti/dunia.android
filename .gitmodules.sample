@@ -1,0 +1,12 @@
+[submodule "Contrib/Fb"]
+	path = Contrib/Fb
+	url = https://github.com/facebook/php-sdk/
+[submodule "Contrib/Libphutil"]
+	path = Contrib/Libphutil
+	url = https://github.com/facebook/libphutil.git
+[submodule "CodeSniffer/PHP53Compatibility"]
+	path = CodeSniffer/PHP53Compatibility
+	url = git://github.com/wimg/PHP53Compat_CodeSniffer.git
+[submodule "Contrib/Akrabat"]
+	path = Contrib/Akrabat
+	url = git@github.com:jiangti/Akrabat.git
