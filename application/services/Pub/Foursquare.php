@@ -14,48 +14,63 @@ class Service_Pub_Foursquare extends Service_Pub {
 		return $this->getPubs(array('validated' => true));
 	}
 	
+	private function _crawl($pubs) {
+		$discoveryTable = new Model_DbTable_Discover();
+		
+		foreach ($pubs->response->venues as $pub) {
+		
+			$isValidCategory = false;
+			foreach ($pub->categories as $category) {
+				if ($category->id == Aw_Service_Foursquare::CATEGORY_PUB || $category->id == Aw_Service_Foursquare::CATEGORY_BAR) {
+					$isValidCategory = true;
+				}
+			}
+			
+			if (true || $isValidCategory) {
+				
+				$data = array(
+				    'id'       => $pub->id,
+				    'name'     => $pub->name,
+				    'category' => $pub->categories[0]->name,
+				    'latitude' => $pub->location->lat,
+				    'longitude' => $pub->location->lng,
+				    'json'     => json_encode($pub)
+				);
+				
+				$row = $discoveryTable->createRow($data);
+				if (!$row->isExists()) {
+					$row->save();
+					echo 'S';
+				}
+			}
+				
+		}
+	}
+	
+	public function crawlLinear() {
+		$this->isNotEmpty(array('Latitude' => $this->latitude, 'Longitude' => $this->longitude));
+		$pubs = $this->_foursquare->getLin('/venues/search', array(
+				'radius'	 => 1000,
+				'v'			 => 20111212,
+				'limit'	     => 50,
+				'categoryId' => Aw_Service_Foursquare::CATEGORY_PUB . ',' . Aw_Service_Foursquare::CATEGORY_BAR,
+				'll'         => $this->latitude . ',' . $this->longitude));
+		$this->_crawl($pubs);
+	}
+	
 	/**
 	 * Discover and save into discovery table.
 	 */
 	public function crawl() {
 		$this->isNotEmpty(array('Latitude' => $this->latitude, 'Longitude' => $this->longitude));
-		
 		$pubs = $this->_foursquare->get('/venues/search', array(
 				'radius'	 => 1000,
 				'v'			 => 20111212,
 				'limit'	     => 50,
 				'categoryId' => Aw_Service_Foursquare::CATEGORY_PUB . ',' . Aw_Service_Foursquare::CATEGORY_BAR,
 				'll'         => $this->latitude . ',' . $this->longitude));
+		$this->_crawl($pubs);
 		
-		$discoveryTable = new Model_DbTable_Discover();
-		foreach ($pubs->response->venues as $pub) {
-			$isValidCategory = false;
-			foreach ($pub->categories as $category) {
-				if ($category->id == Aw_Service_Foursquare::CATEGORY_PUB || $category->id == Aw_Service_Foursquare::CATEGORY_BAR) {
-					$isValidCategory = true;	
-				}
-			}
-			
-			if (true || $isValidCategory) {
-					
-					$data = array(
-						'id' => $pub->id,
-						'name' => $pub->name,
-						'category' => $pub->categories[0]->name,
-						'latitude' => $pub->location->lat,
-						'longitude' => $pub->location->lng,
-						'json' => json_encode($pub)
-					);
-					
-					$row = $discoveryTable->createRow($data);
-					if (!$row->isExists()) {
-						$row->save();
-					}
-					
-				
-			}
-			
-		}
 	}
 	
 	public function  findPubByNotValid() {
