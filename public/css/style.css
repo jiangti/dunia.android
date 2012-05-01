@@ -346,6 +346,19 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
+#flagForm #dealSelector {
+  padding: 20px;
+  font-size: 15px;
+  border-right: 1px solid #ccc;
+  margin-right: 20px;
+}
+#flagForm #dealSubforms dd {
+  margin-bottom: 10px;
+}
+#flagForm dt > label {
+  font-weight: bold;
+  font-size: 15px;
+}
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;

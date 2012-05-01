@@ -29,7 +29,8 @@ class Service_Flag
                 $data['data'] = json_encode($params['address']);
                 break;
             case Model_Flag::FLAG_TYPE_PROMO:
-                $data['data'] = json_encode($params['promo']);
+                $deal = substr($params['selector'], 4);
+                $data['data'] = json_encode($params['detail' . $deal]);
                 break;
             default:
                 $data['data'] = '';

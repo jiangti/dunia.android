@@ -11,7 +11,7 @@
                 </a>
             </li>
 			<li>
-                <a class="map-tab <?php if ($this->selected == 'map') echo $selectedText; ?>" href="#map" data-icon="custom" data-transition="none">
+                <a class="map-tab <?php if ($this->selected == 'map') echo $selectedText; ?>" href="#maptab" data-icon="custom" data-transition="none">
                     Map
                 </a>
             </li>

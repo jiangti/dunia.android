@@ -2,7 +2,10 @@
 class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 	public function init() {
 		$return = parent::init();
-		
+
+        $id = new Zend_Form_Element_Hidden('id');
+        $id->setDecorators(array('ViewHelper'));
+
 		$deal = new Zend_Form_Element_Text('value');
 		
 		$deal
@@ -83,14 +86,15 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 		$delete->setLabel('Delete');
 		
 		
-		$this->addElements(array($description, $deal, $start, $end, $liquorType, $liquorSize, $days, $delete));
+		$this->addElements(array($id, $description, $deal, $start, $end, $liquorType, $liquorSize, $days, $delete));
 		
 		return $return;
 	}
 	
 	public function setRecord(Zend_Db_Table_Row_Abstract $record) {
 		parent::setRecord($record);
-		
+
+        $data['id']          = $record->id;
 		$data['value']       = $record->price;
 		$data['description'] = $record->description;
 		$data['start']       = substr($record->timeStart, 0, 5);

@@ -375,6 +375,24 @@ a.cancel {
 }
 
 #flagForm {
+
+    #dealSelector {
+        padding: 20px;
+        font-size: 15px;
+        border-right: 1px solid #ccc;
+        margin-right: 20px;
+    }
+
+    #dealSubforms {
+        dd {
+            margin-bottom: 10px;
+        }
+    }
+
+    dt > label {
+      font-weight: bold;
+      font-size: 15px;
+    }
     label[for*='type-'] {
         font-size: 18px;
         margin: 2px 15px 2px 0;
@@ -386,6 +404,6 @@ a.cancel {
     }
 
     hr {
-      color: #ddd;
+        color: #ddd;
     }
 }
