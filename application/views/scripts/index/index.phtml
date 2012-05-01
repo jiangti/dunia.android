@@ -14,9 +14,9 @@
 <div id="bottom-info-bar">
 	<div class="left summary">
 		<script type="text/x-handlebars">
-  			<a href=""><img src="/img/icons/markers/half.png" />{{MyApp.summary.later}}</a>
-			<a href=""><img src="/img/icons/markers/full.png" />{{MyApp.summary.now}}</a>
-			<a href=""><img src="/img/icons/markers/empty.png" />{{MyApp.summary.earlier}}</a>
+  			<a href=""><img src="/img/icons/markers/full_sml.png" />{{MyApp.summary.later}}</a>
+			<a href=""><img src="/img/icons/markers/half_sml.png" />{{MyApp.summary.now}}</a>
+			<a href=""><img src="/img/icons/markers/empty_sml.png" />{{MyApp.summary.earlier}}</a>
 		</script>
 	</div>
 	<div class="left">
@@ -167,14 +167,14 @@ $(document).ready(function() {
         }
     };
 
-    $.ajax({success: function(data) {setMarkers(data);}, 
+    $.ajax({success: function(data) {setMarkers(data);},
             url: '/map/fetch/lat/' + thirsty.lat + '/long/' + thirsty.long, dataType: 'json'});
 
     $("#searchForm").submit(function() {
         $.ajax({
             success: function(data) {
                 setMarkers(data);
-            }, 
+            },
             url: '/map/search/q/' + $("#location").val(), dataType: 'json'
         });
         
