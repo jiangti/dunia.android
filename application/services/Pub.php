@@ -2,7 +2,7 @@
 class Service_Pub extends Aw_Service_ServiceAbstract
 {
 
-    protected $_promoFields = array('timeStart', 'timeEnd', 'price', 'liquorType', 'liquorSize');
+    protected $_promoFields = array('timeStart', 'timeEnd', 'price', 'liquorType', 'liquorSize', 'itsOn');
 
     public function savePub(Model_DbTable_Row_Pub $pub)
     {

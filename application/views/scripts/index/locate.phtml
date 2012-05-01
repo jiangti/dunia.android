@@ -5,7 +5,14 @@
             <div>
                 <h3><?php echo $pub['name']; ?></h3>
                 <div class="distance">(<?php echo $pub['distance']; ?> m)</div>
-                <?php //echo $pub['liquorType']; ?>
+
+                <?php foreach ($pub['promos'] as $promo) { ?>
+                <div class="indexDeal">
+                    <img src="<?php echo $this->beerIcon($promo['itsOn'], '_sml'); ?>" width="20" height="20"/>
+                    <?php echo $this->currency($promo['price']) . ' ' . $promo['liquorType']; ?>
+
+                </div>
+                <?php } ?>
             </div>
         </a>
     </li>
