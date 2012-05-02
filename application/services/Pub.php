@@ -2,7 +2,7 @@
 class Service_Pub extends Aw_Service_ServiceAbstract
 {
 
-    protected $_promoFields = array('timeStart', 'timeEnd', 'price', 'liquorType', 'liquorSize', 'itsOn');
+    protected $_promoFields = array('timeStart', 'timeEnd', 'price', 'liquorType', 'liquorSize');
 
     public function savePub(Model_DbTable_Row_Pub $pub)
     {
@@ -248,6 +248,8 @@ class Service_Pub extends Aw_Service_ServiceAbstract
                 $newPromo[$field] = $promo[$field];
                 unset($promo[$field]);
             }
+            $newPromo['itsOn'] = $promo['itsOn'];
+
 
             if (isset($return[$promo['id']])) {
                 $return[$promo['id']]['promos'][] = $newPromo;
