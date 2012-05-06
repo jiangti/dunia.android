@@ -181,7 +181,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     			array(
     				'longitude',
     				'latitude',
-    				'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(latitude)) * cos(radians(longitude) - radians('$longitude')) + sin(radians('$latitude')) * sin(radians(latitude))), 2)"))
+    				'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(a.latitude)) * cos(radians(a.longitude) - radians('$longitude')) + sin(radians('$latitude')) * sin(radians(a.latitude))), 2)"))
     			)
 	    	->order('distance')
 	    	->where(sprintf('a.latitude between %s and %s', $x0, $x1))
@@ -209,6 +209,103 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     }
     
     /**
+     * @return Zend_Db_Table_Select
+     */
+    private function _getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour) {
+    	$select = $this->_getFindPubSelect($latitude, $longitude, $query);
+<<<<<<< Updated upstream
+    	if ($hour) {
+            $hour = str_pad($hour . ':00:00', 8, '0', STR_PAD_LEFT);
+        } else {
+            $hour = date("H:00:00");
+        }
+
+=======
+    	 
+    	if ($hour) {
+    		$hour = str_pad($hour . ':00:00', 8, '0', STR_PAD_LEFT);
+    	} else {
+    		$hour = date("H:00:00");
+    	}
+    	 
+>>>>>>> Stashed changes
+    	if (!$dayOfWeek) {
+    		$dayOfWeek = date('D');
+    	}
+    	
+    	 
+    	if (time() > strtotime('11am')) {
+<<<<<<< Updated upstream
+	    	$expr = new Zend_Db_Expr(sprintf("CASE
+						WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
+						WHEN '%s' < p0.timeStart THEN 'later'
+	    				WHEN '%s' > p0.timeEnd THEN 'earlier'
+						ELSE 'none'
+						END", $hour, $hour, $hour));
+    		
+=======
+    		$expr = new Zend_Db_Expr(sprintf("CASE
+    				WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
+    				WHEN '%s' < p0.timeStart THEN 'later'
+    				WHEN '%s' > p0.timeEnd THEN 'earlier'
+    				ELSE 'none'
+    				END", $hour, $hour, $hour));
+    	
+>>>>>>> Stashed changes
+    	} else {
+    		$expr = new Zend_Db_Expr('"later"');
+    	}
+    	 
+    	$select
+	    	->join(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array('idPub'))
+	    	->join(array('p0' => 'promo'), 'p0.id = php.idPromo',
+	    		array(
+	    			'timeStart' => 'DATE_FORMAT(p0.timeStart, "%H:%i")',
+	    			'timeEnd'   => 'DATE_FORMAT(p0.timeEnd, "%H:%i")', 'price', 'itsOn' => $expr)
+	    		)
+	    	->join(array('phl' => 'promoHasLiquorType'), 'p0.id = phl.idPromo', array())
+	    	->join(array('lt' => 'liquorType'), 'lt.id = phl.idLiquorType', array('liquorType' => 'name'))
+	    	->joinLeft(array('ls' => 'liquorSize'), 'phl.idLiquorSize = ls.id', array('liquorSize' => 'name'))
+	    	->where('find_in_set(?, p0.day)', $dayOfWeek)
+    	;
+<<<<<<< Updated upstream
+
+    	/** APPEND with other shit that does not intersect. **/
+=======
+    	
+    	return $select;
+    }
+    
+    
+    public function findPomoWithNoDealPub($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null) {
+    	$select = $this->_getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour);
+    	
+    	$cols = $select->getPart(Zend_Db_Select::COLUMNS);
+    	$select->reset(Zend_Db_Select::COLUMNS);
+    	$select->reset(Zend_Db_Select::ORDER);
+    	foreach ($cols as $index => $col) {
+    		if ($index > 3) {
+    			
+    			if ($col[1] instanceof Zend_Db_Expr) {
+    				$col[0] = null;
+    			}
+    			
+    			if ($col[2]) {
+    				$select->columns(array($col[2] => $col[1]), $col[0]);
+    			} else {
+    				$select->columns($col[1], $col[0]);
+    			}
+    		}
+    	}
+    	
+    	$select1 = $this->_getFindPubSelect($latitude, $longitude, $query);
+    	
+    	$select1->joinLeft(array('php' => new Zend_Db_Expr('(' . $select . ')')), 'p.id = php.idPub');
+    	
+    	return $this->_formatPromoData($select1->getTable()->fetchAll($select1));
+    }
+    
+    /**
      * Promo finder is always using times.
      *
      * @param unknown_type $latitude
@@ -219,70 +316,40 @@ class Service_Pub extends Aw_Service_ServiceAbstract
      */
     public function findPromo($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null) {
     	
-    	$select = $this->_getFindPubSelect($latitude, $longitude, $query);
-    	if ($hour) {
-            $hour = str_pad($hour . ':00:00', 8, '0', STR_PAD_LEFT);
-        } else {
-            $hour = date("H:00:00");
-        }
-
-    	if (!$dayOfWeek) {
-    		$dayOfWeek = date('D');
-    	}
+    	$select = $this->_getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour);
+>>>>>>> Stashed changes
     	
-    	if (time() > strtotime('11am')) {
-	    	$expr = new Zend_Db_Expr(sprintf("CASE
-						WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
-						WHEN '%s' < p0.timeStart THEN 'later'
-	    				WHEN '%s' > p0.timeEnd THEN 'earlier'
-						ELSE 'none'
-						END", $hour, $hour, $hour));
-    		
-    	} else {
-    		$expr = new Zend_Db_Expr('"later"');
-    	}
-    	
-    	$select
-    		->join(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array())
-    		->join(array('p0' => 'promo'), 'p0.id = php.idPromo', array(
-                                                                       'timeStart' => 'DATE_FORMAT(timeStart, "%H:%i")',
-                                                                       'timeEnd' => 'DATE_FORMAT(timeEnd, "%H:%i")',
-                                                                       'price', 'itsOn' => $expr))
-            ->join(array('phl' => 'promoHasLiquorType'), 'p0.id = phl.idPromo', array())
-            ->join(array('lt' => 'liquorType'), 'lt.id = phl.idLiquorType', array('liquorType' => 'name'))
-            ->joinLeft(array('ls' => 'liquorSize'), 'phl.idLiquorSize = ls.id', array('liquorSize' => 'name'))
-    		->where('find_in_set(?, p0.day)', $dayOfWeek)
-    	;
-
-    	/** APPEND with other shit that does not intersect. **/
-    	
-
         $data   = $select->getTable()->fetchAll($select);
-        $return = array();
-
-        foreach ($data as $promo) {
-            $newPromo = array();
-            $address  = (string) $promo->getAddress();
-
-            $promo = $promo->toArray();
-            $promo['address'] = $address;
-
-            foreach ($this->_promoFields as $field) {
-                $newPromo[$field] = $promo[$field];
-                unset($promo[$field]);
-            }
-            $newPromo['itsOn'] = $promo['itsOn'];
-
-
-            if (isset($return[$promo['id']])) {
-                $return[$promo['id']]['promos'][] = $newPromo;
-            } else {
-                $return[$promo['id']] = $promo;
-                $return[$promo['id']]['promos'] = array($newPromo);
-            }
-        }
-
-        return $return;
+        
+		return $this->_formatPromoData($data);
+    }
+    
+    private function _formatPromoData($data) {
+    	$return = array();
+    	
+    	foreach ($data as $promo) {
+    		$newPromo = array();
+    		$address  = (string) $promo->getAddress(); //This is bad with the n+1 problem.
+    	
+    		$promo = $promo->toArray();
+    		$promo['address'] = $address;
+    	
+    		foreach ($this->_promoFields as $field) {
+    			$newPromo[$field] = $promo[$field];
+    			unset($promo[$field]);
+    		}
+    		$promo['itsOn'] = $newPromo['itsOn'] = ($promo['itsOn'] ?: 'none');
+			
+    		if (isset($return[$promo['id']])) {
+    			$return[$promo['id']]['promos'][] = $newPromo;
+    		} else {
+    			$return[$promo['id']] = $promo;
+    			$return[$promo['id']]['promos'] = array($newPromo);
+    		}
+    		
+    	}
+    	
+    	return $return;
     }
 
     public function findPubByLatLong($latitude, $longitude)
