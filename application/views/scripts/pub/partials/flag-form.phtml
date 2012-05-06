@@ -9,7 +9,31 @@
     </div>
 
     <div id="flagDeal">
-        <?php echo $this->element->getSubForm('detail'); ?>
+        <div id="dealSelector" class="left">
+            <?php
+            $i     = 0;
+            $liquors = Model_LiquorType::getAllByName();
+
+            while ($subForm = $this->element->getSubForm('detail' . $i)) {
+                if ($subForm->getElement('id')->getValue()) {
+                    $liquorType = $subForm->getElement('liquorType')->getValue();
+                    $liquor = is_array($liquorType) ? $liquors[$liquorType[0]] : ''; ?>
+                    <input type="radio" value="deal<?php echo $i; ?>" name="selector" id="selector<?php echo $i; ?>" <?php if ($i == 0) echo 'checked="checked"'; ?>/>
+                        <label for="selector<?php echo $i; ?>">$<?php echo $subForm->getElement('value')->getValue() . ' ' . $liquor;?></label><br/>
+                <?php }
+                $i++;
+            } ?>
+        </div>
+        <div id="dealSubforms">
+            <?php
+                $i = 0;
+                while ($subForm = $this->element->getSubForm('detail' . $i)) {
+                    if ($subForm->getElement('id')->getValue()) {
+                        echo '<div id="deal' . $i . '">' . $this->element->getSubForm('detail' . $i) . '</div>';
+                    }
+                    $i++;
+                } ?>
+        </div>
     </div>
 
     <div style="text-align: right">
@@ -52,5 +76,17 @@
             });
             return false;
         });
+
+        $("input[name='selector']").change(function() {
+            $("input[name='selector']").each(function() {
+                if ($(this).is(':checked')) {
+                    $("#" + $(this).val()).show();
+                } else {
+                    $("#" + $(this).val()).hide();
+                }
+            });
+        }).change();
+
+
     });
 </script>

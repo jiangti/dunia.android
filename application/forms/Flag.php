@@ -27,8 +27,15 @@ class Form_Flag extends Zend_Form {
         $subForm = new Form_Address();
         $this->addSubForm($subForm, 'address');
 
-        $subForm = new Form_Deal_Detail();
-        $this->addSubForm($subForm, 'detail');
+        foreach (range(0, 6) as $index) {
+            $subForm = new Form_Deal_Detail();
+            $this->addSubForm($subForm, 'detail' . $index);
+        }
+
+        $type = new Zend_Form_Element_Radio('type');
+        $type
+            ->setMultiOptions(Model_Flag::$flagType)
+        ;
 
         $this->setDecorators(array(array('ViewScript', array(
             'viewScript' => 'pub/partials/flag-form.phtml',

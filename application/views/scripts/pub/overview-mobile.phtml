@@ -35,16 +35,16 @@
 
         }});
 
-        $("#map").live('pageshow', function() {
+        $("#maptab").live('pageshow', function() {
             $('#map_canvas').gmap('refresh');
-        }); 
-		
+        });
+
 });
 </script>
 
 <div data-role="page" id="deals">
 	<div class="home" data-role="header">
-		<a href="/" data-icon="home" rel="external">Home</a>
+		<a href="/" data-icon="home" data-transition="pop">Home</a>
 		<h1><?php echo $this->pub->name; ?></h1>
 		<a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">+ Deal</a>
     </div>
@@ -93,9 +93,9 @@
 
 
 
-<div data-role="page" id="map" style="height:100%;">
+<div data-role="page" id="maptab" style="height:100%;">
 	<div class="home" data-role="header">
-		<a href="/" data-icon="home" rel="external">Home</a>
+		<a href="/" data-icon="home" data-transition="slide">Home</a>
 		<h1><?php echo $this->pub->name; ?></h1>
         <a href="#" data-icon="forward" rel="external" id="directions">Directions</a>
     </div>

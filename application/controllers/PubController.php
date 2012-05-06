@@ -194,6 +194,11 @@ class PubController extends Zend_Controller_Action
                 'address' => $pub->getAddress()->toArray()
             );
 
+            foreach ($pub->getPromos() as $index => $promo) {
+                $subForm = $form->getSubForm('detail' . $index);
+                $subForm->setRecord($promo);
+            }
+
             $form->setDefaults($default);
 
             if ($this->_request->isPost()) {

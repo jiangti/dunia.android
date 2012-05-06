@@ -1,8 +1,8 @@
 <?php
 class Form_Promo extends Zend_Form {
-    
+
     public function init() {
-    
+
         parent::init();
         
         $element = new Zend_Form_Element_Hidden('id');

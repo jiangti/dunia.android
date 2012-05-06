@@ -36,6 +36,7 @@
                                         foreach ($size as $s) {
                                             echo ' (' . $s['name'] . ')';
                                         }
+                                        echo '<div class="promoDescription">' . $promo->description . '</div>';
                                     } ?>
                                 </div> 
                             </div>
@@ -84,7 +85,7 @@
                                         <img src="<?php echo $data->user->photo;?>" width="60" height="60"/>
                                     </a>
                                 </div>
-                                <div class="name""><?php echo $data->user->firstName . ' ' . $data->user->lastName; ?></div>
+                                <div class="name""><?php echo (isset($data->user->firstName) ? $data->user->firstName : '') . ' ' . (isset($data->user->lastName) ? $data->user->lastName : ''); ?></div>
                                 <div class="from"><?php echo '(' . $data->user->homeCity . ')'; ?></div>
                             </div>
                             <div class='tip'>
@@ -137,7 +138,7 @@ $(document).ready(function() {
 
     $('#dialog').dialog({
         autoOpen: false,
-        width: 600,
+        width: 650,
         position: ['center', 100]
     });
 

@@ -192,6 +192,10 @@ h1 {
   margin: 0;
   padding: 5px;
 }
+.promo .promoDescription {
+  text-align: left;
+  font-size: x-small;
+}
 
 /* line 193, sass/style.scss */
 .promoContent {
@@ -395,7 +399,23 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
+<<<<<<< HEAD
 /* line 378, sass/style.scss */
+=======
+#flagForm #dealSelector {
+  padding: 20px;
+  font-size: 15px;
+  border-right: 1px solid #ccc;
+  margin-right: 20px;
+}
+#flagForm #dealSubforms dd {
+  margin-bottom: 10px;
+}
+#flagForm dt > label {
+  font-weight: bold;
+  font-size: 15px;
+}
+>>>>>>> 95a24d31559ebb2babdc20d7cb187cb66be9ee50
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;

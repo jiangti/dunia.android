@@ -248,6 +248,8 @@ class Service_Pub extends Aw_Service_ServiceAbstract
                 $newPromo[$field] = $promo[$field];
                 unset($promo[$field]);
             }
+            $newPromo['itsOn'] = $promo['itsOn'];
+
 
             if (isset($return[$promo['id']])) {
                 $return[$promo['id']]['promos'][] = $newPromo;

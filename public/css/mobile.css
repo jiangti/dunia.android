@@ -163,8 +163,20 @@ a.not-favorite {
  *
  */
 .distance {
-  float: right;
   font-weight: normal;
+  position: absolute;
+  top: 3px;
+  right: 25px;
+}
+
+.indexDeal {
+  font-weight: normal;
+  margin-left: 20px;
+  line-height: 25px;
+  height: 25px;
+}
+.indexDeal img {
+  margin: auto;
 }
 
 /**

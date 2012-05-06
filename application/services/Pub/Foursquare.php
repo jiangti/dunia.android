@@ -17,7 +17,7 @@ class Service_Pub_Foursquare extends Service_Pub {
 	private function _crawl($pubs) {
 		$discoveryTable = new Model_DbTable_Discover();
 		
-		if (!is_array($pubs->response->venues)) {
+		if (!isset($pubs->response->venues) || !is_array($pubs->response->venues)) {
 			var_dump($pubs->response); exit;
 		}
 		
@@ -90,7 +90,7 @@ class Service_Pub_Foursquare extends Service_Pub {
 		try {
 			$db->beginTransaction();
 			
-			$pubs       = $pubTable->fetchAll($pubService->findPubByNotValid());
+			$pubs       = $pubTable->fetchAll($this->findPubByNotValid());
 			
 			$foursquarePubs = array();
 			foreach ($pubs as $pub) {
