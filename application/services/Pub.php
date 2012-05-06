@@ -220,13 +220,12 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     public function findPromo($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null) {
     	
     	$select = $this->_getFindPubSelect($latitude, $longitude, $query);
-    	
     	if ($hour) {
-    		$hour = str_pad($hour . ':00:00', 8, '0', STR_PAD_LEFT);
-    	} else {
-	    	$hour = date("H:00:00");
-    	}
-    	
+            $hour = str_pad($hour . ':00:00', 8, '0', STR_PAD_LEFT);
+        } else {
+            $hour = date("H:00:00");
+        }
+
     	if (!$dayOfWeek) {
     		$dayOfWeek = date('D');
     	}
@@ -237,7 +236,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 						WHEN '%s' < p0.timeStart THEN 'later'
 	    				WHEN '%s' > p0.timeEnd THEN 'earlier'
 						ELSE 'none'
-						END", $hour, $hour));
+						END", $hour, $hour, $hour));
     		
     	} else {
     		$expr = new Zend_Db_Expr('"later"');
@@ -254,7 +253,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
             ->joinLeft(array('ls' => 'liquorSize'), 'phl.idLiquorSize = ls.id', array('liquorSize' => 'name'))
     		->where('find_in_set(?, p0.day)', $dayOfWeek)
     	;
-    	
+
     	/** APPEND with other shit that does not intersect. **/
     	
 
