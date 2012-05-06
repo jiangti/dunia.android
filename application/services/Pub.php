@@ -213,14 +213,6 @@ class Service_Pub extends Aw_Service_ServiceAbstract
      */
     private function _getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour) {
     	$select = $this->_getFindPubSelect($latitude, $longitude, $query);
-<<<<<<< Updated upstream
-    	if ($hour) {
-            $hour = str_pad($hour . ':00:00', 8, '0', STR_PAD_LEFT);
-        } else {
-            $hour = date("H:00:00");
-        }
-
-=======
     	 
     	if ($hour) {
     		$hour = str_pad($hour . ':00:00', 8, '0', STR_PAD_LEFT);
@@ -228,22 +220,12 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     		$hour = date("H:00:00");
     	}
     	 
->>>>>>> Stashed changes
     	if (!$dayOfWeek) {
     		$dayOfWeek = date('D');
     	}
     	
     	 
     	if (time() > strtotime('11am')) {
-<<<<<<< Updated upstream
-	    	$expr = new Zend_Db_Expr(sprintf("CASE
-						WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
-						WHEN '%s' < p0.timeStart THEN 'later'
-	    				WHEN '%s' > p0.timeEnd THEN 'earlier'
-						ELSE 'none'
-						END", $hour, $hour, $hour));
-    		
-=======
     		$expr = new Zend_Db_Expr(sprintf("CASE
     				WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
     				WHEN '%s' < p0.timeStart THEN 'later'
@@ -251,7 +233,6 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     				ELSE 'none'
     				END", $hour, $hour, $hour));
     	
->>>>>>> Stashed changes
     	} else {
     		$expr = new Zend_Db_Expr('"later"');
     	}
@@ -268,11 +249,6 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 	    	->joinLeft(array('ls' => 'liquorSize'), 'phl.idLiquorSize = ls.id', array('liquorSize' => 'name'))
 	    	->where('find_in_set(?, p0.day)', $dayOfWeek)
     	;
-<<<<<<< Updated upstream
-
-    	/** APPEND with other shit that does not intersect. **/
-=======
-    	
     	return $select;
     }
     
@@ -317,7 +293,6 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     public function findPromo($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null) {
     	
     	$select = $this->_getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour);
->>>>>>> Stashed changes
     	
         $data   = $select->getTable()->fetchAll($select);
         
