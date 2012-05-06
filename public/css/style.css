@@ -192,24 +192,25 @@ h1 {
   margin: 0;
   padding: 5px;
 }
+/* line 191, sass/style.scss */
 .promo .promoDescription {
   text-align: left;
   font-size: x-small;
 }
 
-/* line 193, sass/style.scss */
+/* line 198, sass/style.scss */
 .promoContent {
   text-align: center;
   font-size: 15px;
   padding: 5px;
 }
 
-/* line 199, sass/style.scss */
+/* line 204, sass/style.scss */
 #flag {
   text-align: right;
   margin-top: 10px;
 }
-/* line 203, sass/style.scss */
+/* line 208, sass/style.scss */
 #flag a {
   color: #1291ff;
   text-decoration: none;
@@ -217,27 +218,29 @@ h1 {
   background: url(/img/icons/famfamfam/flag_red.png) no-repeat;
 }
 
+/* line 216, sass/style.scss */
 .venuePic {
   margin: 10px;
   padding: 4px;
   border: 1px solid #ccc;
 }
 
+/* line 223, sass/style.scss */
 .tip {
   margin-top: 5px;
   font-size: 18px;
 }
 
-/* line 216, sass/style.scss */
+/* line 228, sass/style.scss */
 .author {
   float: left;
   font-size: 10px;
 }
-/* line 220, sass/style.scss */
+/* line 232, sass/style.scss */
 .author .name, .author .from {
   margin-left: 5px;
 }
-/* line 224, sass/style.scss */
+/* line 236, sass/style.scss */
 .author img {
   margin: 5px 5px 1px 5px;
   border: 1px solid #ccc;
@@ -247,7 +250,7 @@ h1 {
 /**
  * Index page (big map)
  */
-/* line 235, sass/style.scss */
+/* line 247, sass/style.scss */
 #bottom-info-bar {
   position: fixed;
   bottom: 0;
@@ -262,49 +265,49 @@ h1 {
   -webkit-border-top-left-radius: 50px 100px;
   border-top-left-radius: 50px 100px;
 }
-/* line 236, sass/style.scss */
+/* line 248, sass/style.scss */
 #bottom-info-bar .summary {
   font-family: "SnicklesRegular";
   font-size: 20px;
 }
-/* line 237, sass/style.scss */
+/* line 249, sass/style.scss */
 #bottom-info-bar .summary img {
   vertical-align: middle;
   padding-right: 3px;
 }
 
-/* line 261, sass/style.scss */
+/* line 273, sass/style.scss */
 .overlay {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 266, sass/style.scss */
+/* line 278, sass/style.scss */
 .overlay h2 {
   margin: 0 0 5px 0;
   color: #555;
   text-align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-/* line 273, sass/style.scss */
+/* line 285, sass/style.scss */
 .overlay .overlayContent {
   border: 1px solid rgba(104, 187, 235, 0.9);
   border-left: 0;
   border-right: 0;
   margin: 0;
 }
-/* line 279, sass/style.scss */
+/* line 291, sass/style.scss */
 .overlay .overlayContent div {
   padding: 20px 5px;
   font-family: Georgia, serif;
   font-size: 20px;
 }
-/* line 285, sass/style.scss */
+/* line 297, sass/style.scss */
 .overlay .overlayContent div.deal {
   padding: 0;
   margin-bottom: 5px;
 }
-/* line 290, sass/style.scss */
+/* line 302, sass/style.scss */
 .overlay .overlayContent h3 {
   text-align: center;
   color: #fff;
@@ -312,18 +315,18 @@ h1 {
   margin: 0;
   padding: 0;
 }
-/* line 299, sass/style.scss */
+/* line 311, sass/style.scss */
 .overlay .foot {
   margin-top: 10px;
   overflow: auto;
   position: relative;
 }
-/* line 304, sass/style.scss */
+/* line 316, sass/style.scss */
 .overlay .foot .address {
   color: #555;
   font-size: 80%;
 }
-/* line 309, sass/style.scss */
+/* line 321, sass/style.scss */
 .overlay .foot a {
   text-decoration: none;
   color: #1291ff;
@@ -332,7 +335,7 @@ h1 {
   right: 0;
 }
 
-/* line 318, sass/style.scss */
+/* line 330, sass/style.scss */
 a.small-icon {
   display: block;
   width: 16px;
@@ -342,21 +345,21 @@ a.small-icon {
   text-indent: -9999px;
 }
 
-/* line 327, sass/style.scss */
+/* line 339, sass/style.scss */
 a.ok {
   background: url(/img/icons/famfamfam/accept.png) no-repeat;
 }
 
-/* line 331, sass/style.scss */
+/* line 343, sass/style.scss */
 a.cancel {
   background: url(/img/icons/famfamfam/cancel.png) no-repeat;
 }
 
-/* line 335, sass/style.scss */
+/* line 347, sass/style.scss */
 .admin-nav {
   list-style: none;
 }
-/* line 339, sass/style.scss */
+/* line 351, sass/style.scss */
 .admin-nav li a {
   font-size: 18px;
   text-decoration: none;
@@ -368,7 +371,7 @@ a.cancel {
   border-color: #ddd;
   color: #555;
 }
-/* line 351, sass/style.scss */
+/* line 363, sass/style.scss */
 .admin-nav li a.selected {
   background: #00b7ea;
   /* Old browsers */
@@ -404,33 +407,40 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
-<<<<<<< HEAD
-/* line 378, sass/style.scss */
-=======
+/* line 391, sass/style.scss */
 #flagForm #dealSelector {
   padding: 20px;
   font-size: 15px;
   border-right: 1px solid #ccc;
   margin-right: 20px;
 }
+/* line 399, sass/style.scss */
 #flagForm #dealSubforms dd {
   margin-bottom: 10px;
 }
+/* line 404, sass/style.scss */
 #flagForm dt > label {
   font-weight: bold;
   font-size: 15px;
 }
->>>>>>> 95a24d31559ebb2babdc20d7cb187cb66be9ee50
+/* line 408, sass/style.scss */
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;
 }
-/* line 383, sass/style.scss */
+/* line 413, sass/style.scss */
 #flagForm fieldset {
   border: 0;
   padding: 0;
 }
-/* line 388, sass/style.scss */
+/* line 418, sass/style.scss */
 #flagForm hr {
   color: #ddd;
+}
+
+/* line 423, sass/style.scss */
+.venuePic {
+  margin: 10px;
+  padding: 4px;
+  border: 1px solid #ccc;
 }
