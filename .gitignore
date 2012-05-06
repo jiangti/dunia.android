@@ -4,3 +4,4 @@
 .settings/
 public/mail
 public/images/pub
+.sass-cache

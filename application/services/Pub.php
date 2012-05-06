@@ -140,8 +140,8 @@ class Service_Pub extends Aw_Service_ServiceAbstract
         $select->from(array('p' => 'pub'))
             ->setIntegrityCheck(false)
             ->joinLeft(
-                array('a' => 'address'), 
-            	'p.idAddress = a.id', 
+                array('a' => 'address'),
+            	'p.idAddress = a.id',
                 array(
         			'longitude',
                     'latitude'
@@ -156,26 +156,47 @@ class Service_Pub extends Aw_Service_ServiceAbstract
         
         return $select;
     }
+    
+    /**
+     * @return Zend_Db_Table_Select
+     */
+    protected function _getPubSelect($latitude, $longitude) {
+    	$pubTable = new Model_DbTable_Pub();
+    	 
+    	/**
+    	 * Avoid entire table scan when we are only looking for walking distance of 4 km.
+    	 */
+    	 
+    	$x0 = $latitude - 0.04;
+    	$x1 = $latitude + 0.04;
+    	
+    	$y0 = $longitude - 0.04;
+    	$y1 = $longitude + 0.04;
+    	
+    	$select = $pubTable->select()
+	    	->setIntegrityCheck(false)
+	    	->from(array('p' => 'pub'))
+	    	->join(array('a' => 'address'),
+    			'p.idAddress = a.id',
+    			array(
+    				'longitude',
+    				'latitude',
+    				'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(latitude)) * cos(radians(longitude) - radians('$longitude')) + sin(radians('$latitude')) * sin(radians(latitude))), 2)"))
+    			)
+	    	->order('distance')
+	    	->where(sprintf('a.latitude between %s and %s', $x0, $x1))
+	    	->where(sprintf('a.longitude between %s and %s', $y0, $y1))
+    	;
+    	return $select;
+    }
     /**
      * @param unknown_type $latitude
      * @param unknown_type $longitude
      * @return Zend_Db_Table_Select
      */
     protected function _getFindPubSelect($latitude, $longitude, $query = null) {
-    	$pubTable = new Model_DbTable_Pub();
-        
-        $select = $pubTable->select()
-            ->setIntegrityCheck(false)
-            ->from(array('p' => 'pub'))
-            ->join(array('a' => 'address'),
-                    'p.idAddress = a.id',
-                    array(
-                        'longitude',
-                        'latitude',
-                        'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(latitude)) * cos(radians(longitude) - radians('$longitude')) + sin(radians('$latitude')) * sin(radians(latitude))), 2)"))
-                    )
-            ->order('distance')
-        ;
+    	
+        $select = $this->_getPubSelect($latitude, $longitude);
         
         if ($query) {
         	$select
@@ -189,7 +210,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     
     /**
      * Promo finder is always using times.
-     * 
+     *
      * @param unknown_type $latitude
      * @param unknown_type $longitude
      * @param string $query
@@ -197,6 +218,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
      * @param int 0-12
      */
     public function findPromo($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null) {
+    	
     	$select = $this->_getFindPubSelect($latitude, $longitude, $query);
     	
     	if ($hour) {
@@ -213,13 +235,13 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 	    	$expr = new Zend_Db_Expr(sprintf("CASE
 						WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
 						WHEN '%s' < p0.timeStart THEN 'later'
-						ELSE 'earlier'
+	    				WHEN '%s' > p0.timeEnd THEN 'earlier'
+						ELSE 'none'
 						END", $hour, $hour));
     		
     	} else {
     		$expr = new Zend_Db_Expr('"later"');
     	}
-    	
     	
     	$select
     		->join(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array())
@@ -231,8 +253,10 @@ class Service_Pub extends Aw_Service_ServiceAbstract
             ->join(array('lt' => 'liquorType'), 'lt.id = phl.idLiquorType', array('liquorType' => 'name'))
             ->joinLeft(array('ls' => 'liquorSize'), 'phl.idLiquorSize = ls.id', array('liquorSize' => 'name'))
     		->where('find_in_set(?, p0.day)', $dayOfWeek)
-    		//->group('p.id')
     	;
+    	
+    	/** APPEND with other shit that does not intersect. **/
+    	
 
         $data   = $select->getTable()->fetchAll($select);
         $return = array();
