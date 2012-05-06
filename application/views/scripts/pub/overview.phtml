@@ -53,7 +53,16 @@
         </div>
 <!-- Remove this br crap -->
 <br />        
-<br />        
+<br />
+        <?php
+        $images = $this->pub->getImageLinks();
+
+        if (count($images)) {
+            foreach ($images as $img) {
+                echo '<img class="venuePic" src="' . $img . '" width="150" height="100"/>';
+            }
+        }
+        ?>
 <br />        
 <br />        
 <!-- Remove this br crap -->

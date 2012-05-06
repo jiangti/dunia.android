@@ -190,6 +190,12 @@ h1 {
   background: url(/img/icons/famfamfam/flag_red.png) no-repeat;
 }
 
+.venuePic {
+  margin: 10px;
+  padding: 4px;
+  border: 1px solid #ccc;
+}
+
 .tip {
   margin-top: 5px;
   font-size: 18px;

@@ -83,4 +83,15 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	    
 	    $pubRow->save();
 	}
+
+    public function getImageLinks() {
+        $links = array();
+
+        if (is_dir($dir = APPLICATION_PATH . '/../public/images/pub/' . $this->id)) {
+            foreach (glob($dir . '/*') as $file) {
+                $links[] = '/images/pub/' . $this->id . '/' . basename($file);
+            }
+        }
+        return $links;
+    }
 }
