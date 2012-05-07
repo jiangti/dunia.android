@@ -12,7 +12,7 @@
             <?php echo $this->formatDate($promo->timeStart, 'H:i'); ?> - <?php echo $this->formatDate($promo->timeEnd, 'H:i'); ?>
         </div>
         <div>
-            <?echo $promo->description; ?>
+            <?php echo $promo->description; ?>
         </div>
     </li>
 <?php endforeach; ?>
