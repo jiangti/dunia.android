@@ -212,33 +212,75 @@ h1 {
         background: url(/img/icons/famfamfam/flag_red.png) no-repeat;
     }
 }
+.pub-overview {
+  h2 {
+    color: #555;
+  }
 
-.venuePic {
+  ul {
+      list-style: none;
+      padding-left: 0;
+      overflow: auto;
+  }
 
-    margin: 10px;
-    padding: 4px;
-    border: 1px solid #ccc;
-}
+  .addthis_toolbox a {
+      margin: 5px;
+      display: block;
+      float: none;
+  }
 
-.tip {
-    margin-top: 5px;
-    font-size: 18px;
-}
+  #photos {
+      clear: both;
+      overflow: auto;
 
-.author {
-    float: left;
-    font-size: 10px;
+      .venuePic {
+          margin: 10px;
+          padding: 4px;
+          border: 1px solid #ccc;
+      }
 
-    .name, .from {
+      li {
+        float: left;
+      }
+  }
+
+  #tips {
+
+      li {
+        margin-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        overflow: auto;
+      }
+  }
+
+  .tip-container {
+      clear: both;
+
+      .tip {
+        margin-top: 5px;
+        font-size: 18px;
+      }
+
+    .author {
+      float: left;
+      font-size: 10px;
+
+      .name, .from {
         margin-left: 5px;
-    }
+      }
 
-    img {
+      img {
         margin: 5px 5px 1px 5px;
         border: 1px solid #ccc;
         padding: 3px;
+      }
     }
+  }
 }
+
+
+
 
 /**
  * Index page (big map)

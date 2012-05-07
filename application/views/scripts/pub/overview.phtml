@@ -1,6 +1,6 @@
 <?php $address = $this->pub->address; ?>
 
-<div class="container_12 content">
+<div class="pub-overview container_12 content">
 
     <div class="grid_8">
         <h1><?php echo $this->pub->name; ?></h1>
@@ -51,61 +51,61 @@
         <div id="flag">
             <a href="#" title="Report a problem">Report incorrect data</a>
         </div>
-<!-- Remove this br crap -->
-<br />        
-<br />
+
         <?php
         $images = $this->pub->getImageLinks();
 
-        if (count($images)) {
-            foreach ($images as $img) {
-                echo '<img class="venuePic" src="' . $img . '" width="150" height="100"/>';
-            }
-        }
-        ?>
-<br />        
-<br />        
-<!-- Remove this br crap -->
+        if (count($images)) : ?>
+        <div id="photos">
+            <h2>Photos</h2>
+            <ul>
+                <?php
+                foreach ($images as $img) {
+                    echo '<li>
+                        <a href="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=600&amp;ar=x">
+                            <img class="venuePic" src="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=125&amp;h=125&amp;zc=1&amp;ar=x"/>
+                        </a>
+                        </li>';
+                } ?>
+            </ul>
+        </div>
+        <?php endif; ?>
+
+
 
         <?php 
         $tips = $this->pub->getTips();
         if (count($tips)): ?>
-        <table class="generic" cellspacing="1px" cellpadding="0px" border="0">
-            <thead>
-                <tr>
-                    <th style="height: 20px">
-                        <div class="left">
-                            Tips
-                        </div>
-                        <div class="right">
-                            <img src="/img/icons/social/poweredByFoursquare_gray.png" width="128" height="14" />    
-                        </div>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
+
+        <div id="tips">
+            <h2>Tips
+                <div class="right">
+                    <img src="/img/icons/social/poweredByFoursquare_gray.png" width="128" height="14" />
+                    </div>
+            </h2>
+
+            <ul>
                 <?php foreach ($tips as $tip) { ?>
-                    <tr>
-                        <td>
-                            <div class="author">
-                                <?php $data = json_decode($tip->data); ?>
-                                <div>
-                                    <a href="<?php echo $data->user->canonicalUrl;?>">
-                                        <img src="<?php echo $data->user->photo;?>" width="60" height="60"/>
-                                    </a>
-                                </div>
-                                <div class="name""><?php echo (isset($data->user->firstName) ? $data->user->firstName : '') . ' ' . (isset($data->user->lastName) ? $data->user->lastName : ''); ?></div>
-                                <div class="from"><?php echo '(' . $data->user->homeCity . ')'; ?></div>
+                    <li>
+                        <div class="tip-container">
+                        <div class="author">
+                            <?php $data = json_decode($tip->data); ?>
+                            <div>
+                                <a href="<?php echo $data->user->canonicalUrl;?>">
+                                    <img src="<?php echo $data->user->photo;?>" width="60" height="60"/>
+                                </a>
                             </div>
-                            <div class='tip'>
-                                <?php echo $tip->text; ?>
-                            </div>
-                        </td>
-                    </tr>
+                            <div class="name""><?php echo (isset($data->user->firstName) ? $data->user->firstName : '') . ' ' . (isset($data->user->lastName) ? $data->user->lastName : ''); ?></div>
+                            <div class="from"><?php echo '(' . $data->user->homeCity . ')'; ?></div>
+                        </div>
+                        <div class='tip'>
+                            <?php echo $tip->text; ?>
+                        </div>
+                        </div>
+                    </li>
                 <?php } ?>
-            </tbody>
-        </table>
-            
+            </ul>
+        </div>
         <?php endif;?>
         
     </div>
@@ -119,14 +119,19 @@
     			<a href="mailto:<?php echo $this->pub->email; ?>"><?php echo $this->pub->email; ?></a>
     		</div>
         </div>
+
+        <div class="addthis_toolbox addthis_default_style ">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+            <a class="addthis_counter addthis_pill_style"></a>
+        </div>
+        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f93fc3233f490f0"></script>
     </div>
 </div>
 
 <div id="dialog"></div>
 
-<script type="text/javascript"
-    src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places">
-</script>
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -162,6 +167,8 @@ $(document).ready(function() {
         })
         return false;
     });
+
+    $('#photos a').lightBox();
 
 });
 </script>
