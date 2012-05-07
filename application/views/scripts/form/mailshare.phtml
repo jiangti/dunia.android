@@ -1,0 +1,14 @@
+<?php $form = $this->element; ?>
+<div>
+	<form action="<?php echo $form->getAction(); ?>" method="post">
+	<?php echo $form->subject; ?>
+	<?php echo $form->hidden; ?>
+	<?php echo $form->id; ?>
+	<?php foreach($form->getRecord()->getImagesWebUri() as $image): ?>
+		<img src="<?php echo $image; ?>" width="200px" />
+	<?php endforeach; ?>
+	<dd id="submit-element">
+	<input type="submit" value="Submit" id="submit" name="submit"> <a href="#" class="delete" data-mail="<?php echo $form->getRecord()->id; ?>">Delete</a>
+	</dd>
+	</form>
+</div>
