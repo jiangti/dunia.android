@@ -16,9 +16,11 @@
 			<div id="tabs-1" class="container_12">
 				<div class="grid_6">
 				<?php if($this->pub): ?>
-					<?php foreach($this->pub->getImages() as $image): ?>
-						<img src="<?php echo $this->thumbnail(sprintf("%s/public/images/pub/%d/%s", APPLICATION_ROOT, $this->pub->id, $image), 100, 100); ?>" alt="" />
+					<div class="sticky-style grid_6 alpha" id="image-region">
+					<?php foreach($this->pub->getImagesWebUri() as $image): ?>
+						<a class="image" href="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=600"><img src="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=100" alt="" /></a>
 					<?php endforeach; ?>
+					</div>
 				<?php endif; ?>
 				<?php echo $this->form; ?>
 				</div>
@@ -47,5 +49,9 @@ $(function() {
 		var $this = $(this);
 		$this.parents('fieldset').remove();
 	});
+
+	$('#image-region a.image').lightBox({fixedNavigation:true});
+
+	$("#image-region").sticky({topSpacing:52});
 });
 </script>

@@ -55,7 +55,7 @@ body {
 
 }
 
-.sticky {
+.sticky, .sticky-style {
   border: 1px solid #696;
   text-align: left;
   padding: 0px 5px;
@@ -65,6 +65,7 @@ body {
   background: #EEFF99;
   behavior: url(/PIE.htc);
   z-index: 1000;
+  width: 100%;
 }
 
 form dl {

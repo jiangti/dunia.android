@@ -4,9 +4,11 @@
 	<?php echo $form->subject; ?>
 	<?php echo $form->hidden; ?>
 	<?php echo $form->id; ?>
+	<div class="image-region">
 	<?php foreach($form->getRecord()->getImagesWebUri() as $image): ?>
-		<img src="<?php echo $image; ?>" width="200px" />
+		<a class="image" href="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=600&amp"><img src="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=280&amp;h=200" /></a>
 	<?php endforeach; ?>
+	</div>
 	<dd id="submit-element">
 	<input type="submit" value="Submit" id="submit" name="submit"> <a href="#" class="delete" data-mail="<?php echo $form->getRecord()->id; ?>">Delete</a>
 	</dd>

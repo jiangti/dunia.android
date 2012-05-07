@@ -43,6 +43,9 @@ $().ready(function() {
 		$.get('/mailshare/delete/id/' + id);
 		$this.parents('div.grid_6').fadeOut();
 	});
+
+	$('#mailshare form .image-region a.image').lightBox({fixedNavigation:true});
+	
 });
 //-->
 </script>

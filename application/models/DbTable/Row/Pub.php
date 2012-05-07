@@ -162,6 +162,14 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 		return $files;
 	}
 	
+	public function getImagesWebUri() {
+		$files = glob($this->getImageDirectory() . '/*');
+		foreach ($files as $index => $image) {
+			$files[$index] = str_replace(DOC_ROOT, '', $image);
+		}
+		return $files;
+	}
+	
 	public function _save() {
 	    parent::_save();
 	    if ($this->_address) {
