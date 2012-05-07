@@ -6,7 +6,12 @@
 	<?php echo $form->id; ?>
 	<div class="image-region">
 	<?php foreach($form->getRecord()->getImagesWebUri() as $image): ?>
-		<a class="image" href="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=600&amp"><img src="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=280&amp;h=200" /></a>
+		<div>
+		<a data-image-path="<?php echo DOC_ROOT . $image; ?>" href="#" class="ss_sprite ss_arrow_rotate_clockwise clockwise">&nbsp;</a>
+		<a data-image-path="<?php echo DOC_ROOT . $image; ?>" href="#" class="ss_sprite ss_arrow_rotate_anticlockwise anticlockwise">&nbsp;</a>
+		<br />
+		<a class="image" href="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=600"><img src="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=200&amp;h=200&amp;iar=1" /></a>
+		</div>
 	<?php endforeach; ?>
 	</div>
 	<dd id="submit-element">

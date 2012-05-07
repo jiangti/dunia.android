@@ -45,6 +45,21 @@ $().ready(function() {
 	});
 
 	$('#mailshare form .image-region a.image').lightBox({fixedNavigation:true});
+
+	$('#mailshare .clockwise, #mailshare .anticlockwise').click(function(e) {
+		e.preventDefault();
+		
+		var $this = $(this);
+		
+		var imagePath = $this.attr('data-image-path');
+
+		var $aImg = $this.siblings('a.image');
+
+		var src = $('img', $aImg).attr('src');
+
+		$('img', $aImg).attr('src', src);
+		
+	});
 	
 });
 //-->
