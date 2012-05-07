@@ -17,6 +17,7 @@
   			<a href=""><img src="/img/icons/markers/full_sml.png" />{{MyApp.summary.later}}</a>
 			<a href=""><img src="/img/icons/markers/half_sml.png" />{{MyApp.summary.now}}</a>
 			<a href=""><img src="/img/icons/markers/empty_sml.png" />{{MyApp.summary.earlier}}</a>
+			<a href=""><img src="/img/icons/markers/beer_sml.png" />{{MyApp.summary.none}}</a>
 		</script>
 	</div>
 	<div class="left">
@@ -48,7 +49,8 @@ MyApp = Ember.Application.create();
 MyApp.summary = Em.Object.create({
 	  now: 0,
 	  later: 0,
-	  earlier: 0
+	  earlier: 0,
+	  none: 0
 	});
 
 function cleanMarkers() {
@@ -72,6 +74,9 @@ function setMarkers(data) {
         },
         later: {
             icon: '/img/icons/markers/full.png'
+        },
+        none: {
+            icon: '/img/icons/markers/beer.png'
         }
     };
 
@@ -94,6 +99,7 @@ function setMarkers(data) {
             }
             promos += promo.liquorType + ' (' + promo.timeStart + ' to ' + promo.timeEnd + ')</div>';
         }
+
         var icon = customIcons[type] || {};
 
         MyApp.summary.set(type, MyApp.summary.get(type) + 1);

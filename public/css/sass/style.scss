@@ -255,11 +255,12 @@ h1 {
   }
 
   .tip-container {
-    clear: both;
-    .tip {
-      margin-top: 5px;
-      font-size: 18px;
-    }
+      clear: both;
+
+      .tip {
+        margin-top: 5px;
+        font-size: 18px;
+      }
 
     .author {
       float: left;
@@ -459,4 +460,10 @@ a.cancel {
     hr {
         color: #ddd;
     }
+}
+
+.venuePic {
+    margin: 10px;
+    padding: 4px;
+    border: 1px solid #ccc;
 }

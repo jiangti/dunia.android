@@ -19,7 +19,7 @@ class MapController extends Model_Controller_Action {
 		$lat  = $this->_getParam('lat', $lat);
 		$long = $this->_getParam('long', $long);
 		
-		$pubs = $pubService->findPromo($lat, $long);
+		$pubs = $pubService->findPomoWithNoDealPub($lat, $long);
 		
 		$this->_generateResponse($pubs);
 	}
