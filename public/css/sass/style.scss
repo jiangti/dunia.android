@@ -1,5 +1,5 @@
 @CHARSET "UTF-8";
-
+@import "compass/css3/box-shadow";
 @import url('snickles/stylesheet.css');
 
 /**
@@ -425,3 +425,9 @@ a.cancel {
     padding: 4px;
     border: 1px solid #ccc;
 }
+
+#mailshare form {
+	@include single-box-shadow;
+	padding: 20px;
+}
+ 
