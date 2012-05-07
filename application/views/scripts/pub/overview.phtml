@@ -55,22 +55,22 @@
         <?php
         $images = $this->pub->getImageLinks();
 
-        if (count($images)) { ?>
+        if (count($images)) : ?>
         <div id="photos">
             <h2>Photos</h2>
             <ul>
-        <?php
-            foreach ($images as $img) {
-                echo '<li>
-                    <a href="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=600&amp;ar=x">
-                        <img class="venuePic" src="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=125&amp;h=125&amp;zc=1&amp;ar=x"/>
-                    </a>
-                    </li>';
-            }
-        }
-        ?>
+                <?php
+                foreach ($images as $img) {
+                    echo '<li>
+                        <a href="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=600&amp;ar=x">
+                            <img class="venuePic" src="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=125&amp;h=125&amp;zc=1&amp;ar=x"/>
+                        </a>
+                        </li>';
+                } ?>
             </ul>
         </div>
+        <?php endif; ?>
+
 
 
         <?php 
