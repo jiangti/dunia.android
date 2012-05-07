@@ -5,3 +5,4 @@
 public/mail
 public/images/pub
 .sass-cache
+*phpThumb_cache*
