@@ -167,8 +167,8 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	 * Avoid entire table scan when we are only looking for walking distance of 4 km.
     	 */
     	 
-    	$x0 = $latitude - 0.04;
-    	$x1 = $latitude + 0.04;
+    	$x0 = $latitude  - 0.04;
+    	$x1 = $latitude  + 0.04;
     	
     	$y0 = $longitude - 0.04;
     	$y1 = $longitude + 0.04;
