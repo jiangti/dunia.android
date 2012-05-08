@@ -57,7 +57,18 @@ $().ready(function() {
 
 		var src = $('img', $aImg).attr('src');
 
-		$('img', $aImg).attr('src', src);
+
+		if ($this.hasClass('clockwise')) {
+			$.get('/mailshare/rotate/imagePath/{0}/rotate/right'.format(encodeURIComponent(imagePath)), function (responseText) {
+					$('img', $aImg).attr('src', src + '&hash=' + responseText);
+				}
+			);
+		} else {
+			$.get('/mailshare/rotate/imagePath/{0}/rotate/left'.format(encodeURIComponent(imagePath)), function (responseText) {
+					$('img', $aImg).attr('src', src + '&hash=' + responseText);
+			    }
+			);
+		}
 		
 	});
 	

@@ -7,8 +7,8 @@
 	<div class="image-region">
 	<?php foreach($form->getRecord()->getImagesWebUri() as $image): ?>
 		<div>
-		<a data-image-path="<?php echo DOC_ROOT . $image; ?>" href="#" class="ss_sprite ss_arrow_rotate_clockwise clockwise">&nbsp;</a>
 		<a data-image-path="<?php echo DOC_ROOT . $image; ?>" href="#" class="ss_sprite ss_arrow_rotate_anticlockwise anticlockwise">&nbsp;</a>
+		<a data-image-path="<?php echo DOC_ROOT . $image; ?>" href="#" class="ss_sprite ss_arrow_rotate_clockwise clockwise">&nbsp;</a>
 		<br />
 		<a class="image" href="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=600"><img src="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=200&amp;h=200&amp;iar=1" /></a>
 		</div>

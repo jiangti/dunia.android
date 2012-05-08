@@ -1,8 +1,17 @@
 <?php
 class Service_Mailshare {
+	const LEFT = -90;
+	const RIGHT = 90;
 	public function delete($id) {
 		$row = Model_DbTable_MailShare::retrieveById($id);
 		$row->delete();
+	}
+	
+	public function rotateImage($imagePath, $angle = self::LEFT) {
+		$filePath = $imagePath;
+		$image = imagecreatefromjpeg($filePath);
+		$rotate = imagerotate($image, $angle, 0);
+		imagejpeg($rotate, $filePath);
 	}
 	
 	/**
