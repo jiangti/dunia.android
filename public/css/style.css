@@ -229,7 +229,7 @@ h1 {
   overflow: auto;
 }
 /* line 226, sass/style.scss */
-.pub-overview .addthis_toolbox a {
+.pub-overview .addthis_toolbox > a {
   margin: 5px;
   display: block;
   float: none;

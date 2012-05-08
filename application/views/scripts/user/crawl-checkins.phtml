@@ -1,0 +1,174 @@
+<?php $address = $this->pub->address; ?>
+
+<div class="pub-overview container_12 content">
+
+    <div class="grid_8">
+        <h1><?php echo $this->pub->name; ?></h1>
+        
+        <?php 
+            $days   = Model_Day::$daysName; 
+            $promos = $this->pub->getPromosByDay();
+        ?>
+        <!-- <a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">Add Deal</a> -->
+        <table id="promos" class="generic" cellspacing="1px" cellpadding="0px" border="0">
+            
+            <thead>
+                <tr>
+                    <?php foreach ($days as $day): ?>
+                        <th><?php echo $day; ?></th>
+                    <?php endforeach; ?>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <?php foreach ($days as $dayInt => $day): ?>
+                    <td width="<?php echo (1/sizeof($days)) * 100; ?>%">
+                    <?php if (isset($promos[$dayInt])) {
+                        foreach ($promos[$dayInt] as $promo): ?>
+                            <div class="promo">
+                                <div class="time">
+                                    <?php echo $this->formatDate($promo->timeStart, 'H:i'); ?> - <?php echo $this->formatDate($promo->timeEnd, 'H:i'); ?>
+                                </div>
+                                <div class="promoContent"><strong><?php echo $this->currency($promo->price); ?></strong><br />
+                                    <?php foreach ($promo->getLiquorTypes() as $liquor) {
+                                        echo ' ' . $liquor->name;
+                                        $size = $promo->getLiquorSizes();
+                                        foreach ($size as $s) {
+                                            echo ' (' . $s['name'] . ')';
+                                        }
+                                        echo '<div class="promoDescription">' . $promo->description . '</div>';
+                                    } ?>
+                                </div> 
+                            </div>
+                        <?php endforeach; ?>
+                    <?php } ?>
+                    </td>
+                <?php endforeach; ?>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="flag">
+            <a href="#" title="Report a problem">Report incorrect data</a>
+        </div>
+
+        <?php
+        $images = $this->pub->getImageLinks();
+
+        if (count($images)) : ?>
+        <div id="photos">
+            <h2>Photos</h2>
+            <ul>
+                <?php
+                foreach ($images as $img) {
+                    echo '<li>
+                        <a href="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=600&amp;ar=x">
+                            <img class="venuePic" src="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=125&amp;h=125&amp;zc=1&amp;ar=x"/>
+                        </a>
+                        </li>';
+                } ?>
+            </ul>
+        </div>
+        <?php endif; ?>
+
+
+
+        <?php 
+        $tips = $this->pub->getTips();
+        if (count($tips)): ?>
+
+        <div id="tips">
+            <h2>Tips
+                <div class="right">
+                    <img src="/img/icons/social/poweredByFoursquare_gray.png" width="128" height="14" />
+                    </div>
+            </h2>
+
+            <ul>
+                <?php foreach ($tips as $tip) { ?>
+                    <li>
+                        <div class="tip-container">
+                        <div class="author">
+                            <?php $data = json_decode($tip->data); ?>
+                            <div>
+                                <a href="<?php echo $data->user->canonicalUrl;?>">
+                                    <img src="<?php echo $data->user->photo;?>" width="60" height="60"/>
+                                </a>
+                            </div>
+                            <div class="name""><?php echo (isset($data->user->firstName) ? $data->user->firstName : '') . ' ' . (isset($data->user->lastName) ? $data->user->lastName : ''); ?></div>
+                            <div class="from"><?php echo '(' . $data->user->homeCity . ')'; ?></div>
+                        </div>
+                        <div class='tip'>
+                            <?php echo $tip->text; ?>
+                        </div>
+                        </div>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+        <?php endif;?>
+        
+    </div>
+
+    <div class="grid_4 sidebar omega" style="width:310px">
+        <div>
+            <div id="map_canvas" style="width: 100%; height: 200px;"></div>
+            <div class="contact">
+                <span class="address"><?php echo $address->formatOutput(); ?></span>
+    			<a href="<?php echo $this->pub->url; ?>"><?php echo $this->pub->url; ?></a>
+    			<a href="mailto:<?php echo $this->pub->email; ?>"><?php echo $this->pub->email; ?></a>
+    		</div>
+        </div>
+
+        <div class="addthis_toolbox addthis_default_style ">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+            <a class="addthis_counter addthis_pill_style"></a>
+        </div>
+        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f93fc3233f490f0"></script>
+    </div>
+</div>
+
+<div id="dialog"></div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+ 
+    var center = new google.maps.LatLng(parseFloat(<?php echo $address->latitude; ?>), parseFloat(<?php echo $address->longitude; ?>));
+    var myOptions = {
+        zoom: 16,
+        center: center,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+    new google.maps.Marker({
+        map: map,
+        position: center    
+    });
+
+    $('#dialog').dialog({
+        autoOpen: false,
+        width: 650,
+        position: ['center', 100]
+    });
+
+    $("#flag a").click(function() {
+        $.ajax({
+            url: '/pub/flag',
+            data: {idPub: <?php echo $this->pub->id; ?>},
+            success: function (data) {
+                $('#dialog').html(data);
+                $('#dialog').dialog('open');
+            }
+        })
+        return false;
+    });
+
+    $('#photos a').lightBox();
+
+});
+</script>
