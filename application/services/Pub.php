@@ -225,18 +225,13 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	}
     	
     	 
-    	if (time() > strtotime('11am')) {
-    		$expr = new Zend_Db_Expr(sprintf("CASE
-    				WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
-    				WHEN '%s' < p0.timeStart THEN 'later'
-    				WHEN '%s' > p0.timeEnd THEN 'earlier'
-    				ELSE 'none'
-    				END", $hour, $hour, $hour));
-    	
-    	} else {
-    		$expr = new Zend_Db_Expr('"later"');
-    	}
-    	 
+        $expr = new Zend_Db_Expr(sprintf("CASE
+                WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
+                WHEN '%s' < p0.timeStart THEN 'later'
+                WHEN '%s' > p0.timeEnd THEN 'earlier'
+                ELSE 'none'
+                END", $hour, $hour, $hour));
+
     	$select
 	    	->join(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array('idPub'))
 	    	->join(array('p0' => 'promo'), 'p0.id = php.idPromo',
