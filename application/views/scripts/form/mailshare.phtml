@@ -1,0 +1,21 @@
+<?php $form = $this->element; ?>
+<div>
+	<form action="<?php echo $form->getAction(); ?>" method="post">
+	<?php echo $form->subject; ?>
+	<?php echo $form->hidden; ?>
+	<?php echo $form->id; ?>
+	<div class="image-region">
+	<?php foreach($form->getRecord()->getImagesWebUri() as $image): ?>
+		<div>
+		<a data-image-path="<?php echo DOC_ROOT . $image; ?>" href="#" class="ss_sprite ss_arrow_rotate_anticlockwise anticlockwise">&nbsp;</a>
+		<a data-image-path="<?php echo DOC_ROOT . $image; ?>" href="#" class="ss_sprite ss_arrow_rotate_clockwise clockwise">&nbsp;</a>
+		<br />
+		<a class="image" href="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=600"><img src="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=200&amp;h=200&amp;iar=1" /></a>
+		</div>
+	<?php endforeach; ?>
+	</div>
+	<dd id="submit-element">
+	<input type="submit" value="Submit" id="submit" name="submit"> <a href="#" class="delete" data-mail="<?php echo $form->getRecord()->id; ?>">Delete</a>
+	</dd>
+	</form>
+</div>

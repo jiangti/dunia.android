@@ -26,6 +26,12 @@ abstract class Aw_Form_Abstract extends Zend_Form {
 		} else {
 			throw new Exception('An uninitialized Row has been passed in.');
 		}
+		
+		$this->setDefaults($record->toArray());
+	}
+	
+	public function getRecord() {
+		return $this->_record;
 	}
 	
 	

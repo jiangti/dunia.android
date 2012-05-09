@@ -1,57 +1,77 @@
-<div class="container_12">
+<?php $this->headScript()
+	->appendFile($this->baseUrl('js/jquery.form.js'));
+?>
+
+<div class="container_12" id="mailshare">
+
 <div class="grid_12">
 <p>Note: Use this only for merging pictures, because merging all data could be hard and i ain't good programmer.</p>
 </div>
-	<div class="grid_12">
-	<table border="1" width="100%" cellspacing="0" cellpadding="1" id="mail-share">
-		<thead>
-			<tr>
-				<th>Subject</th>
-				<th>Images</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-		<?php foreach($this->emailShares as $mail): ?>
-			<tr>
-				<td>
-					<p><?php echo $this->escape($mail->from); ?></p>
-					<input value="<?php echo $mail->subject; ?>" name="name" /></td>
-				<td>
-					<?php foreach($mail->getImages() as $image): ?>
-						<img src="<?php echo $this->webUrl($image); ?>" width="200px" heigt="200px" />
-					<?php endforeach; ?>
-				</td>
-				<td data-mail="<?php echo $mail->id; ?>">
-					<a href="#" class="ss_sprite ss_delete delete"></a>
-					<a href="#" class="ss_sprite ss_arrow_join join"></a>
-					<a href="#" class="ss_sprite ss_add add"></a>
-				</td>
-			</tr>
-		<?php endforeach; ?>
-		</tbody>
-	</table>
+
+<?php foreach($this->forms as $index => $form): ?>
+	<div class="grid_4" >
+		<?php echo $form; ?>
 	</div>
+<?php endforeach; ?>
+	
 </div>
 <script type="text/javascript">
 <!--
 $().ready(function() {
-	var $table = $('#mail-share');
-	$("input[name='name']", $table).autocomplete({
+	var $table = $('#mailshare');
+	$("input[name='subject']", $table).autocomplete({
 		source: '/pub/search/format/json',
 		select: function (event, ul) {
-			//document.location = '/pub/share/id/' + ul.item.id;
+			var $this = $(this);
+			$form = $this.parents('form');
+			$('input[name="hidden"]', $form).val(ul.item.id);
+			$('input[type="submit"]', $form).enable(true);
 		}
 	});
 	
+	$('form', $table).ajaxForm({success: function(responseText, statusText, xhr, $form) {
+		var data = jQuery.parseJSON(responseText);
+		$('.delete', $form).unbind('click').html('<a target="_blank" href="<?php echo $this->url(array('action' => 'share', 'controller' => 'pub', 'id' => '')); ?>' + data.id + '">Go to Pub Edit Page</a>');
+	}});
 	
-	$(".delete", $table).click(function() {
+	$('input[type="submit"]', $table).enable(false);
+	
+	$(".delete").click(function(e) {
+		e.preventDefault();
 		var $this = $(this);
-		var id = $this.parent().attr('data-mail');
+		var id = $this.attr('data-mail');
 		$.get('/mailshare/delete/id/' + id);
-		$this.parents('tr').remove();
-		return false;
+		$this.parents('div.grid_6').fadeOut();
 	});
+
+	$('#mailshare form .image-region a.image').lightBox({fixedNavigation:true});
+
+	$('#mailshare .clockwise, #mailshare .anticlockwise').click(function(e) {
+		e.preventDefault();
+		
+		var $this = $(this);
+		
+		var imagePath = $this.attr('data-image-path');
+
+		var $aImg = $this.siblings('a.image');
+
+		var src = $('img', $aImg).attr('src');
+
+
+		if ($this.hasClass('clockwise')) {
+			$.get('/mailshare/rotate/imagePath/{0}/rotate/right'.format(encodeURIComponent(imagePath)), function (responseText) {
+					$('img', $aImg).attr('src', src + '&hash=' + responseText);
+				}
+			);
+		} else {
+			$.get('/mailshare/rotate/imagePath/{0}/rotate/left'.format(encodeURIComponent(imagePath)), function (responseText) {
+					$('img', $aImg).attr('src', src + '&hash=' + responseText);
+			    }
+			);
+		}
+		
+	});
+	
 });
 //-->
 </script>

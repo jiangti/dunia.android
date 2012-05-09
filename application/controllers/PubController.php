@@ -8,7 +8,23 @@ class PubController extends Zend_Controller_Action
 	
 	public function emailAction() {
 		$table = new Model_DbTable_MailShare();
-		$this->view->emailShares = $table->fetchAll();
+		$emailShares = $table->fetchAll('dateProcessed is null');
+		
+		$forms = array();
+		
+		foreach ($emailShares as $emailShare) {
+			
+			$form = new Form_MailShare();
+			$form->setAction($this->view->url(array('controller' => 'mailshare', 'action' => 'merge')));
+			$form->setRecord($emailShare);
+			
+			$forms[] = $form;
+		}
+		
+		
+		$this->view->forms = $forms;
+		
+		
 	}
 	
 	public function searchAction() {

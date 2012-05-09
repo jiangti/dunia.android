@@ -9,7 +9,13 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
         	'refColumns'    => 'id'
         ),
     );
-
+    
+    public function mergeMailShare(Model_DbTable_Row_MailShare $mailshare) {
+    	foreach ($mailshare->getImages() as $image) {
+	    	$this->addImage($image);
+    	}
+    }
+    
 	public function setAddress(Model_DbTable_Row_Address $address) {
 	    // This should copy over and reuse the existing record.
 	    if ($address1 = $this->findParentRow(new Model_DbTable_Address())) {
@@ -135,10 +141,31 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 	    return $this->_address;
 	}
 	
+	public function getImageDirectory() {
+		$directory = sprintf(APPLICATION_ROOT . '/public/images/pub/%d', $this->id);
+		if (!file_exists($directory)) {
+			mkdir($directory, 0777, true);
+		}
+		return $directory;
+	}
+	
+	public function addImage($fullPath) {
+		$directory = $this->getImageDirectory();
+		copy($fullPath, $directory . '/' . basename($fullPath));
+	}
+	
 	public function getImages() {
-		$files = glob(APPLICATION_ROOT . sprintf('/public/images/pub/%d/*', $this->id));
+		$files = glob($this->getImageDirectory() . '/*');
 		foreach ($files as $index => $file) {
 			$files[$index] = basename($file);
+		}
+		return $files;
+	}
+	
+	public function getImagesWebUri() {
+		$files = glob($this->getImageDirectory() . '/*');
+		foreach ($files as $index => $image) {
+			$files[$index] = str_replace(DOC_ROOT, '', $image);
 		}
 		return $files;
 	}

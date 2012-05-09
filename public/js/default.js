@@ -47,12 +47,13 @@ $(document).ready(function() {
      * Rounded divs
      */
     $('.rounded').corner();
-
-//    $.ajaxSetup({
-//    	success : function(data) {
-//    		alert('la');
-//    		$('.rounded').corner();
-//    	}
-//    });
 });
+
+String.prototype.format = function() {
+    var formatted = this;
+    for(arg in arguments) {
+        formatted = formatted.replace("{" + arg + "}", arguments[arg]);
+    }
+    return formatted;
+};
 

@@ -35,11 +35,11 @@ class Bootstrap extends Aw_BootstrapAbstract {
         	->headScript()
         	->prependFile('/contrib/jquery-ui-1.8.17.custom/js/jquery-1.7.1.min.js')
         	->appendFile( '/contrib/jquery-ui-1.8.17.custom/js/jquery-ui-1.8.17.custom.min.js')
+        	->appendFile( 'http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places')
         	->appendFile( '/js/jquery.corner.js')
+        	->appendFile( '/js/default.js')
         	->appendFile( '/js/jquery.sticky.js')
         	->appendFile( '/js/formalize/jquery.formalize.js')
-            ->appendFile('http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places')
-            ->appendFile('/js/jquery.ui.map.full.min.js')
         ;
         
         Zend_Paginator::setDefaultScrollingStyle('Sliding');

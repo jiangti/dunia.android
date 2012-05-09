@@ -5,6 +5,14 @@ class Model_DbTable_Row_MailShare extends Model_DbTable_Row_RowAbstract {
 		return glob($wildcard);
 	}
 	
+	public function getImagesWebUri() {
+		$images = $this->getImages();
+		foreach ($images as $index => $image) {
+			$images[$index] = str_replace(DOC_ROOT, '', $image);
+		}
+		return $images;
+	}
+	
 	public function _delete() {
 		$path = $this->getImageDirectory();
 		if (file_exists($path)) {
