@@ -3,7 +3,21 @@ class PubProvider extends Aw_Tool_Framework_ProviderAbstract {
 	
 	public function importMailShare() {
 		$service = new Service_Share_Mail();
-		$service->fetch();
+		if ($count = $service->fetch()) {
+			/*
+			$mail = new Zend_Mail();
+
+			$mail
+				->addTo('jiangti.wan.leong@gmail.com', 'Wan-Leong Jiangti')
+				->addTo('victorgarciagonzalez@gmail.com', 'Víctor García')
+				->setSubject($subject)
+				->setBodyHtml($html)
+				->send()
+			;
+			*/
+		}
+	}
+	
 	public function discoverMergeAction() {
 		
 		$discoverTable = new Model_DbTable_Discover();
