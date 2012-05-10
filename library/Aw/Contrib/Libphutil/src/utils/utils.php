@@ -56,7 +56,6 @@ function idx(array $array, $key, $default = null) {
   return array_key_exists($key, $array) ? $array[$key] : $default;
 }
 
-
 /**
  * Call a method on a list of objects. Short for "method pull", this function
  * works just like @{function:ipull}, except that it operates on a list of

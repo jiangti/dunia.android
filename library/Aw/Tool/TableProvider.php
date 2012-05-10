@@ -5,12 +5,16 @@ class Aw_Tool_TableProvider extends Zend_Tool_Framework_Provider_Abstract implem
 
 	public function createAction(
 		$tableName,
-		$namespace = null,
-		$abstractNamespace = null) {
+		$abstractNamespace = 'Aw_Table_TableAbstract') {
+		
+		$namespace = 'Aw_Table_';
+		
+		$db = Zend_Db_Table::getDefaultAdapter();
 
-		if (!$namespace) {
-			$namespace = $this->_namespace;
-		}
+		$info = $db->describeTable($tableName);
+		
+		$primaryKey = $this->_parsePrimaryKey($info);
+		
 
 		if (!$abstractNamespace) {
 			$abstractNamespace = $this->_abstractNamespace;
@@ -27,12 +31,14 @@ class Aw_Tool_TableProvider extends Zend_Tool_Framework_Provider_Abstract implem
 			array(
 	            'name'         => '_primary',
 	            'visibility'   => 'protected',
-	            'defaultValue' => 'id',
+	            'defaultValue' => current($primaryKey),
 	        ),
 		));
 
-		$table->setExtendedClass($abstractNamespace . '_Abstract');
-		echo $table->generate();
+		$table->setExtendedClass($abstractNamespace);
+		$class = $table->generate();
+		$class = '<?php' . PHP_EOL . $class;
+		file_put_contents(APPLICATION_ROOT . '/application/models/DbTable/' . ucwords($tableName) . '.php', $class);
 	}
 
 	public function rowAction() {
@@ -41,5 +47,17 @@ class Aw_Tool_TableProvider extends Zend_Tool_Framework_Provider_Abstract implem
 
 	public function rowsetAction() {
 
+	}
+	
+	private function _parsePrimaryKey($info) {
+		$primary = array();
+		
+		foreach ($info as $i) {
+			if ($i['PRIMARY']) {
+				$primary[] = $i['COLUMN_NAME'];
+			}
+		}
+		
+		return $primary;
 	}
 }

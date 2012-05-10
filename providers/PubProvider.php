@@ -3,7 +3,49 @@ class PubProvider extends Aw_Tool_Framework_ProviderAbstract {
 	
 	public function importMailShare() {
 		$service = new Service_Share_Mail();
-		$service->fetch();
+		if ($count = $service->fetch()) {
+			/*
+			$mail = new Zend_Mail();
+
+			$mail
+				->addTo('jiangti.wan.leong@gmail.com', 'Wan-Leong Jiangti')
+				->addTo('victorgarciagonzalez@gmail.com', 'Víctor García')
+				->setSubject($subject)
+				->setBodyHtml($html)
+				->send()
+			;
+			*/
+		}
+	}
+	
+	public function discoverMergeAction() {
+		
+		$discoverTable = new Model_DbTable_Discover();
+		
+		$select = $discoverTable->select(true);
+		$select
+			->setIntegrityCheck(false)
+			->joinLeft(array('p' => 'pub'), 'p.idFoursquare = discover.id', array())
+			->where('p.id is null')
+		;
+		
+		$service = new Service_Pub();
+		
+		$keys = array();
+		
+		$rows = $discoverTable->fetchAll($select);
+		
+		$progress = new Aw_ProgressBar(new Aw_ProgressBar_Adapter_Console(), 0, count($rows));
+		
+		foreach ($rows as $discover) {
+			$array = $discover->toArray();
+			if ($json  = json_decode($array['json'])) {
+				$service->createPubFromDiscover($discover);
+			}
+			$progress->next();
+		}
+		
+		$progress->finish();
 	}
 	
     /**

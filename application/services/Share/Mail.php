@@ -33,7 +33,10 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 			}
 		}
 		
+		$count = 0;
+		
 		foreach ($uniqueIds as $index => $uniqueId) {
+			$count++;
 			$mail->moveMessage($mail->getNumberByUniqueId($uniqueId), 'Parsed');
 			if ($index % 5 == 0) {
 				$mail->noop();
@@ -43,7 +46,7 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 			
 		unset($mail);
 		
-		
+		return $count;
 		
 	}
 	

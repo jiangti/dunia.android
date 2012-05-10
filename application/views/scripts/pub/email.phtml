@@ -41,7 +41,7 @@ $().ready(function() {
 		var $this = $(this);
 		var id = $this.attr('data-mail');
 		$.get('/mailshare/delete/id/' + id);
-		$this.parents('div.grid_6').fadeOut();
+		$this.parents('div.grid_4').fadeOut();
 	});
 
 	$('#mailshare form .image-region a.image').lightBox({fixedNavigation:true});

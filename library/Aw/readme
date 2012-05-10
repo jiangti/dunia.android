@@ -1,0 +1,5 @@
+Setup your environment to phpcs and php-lint
+
+cd .git/hooks
+ln -s ../../library/Choc/Git/Hook/*
+cd ../../
