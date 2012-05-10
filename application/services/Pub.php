@@ -1,6 +1,7 @@
 <?php
 class Service_Pub extends Aw_Service_ServiceAbstract
 {
+	protected static $_categories = array('Pub', 'Bar');
 
     protected $_promoFields = array('timeStart', 'timeEnd', 'price', 'liquorType', 'liquorSize');
 
@@ -8,47 +9,61 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	
     	$data = json_decode($discover->json);
     	
-    	$db = Zend_Db_Table_Abstract::getDefaultAdapter();
+    	$goOn = false;
     	
-    	try {
-	    	$db->beginTransaction();
-	    	
-	    	$location = $data->location;
-	    	
-	    	$addressArray = array(
-	    		'address1'  => (isset($location->address) ? $location->address : null),
-	    		'city' 	    => (isset($location->city) ? $location->city : null),
-	    		'postcode'  => (isset($location->postalCode) ? $location->postalCode: null),
-	    		'town'      => (isset($location->city) ? $location->city : null),
-	    		'state'     => (isset($location->state) ? $location->state : null),
-	    		'country'   => $location->country,
-	    		'latitude'  => $location->lat,
-	    		'longitude' => $location->lng,
-	    	);
-	    	
-	    	$address = Model_DbTable_Address::getRow($addressArray);
-	    	
-	    	$address->save();
-	    	
-	    	$array = array();
-	    	$array['name'] 		= $data->name;
-	    	$array['idAddress'] = $address->id;
-	    	$array['url'] 		= (isset($data->url) ? $data->url : null);
-	    	$array['idFoursquare'] = $data->id;
-	    	$array['validated'] = $data->verified;
-	    	$array['twitter'] 	= (isset($data->contact->twitter) ? $data->contact->twitter: null);
-	    	$array['telephone'] = (isset($data->contact->phone) ? $data->contact->phone: null);
-	    	
-	    	$row = Model_DbTable_Pub::getRow($array);
-	    	
-	    	$row->save();
-	    	$db->commit();
-    		
-    	} catch (Exception $e) {
-    		
-	    	$db->rollBack();
+    	foreach ($data->categories as $category) {
+    		if (in_array($category->name, self::$_categories)) {
+    			$goOn = true;
+    			break;
+    		}
     	}
     	
+    	if ($goOn) {
+	    	
+	    	$db = Zend_Db_Table_Abstract::getDefaultAdapter();
+	    	
+	    	try {
+		    	$db->beginTransaction();
+		    	
+		    	$location = $data->location;
+		    	
+		    	$addressArray = array(
+		    		'address1'  => (isset($location->address) ? $location->address : null),
+		    		'city' 	    => (isset($location->city) ? $location->city : null),
+		    		'postcode'  => (isset($location->postalCode) ? $location->postalCode: null),
+		    		'town'      => (isset($location->city) ? $location->city : null),
+		    		'state'     => (isset($location->state) ? $location->state : null),
+		    		'country'   => $location->country,
+		    		'latitude'  => $location->lat,
+		    		'longitude' => $location->lng,
+		    	);
+		    	
+		    	
+		    	
+		    	$address = Model_DbTable_Address::getRow($addressArray);
+		    	
+		    	$address->save();
+		    	
+		    	$array = array();
+		    	$array['name'] 		= $data->name;
+		    	$array['idAddress'] = $address->id;
+		    	$array['url'] 		= (isset($data->url) ? $data->url : null);
+		    	$array['idFoursquare'] = $data->id;
+		    	$array['validated'] = $data->verified;
+		    	$array['twitter'] 	= (isset($data->contact->twitter) ? $data->contact->twitter: null);
+		    	$array['telephone'] = (isset($data->contact->phone) ? $data->contact->phone: null);
+		    	
+		    	$row = Model_DbTable_Pub::getRow($array);
+		    	
+		    	$row->save();
+		    	$db->commit();
+	    		
+	    	} catch (Exception $e) {
+	    		
+		    	$db->rollBack();
+	    	}
+    	
+    	}
     	
     }
     
