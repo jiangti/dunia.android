@@ -16,7 +16,7 @@ class Model_DbTable_Row_MailShare extends Model_DbTable_Row_RowAbstract {
 	public function _delete() {
 		$path = $this->getImageDirectory();
 		if (file_exists($path)) {
-			Aw_FileSystem::rmdir();
+			Aw_FileSystem::rmdir($path);
 		}
 	}
 	

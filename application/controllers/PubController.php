@@ -36,8 +36,8 @@ class PubController extends Zend_Controller_Action
 		foreach ($rows as $row) {
 			$data[] = array(
 				'id' => $row->id,
-				'label' => $row->name,
-				'value' => $row->name,
+				'label' => sprintf("%s - %s", $row->name, $row->getAddress()->town),
+				'value' => sprintf("%s - %s", $row->name, $row->getAddress()->town),
 			);
 		}
 		echo json_encode($data);
