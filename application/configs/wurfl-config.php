@@ -7,17 +7,12 @@ $configuration = array(
        'patches' => array($resourcesDir  . 'web_browsers_patch.xml'),
     ),
     'allow-reload' => true,
-//    'persistence' => array(
-//        'provider' => "file",
-//        'params' => array(
-//            'dir' => $resourcesDir  . '/cache/',
-//        ),
-//    ),
+
+    'persistence' => array(
+        'provider' => "memcache",
+    ),
+
     'cache' => array(
-        'provider' => "mysql",
-        'params' => array(
-            'user'     => "root",
-            'db'       => "thirst_dev"
-        )
+        'provider' => "memcache",
     ),
 );
