@@ -365,3 +365,34 @@ p.when {
   width: 45%;
   display: inline-block;
 }
+
+/* jQuery Mobile theme */
+/* line 340, sass/mobile.scss */
+.ui-bar-a {
+  border: 1px solid 		#009ec3;
+  background: #009ec3;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: #27c 0 1px 0;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#00b7ea), to(#009ec3));
+  background-image: -webkit-linear-gradient(#00b7ea, #009ec3);
+  background-image: -moz-linear-gradient(#00b7ea, #009ec3);
+  background-image: -ms-linear-gradient(#00b7ea, #009ec3);
+  background-image: -o-linear-gradient(#00b7ea, #009ec3);
+  background-image: linear-gradient(#00b7ea, #009ec3);
+}
+/* line 353, sass/mobile.scss */
+.ui-bar-a h1 {
+  line-height: 30px;
+  vertical-align: middle;
+}
+
+/* line 359, sass/mobile.scss */
+div[data-role='header'] {
+  height: 52px;
+}
+
+/* line 363, sass/mobile.scss */
+.navButton {
+  margin: 9px 10px;
+}

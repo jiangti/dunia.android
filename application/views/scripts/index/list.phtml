@@ -16,8 +16,8 @@
                     geocoder.geocode({'latLng': latlng}, function(results, status) {
                         if (status == google.maps.GeocoderStatus.OK) {
                             if (results[0]) {
-
-                                $("#footer").html("<p>Near " + results[0].formatted_address + '</p>');
+                                var components = results[0].address_components;
+                                $("#footer").html("<p>Near " + components[0].long_name + ' ' + components[1].long_name + ', ' + components[2].long_name + '</p>');
                             }
                         }
                     });
