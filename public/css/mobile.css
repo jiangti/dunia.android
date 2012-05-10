@@ -203,12 +203,12 @@ a.not-favorite {
 .indexDeal {
   font-weight: normal;
   margin-left: 20px;
-  line-height: 25px;
-  height: 25px;
+  line-height: 37px;
+  height: 37px;
 }
 /* line 190, sass/mobile.scss */
 .indexDeal img {
-  margin: auto;
+  margin: 0;
 }
 
 /**
