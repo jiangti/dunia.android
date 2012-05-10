@@ -16,6 +16,10 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	public $validated;
 
 	public $idAddress;
+	
+	public $twitter;
+	
+	public $telephone;
 
 
 	public function setAddress(Model_Address $address) {
