@@ -184,11 +184,11 @@ a {
 .indexDeal {
     font-weight: normal;
     margin-left: 20px;
-    line-height: 25px;
-    height: 25px;
+    line-height: 37px;
+    height: 37px;
 
     img {
-      margin: auto;
+      margin: 0;
     }
 }
 
@@ -334,4 +334,32 @@ p.when {
 .ui-select {
   width: 45%;
   display: inline-block;
+}
+
+/* jQuery Mobile theme */
+.ui-bar-a {
+  border: 1px solid 		#009ec3 ;
+  background: 			    #009ec3 ;
+  color: 					#ffffff ;
+  font-weight: bold;
+  text-shadow: #27c 0 1px 0 ;
+  background-image: -webkit-gradient(linear, left top, left bottom, from( #00b7ea ), to( #009ec3 ));
+  background-image: -webkit-linear-gradient( #00b7ea , #009ec3 );
+  background-image:    -moz-linear-gradient( #00b7ea , #009ec3 );
+  background-image:     -ms-linear-gradient( #00b7ea , #009ec3 );
+  background-image:      -o-linear-gradient( #00b7ea , #009ec3 );
+  background-image:         linear-gradient( #00b7ea , #009ec3 );
+
+  h1 {
+    line-height: 30px;
+    vertical-align: middle;
+  }
+}
+
+div[data-role='header'] {
+  height: 52px;
+}
+
+.navButton {
+    margin: 9px 10px;
 }

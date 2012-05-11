@@ -44,9 +44,10 @@
 
 <div data-role="page" id="deals">
 	<div class="home" data-role="header">
-		<a href="/" data-icon="home" data-transition="pop">Home</a>
+        <a href="/" class="navButton" data-role="none" data-transition="slide">
+            <img src="/img/icons/navbar/53-house-shadow.png" width="24" height="28" />
+        </a>
 		<h1><?php echo $this->pub->name; ?></h1>
-		<a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">+ Deal</a>
     </div>
 	
 	<div data-role="content">
@@ -95,9 +96,10 @@
 
 <div data-role="page" id="maptab" style="height:100%;">
 	<div class="home" data-role="header">
-		<a href="/" data-icon="home" data-transition="slide">Home</a>
+        <a href="/" class="navButton" data-role="none" data-transition="slide">
+            <img src="/img/icons/navbar/53-house-shadow.png" width="24" height="28" />
+        </a>
 		<h1><?php echo $this->pub->name; ?></h1>
-        <a href="#" data-icon="forward" rel="external" id="directions">Directions</a>
     </div>
 	
 	<div data-role="content" style="height:100%;margin: 0;padding: 0">
