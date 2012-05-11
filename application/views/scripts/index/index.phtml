@@ -1,4 +1,5 @@
 
+
 <div id="header" style="margin: 0;">
     <a style="float: left;" id="logo" href="/">Dunia</a>
 	<div style="margin: 3px; float: left;">
@@ -12,17 +13,17 @@
 <div id="map_canvas" style="height:95%;"></div>
 
 <div id="bottom-info-bar">
-	<div class="left summary">
-		<script type="text/x-handlebars">
-  			<a href=""><img src="/img/icons/markers/full_sml.png" />{{MyApp.summary.later}}</a>
-			<a href=""><img src="/img/icons/markers/half_sml.png" />{{MyApp.summary.now}}</a>
-			<a href=""><img src="/img/icons/markers/empty_sml.png" />{{MyApp.summary.earlier}}</a>
-			<a href=""><img src="/img/icons/markers/beer_sml.png" />{{MyApp.summary.none}}</a>
+	<div class="left summary" id="summary-bar">
+		<script type="text/x-handlebars" data-template-name="summary-bar">
+    		<a href="#"><img src="/img/icons/markers/full_sml.png" />{{summary.later}}</a>
+    		<a href="#"><img src="/img/icons/markers/half_sml.png" />{{summary.now}}</a>
+    		<a href="#"><img src="/img/icons/markers/empty_sml.png" />{{summary.earlier}}</a>
+    		<a href="#"><img src="/img/icons/markers/beer_sml.png" />{{summary.none}}</a>
 		</script>
 	</div>
 	<div class="left">
     <!-- AddThis Button BEGIN -->
-	<div class="addthis_toolbox addthis_default_style ">
+	<div class="addthis_toolbox addthis_default_style">
         <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
         <a class="addthis_button_tweet"></a>
         <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
@@ -52,6 +53,13 @@ MyApp.summary = Em.Object.create({
 	  earlier: 0,
 	  none: 0
 	});
+
+var view = Ember.View.create({
+	  templateName: 'summary-bar',
+	  summary: MyApp.summary
+});
+
+view.appendTo('#summary-bar');
 
 function cleanMarkers() {
     if (thirsty.mapMarkers) {
@@ -104,9 +112,6 @@ function setMarkers(data) {
 
         MyApp.summary.set(type, MyApp.summary.get(type) + 1);
                 
-        
-        
-
         var mapMarker = new google.maps.Marker({
             map: thirsty.map,
             position: point,
