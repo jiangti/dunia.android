@@ -44,9 +44,9 @@ class MapController extends Model_Controller_Action {
 		
 		$bound = new Model_Location_Bound();
 		$bound->nelat  = $nelat;
-		$bound->nelong = $nelong;
+		$bound->nelng  = $nelong;
 		$bound->swlat  = $swlat;
-		$bound->swlong = $swlong;
+		$bound->swlng  = $swlong;
 		
 		$pubs = $pubService->findPomoWithNoDealPub($lat, $long, null, null, null, $bound);
 		

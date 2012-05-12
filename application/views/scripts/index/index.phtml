@@ -41,6 +41,7 @@
 thirsty.long = '<?php echo $this->long; ?>';
 thirsty.lat = '<?php echo $this->lat; ?>';
 thirsty.mapMarkers = [];
+thirsty.data = null;
 
 function cleanMarkers() {
     if (thirsty.mapMarkers) {
@@ -48,10 +49,17 @@ function cleanMarkers() {
             thirsty.mapMarkers[i].setMap(null);
         }
     }
+
+	MyApp.summary.set('earlier', 0);
+	MyApp.summary.set('now', 0);
+	MyApp.summary.set('later', 0);
+	MyApp.summary.set('none', 0);
+    
 }
 
 function setMarkers(data) {
     cleanMarkers();
+
     var markers = data;
 
     var customIcons = {
@@ -121,7 +129,6 @@ function setMarkers(data) {
 
 $(document).ready(function() {
 
-
 	MyApp = Ember.Application.create();
 	MyApp.summary = Em.Object.create({
 		now: 0,
@@ -169,10 +176,6 @@ $(document).ready(function() {
 
     thirsty.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-    google.maps.event.addListener(thirsty.map, 'dragend', function(event) {
-    	console.log(thirsty.map.getBounds().getNorthEast());
-    });
-    
     google.maps.event.addListener(thirsty.map, 'tilesloaded', function(event) {
       $.ajax({
     	success: function(data) {
@@ -193,20 +196,5 @@ $(document).ready(function() {
             icon: '/img/icons/markers/beer.png'
         }
     };
-      
-
-  
-
-//    $("#searchForm").submit(function() {
-//        $.ajax({
-//            success: function(data) {
-//                //setMarkers(data);
-//            },
-//            url: '/map/search/q/' + $("#location").val(), dataType: 'json'
-//        });
-//
-//        return false;
-//    });
-
 });
 </script>

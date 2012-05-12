@@ -231,18 +231,18 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	 */
     	
     	if ($bound) {
+    		$x1 = $bound->nelat;
+    		$x0 = $bound->swlat;
+    		
+    		$y1 = $bound->nelng;
+    		$y0 = $bound->swlng;
+    		
+    	} else {
 	    	$x0 = $latitude  - 0.01;
 	    	$x1 = $latitude  + 0.01;
 	    	
 	    	$y0 = $longitude - 0.01;
 	    	$y1 = $longitude + 0.01;
-    		
-    	} else {
-    		$x0 = $bound->nelat;
-    		$x1 = $bound->nelng;
-    		 
-    		$y0 = $bound->swlat;
-    		$y1 = $bound->swlng;
     	}
     	
     	$select = $pubTable->select()
@@ -259,6 +259,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 	    	->where(sprintf('a.latitude between %s and %s', $x0, $x1))
 	    	->where(sprintf('a.longitude between %s and %s', $y0, $y1))
     	;
+    	
     	return $select;
     }
     /**
