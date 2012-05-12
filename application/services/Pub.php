@@ -223,18 +223,27 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     /**
      * @return Zend_Db_Table_Select
      */
-    protected function _getPubSelect($latitude, $longitude) {
+    protected function _getPubSelect($latitude, $longitude, Model_Location_Bound $bound = null) {
     	$pubTable = new Model_DbTable_Pub();
     	 
     	/**
     	 * Avoid entire table scan when we are only looking for walking distance of 4 km.
     	 */
-    	 
-    	$x0 = $latitude  - 0.04;
-    	$x1 = $latitude  + 0.04;
     	
-    	$y0 = $longitude - 0.04;
-    	$y1 = $longitude + 0.04;
+    	if ($bound) {
+	    	$x0 = $latitude  - 0.01;
+	    	$x1 = $latitude  + 0.01;
+	    	
+	    	$y0 = $longitude - 0.01;
+	    	$y1 = $longitude + 0.01;
+    		
+    	} else {
+    		$x0 = $bound->nelat;
+    		$x1 = $bound->nelng;
+    		 
+    		$y0 = $bound->swlat;
+    		$y1 = $bound->swlng;
+    	}
     	
     	$select = $pubTable->select()
 	    	->setIntegrityCheck(false)
@@ -257,9 +266,8 @@ class Service_Pub extends Aw_Service_ServiceAbstract
      * @param unknown_type $longitude
      * @return Zend_Db_Table_Select
      */
-    protected function _getFindPubSelect($latitude, $longitude, $query = null) {
-    	
-        $select = $this->_getPubSelect($latitude, $longitude);
+    protected function _getFindPubSelect($latitude, $longitude, $query = null, Model_Location_Bound $bound = null) {
+        $select = $this->_getPubSelect($latitude, $longitude, $bound);
         
         if ($query) {
         	$select
@@ -274,8 +282,8 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     /**
      * @return Zend_Db_Table_Select
      */
-    private function _getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour) {
-    	$select = $this->_getFindPubSelect($latitude, $longitude, $query);
+    private function _getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour, Model_Location_Bound $bound = null) {
+    	$select = $this->_getFindPubSelect($latitude, $longitude, $query, $bound);
     	 
     	if ($hour) {
     		$hour = str_pad($hour . ':00:00', 8, '0', STR_PAD_LEFT);
@@ -310,9 +318,8 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	return $select;
     }
     
-    
-    public function findPomoWithNoDealPub($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null) {
-    	$select = $this->_getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour);
+    public function findPomoWithNoDealPub($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null, Model_Location_Bound $bound = null) {
+    	$select = $this->_getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour, $bound);
     	
     	$cols = $select->getPart(Zend_Db_Select::COLUMNS);
     	$select->reset(Zend_Db_Select::COLUMNS);
@@ -332,7 +339,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     		}
     	}
     	
-    	$select1 = $this->_getFindPubSelect($latitude, $longitude, $query);
+    	$select1 = $this->_getFindPubSelect($latitude, $longitude, $query, $bound);
     	
     	$select1->joinLeft(array('php' => new Zend_Db_Expr('(' . $select . ')')), 'p.id = php.idPub');
     	

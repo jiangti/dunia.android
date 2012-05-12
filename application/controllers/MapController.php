@@ -24,6 +24,36 @@ class MapController extends Model_Controller_Action {
 		$this->_generateResponse($pubs);
 	}
 	
+	public function fetchBoundAction() {
+		$user = $this->_getUser();
+		
+		$lat = ($user->getLat() ?: self::LAT);
+		$long = ($user->getLong() ?: self::LONG);
+		
+		$lat  = $this->_getParam('lat', $lat);
+		$long = $this->_getParam('long', $long);
+		
+		$ne = $this->_getParam('ne');
+		$sw = $this->_getParam('sw');
+		
+		list($nelat, $nelong) = explode(",", $ne);
+		list($swlat, $swlong) = explode(",", $sw);
+		
+		$pubService = new Service_Pub();
+		
+		
+		$bound = new Model_Location_Bound();
+		$bound->nelat  = $nelat;
+		$bound->nelong = $nelong;
+		$bound->swlat  = $swlat;
+		$bound->swlong = $swlong;
+		
+		$pubs = $pubService->findPomoWithNoDealPub($lat, $long, null, null, null, $bound);
+		
+		$this->_generateResponse($pubs);
+		
+	}
+	
 	public function searchAction() {
 	    // Refactor this. The service should return a collection and not a select
 	    $pubTable = new Model_DbTable_Pub();

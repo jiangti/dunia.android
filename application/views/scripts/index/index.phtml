@@ -36,30 +36,11 @@
     <!-- AddThis Button END -->
 </div>
 
-
-
-
-
 <script type="text/javascript">
 
 thirsty.long = '<?php echo $this->long; ?>';
 thirsty.lat = '<?php echo $this->lat; ?>';
 thirsty.mapMarkers = [];
-
-MyApp = Ember.Application.create();
-MyApp.summary = Em.Object.create({
-	  now: 0,
-	  later: 0,
-	  earlier: 0,
-	  none: 0
-	});
-
-var view = Ember.View.create({
-	  templateName: 'summary-bar',
-	  summary: MyApp.summary
-});
-
-view.appendTo('#summary-bar');
 
 function cleanMarkers() {
     if (thirsty.mapMarkers) {
@@ -139,7 +120,27 @@ function setMarkers(data) {
 }
 
 $(document).ready(function() {
- 
+
+
+	MyApp = Ember.Application.create();
+	MyApp.summary = Em.Object.create({
+		now: 0,
+		later: 0,
+		earlier: 0,
+		none: 0
+	});
+
+	MyApp.markers = new Array();
+
+	var view = Ember.View.create({
+		templateName: 'summary-bar',
+		summary: MyApp.summary
+	});
+
+	var marker = Ember.Object.extend({});
+
+	view.appendTo('#summary-bar');
+
     var amHere = new google.maps.LatLng(thirsty.lat, thirsty.long);
 
     if (navigator.geolocation) {
@@ -160,12 +161,27 @@ $(document).ready(function() {
     }
 
     var myOptions = {
-        zoom: 15,
+        zoom: 16,
+        maxZoom: 20,
         center: amHere,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
     thirsty.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+    google.maps.event.addListener(thirsty.map, 'dragend', function(event) {
+    	console.log(thirsty.map.getBounds().getNorthEast());
+    });
+    
+    google.maps.event.addListener(thirsty.map, 'tilesloaded', function(event) {
+      $.ajax({
+    	success: function(data) {
+          setMarkers(data);
+    	},
+    	url: '/map/fetch-bound/lat/' + thirsty.lat + '/long/' + thirsty.long + '/ne/' + thirsty.map.getBounds().getNorthEast().lat() + ',' + thirsty.map.getBounds().getNorthEast().lng() + '/sw/' + thirsty.map.getBounds().getSouthWest().lat() + ',' + thirsty.map.getBounds().getSouthWest().lng(),
+    	dataType: 'json'
+      });
+    });
 
     thirsty.infoWindow = new google.maps.InfoWindow();
 
@@ -177,20 +193,20 @@ $(document).ready(function() {
             icon: '/img/icons/markers/beer.png'
         }
     };
+      
 
-    $.ajax({success: function(data) {setMarkers(data);},
-            url: '/map/fetch/lat/' + thirsty.lat + '/long/' + thirsty.long, dataType: 'json'});
+  
 
-    $("#searchForm").submit(function() {
-        $.ajax({
-            success: function(data) {
-                setMarkers(data);
-            },
-            url: '/map/search/q/' + $("#location").val(), dataType: 'json'
-        });
-        
-        return false;
-    });
+//    $("#searchForm").submit(function() {
+//        $.ajax({
+//            success: function(data) {
+//                //setMarkers(data);
+//            },
+//            url: '/map/search/q/' + $("#location").val(), dataType: 'json'
+//        });
+//
+//        return false;
+//    });
 
 });
 </script>
