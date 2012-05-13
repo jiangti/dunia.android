@@ -43,6 +43,25 @@ thirsty.lat = '<?php echo $this->lat; ?>';
 thirsty.mapMarkers = [];
 thirsty.data = null;
 
+function diff(obj2, obj1) {
+    var result = [];
+
+	var temporary = [];
+	
+	$.each(obj1, function (key, value) {
+		temporary.push(value.id[0]);
+	});
+
+    $.each(obj2, function (key, value) {
+        if (temporary.indexOf(value.id[0]) == -1) {
+        	result.push(value);
+        }
+    });
+    
+    return result;
+}
+
+
 function cleanMarkers() {
     if (thirsty.mapMarkers) {
         for (var i = 0; i < thirsty.mapMarkers.length; i++ ) {
@@ -58,7 +77,6 @@ function cleanMarkers() {
 }
 
 function setMarkers(data) {
-    cleanMarkers();
 
     var markers = data;
 
@@ -77,12 +95,13 @@ function setMarkers(data) {
         }
     };
 
-    for (var i = 0; i < markers.length; i++) {
-        var marker  = markers[i];
+    $.each(markers, function(index, marker) {
+
         var name    = marker.name[0];
         var address = marker.address[0];
         var type    = marker.itsOn[0];
         var promos  = '';
+ 
         var point = new google.maps.LatLng(
             parseFloat(marker.lat[0]),
             parseFloat(marker.lng[0])
@@ -119,12 +138,11 @@ function setMarkers(data) {
                 '</div>'
         });
 
-        thirsty.mapMarkers.push(mapMarker);
         google.maps.event.addListener(mapMarker, 'click', function() {
             thirsty.infoWindow.setContent(this.html);
             thirsty.infoWindow.open(thirsty.map, this);
         });
-    }
+    });
 }
 
 $(document).ready(function() {
@@ -168,7 +186,7 @@ $(document).ready(function() {
     }
 
     var myOptions = {
-        zoom: 16,
+        zoom: 15,
         maxZoom: 20,
         center: amHere,
         mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -179,7 +197,16 @@ $(document).ready(function() {
     google.maps.event.addListener(thirsty.map, 'tilesloaded', function(event) {
       $.ajax({
     	success: function(data) {
-          setMarkers(data);
+        	
+          var diffData = diff(data, thirsty.mapMarkers);
+
+		  var mapDiff = diffData.slice();
+          
+      	  setMarkers(mapDiff);
+      	  
+      	  $.each(diffData, function(key, value) {
+      		  thirsty.mapMarkers.push(value);
+      	  });
     	},
     	url: '/map/fetch-bound/lat/' + thirsty.lat + '/long/' + thirsty.long + '/ne/' + thirsty.map.getBounds().getNorthEast().lat() + ',' + thirsty.map.getBounds().getNorthEast().lng() + '/sw/' + thirsty.map.getBounds().getSouthWest().lat() + ',' + thirsty.map.getBounds().getSouthWest().lng(),
     	dataType: 'json'
