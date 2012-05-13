@@ -1,7 +1,7 @@
 <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="a">
 <?php foreach ($this->pubs as $pub): ?>
     <li>
-        <a href="/pub/overview/id/<?php echo $pub['id']; ?>" data-transition="slide">
+        <a href="/pub/overview/id/<?php echo $pub['id']; ?>" data-transition="slide" data-ajax="false">
             <div>
                 <h3><?php echo $pub['name']; ?></h3>
                 <div class="distance">(<?php echo $pub['distance']; ?> m)</div>

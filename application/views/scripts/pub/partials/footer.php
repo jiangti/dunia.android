@@ -2,7 +2,7 @@
     $selectedText   = 'ui-btn-active ui-state-persist';
  ?>
 
-<div data-role="footer" class="ui-footer-fixed nav-bar" data-grid="d">		
+<div data-role="footer" data-position="fixed" class="nav-bar">
 	<div data-role="navbar">
 		<ul>
 			<li>
@@ -11,7 +11,7 @@
                 </a>
             </li>
 			<li>
-                <a class="map-tab <?php if ($this->selected == 'map') echo $selectedText; ?>" href="#maptab" data-icon="custom" data-transition="none">
+                <a class="map-tab <?php if ($this->selected == 'maptab') echo $selectedText; ?>" href="#maptab" data-icon="custom" data-transition="none">
                     Map
                 </a>
             </li>

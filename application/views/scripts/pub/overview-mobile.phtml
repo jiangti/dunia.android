@@ -1,56 +1,14 @@
-<?php $address = $this->pub->address;?>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-    	var pub = { 'center': '<?php echo $address->latitude . ',' . $address->longitude; ?>', 'zoom': 16 };
-
-
-    	$('#map_canvas').gmap({'center': pub.center, 'zoom': pub.zoom, 'disableDefaultUI':true, 'callback': function() {
-    		var self   = this;
-            var bounds = new google.maps.LatLngBounds();
-
-            var position = new google.maps.LatLng(<?php echo $address->latitude . ',' . $address->longitude; ?>);
-            bounds.extend(position);
-    		self.addMarker({'position': new google.maps.LatLng(<?php echo $address->latitude . ',' . $address->longitude; ?>) }).click(function() {
-    			self.openInfoWindow({ 'content': '<?php echo addslashes($this->pub->name); ?>' }, this);
-    		});
-
-    		if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-
-                    var longitude = position.coords.longitude;
-                    var latitude  = position.coords.latitude;
-
-					var currentPosition = new google.maps.LatLng(latitude, longitude);
-                    bounds.extend(currentPosition);
-
-                	self.addMarker({'position': currentPosition, icon:'/img/icons/markers/current.png' }).click(function() {
-            			self.openInfoWindow({ 'content': '<?php echo addslashes($this->pub->name); ?>' }, this);
-            		});
-                	self.get('map').fitBounds(bounds);
-                    $('#directions').attr('href','http://maps.google.com/maps?dirflg=w&saddr=' + latitude + ',' + longitude + '&daddr=<?php echo $address->latitude . ',' . $address->longitude; ?>');
-                });
-            }
-
-
-        }});
-
-        $("#maptab").live('pageshow', function() {
-            $('#map_canvas').gmap('refresh');
-        });
-
-});
-</script>
+<?php $address = $this->pub->address; ?>
 
 <div data-role="page" id="deals">
 	<div class="home" data-role="header">
-        <a href="/" class="navButton" data-role="none" data-transition="slide">
+        <a href="/" class="navButton" data-role="none" data-transition="slide" data-direction="reverse">
             <img src="/img/icons/navbar/53-house-shadow.png" width="24" height="28" />
         </a>
 		<h1><?php echo $this->pub->name; ?></h1>
     </div>
-	
-	<div data-role="content">
+
+    <div data-role="content">
         <h2>Deals</h2>
     	<?php
         $days   = Model_Day::$daysName;
@@ -88,25 +46,76 @@
             <li><a href="mailto:<?php echo $this->pub->email; ?>"><img src="/img/icons/navbar/123-id-card.png" alt="Email" class="ui-li-icon"> <?php echo $this->pub->email; ?></a></li>
         </ul>
 	</div>
-	
+
 	<?php echo $this->partial('pub/partials/footer.php', array('selected' => 'beer'))?>
+
 </div>
 
 
 
 <div data-role="page" id="maptab" style="height:100%;">
 	<div class="home" data-role="header">
-        <a href="/" class="navButton" data-role="none" data-transition="slide">
+        <a href="/" class="navButton" data-role="none" data-transition="slide" data-direction="reverse">
             <img src="/img/icons/navbar/53-house-shadow.png" width="24" height="28" />
         </a>
 		<h1><?php echo $this->pub->name; ?></h1>
+        <a href="#" class="navButton" data-role="none" id="directions">
+            <img src="/img/icons/navbar/71-compass-shadow.png" width="26" height="28" />
+        </a>
     </div>
 	
-	<div data-role="content" style="height:100%;margin: 0;padding: 0">
-		<div id="map_canvas" style="height:90%;"></div>
+	<div data-role="content" style="position:absolute;left: 0; top: 0; right: 0; bottom: 0;margin: 0;padding: 0">
+		<div id="map_canvas" style="height:90%;width: 100%;"></div>
 	</div>
 	
-    <?php echo $this->partial('pub/partials/footer.php', array('selected' => 'map'))?>
+    <?php echo $this->partial('pub/partials/footer.php', array('selected' => 'maptab'))?>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var pub         = { 'center': '<?php echo $address->latitude . ',' . $address->longitude; ?>', 'zoom': 16 };
+            var bounds      = null;
+            var googlemap   = null;
+
+            $('#map_canvas').gmap({'center': pub.center, 'zoom': pub.zoom, 'disableDefaultUI':true, 'callback': function() {
+                var self   = this;
+                googlemap  = self.get('map');
+                bounds = new google.maps.LatLngBounds();
+
+                var position = new google.maps.LatLng(<?php echo $address->latitude . ',' . $address->longitude; ?>);
+                bounds.extend(position);
+                self.addMarker({'position': new google.maps.LatLng(<?php echo $address->latitude . ',' . $address->longitude; ?>) }).click(function() {
+                    self.openInfoWindow({ 'content': '<?php echo addslashes($this->pub->name); ?>' }, this);
+                });
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+
+                        var longitude = position.coords.longitude;
+                        var latitude  = position.coords.latitude;
+
+                        var currentPosition = new google.maps.LatLng(latitude, longitude);
+                        bounds.extend(currentPosition);
+
+                        self.addMarker({'position': currentPosition, icon:'/img/icons/markers/current.png' }).click(function() {
+                            self.openInfoWindow({ 'content': '<?php echo addslashes($this->pub->name); ?>' }, this);
+                        });
+                        googlemap.fitBounds(bounds);
+                        $('#directions').attr('href','http://maps.google.com/maps?dirflg=w&saddr=' + latitude + ',' + longitude + '&daddr=<?php echo $address->latitude . ',' . $address->longitude; ?>');
+                    });
+                }
+
+                google.maps.event.addListener(self.get('map'), 'tilesloaded', function(event) {
+                    $('#map_canvas').gmap('refresh');
+                });
+            }});
+
+            $("#maptab").live('pageshow', function() {
+                $('#map_canvas').gmap('refresh');
+                googlemap.fitBounds(bounds);
+            });
+
+        });
+    </script>
 </div>
 
 
