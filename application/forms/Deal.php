@@ -27,7 +27,7 @@ class Form_Deal extends Form_Abstract {
 		$location = new Aw_Form_Element_Textarea('location');
 		$location
 			->setLabel('Location')
-			->setRequired(true)
+			//->setRequired(true)
 			->setAttrib('style', 'height: 100px;')
 		;
 		
