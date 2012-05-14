@@ -20,26 +20,33 @@
                     var self = this;
                     googlemap = self.get('map');
 
-                    var customIcons = {
+                    var customProperties = {
                         now: {
-                            icon: '/img/icons/markers/half.png'
+                            icon:   '/img/icons/markers/half.png',
+                            zIndex: 20
                         },
                         earlier: {
-                            icon: '/img/icons/markers/empty.png'
+                            icon: '/img/icons/markers/empty.png',
+                            zIndex: 18
                         },
                         later: {
-                            icon: '/img/icons/markers/full.png'
+                            icon: '/img/icons/markers/full.png',
+                            zIndex: 19
                         },
                         none: {
-                            icon: '/img/icons/markers/bar.png'
+                            icon: '/img/icons/markers/bar.png',
+                            zIndex: 15
                         }
                     };
 
                     <?php foreach ($this->pubs as $pub): ?>
                     var type = '<?php echo $pub['itsOn']; ?>';
-                    var icon = customIcons[type] || {};
+                    var properties = customProperties[type] || {};
 
-                    self.addMarker({'icon' : icon.icon, 'position': new google.maps.LatLng(<?php echo $pub['latitude']; ?>, <?php echo $pub['longitude']; ?>) }).click(function() {
+                    self.addMarker({
+                        'icon' : properties.icon,
+                        zIndex:   properties.zIndex,
+                        'position': new google.maps.LatLng(<?php echo $pub['latitude']; ?>, <?php echo $pub['longitude']; ?>) }).click(function() {
                         self.openInfoWindow({ 'content': '<?php echo addslashes($pub['name']); ?>' }, this);
                     });
                     <?php endforeach; ?>

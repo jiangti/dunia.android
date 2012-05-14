@@ -80,18 +80,22 @@ function setMarkers(data) {
 
     var markers = data;
 
-    var customIcons = {
+    var customProperties = {
         now: {
-            icon: '/img/icons/markers/half.png'
+            icon:   '/img/icons/markers/half.png',
+            zIndex: 20
         },
         earlier: {
-            icon: '/img/icons/markers/empty.png'
+            icon: '/img/icons/markers/empty.png',
+            zIndex: 18
         },
         later: {
-            icon: '/img/icons/markers/full.png'
+            icon: '/img/icons/markers/full.png',
+            zIndex: 19
         },
         none: {
-            icon: '/img/icons/markers/bar.png'
+            icon: '/img/icons/markers/bar.png',
+            zIndex: 15
         }
     };
 
@@ -116,15 +120,16 @@ function setMarkers(data) {
             promos += promo.liquorType + ' (' + promo.timeStart + ' to ' + promo.timeEnd + ')</div>';
         }
 
-        var icon = customIcons[type] || {};
+        var properties = customProperties[type] || {};
 
         MyApp.summary.set(type, MyApp.summary.get(type) + 1);
                 
         var mapMarker = new google.maps.Marker({
             map: thirsty.map,
             position: point,
-            icon: icon.icon,
-            shadow: icon.shadow,
+            icon:     properties.icon,
+            shadow:   properties.shadow,
+            zIndex:   properties.zIndex,
             html: '<div class="overlay">' +
                     '<h2>' + name + '</h2>' +
                     '<div class="overlayContent">' +
@@ -215,13 +220,5 @@ $(document).ready(function() {
 
     thirsty.infoWindow = new google.maps.InfoWindow();
 
-    customIcons = {
-        restaurant: {
-            icon: '/img/icons/markers/steak.png'
-        },
-        bar: {
-            icon: '/img/icons/markers/beer.png'
-        }
-    };
 });
 </script>
