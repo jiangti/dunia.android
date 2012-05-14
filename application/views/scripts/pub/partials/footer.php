@@ -2,7 +2,7 @@
     $selectedText   = 'ui-btn-active ui-state-persist';
  ?>
 
-<div data-role="footer" data-position="fixed" class="nav-bar">
+<div data-role="footer" data-position="fixed" class="nav-bar" data-tap-toggle="false">
 	<div data-role="navbar">
 		<ul>
 			<li>
