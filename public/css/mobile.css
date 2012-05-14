@@ -390,9 +390,10 @@ p.when {
 /* line 359, sass/mobile.scss */
 div[data-role='header'] {
   height: 52px;
+  z-index: 40;
 }
 
-/* line 363, sass/mobile.scss */
+/* line 364, sass/mobile.scss */
 .navButton {
   margin: 9px 10px;
 }
