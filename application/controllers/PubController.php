@@ -126,10 +126,10 @@ class PubController extends Zend_Controller_Action
         $pub = new Model_Pub();
         $this->view->pub = $pub->getById($id);
         
-        //if (Zend_Registry::get('device')->getType() == 'mobile' || $this->_getParam('mobile')) {
+        if (Zend_Registry::get('device')->getType() == 'mobile' || $this->_getParam('mobile')) {
             $this->_helper->layout()->setLayout('mobile-min');
             $this->_helper->viewRenderer->setRender('overview-mobile');
-        //}
+        }
     }
     
     public function addAction()
