@@ -12,83 +12,35 @@
     <div data-role="content" style="height: 95%; padding: 0">
         <script type="text/javascript">
             $(document).ready(function() {
-                var mobileDemo = { 'center': '-33.8757,151.206', 'zoom': 15 };
-                var currentPosition = null;
-                var googlemap       = null;
+                var amHere = new google.maps.LatLng('<?php echo $this->lat; ?>', '<?php echo $this->long; ?>');
 
-                $('#map_canvas').gmap({'center': mobileDemo.center, 'zoom': mobileDemo.zoom, 'disableDefaultUI':true, 'callback': function() {
-                    var self = this;
-                    googlemap = self.get('map');
+                var myOptions = {
+                    zoom: 15,
+                    maxZoom: 20,
+                    center: amHere,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
 
-                    var customProperties = {
-                        now: {
-                            icon:   '/img/icons/markers/half.png',
-                            zIndex: 20
-                        },
-                        earlier: {
-                            icon: '/img/icons/markers/empty.png',
-                            zIndex: 18
-                        },
-                        later: {
-                            icon: '/img/icons/markers/full.png',
-                            zIndex: 19
-                        },
-                        none: {
-                            icon: '/img/icons/markers/bar.png',
-                            zIndex: 15
-                        }
-                    };
+                var Map = Dunia.Map.create({
+                    longitude: '<?php echo $this->long; ?>',
+                    latitude:  '<?php echo $this->lat; ?>',
+                    map:       new google.maps.Map(document.getElementById("map_canvas"), myOptions)
+                });
 
-                    <?php foreach ($this->pubs as $pub): ?>
-                    var type = '<?php echo $pub['itsOn']; ?>';
-                    var properties = customProperties[type] || {};
-
-                    self.addMarker({
-                        'icon' : properties.icon,
-                        zIndex:   properties.zIndex,
-                        'position': new google.maps.LatLng(<?php echo $pub['latitude']; ?>, <?php echo $pub['longitude']; ?>) }).click(function() {
-                        self.openInfoWindow({ 'content': '<?php echo addslashes($pub['name']); ?>' }, this);
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        Map.longitude = position.coords.longitude;
+                        Map.latitude  = position.coords.latitude;
+                        Map.center();
                     });
-                    <?php endforeach; ?>
+                }
 
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(function (position) {
-                            var address   = position.address;
-                            var longitude = position.coords.longitude;
-                            var latitude  = position.coords.latitude;
-
-                            if (address) {
-                                $("#footer").html("<p>Near " + address.streetNumber + ' ' + address.street + ' in ' + address.city + '</p>');
-                            } else {
-                                var geocoder = new google.maps.Geocoder();
-                                var latlng   = new google.maps.LatLng(latitude, longitude);
-
-                                geocoder.geocode({'latLng': latlng}, function(results, status) {
-                                    if (status == google.maps.GeocoderStatus.OK) {
-                                        if (results[0]) {
-                                            var components = results[0].address_components;
-                                            $("#footer").html("<p>Near " + components[0].long_name + ' ' + components[1].long_name + ', ' + components[2].long_name + '</p>');
-                                        }
-                                    }
-                                });
-                            }
-
-                            currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                            var blueIcon = new google.maps.MarkerImage("http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/blank.png");
-
-                            self.addMarker({'position': currentPosition, icon: '/img/icons/markers/current.png' }).click(function() {
-                                self.openInfoWindow({ 'content': '<?php echo addslashes($pub['name']); ?>' }, this);
-                            });
-
-                            googlemap.panTo(currentPosition);
-                        });
-                    }
-                }});
+                google.maps.event.addListener(Map.map, 'tilesloaded', function(event) {
+                    Map.fetchBars();
+                });
 
                 $('#locate').click(function() {
-                    if (currentPosition && googlemap) {
-                        googlemap.panTo(currentPosition);
-                    }
+                    Map.center();
                     return false;
                 });
 

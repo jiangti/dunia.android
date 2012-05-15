@@ -12,7 +12,7 @@ class IndexController extends Model_Controller_Action {
 
             $user = $this->_getUser();
 
-            $this->view->lat = $user->getLat();
+            $this->view->lat  = $user->getLat();
             $this->view->long = $user->getLong();
         }
 	}
@@ -33,8 +33,12 @@ class IndexController extends Model_Controller_Action {
 	}
 	
 	public function mapAction() {
+        $user = $this->_getUser();
+
+        $this->view->lat  = $user->getLat();
+        $this->view->long = $user->getLong();
+
         $this->_helper->layout()->setLayout('mobile-min');
-        $this->_populatePubs();
 	}
 	
 	protected function _populatePubs() {
