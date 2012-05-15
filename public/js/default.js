@@ -102,14 +102,30 @@ $(document).ready(function() {
                     parseFloat(marker.lng[0])
                 );
 
-                for (var j = 0; j < marker.promos.length; j++) {
-                    var promo = marker.promos[j];
-                    promos += '<div class="deal">';
-                    if (promo.price > 0) {
-                        promos += '$' + promo.price + ' ';
+                if (type == 'none') {
+                    promos = 'There are no promos available for today';
+                } else {
+                    for (var j = 0; j < marker.promos.length; j++) {
+                        var promo = marker.promos[j];
+                        promos += '<div class="deal">';
+                        if (promo.price > 0) {
+                            promos += '$' + promo.price + ' ';
+                        }
+                        promos += promo.liquorType + ' (' + promo.timeStart + ' to ' + promo.timeEnd + ')</div>';
                     }
-                    promos += promo.liquorType + ' (' + promo.timeStart + ' to ' + promo.timeEnd + ')</div>';
                 }
+
+                var overlayHtml = '<div class="overlay">' +
+                    '<h2>' + name + '</h2>' +
+                    '<div class="overlayContent">' +
+                    '<h3>Today\'s deals</h3>' +
+                    '<div>' + promos + '</div>' +
+                    '</div>' +
+                    '<div class="foot">' +
+                    '<div class="address">' + address + '</div>' +
+                    '<a href="/pub/overview/id/' + marker.id[0] + '" title="' + name + '" data-ajax="false">More info >></a>' +
+                    '</div>' +
+                    '</div>'
 
                 var properties = Dunia.markerProperties[type] || {};
 
@@ -121,17 +137,7 @@ $(document).ready(function() {
                     icon:     properties.icon,
                     shadow:   properties.shadow,
                     zIndex:   properties.zIndex,
-                    html: '<div class="overlay">' +
-                        '<h2>' + name + '</h2>' +
-                        '<div class="overlayContent">' +
-                        '<h3>Today\'s deals</h3>' +
-                        '<div>' + promos + '</div>' +
-                        '</div>' +
-                        '<div class="foot">' +
-                        '<div class="address">' + address + '</div>' +
-                        '<a href="/pub/overview/id/' + marker.id[0] + '" title="' + name + '">More info >></a>' +
-                        '</div>' +
-                        '</div>'
+                    html:     overlayHtml
                 });
 
                 google.maps.event.addListener(mapMarker, 'click', function() {
