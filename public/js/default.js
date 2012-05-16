@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     Dunia = Ember.Application.create();
+
     Dunia.summary = Em.Object.create({
         now: 0,
         later: 0,
@@ -145,6 +146,30 @@ $(document).ready(function() {
                     infoWindow.open(map, this);
                 });
             });
+        }
+    });
+
+    Dunia.Location = Em.Object.create({
+        address: '',
+
+        setAddress: function(position) {
+            var self = this;
+
+            if (position.address) {
+                self.set('address', address.streetNumber + ' ' + address.street + ', ' + address.city);
+            } else {
+                var geocoder = new google.maps.Geocoder();
+                var latlng   = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                geocoder.geocode({'latLng': latlng}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[0]) {
+                            var components = results[0].address_components;
+                            self.set('address', components[0].long_name + ' ' + components[1].long_name + ', ' + components[2].long_name);
+                        }
+                    }
+                });
+            }
         }
     });
 

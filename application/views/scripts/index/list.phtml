@@ -3,30 +3,12 @@
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
-            	var address   = position.address;
-                var longitude = position.coords.longitude;
-                var latitude  = position.coords.latitude;
+                Dunia.Location.setAddress(position);
 
-                if (address) {
-                    $("#footer").html("<p>Near " + address.streetNumber + ' ' + address.street + ' in ' + address.city + '</p>');
-                } else {
-                    var geocoder = new google.maps.Geocoder();
-                    var latlng   = new google.maps.LatLng(latitude, longitude);
-
-                    geocoder.geocode({'latLng': latlng}, function(results, status) {
-                        if (status == google.maps.GeocoderStatus.OK) {
-                            if (results[0]) {
-                                var components = results[0].address_components;
-                                $("#footer").html("<p>Near " + components[0].long_name + ' ' + components[1].long_name + ', ' + components[2].long_name + '</p>');
-                            }
-                        }
-                    });
-                }
-                
                 $.ajax({
                     type : 'POST',
                     url  : '/index/locate',
-                    data : {long: longitude, lat: latitude},
+                    data : {long: position.coords.longitude, lat: position.coords.latitude},
                     success : function (data) {
                         $("#info").html(data);
                         $("#info").find('ul').listview();

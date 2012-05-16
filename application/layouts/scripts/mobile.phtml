@@ -39,7 +39,11 @@
     		</div>
 
     		<div id="footer" data-role="footer" data-position="fixed" data-tap-toggle="false">
-
+                <script type="text/x-handlebars">
+                    {{#if Dunia.Location.address}}
+                        <p>Near {{Dunia.Location.address}}</p>
+                    {{/if}}
+                </script>
             </div>
         </div>
 	</body>
