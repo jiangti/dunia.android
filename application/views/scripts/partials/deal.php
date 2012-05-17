@@ -14,5 +14,10 @@
         <div>
             <?php echo $promo->description; ?>
         </div>
+        <?php if (!isset($this->today)) : ?>
+            <div class="when">
+                <?php echo ucwords(strtolower(str_replace(',', ', ', $promo->day))); ?>
+            </div>
+        <?php endif; ?>
     </li>
 <?php endforeach; ?>

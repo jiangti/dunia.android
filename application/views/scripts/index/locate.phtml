@@ -4,7 +4,16 @@
         <a href="/pub/overview/id/<?php echo $pub['id']; ?>" data-transition="slide" data-ajax="false">
             <div>
                 <h3><?php echo $pub['name']; ?></h3>
-                <div class="distance">(<?php echo $pub['distance']; ?> m)</div>
+                <div class="distance">
+                    <?php if ($pub['distance'] < 1000): ?>
+                        <img src="/img/icons/navbar/102-walk.png" width="14" height="27">
+                        (<?php echo $pub['distance']; ?> m)
+                    <?php else: ?>
+                        <img src="/img/icons/navbar/63-runner.png" width="18" height="25">
+                        (<?php echo round($pub['distance'] / 1000, 2); ?> km)
+                    <?php endif; ?>
+
+                </div>
 
                 <?php foreach ($pub['promos'] as $promo) { ?>
                 <div class="indexDeal">

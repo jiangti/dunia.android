@@ -19,26 +19,38 @@
                 <h3>Today</h3>
 
                 <ul data-role="listview" data-inset="true" data-theme="c">
-                    <?php echo $this->partial('partials/deal.php', array('promos' => $promos[date('N')])); ?>
+                    <?php echo $this->partial('partials/deal.php', array('promos' => $promos[date('N')], 'today' => true)); ?>
                 </ul>
             <?php
                 unset($promos[date('N')]);
             }
 
-            if (count($promos)) {
-                foreach ($promos as $day => $dailyPromos) { ?>
-                    <h3><?php echo $days[$day]; ?></h3>
+            if (count($promos)) : ?>
+                <h3>Rest of the week</h3>
 
-                    <ul data-role="listview" data-inset="true" data-theme="c">
-                        <?php echo $this->partial('partials/deal.php', array('promos' => $promos[$day])); ?>
-                    </ul>
                 <?php
+                $restOfWeek = array();
+                foreach ($promos as $day => $dailyPromos) {
+                    foreach ($dailyPromos as $promo) {
+                        if (!isset($restOfWeek[$promo->id])) {
+                            $restOfWeek[$promo->id] = $promo;
+                        }
+                    }
                 }
-            }
+                ?>
+
+                <ul data-role="listview" data-inset="true" data-theme="c">
+                    <?php echo $this->partial('partials/deal.php', array('promos' => $restOfWeek)); ?>
+                </ul>
+
+            <?php endif;
 
     	 } else { ?>
     	    <p>There are no deals for this venue yet. <a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">Why don't you enter one?</a></p>
     	<?php }?>
+
+        <h2>Tell your friends!</h2>
+        <?php echo $this->partial('partials/addthis.phtml'); ?>
 
         <h2>Contact</h2>
         <ul data-role="listview" data-inset="true" data-theme="c">

@@ -238,11 +238,11 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     		$y0 = $bound->swlng;
     		
     	} else {
-	    	$x0 = $latitude  - 0.01;
-	    	$x1 = $latitude  + 0.01;
+	    	$x0 = $latitude  - 0.05;
+	    	$x1 = $latitude  + 0.05;
 	    	
-	    	$y0 = $longitude - 0.01;
-	    	$y1 = $longitude + 0.01;
+	    	$y0 = $longitude - 0.05;
+	    	$y1 = $longitude + 0.05;
     	}
     	
     	$select = $pubTable->select()
@@ -289,7 +289,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	if ($hour) {
     		$hour = str_pad($hour . ':00:00', 8, '0', STR_PAD_LEFT);
     	} else {
-    		$hour = date("H:00:00");
+    		$hour = date("H:i:00");
     	}
     	 
     	if (!$dayOfWeek) {

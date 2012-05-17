@@ -6,7 +6,6 @@
 	<div style="float: right; margin: 7px">
 		<?php echo $this->render('partials/nav.phtml'); ?>
    	</div>
-	<div style="clear: both;"></div>
 </div>
 <div id="map_canvas" style="height:95%;"></div>
 
@@ -20,18 +19,8 @@
 		</script>
 	</div>
 	<div class="left">
-    <!-- AddThis Button BEGIN -->
-	<div class="addthis_toolbox addthis_default_style">
-        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-        <a class="addthis_button_tweet"></a>
-        <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-        <a class="addthis_counter addthis_pill_style"></a>
+        <?php echo $this->partial('partials/addthis.phtml'); ?>
 	</div>
-	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f93fc3233f490f0"></script>
-	</div>
-	<!-- AddThis Button END -->
-    <div class="clear"></div>
-    <!-- AddThis Button END -->
 </div>
 
 <script type="text/javascript">
