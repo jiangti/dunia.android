@@ -4,7 +4,7 @@ $(document).ready(function() {
     
     var marker = Em.Object.extend({
     	count: 0,
-    	flag, 1,
+    	flag: true,
     	incrementCount: function() {
     		this.set('count', this.get('count') + 1);
     	}
