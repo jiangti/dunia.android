@@ -1,8 +1,8 @@
 <?php
-include dirname(__FILE__) . '/../EpiCurl.php';
-include dirname(__FILE__).'/../EpiOAuth.php';
+include dirname(__FILE__).'/../EpiCurl.php';
+include dirname(__FILE__) . '/../EpiOAuth.php';
 include dirname(__FILE__).'/../EpiTwitter.php';
-include dirname(__FILE__) . '/../EpiSequence.php';
+include dirname(__FILE__).'/../EpiSequence.php';
 $consumer_key = 'jdv3dsDhsYuJRlZFSuI2fg';
 $consumer_secret = 'NNXamBsBFG8PnEmacYs0uCtbtsz346OJSod7Dl94';
 $token = '25451974-uakRmTZxrSFQbkDjZnTAsxDO5o9kacz2LT6kqEHA';
