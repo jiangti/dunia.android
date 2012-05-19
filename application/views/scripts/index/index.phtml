@@ -11,11 +11,10 @@
 
 <div id="bottom-info-bar">
 	<div class="left summary" id="summary-bar">
-		<script type="text/x-handlebars" data-template-name="summary-bar">
-    		<a href="#"><img src="/img/icons/markers/full_sml.png" />{{summary.later}}</a>
-    		<a href="#"><img src="/img/icons/markers/half_sml.png" />{{summary.now}}</a>
-    		<a href="#"><img src="/img/icons/markers/empty_sml.png" />{{summary.earlier}}</a>
-    		<a href="#"><img src="/img/icons/markers/beer_sml.png" />{{summary.none}}</a>
+		<script type="text/x-handlebars"  data-template-name="summary-bar">
+		{{#each summaries}}
+    		<a href="#" {{action "toggle"}}><img src="{{unbound smallIcon}}" />{{count}}</a>
+		{{/each}}
 		</script>
 	</div>
 	<div class="left">
@@ -43,18 +42,31 @@ $(document).ready(function() {
 
 	var view = Ember.View.create({
 		templateName: 'summary-bar',
-		summary: Dunia.summary
+		summaries: Dunia.summary.summaries,
+		toggle: function(event) {
+			event.preventDefault();
+			
+		}
 	});
+
+	//itemsView = Ember.CollectionView.create({
+	//	templateName: 'summary-bar',
+	//	tagName: null,
+	//	summaries: Dunia.summary.summaries,
+	//	itemClass: Ember.View.extend({
+	//	      template: Ember.Handlebars.compile("the letter: {{content}}")
+	//	})
+	//});
 
 	view.appendTo('#summary-bar');
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            Map.longitude = position.coords.longitude;
-            Map.latitude  = position.coords.latitude;
-            Map.center();
-        });
-    }
+    //if (navigator.geolocation) {
+    //    navigator.geolocation.getCurrentPosition(function (position) {
+    //        Map.longitude = position.coords.longitude;
+    //        Map.latitude  = position.coords.latitude;
+    //        Map.center();
+    //    });
+    //}
 
     google.maps.event.addListener(Map.map, 'tilesloaded', function(event) {
         Map.fetchBars();

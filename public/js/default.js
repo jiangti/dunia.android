@@ -1,32 +1,47 @@
 $(document).ready(function() {
 
     Dunia = Ember.Application.create();
-
-    Dunia.summary = Em.Object.create({
-        now: 0,
-        later: 0,
-        earlier: 0,
-        none: 0
+    
+    var marker = Em.Object.extend({
+    	count: 0,
+    	flag, 1,
+    	incrementCount: function() {
+    		this.set('count', this.get('count') + 1);
+    	}
     });
 
     Dunia.markerProperties = Em.Object.create({
-        now: {
-            icon:   '/img/icons/markers/half.png',
+        now: marker.create({
+        	icon:   '/img/icons/markers/half.png',
+            smallIcon: '/img/icons/markers/half_sml.png',
             zIndex: 20
-        },
-        earlier: {
+        }),
+        earlier: marker.create({
             icon: '/img/icons/markers/empty.png',
+            smallIcon: '/img/icons/markers/empty_sml.png',
             zIndex: 18
-        },
-        later: {
+        }),
+        later: marker.create({
             icon: '/img/icons/markers/full.png',
+            smallIcon: '/img/icons/markers/full_sml.png',
             zIndex: 19
-        },
-        none: {
+        }),
+        none: marker.create({
             icon: '/img/icons/markers/bar.png',
+            smallIcon: '/img/icons/markers/beer_sml.png',
             zIndex: 15
-        }
+        })
     });
+    
+    Dunia.summary = Em.Object.create({
+    	summaries: [
+            Dunia.markerProperties.now, 
+    	    Dunia.markerProperties.earlier,
+    	    Dunia.markerProperties.later, 
+    	    Dunia.markerProperties.none,
+        ]
+    });
+    
 
     Dunia.Map = Em.Object.extend({
         longitude:  null,
@@ -129,9 +144,7 @@ $(document).ready(function() {
                     '</div>'
 
                 var properties = Dunia.markerProperties[type] || {};
-
-                Dunia.summary.set(type, Dunia.summary.get(type) + 1);
-
+                
                 var mapMarker = new google.maps.Marker({
                     map: map,
                     position: point,
@@ -140,6 +153,8 @@ $(document).ready(function() {
                     zIndex:   properties.zIndex,
                     html:     overlayHtml
                 });
+                
+                properties.incrementCount();
 
                 google.maps.event.addListener(mapMarker, 'click', function() {
                     infoWindow.setContent(this.html);
