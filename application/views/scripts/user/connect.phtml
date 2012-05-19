@@ -1,0 +1,75 @@
+<?php foreach ($this->providers as $provider):?>
+	<dl>
+		<h3>
+			<dt>Provider name</dt>
+			<dd><?php echo $provider->getName(); ?></dd>
+		</h3>
+		<dt>Id from provider</dt>
+		<dd><?php echo $provider->getId(); ?></dd>
+	<?php 
+	if($provider->getName()=='facebook'): 
+	?>
+		<dt>Profile</dt>
+		<dd>
+			<dl>
+			<?php
+			$profile = $provider->getApi()->getProfile(); 
+			foreach($profile as $key => $value): 
+			?>
+				<dt><?php echo  $key ?></dt><dd><?php echo (is_object($value)) ?  "Cannot convert to string" : $value ?></dd>
+			<?php 
+			endforeach;
+			?>
+			</dl>
+		</dd>
+		<dt>Picture</dt>
+		<dd>
+			<img src="<?php echo $provider->getApi()->getPicture(); ?>">
+		</dd>
+	<?php 
+	endif; 
+	if($provider->getName()=='twitter'): 
+	?>
+		<dt>Profile</dt>
+		<dd>
+			<dl>
+			<?php 
+			$profile = $provider->getApi()->getProfile(); 
+			foreach($profile as $key => $value): 
+			?>
+				<dt><?php echo  $key ?></dt>
+				<dd><?php echo   (is_object($value)) ?  "Cannot convert to string" : $value ?></dd>
+			<?php 
+			endforeach;
+			?>
+			</dl>
+		</dd>
+		<dt>Picture</dt>
+		<dd>
+			<img src="<?php echo $provider->getApi()->getPicture(); ?>">
+		</dd>
+	<?php 
+	endif; 
+	if($provider->getName()=='google'): 
+	?>
+		<dt>Profile</dt>
+		<dd>
+			<dl>
+			<?php 
+			$profile = $provider->getApi()->getProfile(); 
+			foreach($profile as $key => $value): 
+			?>
+				<dt><?php echo  $key ?></dt>
+				<dd><?php echo   (is_object($value)) ?  "Cannot convert to string" : $value ?></dd>
+			<?php 
+			endforeach;
+			?>
+			</dl>
+		</dd>
+	<?php 
+	endif; 
+	?>
+	</dl>
+<?php 
+endforeach;
+?>
