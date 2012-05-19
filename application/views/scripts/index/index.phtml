@@ -34,7 +34,7 @@ $(document).ready(function() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    var Map = Dunia.Map.create({
+    AppMap = Dunia.Map.create({
         longitude: '<?php echo $this->long; ?>',
         latitude:  '<?php echo $this->lat; ?>',
         map:       new google.maps.Map(document.getElementById("map_canvas"), myOptions)
@@ -45,7 +45,10 @@ $(document).ready(function() {
 		summaries: Dunia.summary.summaries,
 		toggle: function(event) {
 			event.preventDefault();
-			
+			var object = event.context;
+
+			object.set('flag', !(object.get('flag')))
+			AppMap.setMarkersVisible(object.get('name'), object.get('flag'))
 		}
 	});
 
@@ -68,8 +71,8 @@ $(document).ready(function() {
     //    });
     //}
 
-    google.maps.event.addListener(Map.map, 'tilesloaded', function(event) {
-        Map.fetchBars();
+    google.maps.event.addListener(AppMap.map, 'tilesloaded', function(event) {
+    	AppMap.fetchBars();
     });
 
 });

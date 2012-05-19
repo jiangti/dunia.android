@@ -12,21 +12,25 @@ $(document).ready(function() {
 
     Dunia.markerProperties = Em.Object.create({
         now: marker.create({
+        	name:   'now',
         	icon:   '/img/icons/markers/half.png',
             smallIcon: '/img/icons/markers/half_sml.png',
             zIndex: 20
         }),
         earlier: marker.create({
+        	name:   'now',
             icon: '/img/icons/markers/empty.png',
             smallIcon: '/img/icons/markers/empty_sml.png',
             zIndex: 18
         }),
         later: marker.create({
+        	name:   'later',
             icon: '/img/icons/markers/full.png',
             smallIcon: '/img/icons/markers/full_sml.png',
             zIndex: 19
         }),
         none: marker.create({
+        	name:   'none',
             icon: '/img/icons/markers/bar.png',
             smallIcon: '/img/icons/markers/beer_sml.png',
             zIndex: 15
@@ -47,6 +51,7 @@ $(document).ready(function() {
         longitude:  null,
         latitude:   null,
         markers:    new Array(),
+        mapMarkers: new Array(),
         infoWindow: new google.maps.InfoWindow(),
 
         fetchBars: function() {
@@ -101,14 +106,26 @@ $(document).ready(function() {
             Dunia.summary.set('later', 0);
             Dunia.summary.set('none', 0);
         },
+        
+        setMarkersVisible: function(type, flag) {
+        	var markers = this.get('mapMarkers');
+            if (markers) {
+                for (var i = 0; i < markers.length; i++ ) {
+                	if (markers[i].type == type) markers[i].setVisible(flag);
+                }
+            }
+        },
 
         setMarkers: function(markers) {
             var map = this.get('map');
             var infoWindow = this.get('infoWindow');
+            
+            var $this = this;
 
             $.each(markers, function(index, marker) {
 
                 var name    = marker.name[0];
+                var id      = marker.id[0];
                 var address = marker.address[0];
                 var type    = marker.itsOn[0];
                 var promos  = '';
@@ -151,8 +168,12 @@ $(document).ready(function() {
                     icon:     properties.icon,
                     shadow:   properties.shadow,
                     zIndex:   properties.zIndex,
-                    html:     overlayHtml
+                    html:     overlayHtml,
+                    idBeer:   id,
+                    type:     type
                 });
+                
+                $this.get('mapMarkers').push(mapMarker);
                 
                 properties.incrementCount();
 
