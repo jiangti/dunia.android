@@ -68,7 +68,7 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 		$html = $view->render('share-notification.phtml');
 		
 		$mail
-			->setFrom('no-reply@dunia.com.au', 'NoReply')
+			->setFrom('to@dunia.com.au', 'NoReply')
 			->setBodyHtml($html)
 			->setSubject('Upload to dunia.com.au successful.')
 			->addTo('jiangti.wan.leong@gmail.com', 'Wan-Leong Jiangti')
