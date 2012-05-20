@@ -94,17 +94,20 @@ $(document).ready(function() {
         },
 
         cleanMarkers: function() {
-            var markers = this.get('markers');
+            var markers = this.get('mapMarkers');
             if (markers) {
                 for (var i = 0; i < markers.length; i++ ) {
                     markers[i].setMap(null);
                 }
             }
+            
+            Dunia.markerProperties.now.set('count', 0);
+            Dunia.markerProperties.earlier.set('count', 0);
+            Dunia.markerProperties.later.set('count', 0);
+            Dunia.markerProperties.none.set('count', 0);
 
-            Dunia.summary.set('earlier', 0);
-            Dunia.summary.set('now', 0);
-            Dunia.summary.set('later', 0);
-            Dunia.summary.set('none', 0);
+            this.markers    = new Array();
+            this.mapMarkers = new Array();
         },
         
         setMarkersVisible: function(type, flag) {
