@@ -40,6 +40,17 @@ $(document).ready(function() {
         map:       new google.maps.Map(document.getElementById("map_canvas"), myOptions)
     });
 
+
+    var input = document.getElementById('location');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+    autocomplete.bindTo('bounds', AppMap.map);
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    	var place = autocomplete.getPlace();
+    	AppMap.map.setCenter(place.geometry.location);
+    });
+
 	var view = Ember.View.create({
 		templateName: 'summary-bar',
 		summaries: Dunia.summary.summaries,
@@ -52,24 +63,9 @@ $(document).ready(function() {
 		}
 	});
 
-	//itemsView = Ember.CollectionView.create({
-	//	templateName: 'summary-bar',
-	//	tagName: null,
-	//	summaries: Dunia.summary.summaries,
-	//	itemClass: Ember.View.extend({
-	//	      template: Ember.Handlebars.compile("the letter: {{content}}")
-	//	})
-	//});
 
 	view.appendTo('#summary-bar');
 
-    //if (navigator.geolocation) {
-    //    navigator.geolocation.getCurrentPosition(function (position) {
-    //        Map.longitude = position.coords.longitude;
-    //        Map.latitude  = position.coords.latitude;
-    //        Map.center();
-    //    });
-    //}
 
     google.maps.event.addListener(AppMap.map, 'tilesloaded', function(event) {
     	AppMap.fetchBars();
