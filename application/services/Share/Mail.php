@@ -70,7 +70,7 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 		$mail
 			->setFrom('no-reply@dunia.com.au', 'NoReply')
 			->setBodyHtml($html)
-			->setSubject('Your share is now ready to be added into the happyhourpedia.')
+			->setSubject('Upload to dunia.com.au successful.')
 			->addTo('jiangti.wan.leong@gmail.com', 'Wan-Leong Jiangti')
 			->addTo('victorgarciagonzalez@gmail.com', "Víctor García")
 			->addTo($email, $name)
