@@ -2,6 +2,9 @@
 class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 	public function init() {
 		$return = parent::init();
+		
+		$this->setLegend('<a href="">Clear Deal</a>');
+		
 
         $id = new Zend_Form_Element_Hidden('id');
         $id->setDecorators(array('ViewHelper'));
@@ -82,12 +85,11 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 			->setSeparator(' ');
 		;
 		
-		$delete = new Zend_Form_Element_Button('delete');
-		$delete->setLabel('Delete');
+		/* $delete = new Zend_Form_Element_Button('delete');
+		$delete->setLabel('Delete'); */
 		
 		
-		$this->addElements(array($id, $description, $deal, $start, $end, $liquorType, $liquorSize, $days, $delete));
-		
+		$this->addElements(array($id, $description, $deal, $start, $end, $liquorType, $liquorSize, $days));
 		return $return;
 	}
 	

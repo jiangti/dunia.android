@@ -10,6 +10,10 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
         ),
     );
     
+    public function getPermaLink() {
+    	return sprintf('/pub/overview/id/%d/name/%s', $this->id, urlencode(preg_replace('/[^a-z^A-Z^0-9]/', '_', trim($this->name))));
+    }
+    
     public function mergeMailShare(Model_DbTable_Row_MailShare $mailshare) {
     	foreach ($mailshare->getImages() as $image) {
 	    	$this->addImage($image);

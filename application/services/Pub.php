@@ -368,12 +368,14 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     private function _formatPromoData($data) {
     	$return = array();
     	
-    	foreach ($data as $promo) {
+    	foreach ($data as $promoRow) {
     		$newPromo = array();
-    		$address  = (string) $promo->getAddress(); //This is bad with the n+1 problem.
+    		$address  = (string) $promoRow->getAddress(); //This is bad with the n+1 problem.
     	
-    		$promo = $promo->toArray();
+    		$promo = $promoRow->toArray();
     		$promo['address'] = $address;
+    		
+    		$promo['url'] = $promoRow->getPermaLink();
     	
     		foreach ($this->_promoFields as $field) {
     			$newPromo[$field] = $promo[$field];

@@ -45,7 +45,8 @@ $(function() {
 		return false;
 	});
 
-	$('form fieldset button[name*="delete"]').click(function() {
+	$('form fieldset legend > a').click(function(e) {
+		e.preventDefault();
 		var $this = $(this);
 		$this.parents('fieldset').remove();
 	});

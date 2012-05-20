@@ -159,7 +159,7 @@ $(document).ready(function() {
                     '</div>' +
                     '<div class="foot">' +
                     '<div class="address">' + address + '</div>' +
-                    '<a href="/pub/overview/id/' + marker.id[0] + '" title="' + name + '" data-ajax="false">More info >></a>' +
+                    '<a href="' + marker.url[0] + '" title="' + name + '" data-ajax="false">More info >></a>' +
                     '</div>' +
                     '</div>'
 

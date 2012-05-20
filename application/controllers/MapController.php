@@ -49,7 +49,6 @@ class MapController extends Model_Controller_Action {
 		$bound->swlng  = $swlong;
 		
 		$pubs = $pubService->findPomoWithNoDealPub($lat, $long, null, null, null, $bound);
-		
 		$this->_generateResponse($pubs);
 		
 	}
@@ -75,7 +74,8 @@ class MapController extends Model_Controller_Action {
 	    				'lng' 		 => array($pub['longitude']),
 	    				'type' 		 => array('bar'),
 	        			'itsOn'		 => array($pub['itsOn']),
-                        'promos'     => $pub['promos']
+                        'promos'     => $pub['promos'],
+	        			'url'		 => array($pub['url'])
 	        );
 	    }
 	    

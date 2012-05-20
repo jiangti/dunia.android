@@ -42,7 +42,10 @@ class Form_Deal extends Form_Abstract {
 		foreach (range(0, 6) as $index) {
 			$subForm = new Form_Deal_Detail();
 			$this->addSubForm($subForm, 'detail' . $index);
+			$fieldset = $subForm->getDecorator('fieldSet');
+			$fieldset->setOption('escape', false);
 		}
+		
 		
 		$this->dualSubmit();
 	}
