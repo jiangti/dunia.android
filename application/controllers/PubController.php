@@ -8,7 +8,19 @@ class PubController extends Zend_Controller_Action
 	
 	public function emailAction() {
 		$table = new Model_DbTable_MailShare();
-		$emailShares = $table->fetchAll('dateProcessed is null');
+		
+		$id = $this->_getParam('id');
+		$mailShare = Model_DbTable_MailShare::retrieveById($id);
+		
+		$db = Zend_Db_Table_Abstract::getDefaultAdapter();
+		
+		$select = $table->select();
+		$select
+			->where('dateProcessed is null')
+			->order(sprintf('FIELD(%d, `id`) desc', $mailShare->id))
+		;
+		
+		$emailShares = $table->fetchAll($select);
 		
 		$forms = array();
 		

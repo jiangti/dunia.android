@@ -27,7 +27,7 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 			
 			$uniqueIds[] = $mail->getUniqueId($index);
 			$row = $this->_saveMessageToDb($message);
-			//$this->notifySharer($row);
+			$this->notifySharer($row);
 			if ($index % 5 == 0) {
 				$mail->noop();
 			}
@@ -51,7 +51,32 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 	}
 	
 	public function notifySharer(Model_DbTable_Row_MailShare $row) {
+		$mail = new Zend_Mail();
 		
+		preg_match('/(.*)<(.*)>/', $row->from, $match);
+		
+		list($ignore ,$name, $email) = $match;
+		
+		$name = trim($name);
+		
+		$view = new Zend_View();
+		
+		$view->setScriptPath(APPLICATION_PATH . '/views/mails');
+		
+		$view->row = $row;
+		
+		$html = $view->render('share-notification.phtml');
+		
+		$mail
+			->setFrom('no-reply@dunia.com.au', 'NoReply')
+			->setBodyHtml($html)
+			->setSubject('Your share is now ready to be added into the happyhourpedia.')
+			->addTo('jiangti.wan.leong@gmail.com', 'Wan-Leong Jiangti')
+			->addTo('victorgarciagonzalez@gmail.com', "Víctor García")
+			->addTo($email, $name)
+		;
+		
+		$mail->send();
 	}
 	
 	public function importDb() {
