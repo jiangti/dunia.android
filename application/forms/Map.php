@@ -16,10 +16,10 @@ class Form_Map extends Zend_Form {
 			->setLabel('Time')
 		;
 		
-		$submit = new Zend_Form_Element_Submit('submit');
+		/* $submit = new Zend_Form_Element_Submit('submit');
 		$submit
 			->setLabel('Find')
-		;
+		; */
 		
 		$elements = array(
 			$location,
