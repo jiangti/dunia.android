@@ -7,8 +7,14 @@ abstract class Aw_Service_ServiceAbstract {
 	}
 	
 	public function isNotEmpty(array $data) {
+		
+		$validator = new Zend_Validate_NotEmpty();
+		
 		foreach ($data as $name => $value) {
-			
+			if (!$validator->isValid($value)) {
+				throw new InvalidArgumentException(implode(", ", $validator->getMessages()));
+			}
 		}
 	}
+	
 }

@@ -4,6 +4,15 @@ abstract class Aw_Table_TableAbstract extends Zend_Db_Table_Abstract {
 	protected $_rowsetClass = 'Aw_Table_Rowset';
 
 	protected $_dateAdded;
+	
+	protected static $_table;
+	
+	public static function getTable() {
+		if (!self::$_table) {
+			self::$_table = new static();
+		}
+		return self::$_table;
+	}
 
 	/**
 	 * @return Aw_Table_Row
@@ -17,7 +26,7 @@ abstract class Aw_Table_TableAbstract extends Zend_Db_Table_Abstract {
 	 * @return Zend_Db_Table_Select
 	 */
 	public static function getSelect($withFromPart = self::SELECT_WITHOUT_FROM_PART) {
-		$static = new static();
+		$static = self::getTable();
 		return $static->select($withFromPart);
 	}
 
@@ -26,8 +35,8 @@ abstract class Aw_Table_TableAbstract extends Zend_Db_Table_Abstract {
 	}
 
 	public static function retrieveById($id) {
-		$table = new static();
-		return $table->find($id)->current();
+		$static = self::getTable();
+		return $static->find($id)->current();
 	}
 
 	public function getReferenceMap() {
@@ -35,8 +44,12 @@ abstract class Aw_Table_TableAbstract extends Zend_Db_Table_Abstract {
 	}
 	
 	public static function getOptions() {
-		$table = new static();
-		return $table->fetchAll()->getPair();
+		$static = self::getTable();
+		return $static->fetchAll()->getPair();
+	}
+	
+	public static function getName() {
+		
 	}
 }
 ?>
