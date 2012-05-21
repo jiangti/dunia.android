@@ -3,7 +3,16 @@
 	<head>
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 		<?php
-		    $this->headLink()->appendStylesheet($this->baseUrl('contrib/adapt-960/assets/css/960.css'), 'screen, projection');
+		    $this->headLink()
+                ->appendStylesheet($this->baseUrl('/contrib/jquery-ui-1.8.17.custom/css/custom-theme/jquery-ui-1.8.17.custom.css'), 'screen, projection')
+                ->appendStylesheet($this->baseUrl('contrib/adapt-960/assets/css/960.css'), 'screen, projection')
+                ->appendStylesheet($this->baseUrl('/css/formalize/formalize.css'), 'screen, projection')
+                ->appendStylesheet($this->baseUrl('css/style.css'), 'screen, projection')
+            ;
+
+            $this->headScript()
+                ->appendFile( '/contrib/jquery-ui-1.8.17.custom/js/jquery-ui-1.8.17.custom.min.js')
+            ;
 		?>
 		<?php echo $this->headLink(); ?>
 		<?php echo $this->headScript(); ?>

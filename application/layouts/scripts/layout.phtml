@@ -10,11 +10,16 @@ $this->headLink()
 	->appendStylesheet($this->baseUrl('contrib/blueprint/blueprint/plugins/link-icons/screen.css'), 'screen, projection')
 	->appendStylesheet($this->baseUrl('contrib/blueprint/blueprint/plugins/sprites/sprite.css'), 'screen, projection')
 	->appendStylesheet($this->baseUrl('contrib/tablesorter/blue/style.css'), 'screen, projection')
+    ->appendStylesheet($this->baseUrl('/contrib/jquery-ui-1.8.17.custom/css/custom-theme/jquery-ui-1.8.17.custom.css'), 'screen, projection')
     ->appendStylesheet($this->baseUrl('css/jquery.lightbox-0.5.css'), 'screen, projection')
+    ->appendStylesheet($this->baseUrl('/css/formalize/formalize.css'), 'screen, projection')
     ->appendStylesheet($this->baseUrl('css/style.css'), 'screen, projection')
 ;
 $this->headScript()
+    ->appendFile( '/contrib/jquery-ui-1.8.17.custom/js/jquery-ui-1.8.17.custom.min.js')
 	->appendFile($this->baseUrl('js/jquery.lightbox-0.5.min.js'))
+    ->appendFile( '/js/jquery.sticky.js')
+    ->appendFile( '/js/formalize/jquery.formalize.js')
 	->appendFile($this->baseUrl('contrib/1140_CssGrid_2/js/css3-mediaqueries.js'))
 ;
 ?>
