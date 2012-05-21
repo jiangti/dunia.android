@@ -23,9 +23,16 @@ abstract class Aw_Form_Abstract extends Zend_Form {
 	public function setRecord(Zend_Db_Table_Row_Abstract $record) {
 		if ($record->isPersist()) {
 			$this->_record = $record;
+			$this->setDefaults($record->toArray());
 		} else {
 			throw new Exception('An uninitialized Row has been passed in.');
 		}
+		
+		$this->setDefaults($record->toArray());
+	}
+	
+	public function getRecord() {
+		return $this->_record;
 	}
 	
 	

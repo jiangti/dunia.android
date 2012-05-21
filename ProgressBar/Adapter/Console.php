@@ -1,5 +1,5 @@
 <?php
-class Choc_ProgressBar_Adapter_Console extends Zend_ProgressBar_Adapter_Console
+class Aw_ProgressBar_Adapter_Console extends Zend_ProgressBar_Adapter_Console
 {
 	protected $_elements = array(self::ELEMENT_PERCENT,
 			self::ELEMENT_BAR,
