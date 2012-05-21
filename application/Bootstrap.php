@@ -23,13 +23,16 @@ class Bootstrap extends Aw_BootstrapAbstract {
 
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $viewRenderer->setView($view);
+        
+        
 
         $view
         	->headScript()
         	->prependFile('/contrib/jquery-ui-1.8.17.custom/js/jquery-1.7.1.min.js')
-            ->appendFile( '/js/ember-0.9.7.1.min.js')
-        	->appendFile( 'http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places')
-        	->appendFile( '/js/default.js')
+            ->appendFile('/js/ember-0.9.7.1.min.js')
+        	->appendFile('http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places')
+        	->appendFile('/js/jquery.corner.js')
+        	->appendFile('/js/default.js')
         ;
         
         Zend_Paginator::setDefaultScrollingStyle('Sliding');
