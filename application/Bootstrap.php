@@ -25,22 +25,11 @@ class Bootstrap extends Aw_BootstrapAbstract {
         $viewRenderer->setView($view);
 
         $view
-        	->headLink()
-        	->appendStylesheet('/css/style.css', 'screen, projection')
-        	->appendStylesheet('/css/formalize/formalize.css', 'screen, projection')
-        	->appendStylesheet('/contrib/jquery-ui-1.8.17.custom/css/custom-theme/jquery-ui-1.8.17.custom.css', 'screen, projection')
-        ;
-
-        $view
         	->headScript()
         	->prependFile('/contrib/jquery-ui-1.8.17.custom/js/jquery-1.7.1.min.js')
-        	->appendFile( '/contrib/jquery-ui-1.8.17.custom/js/jquery-ui-1.8.17.custom.min.js')
             ->appendFile( '/js/ember-0.9.7.1.min.js')
         	->appendFile( 'http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places')
-        	->appendFile( '/js/jquery.corner.js')
         	->appendFile( '/js/default.js')
-        	->appendFile( '/js/jquery.sticky.js')
-        	->appendFile( '/js/formalize/jquery.formalize.js')
         ;
         
         Zend_Paginator::setDefaultScrollingStyle('Sliding');

@@ -18,7 +18,7 @@ $(document).ready(function() {
             zIndex: 20
         }),
         earlier: marker.create({
-        	name:   'now',
+        	name:   'earlier',
             icon: '/img/icons/markers/empty.png',
             smallIcon: '/img/icons/markers/empty_sml.png',
             zIndex: 18

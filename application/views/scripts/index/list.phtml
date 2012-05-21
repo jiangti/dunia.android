@@ -14,8 +14,8 @@
                         $("#info").find('ul').listview();
                     }
                 });
-                
-            }, 
+
+            },
             function (msg) {
                 var s = document.querySelector('#info');
                 s.innerHTML = typeof msg == 'string' ? msg : "failed";
