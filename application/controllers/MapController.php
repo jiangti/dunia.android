@@ -19,7 +19,7 @@ class MapController extends Model_Controller_Action {
 		$lat  = $this->_getParam('lat', $lat);
 		$long = $this->_getParam('long', $long);
 		
-		$pubs = $pubService->findPomoWithNoDealPub($lat, $long);
+		$pubs = $pubService->findPromoWithNoDealPub($lat, $long);
 		
 		$this->_generateResponse($pubs);
 	}
@@ -35,6 +35,8 @@ class MapController extends Model_Controller_Action {
 		
 		$ne = $this->_getParam('ne');
 		$sw = $this->_getParam('sw');
+
+        $zoom = $this->_getParam('zoom');
 		
 		list($nelat, $nelong) = explode(",", $ne);
 		list($swlat, $swlong) = explode(",", $sw);
@@ -47,8 +49,12 @@ class MapController extends Model_Controller_Action {
 		$bound->nelng  = $nelong;
 		$bound->swlat  = $swlat;
 		$bound->swlng  = $swlong;
-		
-		$pubs = $pubService->findPomoWithNoDealPub($lat, $long, null, null, null, $bound);
+
+        if ($zoom >= 17) {
+		    $pubs = $pubService->findPromoWithNoDealPub($lat, $long, null, null, null, $bound);
+        } else {
+            $pubs = $pubService->findPromo($lat, $long, null, null, null, $bound);
+        }
 		$this->_generateResponse($pubs);
 		
 	}

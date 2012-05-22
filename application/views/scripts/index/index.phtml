@@ -47,12 +47,6 @@ $(document).ready(function() {
 
     autocomplete.bindTo('bounds', AppMap.map);
 
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
-    	var place = autocomplete.getPlace();
-    	AppMap.cleanMarkers();
-    	AppMap.map.setCenter(place.geometry.location);
-    });
-
 	var view = Ember.View.create({
 		templateName: 'summary-bar',
 		summaries: Dunia.summary.summaries,
@@ -65,9 +59,13 @@ $(document).ready(function() {
 		}
 	});
 
-
 	view.appendTo('#summary-bar');
 
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        var place = autocomplete.getPlace();
+        AppMap.cleanMarkers();
+        AppMap.map.setCenter(place.geometry.location);
+    });
 
     google.maps.event.addListener(AppMap.map, 'tilesloaded', function(event) {
     	AppMap.fetchBars();

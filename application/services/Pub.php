@@ -292,17 +292,12 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     		$hour = date("H:i:00");
     	}
     	 
-    	if (!$dayOfWeek) {
-    		$dayOfWeek = date('D');
-    	}
-    	
-    	 
-        $expr = new Zend_Db_Expr(sprintf("CASE
+        $expr = new Zend_Db_Expr(sprintf("IF(find_in_set('%s', p0.day),CASE
                 WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
                 WHEN '%s' < p0.timeStart THEN 'later'
                 WHEN '%s' > p0.timeEnd THEN 'earlier'
                 ELSE 'none'
-                END", $hour, $hour, $hour));
+                END, 'none')", date('D'), $hour, $hour, $hour));
 
     	$select
 	    	->join(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array('idPub'))
@@ -313,13 +308,15 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 	    		)
 	    	->join(array('phl' => 'promoHasLiquorType'), 'p0.id = phl.idPromo', array())
 	    	->join(array('lt' => 'liquorType'), 'lt.id = phl.idLiquorType', array('liquorType' => 'name'))
-	    	->joinLeft(array('ls' => 'liquorSize'), 'phl.idLiquorSize = ls.id', array('liquorSize' => 'name'))
-	    	->where('find_in_set(?, p0.day)', $dayOfWeek)
-    	;
+	    	->joinLeft(array('ls' => 'liquorSize'), 'phl.idLiquorSize = ls.id', array('liquorSize' => 'name'));
+
+        if ($dayOfWeek) {
+	    	$select->where('find_in_set(?, p0.day)', $dayOfWeek);
+        }
     	return $select;
     }
     
-    public function findPomoWithNoDealPub($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null, Model_Location_Bound $bound = null) {
+    public function findPromoWithNoDealPub($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null, Model_Location_Bound $bound = null) {
     	$select = $this->_getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour, $bound);
     	
     	$cols = $select->getPart(Zend_Db_Select::COLUMNS);
@@ -346,7 +343,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	
     	return $this->_formatPromoData($select1->getTable()->fetchAll($select1));
     }
-    
+
     /**
      * Promo finder is always using times.
      *
@@ -356,10 +353,9 @@ class Service_Pub extends Aw_Service_ServiceAbstract
      * @param string day [MON,TUE,WED...]
      * @param int 0-12
      */
-    public function findPromo($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null) {
+    public function findPromo($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null, Model_Location_Bound $bound = null) {
     	
-    	$select = $this->_getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour);
-    	
+    	$select = $this->_getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour, $bound);
         $data   = $select->getTable()->fetchAll($select);
         
 		return $this->_formatPromoData($data);
