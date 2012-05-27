@@ -6,49 +6,27 @@ class UserController extends Model_Controller_Action
     public function loginAction()
     {
         $auth = Aw_Auth::getInstance();
-
-        $providers = $auth->getIdentity();
+        if ($auth->hasIdentity()) {
+            $this->_redirect('/');
+        }
 
         // Here the response of the providers are registered
         if ($this->_hasParam('provider')) {
-            $provider = $this->_getParam('provider');
 
-            switch ($provider) {
-                case "facebook":
-                    if ($this->_hasParam('code')) {
-                        $adapter = new Aw_Auth_Adapter_Facebook(
-                            $this->_getParam('code'));
-                        $result = $auth->authenticate($adapter);
-                    }
-                    break;
-                case "twitter":
-                    if ($this->_hasParam('oauth_token')) {
-                        $adapter = new Aw_Auth_Adapter_Twitter($_GET);
-                        $result = $auth->authenticate($adapter);
-                    }
-                    break;
-                case "google":
-                    if ($this->_hasParam('code')) {
-                        $adapter = new Aw_Auth_Adapter_Google(
-                            $this->_getParam('code'));
-                        $result = $auth->authenticate($adapter);
-                    }
-                    break;
+            $user   = new Service_User();
+            $result = $user->login($this->_getAllParams());
 
-            }
             // What to do when invalid
-            if (!$result->isValid()) {
+            if (!$result || !$result->isValid()) {
                 $auth->clearIdentity($this->_getParam('provider'));
                 throw new Exception('Error!!');
             } else {
-                $this->_redirect('/user/connect');
+                $this->_redirect('/');
             }
         } else { // Normal login page
-            $this->view->googleAuthUrl = Aw_Auth_Adapter_Google::getAuthorizationUrl();
-
+            //$this->view->googleAuthUrl   = Aw_Auth_Adapter_Google::getAuthorizationUrl();
             $this->view->facebookAuthUrl = Aw_Auth_Adapter_Facebook::getAuthorizationUrl();
-
-            $this->view->twitterAuthUrl = Aw_Auth_Adapter_Twitter::getAuthorizationUrl();
+            $this->view->twitterAuthUrl  = Aw_Auth_Adapter_Twitter::getAuthorizationUrl();
         }
 
     }
@@ -56,7 +34,7 @@ class UserController extends Model_Controller_Action
     {
         $auth = Aw_Auth::getInstance();
         if (!$auth->hasIdentity()) {
-            throw new Zend_Controller_Action_Exception('Not logged in!', 404);
+            $this->_redirect('/user/login');
         }
         $this->view->providers = $auth->getIdentity();
     }
@@ -64,6 +42,8 @@ class UserController extends Model_Controller_Action
     public function logoutAction()
     {
         Aw_Auth::getInstance()->clearIdentity();
+        $session = new Zend_Session_Namespace('user');
+        $session->unsetAll();
         $this->_redirect('/');
     }
 //    public function loginAction() {

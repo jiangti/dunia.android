@@ -42,7 +42,7 @@ $(document).ready(function() {
             Dunia.markerProperties.now, 
     	    Dunia.markerProperties.earlier,
     	    Dunia.markerProperties.later, 
-    	    Dunia.markerProperties.none,
+    	    Dunia.markerProperties.none
         ]
     });
     

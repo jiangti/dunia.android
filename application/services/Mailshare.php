@@ -23,7 +23,7 @@ class Service_Mailshare {
 			$db->beginTransaction();
 			
 			$mailShare = Model_DbTable_MailShare::retrieveById($data['id']);
-			
+
 			$pub = Model_DbTable_Pub::retrieveById($data['hidden']);
 			$pub->mergeMailShare($mailShare);
 			

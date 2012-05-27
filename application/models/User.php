@@ -9,6 +9,8 @@ class Model_User extends Aw_Model_ModelAbstract {
     public $email;
     public $birthDate;
 
+
+
 	
 	const DEFAULT_LATITUDE  = -33.8757;
 	const DEFAULT_LONGITUDE = 151.206;
