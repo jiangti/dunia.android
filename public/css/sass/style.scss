@@ -346,7 +346,7 @@ h1 {
         margin: 0 0 5px 0;
         color: #555;
         text-align: center;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman","Helvetica Neue Roman","TeXGyreHerosRegular","Helvetica","Tahoma","Geneva","Arial",sans-serif;
     }
 
     .overlayContent {
@@ -357,8 +357,13 @@ h1 {
 
         div {
             padding: 20px 5px;
-            font-family: Georgia, serif;
+            font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman","Helvetica Neue Roman","TeXGyreHerosRegular","Helvetica","Tahoma","Geneva","Arial",sans-serif;
             font-size: 20px;
+
+            span {
+                font-weight: bold;
+                font-size: 30px;
+            }
         }
 
         div.deal {

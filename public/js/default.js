@@ -146,7 +146,7 @@ $(document).ready(function() {
                         if (promo.itsOn != 'none') {
                             promos += '<div class="deal">';
                             if (promo.price > 0) {
-                                promos += '$' + promo.price + ' ';
+                                promos += '<sup>$</sup><span class="price">' + promo.price + '</span> ';
                             }
                             promos += promo.liquorType + ' (' + promo.timeStart + ' to ' + promo.timeEnd + ')</div>';
                         }

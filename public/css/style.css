@@ -346,7 +346,7 @@ h1 {
   margin: 0 0 5px 0;
   color: #555;
   text-align: center;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman","Helvetica Neue Roman","TeXGyreHerosRegular","Helvetica","Tahoma","Geneva","Arial",sans-serif;
 }
 /* line 352, sass/style.scss */
 .overlay .overlayContent {
@@ -358,15 +358,20 @@ h1 {
 /* line 358, sass/style.scss */
 .overlay .overlayContent div {
   padding: 20px 5px;
-  font-family: Georgia, serif;
+  font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman","Helvetica Neue Roman","TeXGyreHerosRegular","Helvetica","Tahoma","Geneva","Arial",sans-serif;
   font-size: 20px;
 }
-/* line 364, sass/style.scss */
+/* line 363, sass/style.scss */
+.overlay .overlayContent div span {
+  font-weight: bold;
+  font-size: 30px;
+}
+/* line 369, sass/style.scss */
 .overlay .overlayContent div.deal {
   padding: 0;
   margin-bottom: 5px;
 }
-/* line 369, sass/style.scss */
+/* line 374, sass/style.scss */
 .overlay .overlayContent h3 {
   text-align: center;
   color: #fff;
@@ -374,18 +379,18 @@ h1 {
   margin: 0;
   padding: 0;
 }
-/* line 378, sass/style.scss */
+/* line 383, sass/style.scss */
 .overlay .foot {
   margin-top: 10px;
   overflow: auto;
   position: relative;
 }
-/* line 383, sass/style.scss */
+/* line 388, sass/style.scss */
 .overlay .foot .address {
   color: #555;
   font-size: 80%;
 }
-/* line 388, sass/style.scss */
+/* line 393, sass/style.scss */
 .overlay .foot a {
   text-decoration: none;
   color: #1291ff;
@@ -394,7 +399,7 @@ h1 {
   right: 0;
 }
 
-/* line 397, sass/style.scss */
+/* line 402, sass/style.scss */
 a.small-icon {
   display: block;
   width: 16px;
@@ -404,21 +409,21 @@ a.small-icon {
   text-indent: -9999px;
 }
 
-/* line 406, sass/style.scss */
+/* line 411, sass/style.scss */
 a.ok {
   background: url(/img/icons/famfamfam/accept.png) no-repeat;
 }
 
-/* line 410, sass/style.scss */
+/* line 415, sass/style.scss */
 a.cancel {
   background: url(/img/icons/famfamfam/cancel.png) no-repeat;
 }
 
-/* line 414, sass/style.scss */
+/* line 419, sass/style.scss */
 .admin-nav {
   list-style: none;
 }
-/* line 418, sass/style.scss */
+/* line 423, sass/style.scss */
 .admin-nav li a {
   font-size: 18px;
   text-decoration: none;
@@ -430,7 +435,7 @@ a.cancel {
   border-color: #ddd;
   color: #555;
 }
-/* line 430, sass/style.scss */
+/* line 435, sass/style.scss */
 .admin-nav li a.selected {
   background: #00b7ea;
   /* Old browsers */
@@ -466,45 +471,45 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
-/* line 458, sass/style.scss */
+/* line 463, sass/style.scss */
 #flagForm #dealSelector {
   padding: 20px;
   font-size: 15px;
   border-right: 1px solid #ccc;
   margin-right: 20px;
 }
-/* line 466, sass/style.scss */
+/* line 471, sass/style.scss */
 #flagForm #dealSubforms dd {
   margin-bottom: 10px;
 }
-/* line 471, sass/style.scss */
+/* line 476, sass/style.scss */
 #flagForm dt > label {
   font-weight: bold;
   font-size: 15px;
 }
-/* line 475, sass/style.scss */
+/* line 480, sass/style.scss */
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;
 }
-/* line 480, sass/style.scss */
+/* line 485, sass/style.scss */
 #flagForm fieldset {
   border: 0;
   padding: 0;
 }
-/* line 485, sass/style.scss */
+/* line 490, sass/style.scss */
 #flagForm hr {
   color: #ddd;
 }
 
-/* line 490, sass/style.scss */
+/* line 495, sass/style.scss */
 .venuePic {
   margin: 10px;
   padding: 4px;
   border: 1px solid #ccc;
 }
 
-/* line 496, sass/style.scss */
+/* line 501, sass/style.scss */
 #mailshare form {
   -webkit-box-shadow: 0px 0px 5px #333333;
   -moz-box-shadow: 0px 0px 5px #333333;
@@ -512,7 +517,7 @@ a.cancel {
   padding: 20px;
 }
 
-/* line 501, sass/style.scss */
+/* line 506, sass/style.scss */
 #facebookConnect, #signInWithTwitter {
   margin: 20px;
   display: block;
@@ -521,12 +526,12 @@ a.cancel {
   width: 169px;
 }
 
-/* line 509, sass/style.scss */
+/* line 514, sass/style.scss */
 #facebookConnect {
   background: url("/img/icons/facebookconnect.png") no-repeat scroll 0 0 transparent;
 }
 
-/* line 513, sass/style.scss */
+/* line 518, sass/style.scss */
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }
