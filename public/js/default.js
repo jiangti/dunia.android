@@ -143,11 +143,13 @@ $(document).ready(function() {
                 } else {
                     for (var j = 0; j < marker.promos.length; j++) {
                         var promo = marker.promos[j];
-                        promos += '<div class="deal">';
-                        if (promo.price > 0) {
-                            promos += '$' + promo.price + ' ';
+                        if (promo.itsOn != 'none') {
+                            promos += '<div class="deal">';
+                            if (promo.price > 0) {
+                                promos += '$' + promo.price + ' ';
+                            }
+                            promos += promo.liquorType + ' (' + promo.timeStart + ' to ' + promo.timeEnd + ')</div>';
                         }
-                        promos += promo.liquorType + ' (' + promo.timeStart + ' to ' + promo.timeEnd + ')</div>';
                     }
                 }
 
