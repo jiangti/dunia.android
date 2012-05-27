@@ -15,13 +15,17 @@
 
                 </div>
 
-                <?php foreach ($pub['promos'] as $promo) { ?>
-                <div class="indexDeal">
-                    <img src="<?php echo $this->beerIcon($promo['itsOn'], '_sml'); ?>" width="32" height="24"/>
-                    <?php echo $this->currency($promo['price']) . ' ' . $promo['liquorType']; ?>
+                <?php
+                    foreach ($pub['promos'] as $promo) {
+                        if ($promo['itsOn'] != "none") {?>
+                        <div class="indexDeal">
+                            <img src="<?php echo $this->beerIcon($promo['itsOn'], '_sml'); ?>" width="32" height="24"/>
+                            <?php echo $this->currency($promo['price']) . ' ' . $promo['liquorType']; ?>
 
-                </div>
-                <?php } ?>
+                        </div>
+                <?php
+                        }
+                    } ?>
             </div>
         </a>
     </li>

@@ -22,7 +22,7 @@ class IndexController extends Model_Controller_Action {
     }
 	
 	public function locateAction() {
-        $this->_populatePubs();
+        $this->_populatePubs(date('D'));
 	    $this->_helper->layout()->disableLayout();
 	}
 	
@@ -41,7 +41,7 @@ class IndexController extends Model_Controller_Action {
         $this->_helper->layout()->setLayout('mobile-min');
 	}
 	
-	protected function _populatePubs() {
+	protected function _populatePubs($day = null) {
         $service = new Service_Pub();
 
         $user = $this->_getUser();
@@ -52,7 +52,7 @@ class IndexController extends Model_Controller_Action {
         $lat  = $this->_getParam('lat', $lat);
         $long = $this->_getParam('long', $long);
 
-        $this->view->pubs = $service->findPromo($lat, $long);
+        $this->view->pubs = $service->findPromo($lat, $long, null, $day);
     }
 	
 	public function landingAction() {
