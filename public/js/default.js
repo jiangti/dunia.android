@@ -144,11 +144,11 @@ $(document).ready(function() {
                     for (var j = 0; j < marker.promos.length; j++) {
                         var promo = marker.promos[j];
                         if (promo.itsOn != 'none') {
-                            promos += '<div class="deal">';
+                            promos += '<div class="deal"><div class="left">';
                             if (promo.price > 0) {
                                 promos += '<sup>$</sup><span class="price">' + promo.price + '</span> ';
                             }
-                            promos += '<span class="liquorType">' + promo.liquorType + '</span>' +
+                            promos += '<span class="liquorType">' + promo.liquorType + '</span></div>' +
                                 ' <div class="right">' +
                                     '<div class="size"><img src="/img/icons/navbar/50-beaker.png" width="11" height="13" /> ' + (promo.liquorSize == null ? '-' : promo.liquorSize) + '</div>' +
                                     '<div class="time"><img src="/img/icons/navbar/11-clock.png" width="13" height="13" /> ' + promo.timeStart + '-' + promo.timeEnd + '</div>' +
@@ -188,6 +188,7 @@ $(document).ready(function() {
 
                 google.maps.event.addListener(mapMarker, 'click', function() {
                     infoWindow.setContent(this.html);
+                    infoWindow.setOptions({maxWidth: 500});
                     infoWindow.open(map, this);
                 });
             });
