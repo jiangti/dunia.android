@@ -344,73 +344,78 @@ h1 {
 /* line 345, sass/style.scss */
 .overlay h2 {
   margin: 0 0 5px 0;
+  font-size: 20px;
+  font-weight: bold;
   color: #555;
   text-align: center;
   font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman","Helvetica Neue Roman","TeXGyreHerosRegular","Helvetica","Tahoma","Geneva","Arial",sans-serif;
 }
-/* line 352, sass/style.scss */
+/* line 354, sass/style.scss */
 .overlay .overlayContent {
   border: 1px solid rgba(104, 187, 235, 0.9);
   border-left: 0;
   border-right: 0;
   margin: 0;
 }
-/* line 358, sass/style.scss */
+/* line 360, sass/style.scss */
 .overlay .overlayContent div {
   padding: 20px 5px;
   font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman","Helvetica Neue Roman","TeXGyreHerosRegular","Helvetica","Tahoma","Geneva","Arial",sans-serif;
   font-size: 20px;
 }
-/* line 363, sass/style.scss */
+/* line 365, sass/style.scss */
 .overlay .overlayContent div span.price {
   font-weight: bold;
   font-size: 30px;
 }
-/* line 368, sass/style.scss */
+/* line 370, sass/style.scss */
 .overlay .overlayContent div span.liquorType {
   font-weight: normal;
   font-size: 24px;
 }
-/* line 373, sass/style.scss */
+/* line 375, sass/style.scss */
 .overlay .overlayContent div div.left {
   padding: 0;
 }
-/* line 377, sass/style.scss */
+/* line 379, sass/style.scss */
 .overlay .overlayContent div div.right {
   padding: 0;
   margin-left: 10px;
 }
-/* line 381, sass/style.scss */
+/* line 383, sass/style.scss */
 .overlay .overlayContent div div.right div.time, .overlay .overlayContent div div.right div.size {
   font-size: 14px;
   padding: 0;
 }
-/* line 389, sass/style.scss */
+/* line 391, sass/style.scss */
 .overlay .overlayContent div.deal {
   padding: 0;
   margin-bottom: 10px;
   overflow: auto;
 }
-/* line 395, sass/style.scss */
+/* line 397, sass/style.scss */
 .overlay .overlayContent h3 {
   text-align: center;
   color: #fff;
   background-color: rgba(104, 187, 235, 0.9);
+  font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman","Helvetica Neue Roman","TeXGyreHerosRegular","Helvetica","Tahoma","Geneva","Arial",sans-serif;
+  font-size: 14px;
+  font-weight: bold;
   margin: 0;
   padding: 0;
 }
-/* line 404, sass/style.scss */
+/* line 409, sass/style.scss */
 .overlay .foot {
   margin-top: 10px;
   overflow: auto;
   position: relative;
 }
-/* line 409, sass/style.scss */
+/* line 414, sass/style.scss */
 .overlay .foot .address {
   color: #555;
   font-size: 80%;
 }
-/* line 414, sass/style.scss */
+/* line 419, sass/style.scss */
 .overlay .foot a {
   text-decoration: none;
   color: #1291ff;
@@ -419,7 +424,7 @@ h1 {
   right: 0;
 }
 
-/* line 423, sass/style.scss */
+/* line 428, sass/style.scss */
 a.small-icon {
   display: block;
   width: 16px;
@@ -429,21 +434,21 @@ a.small-icon {
   text-indent: -9999px;
 }
 
-/* line 432, sass/style.scss */
+/* line 437, sass/style.scss */
 a.ok {
   background: url(/img/icons/famfamfam/accept.png) no-repeat;
 }
 
-/* line 436, sass/style.scss */
+/* line 441, sass/style.scss */
 a.cancel {
   background: url(/img/icons/famfamfam/cancel.png) no-repeat;
 }
 
-/* line 440, sass/style.scss */
+/* line 445, sass/style.scss */
 .admin-nav {
   list-style: none;
 }
-/* line 444, sass/style.scss */
+/* line 449, sass/style.scss */
 .admin-nav li a {
   font-size: 18px;
   text-decoration: none;
@@ -455,7 +460,7 @@ a.cancel {
   border-color: #ddd;
   color: #555;
 }
-/* line 456, sass/style.scss */
+/* line 461, sass/style.scss */
 .admin-nav li a.selected {
   background: #00b7ea;
   /* Old browsers */
@@ -491,45 +496,45 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
-/* line 484, sass/style.scss */
+/* line 489, sass/style.scss */
 #flagForm #dealSelector {
   padding: 20px;
   font-size: 15px;
   border-right: 1px solid #ccc;
   margin-right: 20px;
 }
-/* line 492, sass/style.scss */
+/* line 497, sass/style.scss */
 #flagForm #dealSubforms dd {
   margin-bottom: 10px;
 }
-/* line 497, sass/style.scss */
+/* line 502, sass/style.scss */
 #flagForm dt > label {
   font-weight: bold;
   font-size: 15px;
 }
-/* line 501, sass/style.scss */
+/* line 506, sass/style.scss */
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;
 }
-/* line 506, sass/style.scss */
+/* line 511, sass/style.scss */
 #flagForm fieldset {
   border: 0;
   padding: 0;
 }
-/* line 511, sass/style.scss */
+/* line 516, sass/style.scss */
 #flagForm hr {
   color: #ddd;
 }
 
-/* line 516, sass/style.scss */
+/* line 521, sass/style.scss */
 .venuePic {
   margin: 10px;
   padding: 4px;
   border: 1px solid #ccc;
 }
 
-/* line 522, sass/style.scss */
+/* line 527, sass/style.scss */
 #mailshare form {
   -webkit-box-shadow: 0px 0px 5px #333333;
   -moz-box-shadow: 0px 0px 5px #333333;
@@ -537,7 +542,7 @@ a.cancel {
   padding: 20px;
 }
 
-/* line 527, sass/style.scss */
+/* line 532, sass/style.scss */
 #facebookConnect, #signInWithTwitter {
   margin: 20px;
   display: block;
@@ -546,12 +551,12 @@ a.cancel {
   width: 169px;
 }
 
-/* line 535, sass/style.scss */
+/* line 540, sass/style.scss */
 #facebookConnect {
   background: url("/img/icons/facebookconnect.png") no-repeat scroll 0 0 transparent;
 }
 
-/* line 539, sass/style.scss */
+/* line 544, sass/style.scss */
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }

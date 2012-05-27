@@ -1,24 +1,24 @@
 @import url('snickles/stylesheet.css');
 @CHARSET "UTF-8";
-/* line 5, sass/mobile.scss */
+/* line 7, sass/mobile.scss */
 html, body, .page {
   height: 100%;
 }
 
-/* line 9, sass/mobile.scss */
+/* line 11, sass/mobile.scss */
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
   font-size: 14px;
 }
 
-/* line 14, sass/mobile.scss */
+/* line 16, sass/mobile.scss */
 h1 {
   font-size: x-large;
   padding: 1em;
   color: white;
 }
 
-/* line 20, sass/mobile.scss */
+/* line 22, sass/mobile.scss */
 h2 {
   font-family: "SnicklesRegular";
   font-weight: normal;
@@ -27,7 +27,7 @@ h2 {
   margin: 20px auto 10px auto;
 }
 
-/* line 28, sass/mobile.scss */
+/* line 30, sass/mobile.scss */
 h3 {
   font-family: "SnicklesRegular";
   font-weight: normal !important;
@@ -35,18 +35,18 @@ h3 {
   overflow: visible !important;
 }
 
-/* line 35, sass/mobile.scss */
+/* line 37, sass/mobile.scss */
 ul {
   list-style: none;
 }
 
-/* line 39, sass/mobile.scss */
+/* line 41, sass/mobile.scss */
 blockquote {
   margin: 30px 10px 20px 10px;
   min-height: 50px;
 }
 
-/* line 44, sass/mobile.scss */
+/* line 46, sass/mobile.scss */
 .bqstart, .bqend {
   padding-top: 45px;
   font-size: 700%;
@@ -54,7 +54,7 @@ blockquote {
   font-family: Georgia, serif;
 }
 
-/* line 51, sass/mobile.scss */
+/* line 53, sass/mobile.scss */
 .bqstart {
   float: left;
   height: 45px;
@@ -62,14 +62,14 @@ blockquote {
   margin-bottom: -50px;
 }
 
-/* line 58, sass/mobile.scss */
+/* line 60, sass/mobile.scss */
 .bqend {
   float: right;
   height: 25px;
   margin-top: 0px;
 }
 
-/* line 64, sass/mobile.scss */
+/* line 66, sass/mobile.scss */
 .home {
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -77,51 +77,51 @@ blockquote {
   z-index: 1;
 }
 
-/* line 71, sass/mobile.scss */
+/* line 73, sass/mobile.scss */
 #nav {
   padding: 0.5em 1em;
   background-color: #4db8e0;
 }
 
-/* line 76, sass/mobile.scss */
+/* line 78, sass/mobile.scss */
 #main {
   padding: 1em;
 }
 
-/* line 80, sass/mobile.scss */
+/* line 82, sass/mobile.scss */
 #topNav {
   position: absolute;
   right: 1em;
   top: 1em;
 }
-/* line 84, sass/mobile.scss */
+/* line 86, sass/mobile.scss */
 #topNav li {
   display: inline;
   list-decoration: none;
   margin: 0 7px;
 }
-/* line 89, sass/mobile.scss */
+/* line 91, sass/mobile.scss */
 #topNav a {
   text-decoration: none;
   font-size: 14px;
 }
 
-/* line 96, sass/mobile.scss */
+/* line 98, sass/mobile.scss */
 .clear {
   clear: both;
 }
 
-/* line 100, sass/mobile.scss */
+/* line 102, sass/mobile.scss */
 .right {
   float: right;
 }
 
-/* line 104, sass/mobile.scss */
+/* line 106, sass/mobile.scss */
 .left {
   float: left;
 }
 
-/* line 108, sass/mobile.scss */
+/* line 110, sass/mobile.scss */
 .separator {
   border-top: 1px solid #ddd;
   height: 1px;
@@ -131,14 +131,14 @@ blockquote {
 /**
  * Search Form
  */
-/* line 118, sass/mobile.scss */
+/* line 120, sass/mobile.scss */
 #searchForm {
   position: absolute;
   left: 200px;
   top: 1.5em;
 }
 
-/* line 124, sass/mobile.scss */
+/* line 126, sass/mobile.scss */
 #searchQuery {
   width: 400px;
   height: 25px;
@@ -152,7 +152,7 @@ blockquote {
 /**
  * Controls
  */
-/* line 140, sass/mobile.scss */
+/* line 142, sass/mobile.scss */
 a.reviews {
   font-size: 11px;
   text-align: center;
@@ -166,7 +166,7 @@ a.reviews {
   height: 20px;
   color: #555;
 }
-/* line 153, sass/mobile.scss */
+/* line 155, sass/mobile.scss */
 a.icon-small {
   margin: 2px;
   display: block;
@@ -174,27 +174,27 @@ a.icon-small {
   width: 16px;
   height: 16px;
 }
-/* line 160, sass/mobile.scss */
+/* line 162, sass/mobile.scss */
 a.facebook {
   background: url("/img/icons/social/facebook.png") no-repeat;
 }
-/* line 163, sass/mobile.scss */
+/* line 165, sass/mobile.scss */
 a.twitter {
   background: url("/img/icons/social/twitter.png") no-repeat;
 }
-/* line 166, sass/mobile.scss */
+/* line 168, sass/mobile.scss */
 a.flag {
   background: url("/img/icons/social/flag.png") no-repeat;
 }
-/* line 169, sass/mobile.scss */
+/* line 171, sass/mobile.scss */
 a.edit {
   background: url("/img/icons/social/edit.png") no-repeat;
 }
-/* line 172, sass/mobile.scss */
+/* line 174, sass/mobile.scss */
 a.favorite {
   background: url("/img/icons/social/favorite.png") no-repeat;
 }
-/* line 175, sass/mobile.scss */
+/* line 177, sass/mobile.scss */
 a.not-favorite {
   background: url("/img/icons/social/not-favorite.png") no-repeat;
 }
@@ -202,7 +202,7 @@ a.not-favorite {
 /**
  *
  */
-/* line 185, sass/mobile.scss */
+/* line 187, sass/mobile.scss */
 .distance {
   font-weight: normal;
   position: absolute;
@@ -210,14 +210,14 @@ a.not-favorite {
   right: 25px;
 }
 
-/* line 193, sass/mobile.scss */
+/* line 195, sass/mobile.scss */
 .indexDeal {
   font-weight: normal;
   margin-left: 20px;
   line-height: 37px;
   height: 37px;
 }
-/* line 199, sass/mobile.scss */
+/* line 201, sass/mobile.scss */
 .indexDeal img {
   margin: 0;
 }
@@ -225,31 +225,31 @@ a.not-favorite {
 /**
  * Venue specific styles
  */
-/* line 208, sass/mobile.scss */
+/* line 210, sass/mobile.scss */
 h2.venue {
   margin-left: 420px;
 }
 
-/* line 212, sass/mobile.scss */
+/* line 214, sass/mobile.scss */
 #venueInfo {
   float: left;
   width: 30%;
   min-width: 300px;
 }
 
-/* line 218, sass/mobile.scss */
+/* line 220, sass/mobile.scss */
 #venueDeals {
   float: left;
   width: 40%;
 }
 
-/* line 223, sass/mobile.scss */
+/* line 225, sass/mobile.scss */
 #venueReviews {
   float: left;
   width: 30%;
 }
 
-/* line 229, sass/mobile.scss */
+/* line 231, sass/mobile.scss */
 #venueInfo #venueDeals li, #venueInfo #venueReviews li {
   list-style: none;
   padding: 1em;
@@ -260,38 +260,38 @@ h2.venue {
   border-radius: 5px;
 }
 
-/* line 241, sass/mobile.scss */
+/* line 243, sass/mobile.scss */
 #map {
   height: 100%;
 }
 
-/* line 246, sass/mobile.scss */
+/* line 248, sass/mobile.scss */
 #venueSummary .rounded {
   background-color: #fff;
   margin: 1em;
   padding: 1em;
 }
-/* line 251, sass/mobile.scss */
+/* line 253, sass/mobile.scss */
 #venueSummary h3 {
-  font-family: Georgia,"Nimbus Roman No9 L",serif;
+  font-family: Georgia, "Nimbus Roman No9 L", serif;
   font-size: 1.5em;
   font-style: italic;
 }
-/* line 256, sass/mobile.scss */
+/* line 258, sass/mobile.scss */
 #venueSummary ul {
   list-style: none;
 }
-/* line 259, sass/mobile.scss */
+/* line 261, sass/mobile.scss */
 #venueSummary #favoriteVenue img {
   margin: 2px;
 }
 
-/* line 265, sass/mobile.scss */
+/* line 267, sass/mobile.scss */
 .socialControls {
   margin: 0 1em;
 }
 
-/* line 269, sass/mobile.scss */
+/* line 271, sass/mobile.scss */
 #summaryReviews, #summaryDeals {
   right: 1em;
   left: 1em;
@@ -303,90 +303,90 @@ h2.venue {
 	bottom     : 1em;
 	height	   : 95px;
 }*/
-/* line 281, sass/mobile.scss */
+/* line 283, sass/mobile.scss */
 .when {
   color: #666 !important;
   font-weight: normal;
   font-size: 12px;
 }
 
-/* line 287, sass/mobile.scss */
+/* line 289, sass/mobile.scss */
 .venuePicture {
   border: 1px solid #aad;
   float: right;
   margin: 1em;
 }
 
-/* line 293, sass/mobile.scss */
+/* line 295, sass/mobile.scss */
 #venueAddress {
   margin: 1em;
   font-size: 1.2em;
 }
 
-/* line 298, sass/mobile.scss */
+/* line 300, sass/mobile.scss */
 .addIcon {
   position: absolute;
   top: -3px;
   right: 5px;
 }
 
-/* line 304, sass/mobile.scss */
+/* line 306, sass/mobile.scss */
 .noContent {
   color: #999;
   font-style: italic;
 }
 
 /* Nav bar icons */
-/* line 312, sass/mobile.scss */
+/* line 314, sass/mobile.scss */
 .nav-bar .ui-btn .ui-btn-inner {
   padding-top: 40px !important;
 }
-/* line 315, sass/mobile.scss */
+/* line 317, sass/mobile.scss */
 .nav-bar .ui-btn .ui-icon {
-  width: 30px!important;
-  height: 30px!important;
+  width: 30px !important;
+  height: 30px !important;
   margin-left: -15px !important;
-  box-shadow: none!important;
-  -moz-box-shadow: none!important;
-  -webkit-box-shadow: none!important;
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
   -webkit-border-radius: 0 !important;
   border-radius: 0 !important;
 }
 
-/* line 328, sass/mobile.scss */
+/* line 330, sass/mobile.scss */
 .map-tab .ui-icon {
   background: url("/img/icons/navbar/103-map.png") 50% 50% no-repeat;
   background-size: 26px 21px;
 }
 
-/* line 333, sass/mobile.scss */
+/* line 335, sass/mobile.scss */
 .beer-tab .ui-icon {
   background: url("/img/icons/navbar/88-beer-mug.png") 50% 50% no-repeat;
   background-size: 22px 27px;
 }
 
-/* line 338, sass/mobile.scss */
+/* line 340, sass/mobile.scss */
 .mail-tab .ui-icon {
   background: url("/img/icons/navbar/18-envelope.png") 50% 50% no-repeat;
   background-size: 24px 16px;
 }
 
-/* line 343, sass/mobile.scss */
+/* line 345, sass/mobile.scss */
 .ui-select {
   width: 45%;
   display: inline-block;
 }
 
-/* line 348, sass/mobile.scss */
+/* line 350, sass/mobile.scss */
 .addthis_toolbox {
   margin: auto;
   max-width: 400px;
 }
 
 /* jQuery Mobile theme */
-/* line 354, sass/mobile.scss */
+/* line 356, sass/mobile.scss */
 .ui-bar-a {
-  border: 1px solid 		#009ec3;
+  border: 1px solid #009ec3;
   background: #009ec3;
   color: #ffffff;
   font-weight: bold;
@@ -398,19 +398,108 @@ h2.venue {
   background-image: -o-linear-gradient(#00b7ea, #009ec3);
   background-image: linear-gradient(#00b7ea, #009ec3);
 }
-/* line 367, sass/mobile.scss */
+/* line 369, sass/mobile.scss */
 .ui-bar-a h1 {
   line-height: 30px;
   vertical-align: middle;
 }
 
-/* line 373, sass/mobile.scss */
+/* line 375, sass/mobile.scss */
 div[data-role='header'] {
   height: 52px;
   z-index: 40;
 }
 
-/* line 378, sass/mobile.scss */
+/* line 380, sass/mobile.scss */
 .navButton {
   margin: 9px 10px;
+}
+
+/* line 384, sass/mobile.scss */
+.overlay {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 389, sass/mobile.scss */
+.overlay h2 {
+  margin: 0 0 5px 0;
+  color: #555;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+}
+/* line 398, sass/mobile.scss */
+.overlay .overlayContent {
+  border: 1px solid rgba(104, 187, 235, 0.9);
+  border-left: 0;
+  border-right: 0;
+  margin: 0;
+}
+/* line 404, sass/mobile.scss */
+.overlay .overlayContent div {
+  padding: 20px 5px;
+  font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+  font-size: 20px;
+}
+/* line 409, sass/mobile.scss */
+.overlay .overlayContent div span.price {
+  font-weight: bold;
+  font-size: 30px;
+}
+/* line 414, sass/mobile.scss */
+.overlay .overlayContent div span.liquorType {
+  font-weight: normal;
+  font-size: 24px;
+}
+/* line 419, sass/mobile.scss */
+.overlay .overlayContent div div.left {
+  padding: 0;
+}
+/* line 423, sass/mobile.scss */
+.overlay .overlayContent div div.right {
+  padding: 0;
+  margin-left: 10px;
+}
+/* line 427, sass/mobile.scss */
+.overlay .overlayContent div div.right div.time, .overlay .overlayContent div div.right div.size {
+  font-size: 14px;
+  padding: 0;
+}
+/* line 435, sass/mobile.scss */
+.overlay .overlayContent div.deal {
+  padding: 0;
+  margin-bottom: 10px;
+  overflow: auto;
+}
+/* line 441, sass/mobile.scss */
+.overlay .overlayContent h3 {
+  text-align: center;
+  color: #fff;
+  background-color: rgba(104, 187, 235, 0.9);
+  font-size: 14px !important;
+  font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman","Helvetica Neue Roman","TeXGyreHerosRegular","Helvetica","Tahoma","Geneva","Arial",sans-serif;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+/* line 453, sass/mobile.scss */
+.overlay .foot {
+  margin-top: 10px;
+  overflow: auto;
+  position: relative;
+}
+/* line 458, sass/mobile.scss */
+.overlay .foot .address {
+  color: #555;
+  font-size: 80%;
+}
+/* line 463, sass/mobile.scss */
+.overlay .foot a {
+  text-decoration: none;
+  color: #1291ff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
