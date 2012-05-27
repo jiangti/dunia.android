@@ -11,6 +11,10 @@ class Aw_Resource_Google
         $this->_accessToken = $accessToken;
     }
 
+    public function getAccessToken() {
+        return $this->_accessToken;
+    }
+
     public function getId()
     {
         $profile = $this->getProfile();
@@ -42,5 +46,15 @@ class Aw_Resource_Google
     protected function _hasData($label)
     {
         return isset($this->data[$label]) && (NULL !== $this->data[$label]);
+    }
+
+    public function getUserData() {
+        $data    = array();
+        $profile = $this->getProfile();
+
+        $data['firstName']  = $profile['given_name'];
+        $data['lastName']   = $profile['family_name'];
+
+        return $data;
     }
 }

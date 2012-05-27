@@ -13,6 +13,17 @@ class Aw_Resource_Twitter
 		$this->_options = $options;
 	}
 
+    public function getAccessToken() {
+        $accessToken = array(
+            'oauth_token'        => $this->_accessToken->getParam('oauth_token'),
+            'oauth_token_secret' => $this->_accessToken->getParam('oauth_token_secret'),
+            'user_id'            => $this->_accessToken->getParam('user_id'),
+            'screen_name'        => $this->_accessToken->getParam('screen_name')
+        );
+
+        return $accessToken;
+    }
+
 	public function getStatus() {
 	    $endpoint = 'http://api.twitter.com/1/statuses/user_timeline.json';
 		return json_decode($this->_getData('status', $endpoint));
@@ -53,4 +64,17 @@ class Aw_Resource_Twitter
 	{
 	    return isset($this->data[$label]) && (NULL !== $this->data[$label]);
 	}
+
+    public function getUserData() {
+        $data    = array();
+        $profile = $this->getProfile();
+
+        $name = explode(' ', $profile['name']);
+
+        $data['firstName']  = isset($name[0]) ? $name[0]: null;
+        $data['lastName']   = isset($name[1]) ? $name[1]: null;
+        $data['avatar']     = $this->getPicture();
+
+        return $data;
+    }
 }

@@ -11,6 +11,10 @@ class Aw_Resource_Facebook
         $this->_accessToken = $accessToken;
     }
 
+    public function getAccessToken() {
+        return $this->_accessToken;
+    }
+
     public function getId()
     {
         $endpoint = 'https://graph.facebook.com/me?fields=id';
@@ -63,5 +67,17 @@ class Aw_Resource_Facebook
     protected function _hasData($label)
     {
         return isset($this->data[$label]) && (NULL !== $this->data[$label]);
+    }
+
+    public function getUserData() {
+        $data    = array();
+        $profile = $this->getProfile();
+
+        $data['firstName']  = $profile['first_name'];
+        $data['lastName']   = $profile['last_name'];
+        $data['email']      = $profile['email'];
+        $data['avatar']     = $this->getPicture();
+
+        return $data;
     }
 }
