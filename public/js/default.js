@@ -148,7 +148,11 @@ $(document).ready(function() {
                             if (promo.price > 0) {
                                 promos += '<sup>$</sup><span class="price">' + promo.price + '</span> ';
                             }
-                            promos += promo.liquorType + ' (' + promo.timeStart + ' to ' + promo.timeEnd + ')</div>';
+                            promos += '<span class="liquorType">' + promo.liquorType + '</span>' +
+                                ' <div class="right">' +
+                                    '<div class="size"><img src="/img/icons/navbar/50-beaker.png" width="11" height="13" /> ' + (promo.liquorSize == null ? '-' : promo.liquorSize) + '</div>' +
+                                    '<div class="time"><img src="/img/icons/navbar/11-clock.png" width="13" height="13" /> ' + promo.timeStart + '-' + promo.timeEnd + '</div>' +
+                                '</div></div>';
                         }
                     }
                 }

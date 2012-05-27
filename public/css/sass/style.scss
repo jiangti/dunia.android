@@ -360,15 +360,31 @@ h1 {
             font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman","Helvetica Neue Roman","TeXGyreHerosRegular","Helvetica","Tahoma","Geneva","Arial",sans-serif;
             font-size: 20px;
 
-            span {
+            span.price {
                 font-weight: bold;
                 font-size: 30px;
             }
+
+            span.liquorType {
+                font-weight: normal;
+                font-size: 24px;
+            }
+
+            div.right {
+                padding: 0;
+                margin-left: 20px;
+
+                div.time, div.size {
+                    font-size: 14px;
+                    padding: 0;
+                }
+            }
+
         }
 
         div.deal {
             padding: 0;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         h3 {

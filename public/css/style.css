@@ -362,16 +362,31 @@ h1 {
   font-size: 20px;
 }
 /* line 363, sass/style.scss */
-.overlay .overlayContent div span {
+.overlay .overlayContent div span.price {
   font-weight: bold;
   font-size: 30px;
 }
-/* line 369, sass/style.scss */
+/* line 368, sass/style.scss */
+.overlay .overlayContent div span.liquorType {
+  font-weight: normal;
+  font-size: 25px;
+}
+/* line 373, sass/style.scss */
+.overlay .overlayContent div div.right {
+  padding: 0;
+  margin-left: 20px;
+}
+/* line 377, sass/style.scss */
+.overlay .overlayContent div div.right div.time, .overlay .overlayContent div div.right div.size {
+  font-size: 14px;
+  padding: 0;
+}
+/* line 385, sass/style.scss */
 .overlay .overlayContent div.deal {
   padding: 0;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
-/* line 374, sass/style.scss */
+/* line 390, sass/style.scss */
 .overlay .overlayContent h3 {
   text-align: center;
   color: #fff;
@@ -379,18 +394,18 @@ h1 {
   margin: 0;
   padding: 0;
 }
-/* line 383, sass/style.scss */
+/* line 399, sass/style.scss */
 .overlay .foot {
   margin-top: 10px;
   overflow: auto;
   position: relative;
 }
-/* line 388, sass/style.scss */
+/* line 404, sass/style.scss */
 .overlay .foot .address {
   color: #555;
   font-size: 80%;
 }
-/* line 393, sass/style.scss */
+/* line 409, sass/style.scss */
 .overlay .foot a {
   text-decoration: none;
   color: #1291ff;
@@ -399,7 +414,7 @@ h1 {
   right: 0;
 }
 
-/* line 402, sass/style.scss */
+/* line 418, sass/style.scss */
 a.small-icon {
   display: block;
   width: 16px;
@@ -409,21 +424,21 @@ a.small-icon {
   text-indent: -9999px;
 }
 
-/* line 411, sass/style.scss */
+/* line 427, sass/style.scss */
 a.ok {
   background: url(/img/icons/famfamfam/accept.png) no-repeat;
 }
 
-/* line 415, sass/style.scss */
+/* line 431, sass/style.scss */
 a.cancel {
   background: url(/img/icons/famfamfam/cancel.png) no-repeat;
 }
 
-/* line 419, sass/style.scss */
+/* line 435, sass/style.scss */
 .admin-nav {
   list-style: none;
 }
-/* line 423, sass/style.scss */
+/* line 439, sass/style.scss */
 .admin-nav li a {
   font-size: 18px;
   text-decoration: none;
@@ -435,7 +450,7 @@ a.cancel {
   border-color: #ddd;
   color: #555;
 }
-/* line 435, sass/style.scss */
+/* line 451, sass/style.scss */
 .admin-nav li a.selected {
   background: #00b7ea;
   /* Old browsers */
@@ -471,45 +486,45 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
-/* line 463, sass/style.scss */
+/* line 479, sass/style.scss */
 #flagForm #dealSelector {
   padding: 20px;
   font-size: 15px;
   border-right: 1px solid #ccc;
   margin-right: 20px;
 }
-/* line 471, sass/style.scss */
+/* line 487, sass/style.scss */
 #flagForm #dealSubforms dd {
   margin-bottom: 10px;
 }
-/* line 476, sass/style.scss */
+/* line 492, sass/style.scss */
 #flagForm dt > label {
   font-weight: bold;
   font-size: 15px;
 }
-/* line 480, sass/style.scss */
+/* line 496, sass/style.scss */
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;
 }
-/* line 485, sass/style.scss */
+/* line 501, sass/style.scss */
 #flagForm fieldset {
   border: 0;
   padding: 0;
 }
-/* line 490, sass/style.scss */
+/* line 506, sass/style.scss */
 #flagForm hr {
   color: #ddd;
 }
 
-/* line 495, sass/style.scss */
+/* line 511, sass/style.scss */
 .venuePic {
   margin: 10px;
   padding: 4px;
   border: 1px solid #ccc;
 }
 
-/* line 501, sass/style.scss */
+/* line 517, sass/style.scss */
 #mailshare form {
   -webkit-box-shadow: 0px 0px 5px #333333;
   -moz-box-shadow: 0px 0px 5px #333333;
@@ -517,7 +532,7 @@ a.cancel {
   padding: 20px;
 }
 
-/* line 506, sass/style.scss */
+/* line 522, sass/style.scss */
 #facebookConnect, #signInWithTwitter {
   margin: 20px;
   display: block;
@@ -526,12 +541,12 @@ a.cancel {
   width: 169px;
 }
 
-/* line 514, sass/style.scss */
+/* line 530, sass/style.scss */
 #facebookConnect {
   background: url("/img/icons/facebookconnect.png") no-repeat scroll 0 0 transparent;
 }
 
-/* line 518, sass/style.scss */
+/* line 534, sass/style.scss */
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }
