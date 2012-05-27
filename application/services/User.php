@@ -91,6 +91,8 @@ class Service_User extends Aw_Service_ServiceAbstract
         $user->save();
 
         $user->linkService($identity);
+
+        return $user;
     }
 
     /**
