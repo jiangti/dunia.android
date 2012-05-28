@@ -8,9 +8,10 @@ abstract class Aw_Table_TableAbstract extends Zend_Db_Table_Abstract {
 	protected static $_table;
 	
 	public static function getTable() {
-		if (!self::$_table) {
+        // This is breaking the deals form. We'll discuss on Thursday
+		//if (!self::$_table) {
 			self::$_table = new static();
-		}
+		//}
 		return self::$_table;
 	}
 
