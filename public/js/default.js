@@ -13,24 +13,28 @@ $(document).ready(function() {
     Dunia.markerProperties = Em.Object.create({
         now: marker.create({
         	name:   'now',
+        	title:  'Now',
         	icon:   '/img/icons/markers/half.png',
             smallIcon: '/img/icons/markers/half_sml.png',
             zIndex: 20
         }),
         earlier: marker.create({
         	name:   'earlier',
+        	title:  'Earlier',
             icon: '/img/icons/markers/empty.png',
             smallIcon: '/img/icons/markers/empty_sml.png',
             zIndex: 18
         }),
         later: marker.create({
         	name:   'later',
+        	title:  'Later',
             icon: '/img/icons/markers/full.png',
             smallIcon: '/img/icons/markers/full_sml.png',
             zIndex: 19
         }),
         none: marker.create({
         	name:   'none',
+        	title:  'None',
             icon: '/img/icons/markers/bar.png',
             smallIcon: '/img/icons/markers/beer_sml.png',
             zIndex: 15
