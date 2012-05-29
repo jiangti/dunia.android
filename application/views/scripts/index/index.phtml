@@ -6,13 +6,10 @@
 		<fieldset style="border: none; margin: 0px; padding: 0px;">
 			<label for="valueA" style="display:none;">From:</label>
 			<select name="valueA" id="valueA" style="display:none;">
-				<option value="6am">6:00</option>
-				<option value="7am">7:00</option>
-				<option value="8am">8:00</option>
 				<option value="9am" selected="selected">9:00</option>
 				<option value="10am">10:00</option>
 				<option value="11am">11:00</option>
-				<option value="Noon">Noon</option>
+				<option value="noon">Noon</option>
 				<option value="1pm">1:00</option>
 				<option value="2pm">2:00</option>
 				<option value="3pm">3:00</option>
@@ -29,13 +26,6 @@
 	
 			<label for="valueB" style="display:none;">To:</label>
 			<select name="valueB" id="valueB" style="display:none;">
-				<option value="6am">6:00</option>
-				<option value="7am">7:00</option>
-				<option value="8am">8:00</option>
-				<option value="9am">9:00</option>
-				<option value="10am">10:00</option>
-				<option value="11am">11:00</option>
-				<option value="Noon">Noon</option>
 				<option value="1pm">1:00</option>
 				<option value="2pm">2:00</option>
 				<option value="3pm">3:00</option>
@@ -44,10 +34,10 @@
 				<option value="6pm">6:00</option>
 				<option value="7pm">7:00</option>
 				<option value="8pm">8:00</option>
-				<option value="9pm" selected="selected">9:00</option>
+				<option value="9pm">9:00</option>
 				<option value="10pm">10:00</option>
 				<option value="11pm">11:00</option>
-				<option value="12pm">12:00</option>
+				<option value="12pm" selected="selected">12:00</option>
 			</select>
 		</fieldset>
 		</div>
@@ -62,7 +52,7 @@
 	<div class="left summary" id="summary-bar">
 		<script type="text/x-handlebars"  data-template-name="summary-bar">
 		{{#each summaries}}
-    		<a href="#" {{action "toggle"}}><img src="{{unbound smallIcon}}" />{{count}}</a>
+    		<a href="#" {{action "toggle"}}><img src="{{unbound smallIcon}}" />{{title}}  {{count}}</a>
 		{{/each}}
 		</script>
 	</div>
