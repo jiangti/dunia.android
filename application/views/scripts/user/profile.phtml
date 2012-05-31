@@ -1,0 +1,7 @@
+<?php
+    $session = new Zend_Session_Namespace('user');
+    $user = $session->user; ?>
+<div class="container_12 content">
+
+	<h1><?php echo $user->firstName . ' ' . $user->lastName; ?></h1>
+</div>

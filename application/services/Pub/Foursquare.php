@@ -25,7 +25,7 @@ class Service_Pub_Foursquare extends Service_Pub {
 		
 			$isValidCategory = false;
 			foreach ($pub->categories as $category) {
-				if ($category->id == Aw_Service_Foursquare::CATEGORY_PUB || $category->id == Aw_Service_Foursquare::CATEGORY_BAR) {
+				if (in_array($category->id, Aw_Service_Foursquare::$allowedCategories)) {
 					$isValidCategory = true;
 				}
 			}
@@ -57,7 +57,7 @@ class Service_Pub_Foursquare extends Service_Pub {
 				'radius'	 => 1000,
 				'v'			 => 20111212,
 				'limit'	     => 50,
-				'categoryId' => Aw_Service_Foursquare::CATEGORY_PUB . ',' . Aw_Service_Foursquare::CATEGORY_BAR,
+				'categoryId' => implode(',', Aw_Service_Foursquare::$allowedCategories),
 				'll'         => $this->latitude . ',' . $this->longitude));
 		$this->_crawl($pubs);
 	}
@@ -71,7 +71,7 @@ class Service_Pub_Foursquare extends Service_Pub {
 				'radius'	 => 1000,
 				'v'			 => 20111212,
 				'limit'	     => 50,
-				'categoryId' => Aw_Service_Foursquare::CATEGORY_PUB . ',' . Aw_Service_Foursquare::CATEGORY_BAR,
+				'categoryId' => implode(',', Aw_Service_Foursquare::$allowedCategories),
 				'll'         => $this->latitude . ',' . $this->longitude));
 		$this->_crawl($pubs);
 		

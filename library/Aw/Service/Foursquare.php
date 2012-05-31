@@ -4,8 +4,35 @@ require_once APPLICATION_ROOT . '/library/Aw/Contrib/Foursquare/EpiFoursquare.ph
 
 class Aw_Service_Foursquare extends EpiFoursquare {
     
-    const CATEGORY_PUB = '4bf58dd8d48988d11b941735';
-    const CATEGORY_BAR = '4bf58dd8d48988d116941735';
+    const CATEGORY_PUB              = '4bf58dd8d48988d11b941735';
+    const CATEGORY_BAR              = '4bf58dd8d48988d116941735';
+    const CATEGORY_DISTILLERY       = '4e0e22f5a56208c4ea9a85a0';
+    const CATEGORY_NIGHTLIFE_SPOT   = '4d4b7105d754a06376d81259';
+    const CATEGORY_BEER_GARDEN      = '4bf58dd8d48988d117941735';
+    const CATEGORY_BREWERY          = '4bf58dd8d48988d1d7941735';
+    const CATEGORY_COCKTAIL_BAR     = '4bf58dd8d48988d11e941735';
+    const CATEGORY_DIVE_BAR         = '4bf58dd8d48988d118941735';
+    const CATEGORY_GAY_BAR          = '4bf58dd8d48988d1d8941735';
+    const CATEGORY_HOOKAH_BAR       = '4bf58dd8d48988d119941735';
+    const CATEGORY_HOTEL_BAR        = '4bf58dd8d48988d1d5941735';
+    const CATEGORY_KARAOKE_BAR      = '4bf58dd8d48988d120941735';
+    const CATEGORY_LOUNGE           = '4bf58dd8d48988d121941735';
+    const CATEGORY_NIGHTCLUB        = '4bf58dd8d48988d11f941735';
+    const CATEGORY_OTHER_NIGHTLIFE  = '4bf58dd8d48988d11a941735';
+    const CATEGORY_SAKE_BAR         = '4bf58dd8d48988d11c941735';
+    const CATEGORY_SPEAKEASY        = '4bf58dd8d48988d1d4941735';
+    const CATEGORY_SPORTS_BAR       = '4bf58dd8d48988d11d941735';
+    const CATEGORY_WHISKY_BAR       = '4bf58dd8d48988d122941735';
+    const CATEGORY_WINE_BAR         = '4bf58dd8d48988d123941735';
+
+    public static $allowedCategories = array(self::CATEGORY_BAR, self::CATEGORY_BEER_GARDEN, self::CATEGORY_BREWERY,
+                                      self::CATEGORY_COCKTAIL_BAR, self::CATEGORY_DISTILLERY, self::CATEGORY_DIVE_BAR,
+                                      self::CATEGORY_GAY_BAR, self::CATEGORY_HOOKAH_BAR, self::CATEGORY_HOTEL_BAR,
+                                      self::CATEGORY_PUB, self::CATEGORY_NIGHTLIFE_SPOT, self::CATEGORY_KARAOKE_BAR,
+                                      self::CATEGORY_LOUNGE, self::CATEGORY_NIGHTCLUB, self::CATEGORY_OTHER_NIGHTLIFE,
+                                      self::CATEGORY_SAKE_BAR, self::CATEGORY_SPEAKEASY, self::CATEGORY_SPORTS_BAR,
+                                      self::CATEGORY_WHISKY_BAR, self::CATEGORY_WINE_BAR);
+
     
     public $latutude, $longitude;
     

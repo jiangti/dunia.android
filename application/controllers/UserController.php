@@ -30,6 +30,15 @@ class UserController extends Model_Controller_Action
         }
 
     }
+
+    public function profileAction() {
+        $auth = Aw_Auth::getInstance();
+        if (!$auth->hasIdentity()) {
+            $this->_redirect('/user/login');
+        }
+
+    }
+
     public function connectAction()
     {
         $auth = Aw_Auth::getInstance();
