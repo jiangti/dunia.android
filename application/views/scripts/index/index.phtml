@@ -2,7 +2,45 @@
     <a style="float: left;" id="logo" href="/">Dunia</a>
 	<div id="form">
 		<?php echo $this->form->location; ?>
-		<?php echo $this->form->time; ?>
+		<div style="margin-left: 275px; margin-top:-22px; width: 200px">
+		<fieldset style="border: none; margin: 0px; padding: 0px;">
+			<label for="valueA" style="display:none;">From:</label>
+			<select name="valueA" id="valueA" style="display:none;">
+				<option value="9am" selected="selected">9:00</option>
+				<option value="10am">10:00</option>
+				<option value="11am">11:00</option>
+				<option value="noon">Noon</option>
+				<option value="1pm">1:00</option>
+				<option value="2pm">2:00</option>
+				<option value="3pm">3:00</option>
+				<option value="4pm">4:00</option>
+				<option value="5pm">5:00</option>
+				<option value="6pm">6:00</option>
+				<option value="7pm">7:00</option>
+				<option value="8pm">8:00</option>
+				<option value="9pm">9:00</option>
+				<option value="10pm">10:00</option>
+				<option value="11pm">11:00</option>
+				<option value="12pm">12:00</option>
+			</select>
+	
+			<label for="valueB" style="display:none;">To:</label>
+			<select name="valueB" id="valueB" style="display:none;">
+				<option value="1pm">1:00</option>
+				<option value="2pm">2:00</option>
+				<option value="3pm">3:00</option>
+				<option value="4pm">4:00</option>
+				<option value="5pm">5:00</option>
+				<option value="6pm">6:00</option>
+				<option value="7pm">7:00</option>
+				<option value="8pm">8:00</option>
+				<option value="9pm">9:00</option>
+				<option value="10pm">10:00</option>
+				<option value="11pm">11:00</option>
+				<option value="12pm" selected="selected">12:00</option>
+			</select>
+		</fieldset>
+		</div>
 	</div>
 	<div id="nav">
 		<?php echo $this->render('partials/nav.phtml'); ?>
@@ -14,7 +52,7 @@
 	<div class="left summary" id="summary-bar">
 		<script type="text/x-handlebars"  data-template-name="summary-bar">
 		{{#each summaries}}
-    		<a href="#" {{action "toggle"}}><img src="{{unbound smallIcon}}" />{{count}}</a>
+    		<a href="#" {{action "toggle"}}><img src="{{unbound smallIcon}}" />{{title}}  {{count}}</a>
 		{{/each}}
 		</script>
 	</div>
@@ -26,6 +64,18 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
+
+	$('select#valueA, select#valueB').selectToUISlider();
+
+	$( "#slider-range" ).slider({
+		range: true,
+		min: 0,
+		max: 500,
+		values: [ 75, 300 ],
+		slide: function( event, ui ) {
+			$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+		}
+	});
 
     var amHere = new google.maps.LatLng('<?php echo $this->lat; ?>', '<?php echo $this->long; ?>');
     var myOptions = {
@@ -73,3 +123,5 @@ $(document).ready(function() {
 
 });
 </script>
+<?php $this->headScript()->appendFile('/contrib/selectToUiSlider/js/selectToUISlider.jQuery.js'); ?>
+<?php $this->headLink()->appendStylesheet('/contrib/selectToUiSlider/css/ui.slider.extras.css'); ?>
