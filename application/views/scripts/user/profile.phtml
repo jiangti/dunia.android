@@ -1,7 +1,25 @@
 <?php
     $session = new Zend_Session_Namespace('user');
-    $user = $session->user; ?>
+    $user = $session->user;
+    $user->setTable(new Model_DbTable_User());?>
 <div class="container_12 content">
 
 	<h1><?php echo $user->firstName . ' ' . $user->lastName; ?></h1>
+
+    <div id="services">
+        <ul>
+            <?php foreach (array('facebook', 'twitter', 'foursquare') as $service): ?>
+            <li>
+                <div>
+                    <img src="/img/icons/social/<?php echo $service; ?>.png" width="32" height="32" /> <?php echo ucfirst($service); ?>
+                    <?php if ($user->hasService($service)) {
+
+                    } else {?>
+                        <a href="#">Connect</a>
+                    <?php } ?>
+                </div>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
 </div>

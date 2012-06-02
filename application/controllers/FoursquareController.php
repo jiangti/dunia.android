@@ -33,7 +33,7 @@ class FoursquareController extends Model_Controller_Action {
 	    foreach ($pubs as $pub) {
 	        $foursquarePub = $this->foursquare->get('/venues/search', array(
 	        	'query'      => $pub['name'], 
-	        	'categoryId' => Aw_Service_Foursquare::CATEGORY_PUB . ',' . Aw_Service_Foursquare::CATEGORY_BAR, 
+	        	'categoryId' => implode(',', Aw_Service_Foursquare::$allowedCategories),
 	        	'll'         => $pub['latitude'] . ',' . $pub['longitude']));
 	        
 	        $foursquarePubs[] = array(

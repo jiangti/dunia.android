@@ -560,3 +560,16 @@ a.cancel {
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }
+
+/**
+ * User Profile
+ */
+/* line 553, sass/style.scss */
+#services ul {
+  list-style: none;
+  padding: 0;
+}
+/* line 557, sass/style.scss */
+#services ul li {
+  margin: 10px;
+}
