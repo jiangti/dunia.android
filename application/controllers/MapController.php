@@ -73,15 +73,15 @@ class MapController extends Model_Controller_Action {
 	    $array = array();
 	    foreach ($pubs as $pub) {
 	        $array[] = array(
-	                    'id'		 => array($pub['id']),
-	    				'name' 		 => array($pub['name']),
-	    				'address' 	 => array($pub['address']),
-	    				'lat' 		 => array($pub['latitude']),
-	    				'lng' 		 => array($pub['longitude']),
-	    				'type' 		 => array('bar'),
-	        			'itsOn'		 => array($pub['itsOn']),
-                        'promos'     => $pub['promos'],
-	        			'url'		 => array($pub['url'])
+	            'id'		=> array($pub['id']),
+	    	    'name' 		=> array($pub['name']),
+	    	    'address' 	=> array($pub['address']),
+	    	    'lat' 		=> array($pub['latitude']),
+	    	    'lng' 		=> array($pub['longitude']),
+	    	    'type' 		=> array('bar'),
+	            'itsOn'		=> array($pub['itsOn']),
+                'promos'    => $pub['promos'],
+	            'url'		=> array($pub['url']),
 	        );
 	    }
 	    
