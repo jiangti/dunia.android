@@ -18,7 +18,8 @@ class Service_Pub_Foursquare extends Service_Pub {
 		$discoveryTable = new Model_DbTable_Discover();
 		
 		if (!isset($pubs->response->venues) || !is_array($pubs->response->venues)) {
-			var_dump($pubs->response); exit;
+            var_dump($pubs->response);
+            return;
 		}
 		
 		foreach ($pubs->response->venues as $pub) {
@@ -69,7 +70,7 @@ class Service_Pub_Foursquare extends Service_Pub {
     public function crawl() {
 		$this->isNotEmpty(array('Latitude' => $this->latitude, 'Longitude' => $this->longitude));
 		$pubs = $this->_foursquare->get('/venues/search', array(
-                                                               'radius'	 => 1000,
+                'radius'	 => 100,
                 'v'			 => 20111212,
                 'intent'     => 'browse',
 				'limit'	     => 50,
