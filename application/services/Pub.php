@@ -1,8 +1,6 @@
 <?php
 class Service_Pub extends Aw_Service_ServiceAbstract
 {
-	protected static $_categories = array('Pub', 'Bar');
-
     protected $_promoFields = array('timeStart', 'timeEnd', 'price', 'liquorType', 'liquorSize');
 
     public function createPubFromDiscover(Model_DbTable_Row_Discover $discover) {
@@ -12,7 +10,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	$goOn = false;
     	
     	foreach ($data->categories as $category) {
-    		if (in_array($category->name, self::$_categories)) {
+    		if (in_array($category->id, Aw_Service_Foursquare::$allowedCategories)) {
     			$goOn = true;
     			break;
     		}
