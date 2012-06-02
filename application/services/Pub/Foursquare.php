@@ -54,22 +54,24 @@ class Service_Pub_Foursquare extends Service_Pub {
 	public function crawlLinear() {
 		$this->isNotEmpty(array('Latitude' => $this->latitude, 'Longitude' => $this->longitude));
 		$pubs = $this->_foursquare->getLin('/venues/search', array(
-				'radius'	 => 1000,
+				'radius'	 => 100,
 				'v'			 => 20111212,
 				'limit'	     => 50,
-				'categoryId' => implode(',', Aw_Service_Foursquare::$allowedCategories),
-				'll'         => $this->latitude . ',' . $this->longitude));
+                'intent'     => 'browse',
+                'categoryId' => implode(',', Aw_Service_Foursquare::$allowedCategories),
+                'll'         => $this->latitude . ',' . $this->longitude));
 		$this->_crawl($pubs);
 	}
-	
-	/**
-	 * Discover and save into discovery table.
-	 */
-	public function crawl() {
+
+    /**
+     * Discover and save into discovery table.
+     */
+    public function crawl() {
 		$this->isNotEmpty(array('Latitude' => $this->latitude, 'Longitude' => $this->longitude));
 		$pubs = $this->_foursquare->get('/venues/search', array(
-				'radius'	 => 1000,
-				'v'			 => 20111212,
+                                                               'radius'	 => 1000,
+                'v'			 => 20111212,
+                'intent'     => 'browse',
 				'limit'	     => 50,
 				'categoryId' => implode(',', Aw_Service_Foursquare::$allowedCategories),
 				'll'         => $this->latitude . ',' . $this->longitude));
