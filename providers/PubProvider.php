@@ -81,7 +81,7 @@ class PubProvider extends Aw_Tool_Framework_ProviderAbstract {
     	$this->put(sprintf("%d has been imported...", $counter));
     }
     
-    public function buildIndexAction($coordinate) {
+    public function buildIndexAction($coordinate, $offset = 0.5) {
     	
     	$coors = explode(',', $coordinate);
     	
@@ -90,14 +90,14 @@ class PubProvider extends Aw_Tool_Framework_ProviderAbstract {
     	
     	$pubService = new Service_Pub_Foursquare();
     	
-    	$x0  -= 0.5;
-    	$y0  -= 0.5;
+    	$x0  -= $offset;
+    	$y0  -= $offset;
     	
-    	$x1 = $x0 + 1;
-    	$y1 = $y0 + 1;
+    	$x1 = $x0 + 2 * $offset;
+    	$y1 = $y0 + 2 * $offset;
     	
-    	for ($i = $x0; $i < $x1; $i += 0.001) {
-    		for ($j = $y0; $j < $y1; $j += 0.001) {
+    	for ($i = $x0; $i < $x1; $i += 0.002) {
+    		for ($j = $y0; $j < $y1; $j += 0.002) {
     			$pubService->latitude = $i;
     			$pubService->longitude = $j;
     			$pubService->crawlLinear();
