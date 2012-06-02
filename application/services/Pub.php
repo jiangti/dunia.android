@@ -292,7 +292,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     		$hour = date("H:i:00");
     	}
     	 
-        $expr = new Zend_Db_Expr(sprintf("IF(find_in_set('%s', p0.day),CASE
+        $expr = new Zend_Db_Expr(sprintf("IF(find_in_set('%s', p0.day), CASE
                 WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
                 WHEN '%s' < p0.timeStart THEN 'later'
                 WHEN '%s' > p0.timeEnd THEN 'earlier'
@@ -310,10 +310,27 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 	    	->join(array('lt' => 'liquorType'), 'lt.id = phl.idLiquorType', array('liquorType' => 'name'))
 	    	->joinLeft(array('ls' => 'liquorSize'), 'phl.idLiquorSize = ls.id', array('liquorSize' => 'name'));
 
-        if ($dayOfWeek) {
-	    	$select->where('find_in_set(?, p0.day)', $dayOfWeek);
-        }
-    	return $select;
+    	
+    	$select0 = clone $select;
+    	
+	    $select0->where('find_in_set(?, p0.day)', date('D'));
+	    $db = Zend_Db_Table_Abstract::getDefaultAdapter();
+	    $rows = $db->fetchAll($select0);
+	    $id = array_unique(ipull($rows, 'id'));
+	    
+	    $select1 = clone $select;
+	    
+	    $select1
+	    	->where('find_in_set(?, p0.day) = 0', date('D'))
+	    	->where('p.id not in (?)', $id)
+	    ;
+	    $select->where('find_in_set(?, p0.day)', date('D'))->reset(Zend_Db_Select::ORDER);
+	    
+	    $unionSelect = $select->getTable()->select(false);
+	    
+	    return $unionSelect->union(array($select, $select1));
+	    
+	    
     }
     
     public function findPromoWithNoDealPub($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null, Model_Location_Bound $bound = null) {
@@ -355,8 +372,11 @@ class Service_Pub extends Aw_Service_ServiceAbstract
      */
     public function findPromo($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null, Model_Location_Bound $bound = null) {
     	
+    	$table = new Model_DbTable_Pub();
+    	
     	$select = $this->_getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour, $bound);
-        $data   = $select->getTable()->fetchAll($select);
+
+    	$data = $select->getTable()->fetchAll($select);
         
 		return $this->_formatPromoData($data);
     }
