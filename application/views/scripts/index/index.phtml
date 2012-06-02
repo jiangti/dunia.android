@@ -6,38 +6,42 @@
 		<fieldset style="border: none; margin: 0px; padding: 0px;">
 			<label for="valueA" style="display:none;">From:</label>
 			<select name="valueA" id="valueA" style="display:none;">
-				<option value="9am" selected="selected">9:00</option>
-				<option value="10am">10:00</option>
-				<option value="11am">11:00</option>
-				<option value="noon">Noon</option>
-				<option value="1pm">1:00</option>
-				<option value="2pm">2:00</option>
-				<option value="3pm">3:00</option>
-				<option value="4pm">4:00</option>
-				<option value="5pm">5:00</option>
-				<option value="6pm">6:00</option>
-				<option value="7pm">7:00</option>
-				<option value="8pm">8:00</option>
-				<option value="9pm">9:00</option>
-				<option value="10pm">10:00</option>
-				<option value="11pm">11:00</option>
-				<option value="12pm">12:00</option>
+				<option value="9:00" selected="selected">9:00</option>
+				<option value="10:00">10:00</option>
+				<option value="11:00">11:00</option>
+				<option value="12:00">Noon</option>
+				<option value="13:00">13:00</option>
+				<option value="14:00">14:00</option>
+				<option value="15:00">15:00</option>
+				<option value="16:00">16:00</option>
+				<option value="17:00">17:00</option>
+				<option value="18:00">18:00</option>
+				<option value="19:00">19:00</option>
+				<option value="20:00">20:00</option>
+				<option value="21:00">21:00</option>
+				<option value="22:00">22:00</option>
+				<option value="23:00">23:00</option>
+				<option value="24:00">24:00</option>
 			</select>
 	
 			<label for="valueB" style="display:none;">To:</label>
 			<select name="valueB" id="valueB" style="display:none;">
-				<option value="1pm">1:00</option>
-				<option value="2pm">2:00</option>
-				<option value="3pm">3:00</option>
-				<option value="4pm">4:00</option>
-				<option value="5pm">5:00</option>
-				<option value="6pm">6:00</option>
-				<option value="7pm">7:00</option>
-				<option value="8pm">8:00</option>
-				<option value="9pm">9:00</option>
-				<option value="10pm">10:00</option>
-				<option value="11pm">11:00</option>
-				<option value="12pm" selected="selected">12:00</option>
+				<option value="9:00">9:00</option>
+				<option value="10:00">10:00</option>
+				<option value="11:00">11:00</option>
+				<option value="12:00">Noon</option>
+				<option value="13:00">13:00</option>
+				<option value="14:00">14:00</option>
+				<option value="15:00">15:00</option>
+				<option value="16:00">16:00</option>
+				<option value="17:00">17:00</option>
+				<option value="18:00">18:00</option>
+				<option value="19:00">19:00</option>
+				<option value="20:00">20:00</option>
+				<option value="21:00">21:00</option>
+				<option value="22:00">22:00</option>
+				<option value="23:00">23:00</option>
+				<option value="24:00" selected="selected">24:00</option>
 			</select>
 		</fieldset>
 		</div>
@@ -65,15 +69,16 @@
 
 $(document).ready(function() {
 
-	$('select#valueA, select#valueB').selectToUISlider();
+	$('select#valueA, select#valueB').selectToUISlider({
+		labels: 6,
+		tooltip: false,
+		sliderOptions: {
+			stop: function() {
+				var value0 = $('select#valueA').val();
+				var value1 = $('select#valueB').val();
 
-	$( "#slider-range" ).slider({
-		range: true,
-		min: 0,
-		max: 500,
-		values: [ 75, 300 ],
-		slide: function( event, ui ) {
-			$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+				AppMap.setMarkersByTime(value0, value1);
+			}
 		}
 	});
 

@@ -114,11 +114,39 @@ $(document).ready(function() {
             this.mapMarkers = new Array();
         },
         
+        showAll: function () {
+        	var markers = this.get('mapMarkers');
+            if (markers) {
+                for (var i = 0; i < markers.length; i++ ) {
+                	markers[i].setVisible(true);
+                }
+            }
+        },
         setMarkersVisible: function(type, flag) {
         	var markers = this.get('mapMarkers');
             if (markers) {
                 for (var i = 0; i < markers.length; i++ ) {
                 	if (markers[i].type == type) markers[i].setVisible(flag);
+                }
+            }
+        },
+        
+        setMarkersByTime: function(timeStart, timeEnd) {
+        	this.showAll();
+        	var markers = this.get('mapMarkers');
+            if (markers) {
+                for (var i = 0; i < markers.length; i++ ) {
+                	var isVisible = false;
+                	markers[i].promos.forEach(function(value, key) {
+                		
+                		if (value.itsOn != 'none') {
+                			console.log(timeStart, timeEnd);
+                			if (value.timeStart >= timeStart && value.timeEnd <= timeEnd) {
+                				isVisible = true;
+                			}	
+                		}
+                	});
+                	markers[i].setVisible(isVisible);
                 }
             }
         },
@@ -136,12 +164,12 @@ $(document).ready(function() {
                 var address = marker.address[0];
                 var type    = marker.itsOn[0];
                 var promos  = '';
-
+                
                 var point = new google.maps.LatLng(
                     parseFloat(marker.lat[0]),
                     parseFloat(marker.lng[0])
                 );
-
+                
                 if (type == 'none') {
                     promos = 'There are no promos available for today';
                 } else {
@@ -175,7 +203,7 @@ $(document).ready(function() {
 
                 var properties = Dunia.markerProperties[type] || {};
                 
-                var mapMarker = new google.maps.Marker({
+                var markerData = {
                     map: map,
                     position: point,
                     icon:     properties.icon,
@@ -183,8 +211,19 @@ $(document).ready(function() {
                     zIndex:   properties.zIndex,
                     html:     overlayHtml,
                     idBeer:   id,
-                    type:     type
-                });
+                    type:     type,
+                };
+                
+                
+                
+                if (marker.promos) {
+                	markerData.promos = marker.promos; 
+                } else {
+                	markerData.promos = [];
+                }
+                
+                var mapMarker = new google.maps.Marker(markerData);
+                
                 
                 $this.get('mapMarkers').push(mapMarker);
                 
