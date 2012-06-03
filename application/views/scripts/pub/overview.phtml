@@ -2,11 +2,11 @@
 
 <div class="pub-overview container_12 content">
 
-    <div class="grid_8">
+    <div class="grid_6">
         <h1><?php echo $this->pub->name; ?></h1>
         
-        <?php 
-            $days   = Model_Day::$daysName; 
+        <?php
+            $days   = Model_Day::$days;
             $promos = $this->pub->getPromosByDay();
         ?>
         <!-- <a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">Add Deal</a> -->
@@ -38,7 +38,7 @@
                                         }
                                         echo '<div class="promoDescription">' . $promo->description . '</div>';
                                     } ?>
-                                </div> 
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     <?php } ?>
@@ -47,10 +47,37 @@
                 </tr>
             </tbody>
         </table>
+        
+		<div>
+		<?php if($this->pubRow): ?>
+			<div class="sticky-style grid_6 alpha" id="image-region">
+			<?php foreach($this->pubRow->getImagesWebUri() as $image): ?>
+				<a class="image" href="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=600"><img src="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=100" alt="" /></a>
+			<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+		<?php echo $this->form; ?>
+		</div>
 
-        <div id="flag">
-            <a href="#" title="Report a problem">Report incorrect data</a>
-        </div>
+<script type="text/javascript">
+$(function() {
+	$('a.open').click(function() {
+		popup = window.open($('#url').val() , 'popup', 'height=600,width=800');
+		if (window.focus) { popup.focus(); }
+		return false;
+	});
+
+	$('form fieldset legend > a').click(function(e) {
+		e.preventDefault();
+		var $this = $(this);
+		$this.parents('fieldset').remove();
+	});
+
+	$('#image-region a.image').lightBox({fixedNavigation:true});
+
+	$("#image-region").sticky({topSpacing:52});
+});
+</script>
 
         <?php
         $images = $this->pub->getImageLinks();
@@ -73,7 +100,7 @@
 
 
 
-        <?php 
+        <?php
         $tips = $this->pub->getTips();
         if (count($tips)): ?>
 
@@ -141,7 +168,7 @@ $(document).ready(function() {
 
     new google.maps.Marker({
         map: map,
-        position: center    
+        position: center
     });
 
     $('#dialog').dialog({

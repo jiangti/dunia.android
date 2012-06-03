@@ -142,6 +142,8 @@ class PubController extends Zend_Controller_Action
             $this->_helper->layout()->setLayout('mobile-min');
             $this->_helper->viewRenderer->setRender('overview-mobile');
         }
+        
+        $this->_share();
     }
     
     public function addAction()
@@ -179,15 +181,19 @@ class PubController extends Zend_Controller_Action
     }
     
     public function shareAction() {
+    	$this->_share();
+    }
     
+    
+    private function _share() {
     	$form = new Form_Deal('deal');
-    	
+    	 
     	$defaults = array('name' => $this->_getParam('name'));
-
-    	$form->setDefaults($defaults);
     	
+    	$form->setDefaults($defaults);
+    	 
     	$pub = null;
-    
+    	
     	if ($id = $this->_request->getParam('id')) {
     		if ($pub = Model_DbTable_Pub::retrieveById($id)) {
     			$form->setRecord($pub);
@@ -195,18 +201,18 @@ class PubController extends Zend_Controller_Action
     	}
     	if ($this->_request->isPost() && $form->isValid($this->_request->getPost())) {
     		$data = $form->getValues();
-    
+    	
     		$form->file->receive();
-    
+    	
     		$files = $form->file->getFileInfo();
     		$data['files'] = $files;
     		$service = new Service_Pub();
     		$pub = $service->savePubFromShareArray($data, $pub);
-    
+    	
     		$this->_redirect($this->view->url(array('id' => $pub->id)));
     	}
     	$this->view->form = $form;
-    	$this->view->pub = $pub;
+    	$this->view->pubRow = $pub;
     }
 
     public function flagAction() {

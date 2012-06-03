@@ -9,7 +9,7 @@ $(function() {
 	});
 
 	$("#new-pub").click(function() {
-		document.location = "/pub/share/name/" + $( "#tags" ).val();
+		document.location = "/pub/share/name/" + encodeURIComponent($( "#tags" ).val());
 	});
 });
 //-->
