@@ -216,26 +216,28 @@ h1 {
   background-color: #eee;
   margin: 0;
   padding: 5px;
+  font-size: 9px;
 }
-/* line 216, sass/style.scss */
+/* line 217, sass/style.scss */
 .promo .promoDescription {
   text-align: left;
   font-size: x-small;
+  font-size: 9px;
 }
 
-/* line 223, sass/style.scss */
+/* line 225, sass/style.scss */
 .promoContent {
   text-align: center;
-  font-size: 15px;
   padding: 5px;
+  font-size: 11px;
 }
 
-/* line 229, sass/style.scss */
+/* line 231, sass/style.scss */
 #flag {
   text-align: right;
   margin-top: 10px;
 }
-/* line 233, sass/style.scss */
+/* line 235, sass/style.scss */
 #flag a {
   color: #1291ff;
   text-decoration: none;
@@ -243,21 +245,19 @@ h1 {
   background: url(/img/icons/famfamfam/flag_red.png) no-repeat;
 }
 
-/* line 241, sass/style.scss */
+/* line 243, sass/style.scss */
 .pub-overview h2 {
   color: #555;
 }
-/* line 245, sass/style.scss */
+/* line 247, sass/style.scss */
 .pub-overview ul {
   list-style: none;
   padding-left: 0;
   overflow: auto;
 }
-/* line 251, sass/style.scss */
+/* line 253, sass/style.scss */
 .pub-overview .addthis_toolbox > a {
   margin: 5px;
-  display: block;
-  float: none;
 }
 /* line 257, sass/style.scss */
 .pub-overview #photos {

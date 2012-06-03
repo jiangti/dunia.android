@@ -2,7 +2,7 @@
 
 <div class="pub-overview container_12 content">
 
-    <div class="grid_7">
+    <div class="grid_6">
         <h1><?php echo $this->pub->name; ?></h1>
         
         <?php
@@ -79,11 +79,11 @@
         
     </div>
 
-    <div class="grid_5 sidebar omega" id="overview-sidebar">
+    <div class="grid_6 sidebar omega" id="overview-sidebar">
         <div>
             <div id="map_canvas" style="width: 100%; height: 200px;"></div>
             <div class="contact">
-                <span class="address"><?php echo $address->formatOutput(); ?></span>
+                <span class="address"><?php echo $address->formatOutput(' '); ?></span>
     			<a href="<?php echo $this->pub->url; ?>"><?php echo $this->pub->url; ?></a>
     			<a href="mailto:<?php echo $this->pub->email; ?>"><?php echo $this->pub->email; ?></a>
     		</div>
