@@ -2,41 +2,34 @@
 
 <div class="pub-overview container_12 content">
 
+	
+    
     <div class="grid_6">
         <h1><?php echo $this->pub->name; ?></h1>
-        
-        <?php
-        $tips = $this->pub->getTips();
-        if (count($tips)): ?>
-        <div id="tips">
-            <h2>Tips
-                <div class="right">
-                    <img src="/img/icons/social/poweredByFoursquare_gray.png" width="128" height="14" />
-                    </div>
-            </h2>
-            <ul>
-                <?php foreach ($tips as $tip): ?>
-                    <li>
-                        <div class="tip-container">
+        <script type="text/x-handlebars">
+            {{#view App.tipsView}}
+			 <div class="right">
+                 <img src="/img/icons/social/poweredByFoursquare_gray.png" width="128" height="14" />
+			 </div>
+                {{#collection tipsCollectionView}}
+				<li>
+					<div class="tip-container">
                         <div class="author">
-                            <?php $data = json_decode($tip->data); ?>
-                            <div>
-                                <a href="<?php echo $data->user->canonicalUrl;?>">
-                                    <img src="<?php echo $data->user->photo;?>" width="60" height="60"/>
+							<div class="image">
+                                <a {{bindAttr href="content.user.canonicalUrl"}}>
+                                    <img style="float: left" {{bindAttr src="content.user.photo"}} width="60" height="60"/>
+									{{content.text}}
+									<br />
+									<b>{{content.user.firstName}} {{content.user.lastName}} &rarr; {{content.user.homeCity}}</b>
                                 </a>
                             </div>
-                            <div class="name""><?php echo (isset($data->user->firstName) ? $data->user->firstName : '') . ' ' . (isset($data->user->lastName) ? $data->user->lastName : ''); ?></div>
-                            <div class="from"><?php echo '(' . $data->user->homeCity . ')'; ?></div>
-                        </div>
-                        <div class='tip'>
-                            <?php echo $tip->text; ?>
-                        </div>
-                        </div>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-        <?php endif;?>
+						</div>
+					</div>
+					<div style="clear: both"></div>
+				</li>
+                {{/collection}}
+            {{/view}}
+        </script>
         
         <?php
             $days   = Model_Day::$days;
@@ -115,11 +108,6 @@
 
 $(document).ready(function() {
 
-	$('#edit-section-button').click(function(e) {
-		e.preventDefault();
-		$.scrollTo($('#edit-section'), 500);
-	});
- 
     var center = new google.maps.LatLng(parseFloat(<?php echo $address->latitude; ?>), parseFloat(<?php echo $address->longitude; ?>));
     var myOptions = {
         zoom: 16,
@@ -154,32 +142,81 @@ $(document).ready(function() {
 
     $('#photos a').lightBox();
 
+    $('#edit-section-button').click(function(e) {
+		e.preventDefault();
+		$.scrollTo($('#edit-section'), 500);
+	});
+	
+
+    $('a.open').click(function() {
+		popup = window.open($('#url').val() , 'popup', 'height=600,width=800');
+		if (window.focus) { popup.focus(); }
+		return false;
+	});
+
+	$('form fieldset legend > a').click(function(e) {
+		e.preventDefault();
+		var $this = $(this);
+		$this.parents('fieldset').remove();
+	});
+
+	$('#image-region a.image').lightBox({fixedNavigation:true});
+
+	$("#image-region").sticky({topSpacing:52});
+
+	$("#overview-sidebar").sticky({topSpacing: 0});
+
+	AppClass = Ember.Application.extend({
+		ready: function() {
+			this.AppController.initialize(<?php echo json_encode($this->pubRow->toArray()); ?>);
+		},
+	});
+
+	App = AppClass.create();
+
+	App.TipProxyClass = Ember.ArrayProxy.extend({
+		
+	});
+
+	App.TipClass = Ember.Object.extend();
+
+	App.AppControllerClass = Ember.Object.extend({
+		row: null,
+		tips: App.TipProxyClass.create({content: []}),
+		tipUrl: '<?php echo $this->url(array('controller' => 'foursquare', 'action' => 'fetch-tips'), null, true); ?>',
+		initialize: function(data) {
+			this.row = data;
+			this.loadTips();
+		},
+		loadTips: function() {
+			var $this = this;
+			$.ajax({
+				url: this.tipUrl,
+				data: {idFoursquare: this.row.idFoursquare},
+				success: function(data) {
+					data.forEach(function(value, index) {
+						App.TipClass.create(value);
+						$this.tips.pushObject(App.TipClass.create(value));
+					})
+				}
+			});
+		}
+	});
+
+	
+	
+	App.AppController = App.AppControllerClass.create({});
+
+	App.tipsView = Ember.View.extend({
+		tipsCollectionView: Ember.CollectionView.extend({
+			tagName: 'ul',
+            contentBinding: 'App.AppController.tips',
+            itemViewClass: Ember.View.extend({
+            	tagName: '',
+            })
+		})
+	});
+
 });
 </script>
-
-		<script type="text/javascript">
-		$(function() {
-			$('a.open').click(function() {
-				popup = window.open($('#url').val() , 'popup', 'height=600,width=800');
-				if (window.focus) { popup.focus(); }
-				return false;
-			});
-		
-			$('form fieldset legend > a').click(function(e) {
-				e.preventDefault();
-				var $this = $(this);
-				$this.parents('fieldset').remove();
-			});
-		
-			$('#image-region a.image').lightBox({fixedNavigation:true});
-		
-			$("#image-region").sticky({topSpacing:52});
-
-			$("#overview-sidebar").sticky({topSpacing: 0});
-		});
-		</script>
-
-
-
-
 <?php $this->headScript()->appendFile('/js/jquery.scrollTo-min.js'); ?>

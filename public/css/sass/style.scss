@@ -269,36 +269,25 @@ h1 {
       }
   }
 
-  #tips {
-      li {
-
-        margin-top: 10px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #eee;
-        overflow: auto;
-      }
-  }
-
   .tip-container {
       clear: both;
-
       .tip {
         margin-top: 5px;
-        font-size: 18px;
+        font-size: 12px;
       }
 
     .author {
       float: left;
       font-size: 10px;
-
+	  width: 99%;
       .name, .from {
         margin-left: 5px;
       }
 
       img {
-        margin: 5px 5px 1px 5px;
         border: 1px solid #ccc;
         padding: 3px;
+        margin-right: 10px;
       }
     }
   }
