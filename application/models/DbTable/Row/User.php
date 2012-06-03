@@ -51,4 +51,21 @@ class Model_DbTable_Row_User extends Model_DbTable_Row_RowAbstract {
         return true;
     }
 
+    public function addService($serviceName, $accessToken, $idUser) {
+        $userHasServiceTable = new Model_DbTable_UserHasService();
+        $serviceTable        = new Model_DbTable_Service();
+
+        $service = $serviceTable->fetchRow(Zend_Db_Table::getDefaultAdapter()->quoteInto('name = ?', $serviceName));
+
+        $row = $userHasServiceTable->createRow();
+
+        $row->uuid        = $idUser;
+        $row->accessToken = $accessToken;
+        $row->idService   = $service->id;
+        $row->idUser      = $this->id;
+
+        $row->save();
+        return true;
+    }
+
 }

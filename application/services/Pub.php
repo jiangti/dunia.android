@@ -320,8 +320,11 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 	    
 	    $select1
 	    	->where('find_in_set(?, p0.day) = 0', date('D'))
-	    	->where('p.id not in (?)', $id)
 	    ;
+
+        if ($id) {
+            $select1->where('p.id not in (?)', $id);
+        }
 	    $select->where('find_in_set(?, p0.day)', date('D'))->reset(Zend_Db_Select::ORDER);
 	    
 	    $unionSelect = $select->getTable()->select(false);
@@ -353,10 +356,10 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	}
     	
     	$select1 = $this->_getFindPubSelect($latitude, $longitude, $query, $bound);
-    	
-    	$select1->joinLeft(array('php' => new Zend_Db_Expr('(' . $select . ')')), 'p.id = php.idPub');
-    	
-    	return $this->_formatPromoData($select1->getTable()->fetchAll($select1));
+
+        $select1->joinLeft(array('php' => new Zend_Db_Expr('(' . $select . ')')), 'p.id = php.idPub');
+
+        return $this->_formatPromoData($select1->getTable()->fetchAll($select1));
     }
 
     /**

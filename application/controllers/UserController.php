@@ -55,24 +55,26 @@ class UserController extends Model_Controller_Action
         $session->unsetAll();
         $this->_redirect('/');
     }
-//    public function loginAction() {
-//        $bootstrap  = $this->getInvokeArg('bootstrap');
-//        $foursquare = $bootstrap->getPluginResource('foursquare')->getFoursquare();
-//        $twitter    = $bootstrap->getPluginResource('twitter')->getTwitter();
-//
-//        $this->view->foursquareUrl = $foursquare->getAuthorizeUrl('http://localhost/user/login-foursquare');
-//        $this->view->twitterUrl    = $twitter->getAuthenticateUrl();
-//    }
 
-    public function loginFoursquareAction() {
+    public function connectFoursquareAction() {
 
         if ($code = $this->_getParam('code')) {
             $bootstrap  = $this->getInvokeArg('bootstrap');
             $foursquare = $bootstrap->getPluginResource('foursquare')->getFoursquare();
+            $session    = new Zend_Session_Namespace('user');
+            $user       = $session->user;
+            if ($user) {
+                $user->setTable(new Model_DbTable_User());
+            }
 
-            $token = $foursquare->getAccessToken($code, 'http://localhost/user/login-foursquare');
-            $this->view->accessToken = $token->access_token;
+            $token = $foursquare->getAccessToken($code, 'http://127.0.0.1/user/connect-foursquare');
+            $foursquare->setAccessToken($token->access_token);
+
+            $foursquareUser = $foursquare->get('/users/self');
+            $user->addService('foursquare', $token->access_token, $foursquareUser->response->user->id);
         }
+
+        $this->_redirect('/user/profile');
     }
 
     public function loginTwitterAction() {
