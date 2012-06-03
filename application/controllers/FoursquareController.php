@@ -32,7 +32,7 @@ class FoursquareController extends Model_Controller_Action {
 	    $foursquarePubs = array();
 	    foreach ($pubs as $pub) {
 	        $foursquarePub = $this->foursquare->get('/venues/search', array(
-	        	'query'      => $pub['name'], 
+	        	'query'      => $pub['name'],
 	        	'categoryId' => implode(',', Aw_Service_Foursquare::$allowedCategories),
 	        	'll'         => $pub['latitude'] . ',' . $pub['longitude']));
 	        
@@ -43,6 +43,28 @@ class FoursquareController extends Model_Controller_Action {
 	    
 	    
 	    $this->view->pubs = $foursquarePubs;
+	}
+	
+	public function fetchTipsAction() {
+		$application = Zend_Registry::get('Zend_Application');
+		$cacheManager = $application->getResource('cachemanager');
+		$tipCache = $cacheManager->getCache('f4tip');
+		
+		$url = sprintf('/venues/%s/tips', $this->_getParam('idFoursquare'));
+		
+		$cacheKey = sha1($url);
+		
+		if ($tipCache->test($cacheKey)) {
+			$tips = $tipCache->load($cacheKey);
+		} else {
+			$tips = $this->foursquare->get($url);
+			if ($tips->code != 503) {
+				$tipCache->save($tips, $cacheKey);
+			} else {
+				throw new Exception('Foursquare servers are experiencing problems. Please retry and check status.foursquare.com for updates.');
+			}
+		}
+		$this->_helper->json->sendJson($tips->response->tips->items);
 	}
 	
 	public function tipsAction() {
@@ -73,7 +95,7 @@ class FoursquareController extends Model_Controller_Action {
 	    
 	    if ($idTip && $action) {
 	        $tipService = new Service_Tip();
-            $tipService->moderateTip($idTip, $action);	        
+            $tipService->moderateTip($idTip, $action);
 	    }
 	     
 	    $pubService = new Service_Pub_Foursquare();
