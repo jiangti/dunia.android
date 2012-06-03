@@ -1,43 +1,18 @@
 <?php
-class Model_User extends Aw_Model_ModelAbstract {
+class Model_Service extends Aw_Model_ModelAbstract {
 
-    public $id;
-    public $firstName;
-    public $login;
-    public $password;
-    public $lastName;
-    public $email;
-    public $birthDate;
-
-
-
-	
-	const DEFAULT_LATITUDE  = -33.8757;
-	const DEFAULT_LONGITUDE = 151.206;
-
-	public static function getInstance() {
-		return new self();
-	}
-	
-	
-	public function getLat() {
-		return self::DEFAULT_LATITUDE;
-	}
-	
-	public function getLong() {
-		return self::DEFAULT_LONGITUDE;
-	}
-
-    public function save() {
-        $userTable = new Model_DbTable_User();
-
-        if ($this->id) {
-            $userRow = $userTable->find($this->id)->current();
-            $userRow->setFromArray($this->getArray());
-        } else {
-            $userRow = $userTable->createRow($this->getArray());
+	public static function getAuthorizationUrl($service) {
+        switch ($service) {
+            case 'facebook':
+                return Aw_Auth_Adapter_Facebook::getAuthorizationUrl();
+            case 'twitter':
+                return Aw_Auth_Adapter_Twitter::getAuthorizationUrl();
+            case 'google':
+                return Aw_Auth_Adapter_Google::getAuthorizationUrl();
+            case 'foursquare':
+                $foursquare = Zend_Controller_Front::getInstance()->getParam('bootstrap')->getPluginResource('foursquare')->getFoursquare();
+                return $foursquare->getAuthorizeUrl('http://127.0.0.1/user/connect-foursquare');
         }
+	}
 
-        $userRow->save();
-    }
 }

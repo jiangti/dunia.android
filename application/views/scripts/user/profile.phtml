@@ -15,7 +15,7 @@
                     <?php if ($user->hasService($service)) {
 
                     } else {?>
-                        <a href="#">Connect</a>
+                        <a href="<?php echo Model_Service::getAuthorizationUrl($service); ?>">Connect</a>
                     <?php } ?>
                 </div>
             </li>
