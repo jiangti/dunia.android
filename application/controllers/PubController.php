@@ -180,11 +180,6 @@ class PubController extends Zend_Controller_Action
         $this->view->form = $form;
     }
     
-    public function shareAction() {
-    	$this->_share();
-    }
-    
-    
     private function _share() {
     	$form = new Form_Deal('deal');
     	 

@@ -2,53 +2,15 @@
 
 <div class="pub-overview container_12 content">
 
-    <div class="grid_6">
+    <div class="grid_7">
         <h1><?php echo $this->pub->name; ?></h1>
         
         <?php
             $days   = Model_Day::$days;
             $promos = $this->pub->getPromosByDay();
         ?>
-        <!-- <a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">Add Deal</a> -->
-        <table id="promos" class="generic" cellspacing="1px" cellpadding="0px" border="0">
-            
-            <thead>
-                <tr>
-                    <?php foreach ($days as $day): ?>
-                        <th><?php echo $day; ?></th>
-                    <?php endforeach; ?>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <?php foreach ($days as $dayInt => $day): ?>
-                    <td width="<?php echo (1/sizeof($days)) * 100; ?>%">
-                    <?php if (isset($promos[$dayInt])) {
-                        foreach ($promos[$dayInt] as $promo): ?>
-                            <div class="promo">
-                                <div class="time">
-                                    <?php echo $this->formatDate($promo->timeStart, 'H:i'); ?> - <?php echo $this->formatDate($promo->timeEnd, 'H:i'); ?>
-                                </div>
-                                <div class="promoContent"><strong><?php echo $this->currency($promo->price); ?></strong><br />
-                                    <?php foreach ($promo->getLiquorTypes() as $liquor) {
-                                        echo ' ' . $liquor->name;
-                                        $size = $promo->getLiquorSizes();
-                                        foreach ($size as $s) {
-                                            echo ' (' . $s['name'] . ')';
-                                        }
-                                        echo '<div class="promoDescription">' . $promo->description . '</div>';
-                                    } ?>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php } ?>
-                    </td>
-                <?php endforeach; ?>
-                </tr>
-            </tbody>
-        </table>
         
-		<div>
+		<div id="edit-section">
 		<?php if($this->pubRow): ?>
 			<div class="sticky-style grid_6 alpha" id="image-region">
 			<?php foreach($this->pubRow->getImagesWebUri() as $image): ?>
@@ -58,26 +20,6 @@
 		<?php endif; ?>
 		<?php echo $this->form; ?>
 		</div>
-
-<script type="text/javascript">
-$(function() {
-	$('a.open').click(function() {
-		popup = window.open($('#url').val() , 'popup', 'height=600,width=800');
-		if (window.focus) { popup.focus(); }
-		return false;
-	});
-
-	$('form fieldset legend > a').click(function(e) {
-		e.preventDefault();
-		var $this = $(this);
-		$this.parents('fieldset').remove();
-	});
-
-	$('#image-region a.image').lightBox({fixedNavigation:true});
-
-	$("#image-region").sticky({topSpacing:52});
-});
-</script>
 
         <?php
         $images = $this->pub->getImageLinks();
@@ -137,7 +79,7 @@ $(function() {
         
     </div>
 
-    <div class="grid_4 sidebar omega" style="width:310px">
+    <div class="grid_5 sidebar omega" id="overview-sidebar">
         <div>
             <div id="map_canvas" style="width: 100%; height: 200px;"></div>
             <div class="contact">
@@ -146,8 +88,47 @@ $(function() {
     			<a href="mailto:<?php echo $this->pub->email; ?>"><?php echo $this->pub->email; ?></a>
     		</div>
         </div>
-
         <?php echo $this->partial('partials/addthis.phtml'); ?>
+        
+        
+        <table id="promos" class="generic" cellspacing="1px" cellpadding="0px" border="0">
+	    <caption><a href="#" id="edit-section-button" class="ss_sprite ss_application_edit pad"></a></caption>
+            <thead>
+                <tr>
+                    <?php foreach ($days as $day): ?>
+                        <th><?php echo $day; ?></th>
+                    <?php endforeach; ?>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <?php foreach ($days as $dayInt => $day): ?>
+                    <td width="<?php echo (1/sizeof($days)) * 100; ?>%">
+                    <?php if (isset($promos[$dayInt])) {
+                        foreach ($promos[$dayInt] as $promo): ?>
+                            <div class="promo">
+                                <div class="time">
+                                    <?php echo $this->formatDate($promo->timeStart, 'H:i'); ?> - <?php echo $this->formatDate($promo->timeEnd, 'H:i'); ?>
+                                </div>
+                                <div class="promoContent"><strong><?php echo $this->currency($promo->price); ?></strong><br />
+                                    <?php foreach ($promo->getLiquorTypes() as $liquor) {
+                                        echo ' ' . $liquor->name;
+                                        $size = $promo->getLiquorSizes();
+                                        foreach ($size as $s) {
+                                            echo ' (' . $s['name'] . ')';
+                                        }
+                                        echo '<div class="promoDescription">' . $promo->description . '</div>';
+                                    } ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php } ?>
+                    </td>
+                <?php endforeach; ?>
+                </tr>
+            </tbody>
+        </table>
+        
     </div>
 </div>
 
@@ -156,6 +137,11 @@ $(function() {
 <script type="text/javascript">
 
 $(document).ready(function() {
+
+	$('#edit-section-button').click(function(e) {
+		e.preventDefault();
+		$.scrollTo($('#edit-section'), 500);
+	});
  
     var center = new google.maps.LatLng(parseFloat(<?php echo $address->latitude; ?>), parseFloat(<?php echo $address->longitude; ?>));
     var myOptions = {
@@ -193,3 +179,30 @@ $(document).ready(function() {
 
 });
 </script>
+
+		<script type="text/javascript">
+		$(function() {
+			$('a.open').click(function() {
+				popup = window.open($('#url').val() , 'popup', 'height=600,width=800');
+				if (window.focus) { popup.focus(); }
+				return false;
+			});
+		
+			$('form fieldset legend > a').click(function(e) {
+				e.preventDefault();
+				var $this = $(this);
+				$this.parents('fieldset').remove();
+			});
+		
+			$('#image-region a.image').lightBox({fixedNavigation:true});
+		
+			$("#image-region").sticky({topSpacing:52});
+
+			$("#overview-sidebar").sticky({topSpacing: 0});
+		});
+		</script>
+
+
+
+
+<?php $this->headScript()->appendFile('/js/jquery.scrollTo-min.js'); ?>
