@@ -6,55 +6,16 @@
         <h1><?php echo $this->pub->name; ?></h1>
         
         <?php
-            $days   = Model_Day::$days;
-            $promos = $this->pub->getPromosByDay();
-        ?>
-        
-		<div id="edit-section">
-		<?php if($this->pubRow): ?>
-			<div class="sticky-style grid_6 alpha" id="image-region">
-			<?php foreach($this->pubRow->getImagesWebUri() as $image): ?>
-				<a class="image" href="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=600"><img src="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=100" alt="" /></a>
-			<?php endforeach; ?>
-			</div>
-		<?php endif; ?>
-		<?php echo $this->form; ?>
-		</div>
-
-        <?php
-        $images = $this->pub->getImageLinks();
-
-        if (count($images)) : ?>
-        <div id="photos">
-            <h2>Photos</h2>
-            <ul>
-                <?php
-                foreach ($images as $img) {
-                    echo '<li>
-                        <a href="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=600&amp;ar=x">
-                            <img class="venuePic" src="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=125&amp;h=125&amp;zc=1&amp;ar=x"/>
-                        </a>
-                        </li>';
-                } ?>
-            </ul>
-        </div>
-        <?php endif; ?>
-
-
-
-        <?php
         $tips = $this->pub->getTips();
         if (count($tips)): ?>
-
         <div id="tips">
             <h2>Tips
                 <div class="right">
                     <img src="/img/icons/social/poweredByFoursquare_gray.png" width="128" height="14" />
                     </div>
             </h2>
-
             <ul>
-                <?php foreach ($tips as $tip) { ?>
+                <?php foreach ($tips as $tip): ?>
                     <li>
                         <div class="tip-container">
                         <div class="author">
@@ -72,10 +33,26 @@
                         </div>
                         </div>
                     </li>
-                <?php } ?>
+                <?php endforeach; ?>
             </ul>
         </div>
         <?php endif;?>
+        
+        <?php
+            $days   = Model_Day::$days;
+            $promos = $this->pub->getPromosByDay();
+        ?>
+        
+		<div id="edit-section">
+		<?php if($this->pubRow): ?>
+			<div class="sticky-style grid_6 alpha" id="image-region">
+			<?php foreach($this->pubRow->getImagesWebUri() as $image): ?>
+				<a class="image" href="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=600"><img src="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=100" alt="" /></a>
+			<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+		<?php echo $this->form; ?>
+		</div>
         
     </div>
 
