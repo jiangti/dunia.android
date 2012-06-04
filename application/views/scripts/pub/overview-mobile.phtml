@@ -48,9 +48,23 @@
     	 } else { ?>
     	    <p>There are no deals for this venue yet. <a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">Why don't you enter one?</a></p>
     	<?php }?>
-
+    	
         <h2>Tell your friends!</h2>
         <?php echo $this->partial('partials/addthis.phtml'); ?>
+        
+        
+        <h2>Tips from foursquare</h2>
+		<div class="right">
+            <img src="/img/icons/social/poweredByFoursquare_gray.png" width="128" height="14" />
+		</div>
+        <ul data-role="listview" data-inset="true" data-theme="c">
+        <?php foreach($this->tips as $tip): ?>
+        	<li><img style="float: left" src="<?php echo $tip->user->photo; ?>" />
+        	<strong><?php printf('%s %s &rarr; %s', $tip->user->firstName, $tip->user->lastName, $tip->user->homeCity); ?></strong> &mdash; <?php echo $this->escape($tip->text); ?>
+        	</li>
+        <?php endforeach; ?>
+        </ul>
+        
 
         <h2>Contact</h2>
         <ul data-role="listview" data-inset="true" data-theme="c">
@@ -60,9 +74,9 @@
 	</div>
 
 	<?php echo $this->partial('pub/partials/footer.php', array('selected' => 'beer'))?>
+	
 
 </div>
-
 
 
 <div data-role="page" id="maptab" style="height:100%;">

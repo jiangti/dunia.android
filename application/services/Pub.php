@@ -65,6 +65,28 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	
     }
     
+    public function fetchTips($id) {
+    	$application = Zend_Registry::get('Zend_Application');
+    	$cacheManager = $application->getResource('cachemanager');
+    	$tipCache = $cacheManager->getCache('f4tip');
+    	
+    	$url = sprintf('/venues/%s/tips', $id);
+    	
+    	$cacheKey = sha1($url);
+    	
+    	if ($tipCache->test($cacheKey)) {
+    		$tips = $tipCache->load($cacheKey);
+    	} else {
+    		$tips = $this->foursquare->get($url);
+    		if ($tips->code != 503) {
+    			$tipCache->save($tips, $cacheKey);
+    		} else {
+    			throw new Exception('Foursquare servers are experiencing problems. Please retry and check status.foursquare.com for updates.');
+    		}
+    	}
+        return $tips->response->tips->items;
+    }
+    
     public function savePub(Model_DbTable_Row_Pub $pub)
     {
 

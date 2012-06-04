@@ -46,25 +46,11 @@ class FoursquareController extends Model_Controller_Action {
 	}
 	
 	public function fetchTipsAction() {
-		$application = Zend_Registry::get('Zend_Application');
-		$cacheManager = $application->getResource('cachemanager');
-		$tipCache = $cacheManager->getCache('f4tip');
+		$service = new Service_Pub();
 		
-		$url = sprintf('/venues/%s/tips', $this->_getParam('idFoursquare'));
+		$tips = $service->fetchTips($this->_getParam('idFoursquare'));
 		
-		$cacheKey = sha1($url);
-		
-		if ($tipCache->test($cacheKey)) {
-			$tips = $tipCache->load($cacheKey);
-		} else {
-			$tips = $this->foursquare->get($url);
-			if ($tips->code != 503) {
-				$tipCache->save($tips, $cacheKey);
-			} else {
-				throw new Exception('Foursquare servers are experiencing problems. Please retry and check status.foursquare.com for updates.');
-			}
-		}
-		$this->_helper->json->sendJson($tips->response->tips->items);
+		$this->_helper->json->sendJson($tips);
 	}
 	
 	public function tipsAction() {

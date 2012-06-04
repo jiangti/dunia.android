@@ -141,6 +141,12 @@ class PubController extends Zend_Controller_Action
         if (Zend_Registry::get('device')->getType() == 'mobile' || $this->_getParam('mobile')) {
             $this->_helper->layout()->setLayout('mobile-min');
             $this->_helper->viewRenderer->setRender('overview-mobile');
+            
+            $service = new Service_Pub();
+            $tips = $service->fetchTips($pub->idFoursquare);
+            
+            $this->view->tips = $tips;
+            
         }
         
         $this->_share();
