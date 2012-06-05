@@ -82,6 +82,7 @@ class MapController extends Model_Controller_Action {
 	            'itsOn'		=> array($pub['itsOn']),
                 'promos'    => $pub['promos'],
 	            'url'		=> array($pub['url']),
+                'icon'      => array($pub['icon'])
 	        );
 	    }
 	    

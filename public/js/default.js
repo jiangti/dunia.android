@@ -164,6 +164,7 @@ $(document).ready(function() {
                 var address = marker.address[0];
                 var type    = marker.itsOn[0];
                 var promos  = '';
+                var pubType = marker.icon[0];
                 
                 var point = new google.maps.LatLng(
                     parseFloat(marker.lat[0]),
@@ -190,7 +191,13 @@ $(document).ready(function() {
                 }
 
                 var overlayHtml = '<div class="overlay">' +
-                    '<h2>' + name + '</h2>' +
+                    '<h2>';
+
+                if (pubType) {
+                    overlayHtml += '<img src="' + pubType + '" width="32" height="32" /> ';
+                }
+
+                overlayHtml += name + '</h2>' +
                     '<div class="overlayContent">' +
                     '<h3>Today\'s deals</h3>' +
                     '<div>' + promos + '</div>' +

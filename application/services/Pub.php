@@ -287,6 +287,9 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     				'latitude',
     				'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(a.latitude)) * cos(radians(a.longitude) - radians('$longitude')) + sin(radians('$latitude')) * sin(radians(a.latitude))), 2)"))
     			)
+            ->joinLeft(array('pT' => 'pubType'),
+                    'pT.id = p.idPubType',
+                    array('icon'))
 	    	->order('distance')
 	    	->where(sprintf('a.latitude between %s and %s', $x0, $x1))
 	    	->where(sprintf('a.longitude between %s and %s', $y0, $y1))
