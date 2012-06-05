@@ -1,6 +1,7 @@
 <?php
 class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
     protected $_address;
+    protected $_pubType;
     
     protected $_referenceMap    = array(
         'address' => array(
@@ -144,6 +145,18 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 	    }
 	    return $this->_address;
 	}
+
+    public function getPubType() {
+        if ($this->_pubType) { } else {
+            foreach ($this->_rowset->getLoadRows(new Model_DbTable_PubType(), 'pubType') as $row) {
+                if ($row->id == $this->idPubType) {
+                    $this->_pubType = $row;
+                    break;
+                }
+            }
+        }
+        return $this->_pubType;
+    }
 	
 	public function getImageDirectory() {
 		$directory = sprintf(APPLICATION_ROOT . '/public/images/pub/%d', $this->id);

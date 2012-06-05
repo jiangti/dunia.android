@@ -50,6 +50,13 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 		    	$array['validated'] = $data->verified;
 		    	$array['twitter'] 	= (isset($data->contact->twitter) ? $data->contact->twitter: null);
 		    	$array['telephone'] = (isset($data->contact->phone) ? $data->contact->phone: null);
+
+                $categories = $data->categories;
+                if (is_array($data->categories)) {
+                    $category = array_shift($data->categories);
+
+                    $array['idPubType'] = $category->id;
+                }
 		    	
 		    	$row = Model_DbTable_Pub::getRow($array);
 		    	

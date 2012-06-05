@@ -37,6 +37,50 @@ class PubProvider extends Aw_Tool_Framework_ProviderAbstract {
 		
 		$progress->finish();
 	}
+
+    public function mergeCategories() {
+        $pubTable      = new Model_DbTable_Pub();
+        $pubTypeTable  = new Model_DbTable_PubType();
+        $discoverTable = new Model_DbTable_Discover();
+
+        $db = Zend_Db_Table::getDefaultAdapter();
+
+        $discover = $discoverTable->fetchAll();
+
+        $progress = new Aw_ProgressBar(new Aw_ProgressBar_Adapter_Console(), 0, count($discover));
+
+        foreach ($discover as $d) {
+            $data = json_decode($d['json']);
+
+            if ($data->categories) {
+                $category = array_shift($data->categories);
+
+                if ($category) {
+                    $icon = null;
+                    if (isset($category->icon) && isset($category->icon->prefix)) {
+                        $icon = $category->icon->prefix . '64' . $category->icon->name;
+                    }
+                    $row = array('id'   => $category->id,
+                                 'name' => $category->name,
+                                 'icon' => $icon);
+                    $row = $pubTypeTable->createRow($row);
+                    if (!$row->isExists()) {
+                        $row->save();
+                    }
+
+                    $pub = $pubTable->fetchRow($db->quoteInto('idFoursquare = ?', $d['id']));
+                    if ($pub) {
+                        $pub->idPubType = $category->id;
+                        $pub->save();
+                    }
+                }
+            }
+
+            $progress->next();
+        }
+
+        $progress->finish();
+    }
 	
     /**
      * @param unknown_type $type

@@ -1,11 +1,14 @@
-<?php $address = $this->pub->address; ?>
+<?php
+    $address = $this->pub->address;
+    $type    = $this->pub->pubType;
+?>
 
 <div class="pub-overview container_12 content">
 
 	
     
     <div class="grid_6">
-        <h1><?php echo $this->pub->name; ?></h1>
+        <h1><?php if ($type->icon) { echo '<img src="' . $type->icon . '" width="32" height="32" /> '; } echo $this->pub->name; ?></h1>
         <script type="text/x-handlebars">
             {{#view App.tipsView}}
 			 <div class="right">
@@ -212,7 +215,7 @@ $(document).ready(function() {
 			tagName: 'ul',
             contentBinding: 'App.AppController.tips',
             itemViewClass: Ember.View.extend({
-            	tagName: '',
+            	tagName: ''
             })
 		})
 	});
