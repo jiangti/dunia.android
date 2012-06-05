@@ -70,9 +70,9 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	
     	
     	$application = Zend_Registry::get('Zend_Application');
-    	$cacheManager = $application->getResource('cachemanager');
-    	$foursquare = $bootstrap->getResource('foursquare')->getFoursquare();
+    	$foursquare = $application->getResource('foursquare');
     	
+    	$cacheManager = $application->getResource('cachemanager');
     	$tipCache = $cacheManager->getCache('f4tip');
     	
     	$url = sprintf('/venues/%s/tips', $id);
