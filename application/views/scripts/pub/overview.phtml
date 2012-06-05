@@ -2,16 +2,67 @@
 
 <div class="pub-overview container_12 content">
 
-    <div class="grid_8">
+	
+    
+    <div class="grid_6">
         <h1><?php echo $this->pub->name; ?></h1>
+        <script type="text/x-handlebars">
+            {{#view App.tipsView}}
+			 <div class="right">
+                 <img src="/img/icons/social/poweredByFoursquare_gray.png" width="128" height="14" />
+			 </div>
+                {{#collection tipsCollectionView}}
+				<li>
+					<div class="tip-container">
+                        <div class="author">
+							<div class="image">
+                                <a {{bindAttr href="content.user.canonicalUrl"}}>
+                                    <img style="float: left" {{bindAttr src="content.user.photo"}} width="60" height="60"/>
+									{{content.text}}
+									<br />
+									<b>{{content.user.firstName}} {{content.user.lastName}} &rarr; {{content.user.homeCity}}</b>
+                                </a>
+                            </div>
+						</div>
+					</div>
+					<div style="clear: both"></div>
+				</li>
+                {{/collection}}
+            {{/view}}
+        </script>
         
-        <?php 
-            $days   = Model_Day::$daysName; 
+        <?php
+            $days   = Model_Day::$days;
             $promos = $this->pub->getPromosByDay();
         ?>
-        <!-- <a href="/deal/add/idPub/<?php echo $this->pub->id; ?>">Add Deal</a> -->
+        
+		<div id="edit-section">
+		<?php if($this->pubRow): ?>
+			<div class="sticky-style grid_6 alpha" id="image-region">
+			<?php foreach($this->pubRow->getImagesWebUri() as $image): ?>
+				<a class="image" href="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=600"><img src="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=100" alt="" /></a>
+			<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+		<?php echo $this->form; ?>
+		</div>
+        
+    </div>
+
+    <div class="grid_6 sidebar omega" id="overview-sidebar">
+        <div>
+            <div id="map_canvas" style="width: 100%; height: 200px;"></div>
+            <div class="contact">
+                <span class="address"><?php echo $address->formatOutput(' '); ?></span>
+    			<a href="<?php echo $this->pub->url; ?>"><?php echo $this->pub->url; ?></a>
+    			<a href="mailto:<?php echo $this->pub->email; ?>"><?php echo $this->pub->email; ?></a>
+    		</div>
+        </div>
+        <?php echo $this->partial('partials/addthis.phtml'); ?>
+        
+        
         <table id="promos" class="generic" cellspacing="1px" cellpadding="0px" border="0">
-            
+	    <caption><a href="#" id="edit-section-button" class="ss_sprite ss_application_edit pad"></a></caption>
             <thead>
                 <tr>
                     <?php foreach ($days as $day): ?>
@@ -38,7 +89,7 @@
                                         }
                                         echo '<div class="promoDescription">' . $promo->description . '</div>';
                                     } ?>
-                                </div> 
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     <?php } ?>
@@ -47,80 +98,7 @@
                 </tr>
             </tbody>
         </table>
-
-        <div id="flag">
-            <a href="#" title="Report a problem">Report incorrect data</a>
-        </div>
-
-        <?php
-        $images = $this->pub->getImageLinks();
-
-        if (count($images)) : ?>
-        <div id="photos">
-            <h2>Photos</h2>
-            <ul>
-                <?php
-                foreach ($images as $img) {
-                    echo '<li>
-                        <a href="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=600&amp;ar=x">
-                            <img class="venuePic" src="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=125&amp;h=125&amp;zc=1&amp;ar=x"/>
-                        </a>
-                        </li>';
-                } ?>
-            </ul>
-        </div>
-        <?php endif; ?>
-
-
-
-        <?php 
-        $tips = $this->pub->getTips();
-        if (count($tips)): ?>
-
-        <div id="tips">
-            <h2>Tips
-                <div class="right">
-                    <img src="/img/icons/social/poweredByFoursquare_gray.png" width="128" height="14" />
-                    </div>
-            </h2>
-
-            <ul>
-                <?php foreach ($tips as $tip) { ?>
-                    <li>
-                        <div class="tip-container">
-                        <div class="author">
-                            <?php $data = json_decode($tip->data); ?>
-                            <div>
-                                <a href="<?php echo $data->user->canonicalUrl;?>">
-                                    <img src="<?php echo $data->user->photo;?>" width="60" height="60"/>
-                                </a>
-                            </div>
-                            <div class="name""><?php echo (isset($data->user->firstName) ? $data->user->firstName : '') . ' ' . (isset($data->user->lastName) ? $data->user->lastName : ''); ?></div>
-                            <div class="from"><?php echo '(' . $data->user->homeCity . ')'; ?></div>
-                        </div>
-                        <div class='tip'>
-                            <?php echo $tip->text; ?>
-                        </div>
-                        </div>
-                    </li>
-                <?php } ?>
-            </ul>
-        </div>
-        <?php endif;?>
         
-    </div>
-
-    <div class="grid_4 sidebar omega" style="width:310px">
-        <div>
-            <div id="map_canvas" style="width: 100%; height: 200px;"></div>
-            <div class="contact">
-                <span class="address"><?php echo $address->formatOutput(); ?></span>
-    			<a href="<?php echo $this->pub->url; ?>"><?php echo $this->pub->url; ?></a>
-    			<a href="mailto:<?php echo $this->pub->email; ?>"><?php echo $this->pub->email; ?></a>
-    		</div>
-        </div>
-
-        <?php echo $this->partial('partials/addthis.phtml'); ?>
     </div>
 </div>
 
@@ -129,7 +107,7 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
- 
+
     var center = new google.maps.LatLng(parseFloat(<?php echo $address->latitude; ?>), parseFloat(<?php echo $address->longitude; ?>));
     var myOptions = {
         zoom: 16,
@@ -141,7 +119,7 @@ $(document).ready(function() {
 
     new google.maps.Marker({
         map: map,
-        position: center    
+        position: center
     });
 
     $('#dialog').dialog({
@@ -164,5 +142,81 @@ $(document).ready(function() {
 
     $('#photos a').lightBox();
 
+    $('#edit-section-button').click(function(e) {
+		e.preventDefault();
+		$.scrollTo($('#edit-section'), 500);
+	});
+	
+
+    $('a.open').click(function() {
+		popup = window.open($('#url').val() , 'popup', 'height=600,width=800');
+		if (window.focus) { popup.focus(); }
+		return false;
+	});
+
+	$('form fieldset legend > a').click(function(e) {
+		e.preventDefault();
+		var $this = $(this);
+		$this.parents('fieldset').remove();
+	});
+
+	$('#image-region a.image').lightBox({fixedNavigation:true});
+
+	$("#image-region").sticky({topSpacing:52});
+
+	$("#overview-sidebar").sticky({topSpacing: 0});
+
+	AppClass = Ember.Application.extend({
+		ready: function() {
+			this.AppController.initialize(<?php echo json_encode($this->pubRow->toArray()); ?>);
+		},
+	});
+
+	App = AppClass.create();
+
+	App.TipProxyClass = Ember.ArrayProxy.extend({
+		
+	});
+
+	App.TipClass = Ember.Object.extend();
+
+	App.AppControllerClass = Ember.Object.extend({
+		row: null,
+		tips: App.TipProxyClass.create({content: []}),
+		tipUrl: '<?php echo $this->url(array('controller' => 'foursquare', 'action' => 'fetch-tips'), null, true); ?>',
+		initialize: function(data) {
+			this.row = data;
+			this.loadTips();
+		},
+		loadTips: function() {
+			var $this = this;
+			$.ajax({
+				url: this.tipUrl,
+				data: {idFoursquare: this.row.idFoursquare},
+				success: function(data) {
+					data.forEach(function(value, index) {
+						App.TipClass.create(value);
+						$this.tips.pushObject(App.TipClass.create(value));
+					})
+				}
+			});
+		}
+	});
+
+	
+	
+	App.AppController = App.AppControllerClass.create({});
+
+	App.tipsView = Ember.View.extend({
+		tipsCollectionView: Ember.CollectionView.extend({
+			tagName: 'ul',
+            contentBinding: 'App.AppController.tips',
+            itemViewClass: Ember.View.extend({
+            	tagName: '',
+            })
+		})
+	});
+
 });
 </script>
+<?php $this->headScript()->appendFile('/js/jquery.scrollTo-min.js'); ?>

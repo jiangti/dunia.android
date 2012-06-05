@@ -216,26 +216,28 @@ h1 {
   background-color: #eee;
   margin: 0;
   padding: 5px;
+  font-size: 9px;
 }
-/* line 216, sass/style.scss */
+/* line 217, sass/style.scss */
 .promo .promoDescription {
   text-align: left;
   font-size: x-small;
+  font-size: 9px;
 }
 
-/* line 223, sass/style.scss */
+/* line 225, sass/style.scss */
 .promoContent {
   text-align: center;
-  font-size: 15px;
   padding: 5px;
+  font-size: 11px;
 }
 
-/* line 229, sass/style.scss */
+/* line 231, sass/style.scss */
 #flag {
   text-align: right;
   margin-top: 10px;
 }
-/* line 233, sass/style.scss */
+/* line 235, sass/style.scss */
 #flag a {
   color: #1291ff;
   text-decoration: none;
@@ -243,21 +245,19 @@ h1 {
   background: url(/img/icons/famfamfam/flag_red.png) no-repeat;
 }
 
-/* line 241, sass/style.scss */
+/* line 243, sass/style.scss */
 .pub-overview h2 {
   color: #555;
 }
-/* line 245, sass/style.scss */
+/* line 247, sass/style.scss */
 .pub-overview ul {
   list-style: none;
   padding-left: 0;
   overflow: auto;
 }
-/* line 251, sass/style.scss */
+/* line 253, sass/style.scss */
 .pub-overview .addthis_toolbox > a {
   margin: 5px;
-  display: block;
-  float: none;
 }
 /* line 257, sass/style.scss */
 .pub-overview #photos {
@@ -274,42 +274,36 @@ h1 {
 .pub-overview #photos li {
   float: left;
 }
-/* line 273, sass/style.scss */
-.pub-overview #tips li {
-  margin-top: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
-  overflow: auto;
-}
-/* line 282, sass/style.scss */
+/* line 272, sass/style.scss */
 .pub-overview .tip-container {
   clear: both;
 }
-/* line 285, sass/style.scss */
+/* line 274, sass/style.scss */
 .pub-overview .tip-container .tip {
   margin-top: 5px;
-  font-size: 18px;
+  font-size: 12px;
 }
-/* line 290, sass/style.scss */
+/* line 279, sass/style.scss */
 .pub-overview .tip-container .author {
   float: left;
   font-size: 10px;
+  width: 99%;
 }
-/* line 294, sass/style.scss */
+/* line 283, sass/style.scss */
 .pub-overview .tip-container .author .name, .pub-overview .tip-container .author .from {
   margin-left: 5px;
 }
-/* line 298, sass/style.scss */
+/* line 287, sass/style.scss */
 .pub-overview .tip-container .author img {
-  margin: 5px 5px 1px 5px;
   border: 1px solid #ccc;
   padding: 3px;
+  margin-right: 10px;
 }
 
 /**
  * Index page (big map)
  */
-/* line 314, sass/style.scss */
+/* line 303, sass/style.scss */
 #bottom-info-bar {
   position: fixed;
   bottom: 0;
@@ -324,24 +318,24 @@ h1 {
   -webkit-border-top-left-radius: 50px 100px;
   border-top-left-radius: 50px 100px;
 }
-/* line 315, sass/style.scss */
+/* line 304, sass/style.scss */
 #bottom-info-bar .summary {
   font-family: "SnicklesRegular";
   font-size: 20px;
 }
-/* line 316, sass/style.scss */
+/* line 305, sass/style.scss */
 #bottom-info-bar .summary img {
   vertical-align: middle;
   padding-right: 3px;
 }
 
-/* line 340, sass/style.scss */
+/* line 329, sass/style.scss */
 .overlay {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 345, sass/style.scss */
+/* line 334, sass/style.scss */
 .overlay h2 {
   margin: 0 0 5px 0;
   font-size: 20px;
@@ -350,50 +344,50 @@ h1 {
   text-align: center;
   font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman","Helvetica Neue Roman","TeXGyreHerosRegular","Helvetica","Tahoma","Geneva","Arial",sans-serif;
 }
-/* line 354, sass/style.scss */
+/* line 343, sass/style.scss */
 .overlay .overlayContent {
   border: 1px solid rgba(104, 187, 235, 0.9);
   border-left: 0;
   border-right: 0;
   margin: 0;
 }
-/* line 360, sass/style.scss */
+/* line 349, sass/style.scss */
 .overlay .overlayContent div {
   padding: 20px 5px;
   font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman","Helvetica Neue Roman","TeXGyreHerosRegular","Helvetica","Tahoma","Geneva","Arial",sans-serif;
   font-size: 20px;
 }
-/* line 365, sass/style.scss */
+/* line 354, sass/style.scss */
 .overlay .overlayContent div span.price {
   font-weight: bold;
   font-size: 30px;
 }
-/* line 370, sass/style.scss */
+/* line 359, sass/style.scss */
 .overlay .overlayContent div span.liquorType {
   font-weight: normal;
   font-size: 24px;
 }
-/* line 375, sass/style.scss */
+/* line 364, sass/style.scss */
 .overlay .overlayContent div div.left {
   padding: 0;
 }
-/* line 379, sass/style.scss */
+/* line 368, sass/style.scss */
 .overlay .overlayContent div div.right {
   padding: 0;
   margin-left: 10px;
 }
-/* line 383, sass/style.scss */
+/* line 372, sass/style.scss */
 .overlay .overlayContent div div.right div.time, .overlay .overlayContent div div.right div.size {
   font-size: 14px;
   padding: 0;
 }
-/* line 391, sass/style.scss */
+/* line 380, sass/style.scss */
 .overlay .overlayContent div.deal {
   padding: 0;
   margin-bottom: 10px;
   overflow: auto;
 }
-/* line 397, sass/style.scss */
+/* line 386, sass/style.scss */
 .overlay .overlayContent h3 {
   text-align: center;
   color: #fff;
@@ -404,18 +398,18 @@ h1 {
   margin: 0;
   padding: 0;
 }
-/* line 409, sass/style.scss */
+/* line 398, sass/style.scss */
 .overlay .foot {
   margin-top: 10px;
   overflow: auto;
   position: relative;
 }
-/* line 414, sass/style.scss */
+/* line 403, sass/style.scss */
 .overlay .foot .address {
   color: #555;
   font-size: 80%;
 }
-/* line 419, sass/style.scss */
+/* line 408, sass/style.scss */
 .overlay .foot a {
   text-decoration: none;
   color: #1291ff;
@@ -424,7 +418,7 @@ h1 {
   right: 0;
 }
 
-/* line 428, sass/style.scss */
+/* line 417, sass/style.scss */
 a.small-icon {
   display: block;
   width: 16px;
@@ -434,21 +428,21 @@ a.small-icon {
   text-indent: -9999px;
 }
 
-/* line 437, sass/style.scss */
+/* line 426, sass/style.scss */
 a.ok {
   background: url(/img/icons/famfamfam/accept.png) no-repeat;
 }
 
-/* line 441, sass/style.scss */
+/* line 430, sass/style.scss */
 a.cancel {
   background: url(/img/icons/famfamfam/cancel.png) no-repeat;
 }
 
-/* line 445, sass/style.scss */
+/* line 434, sass/style.scss */
 .admin-nav {
   list-style: none;
 }
-/* line 449, sass/style.scss */
+/* line 438, sass/style.scss */
 .admin-nav li a {
   font-size: 18px;
   text-decoration: none;
@@ -460,7 +454,7 @@ a.cancel {
   border-color: #ddd;
   color: #555;
 }
-/* line 461, sass/style.scss */
+/* line 450, sass/style.scss */
 .admin-nav li a.selected {
   background: #00b7ea;
   /* Old browsers */
@@ -496,45 +490,45 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
-/* line 489, sass/style.scss */
+/* line 478, sass/style.scss */
 #flagForm #dealSelector {
   padding: 20px;
   font-size: 15px;
   border-right: 1px solid #ccc;
   margin-right: 20px;
 }
-/* line 497, sass/style.scss */
+/* line 486, sass/style.scss */
 #flagForm #dealSubforms dd {
   margin-bottom: 10px;
 }
-/* line 502, sass/style.scss */
+/* line 491, sass/style.scss */
 #flagForm dt > label {
   font-weight: bold;
   font-size: 15px;
 }
-/* line 506, sass/style.scss */
+/* line 495, sass/style.scss */
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;
 }
-/* line 511, sass/style.scss */
+/* line 500, sass/style.scss */
 #flagForm fieldset {
   border: 0;
   padding: 0;
 }
-/* line 516, sass/style.scss */
+/* line 505, sass/style.scss */
 #flagForm hr {
   color: #ddd;
 }
 
-/* line 521, sass/style.scss */
+/* line 510, sass/style.scss */
 .venuePic {
   margin: 10px;
   padding: 4px;
   border: 1px solid #ccc;
 }
 
-/* line 527, sass/style.scss */
+/* line 516, sass/style.scss */
 #mailshare form {
   -webkit-box-shadow: 0px 0px 5px #333333;
   -moz-box-shadow: 0px 0px 5px #333333;
@@ -542,7 +536,7 @@ a.cancel {
   padding: 20px;
 }
 
-/* line 532, sass/style.scss */
+/* line 521, sass/style.scss */
 #facebookConnect, #signInWithTwitter {
   margin: 20px;
   display: block;
@@ -551,12 +545,12 @@ a.cancel {
   width: 169px;
 }
 
-/* line 540, sass/style.scss */
+/* line 529, sass/style.scss */
 #facebookConnect {
   background: url("/img/icons/facebookconnect.png") no-repeat scroll 0 0 transparent;
 }
 
-/* line 544, sass/style.scss */
+/* line 533, sass/style.scss */
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }
@@ -564,12 +558,12 @@ a.cancel {
 /**
  * User Profile
  */
-/* line 553, sass/style.scss */
+/* line 542, sass/style.scss */
 #services ul {
   list-style: none;
   padding: 0;
 }
-/* line 557, sass/style.scss */
+/* line 546, sass/style.scss */
 #services ul li {
   margin: 10px;
 }

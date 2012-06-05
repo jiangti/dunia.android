@@ -34,7 +34,7 @@ $(document).ready(function() {
         }),
         none: marker.create({
         	name:   'none',
-        	title:  'Me Not Happy',
+        	title:  'Not Today',
             icon: '/img/icons/markers/bar.png',
             smallIcon: '/img/icons/markers/beer_sml.png',
             zIndex: 15

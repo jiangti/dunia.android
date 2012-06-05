@@ -32,7 +32,7 @@ class FoursquareController extends Model_Controller_Action {
 	    $foursquarePubs = array();
 	    foreach ($pubs as $pub) {
 	        $foursquarePub = $this->foursquare->get('/venues/search', array(
-	        	'query'      => $pub['name'], 
+	        	'query'      => $pub['name'],
 	        	'categoryId' => implode(',', Aw_Service_Foursquare::$allowedCategories),
 	        	'll'         => $pub['latitude'] . ',' . $pub['longitude']));
 	        
@@ -43,6 +43,14 @@ class FoursquareController extends Model_Controller_Action {
 	    
 	    
 	    $this->view->pubs = $foursquarePubs;
+	}
+	
+	public function fetchTipsAction() {
+		$service = new Service_Pub();
+		
+		$tips = $service->fetchTips($this->_getParam('idFoursquare'));
+		
+		$this->_helper->json->sendJson($tips);
 	}
 	
 	public function tipsAction() {
@@ -73,7 +81,7 @@ class FoursquareController extends Model_Controller_Action {
 	    
 	    if ($idTip && $action) {
 	        $tipService = new Service_Tip();
-            $tipService->moderateTip($idTip, $action);	        
+            $tipService->moderateTip($idTip, $action);
 	    }
 	     
 	    $pubService = new Service_Pub_Foursquare();

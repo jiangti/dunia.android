@@ -4,12 +4,12 @@ $(function() {
 	$( "#tags" ).autocomplete({
 		source: '/pub/search/format/json',
 		select: function (event, ul) {
-			document.location = '/pub/share/id/' + ul.item.id;
+			document.location = '/pub/overview/id/' + ul.item.id;
 		}
 	});
 
 	$("#new-pub").click(function() {
-		document.location = "/pub/share/name/" + $( "#tags" ).val();
+		document.location = "/pub/overview/name/" + encodeURIComponent($( "#tags" ).val());
 	});
 });
 //-->
@@ -39,7 +39,7 @@ $(function() {
 			<tbody>
 				<?php foreach($this->pubs as $pub): ?>
 				<tr>
-					<td><a href="<?php echo  $this->url(array('id' => $pub->id, 'action' => 'share')); ?>" class="ss_sprite ss_application_edit"><?php echo $pub; ?></a></td>
+					<td><a href="<?php echo  $this->url(array('id' => $pub->id, 'action' => 'overview')); ?>" class="ss_sprite ss_application_edit"><?php echo $pub; ?></a></td>
 					<td><?php echo $pub->getAddress()->formatOutput(' '); ?></td>
 				</tr>
 				<?php endforeach; ?>
