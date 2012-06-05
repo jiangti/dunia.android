@@ -19,7 +19,7 @@ class MapController extends Model_Controller_Action {
 		$lat  = $this->_getParam('lat', $lat);
 		$long = $this->_getParam('long', $long);
 		
-		$pubs = $pubService->findPromoWithNoDealPub($lat, $long);
+		$pubs = $pubService->findPromo($lat, $long, null, null, null, null, true);
 		
 		$this->_generateResponse($pubs);
 	}
@@ -51,7 +51,7 @@ class MapController extends Model_Controller_Action {
 		$bound->swlng  = $swlong;
 
         if ($zoom >= 17) {
-		    $pubs = $pubService->findPromoWithNoDealPub($lat, $long, null, null, null, $bound);
+		    $pubs = $pubService->findPromo($lat, $long, null, null, null, $bound, true);
         } else {
             $pubs = $pubService->findPromo($lat, $long, null, null, null, $bound);
         }
