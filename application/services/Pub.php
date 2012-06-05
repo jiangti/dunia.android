@@ -66,8 +66,13 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     }
     
     public function fetchTips($id) {
+    	
+    	
+    	
     	$application = Zend_Registry::get('Zend_Application');
     	$cacheManager = $application->getResource('cachemanager');
+    	$foursquare = $bootstrap->getResource('foursquare')->getFoursquare();
+    	
     	$tipCache = $cacheManager->getCache('f4tip');
     	
     	$url = sprintf('/venues/%s/tips', $id);
@@ -77,7 +82,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	if ($tipCache->test($cacheKey)) {
     		$tips = $tipCache->load($cacheKey);
     	} else {
-    		$tips = $this->foursquare->get($url);
+    		$tips = $foursquare->get($url);
     		if ($tips->code != 503) {
     			$tipCache->save($tips, $cacheKey);
     		} else {
