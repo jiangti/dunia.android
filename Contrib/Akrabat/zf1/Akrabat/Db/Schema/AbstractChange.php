@@ -1,11 +1,11 @@
 <?php
 
-abstract class Akrabat_Db_Schema_AbstractChange 
-{ 
+abstract class Akrabat_Db_Schema_AbstractChange
+{
     /**
      * @var Zend_Db_Adapter_Abstract
-     */ 
-    protected $_db; 
+     */
+    protected $_db;
 
     /**
      * @var string
@@ -14,28 +14,37 @@ abstract class Akrabat_Db_Schema_AbstractChange
      
     /**
      * Build and initialize the object
-     * 
+     *
      * @param Zend_Db_Adapter_Abstract $db          Database adabpter to use
      * @param string                   $tablePrefix Prefix for any table names
      */
-    public function __construct(Zend_Db_Adapter_Abstract $db, $tablePrefix = '') 
+    public function __construct(Zend_Db_Adapter_Abstract $db, $tablePrefix = '')
     {
         $this->_db = $db;
         $this->_tablePrefix = $tablePrefix;
-    } 
+    }
+    
+    public function _executeMultiLine($sqls) {
+    	foreach (explode(";", $sqls) as $sql) {
+    		$sql = trim($sql);
+    		if ($sql) {
+    			$this->_db->query($sql);
+    		}
+    	}
+    }
      
     /**
      * Changes to be applied in this change
-     * 
+     *
      * @return null
-     */ 
-    abstract function up(); 
+     */
+    abstract function up();
  
     /**
      * Rollback changes made in up()
-     * 
+     *
      * @return null
-     */ 
-    abstract function down(); 
+     */
+    abstract function down();
      
-} 
+}
