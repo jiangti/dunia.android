@@ -69,20 +69,19 @@ class Aw_Table_Rowset extends Zend_Db_Table_Rowset_Abstract {
 		$data = $this->_data;
 		return ipull($data, $colName);
 	}
-
+	
 	public function getPair() {
 		if ($this->count()) {
 		    $data = array();
 		    $row = $this->current();
 		    $keys = array_keys($row->toArray());
-		    $key = $keys[1];
 	
 	
 		    $primary = $this->getTable()->info('primary');
 		    if (count($primary) == 1) {
 	            $primary = current($primary);
-	            foreach ($this->_data as $row) {
-	                $data[$row[$primary]] = $row[$key];
+	            foreach ($this as $row) {
+	                $data[$row[$primary]] = (string) $row;
 	            }
 		    } else {
 		        throw new Aw_Exception_NotImplement();

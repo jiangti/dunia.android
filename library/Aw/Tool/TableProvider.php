@@ -21,7 +21,7 @@ class Aw_Tool_TableProvider extends Zend_Tool_Framework_Provider_Abstract implem
 		}
 
 		$table = new Zend_CodeGenerator_Php_Class();
-		$table->setName($namespace . '_' . ucwords($tableName));
+		$table->setName($namespace . '' . ucwords($tableName));
 		$table->setProperties(array(
 			array(
 	            'name'         => '_name',

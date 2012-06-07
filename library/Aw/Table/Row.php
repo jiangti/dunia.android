@@ -1,5 +1,5 @@
 <?php
-class Aw_Table_Row extends Zend_Db_Table_Row_Abstract {
+class Aw_Table_Row extends Aw_Table_RowAbstract {
 	/**
 	 * @var Zend_Db_Table_Rowset_Abstract
 	 */
@@ -7,6 +7,7 @@ class Aw_Table_Row extends Zend_Db_Table_Row_Abstract {
 	public function loadManyToManyRowset() {
 
 	}
+	
 	
 	public function setRowset($rowset) {
 		$this->_rowset = $rowset;
@@ -93,14 +94,7 @@ class Aw_Table_Row extends Zend_Db_Table_Row_Abstract {
 		exit;
 	}
 
-	public function formatName() {
-        return null;
-	}
 
-	public function __toString() {
-	    return $this->formatName();
-	}
-	
 	/**
 	 * Checks if all primary keys have value.
 	 */

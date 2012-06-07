@@ -2,17 +2,14 @@
 abstract class Aw_Table_TableAbstract extends Zend_Db_Table_Abstract {
 	protected $_rowClass = 'Aw_Table_Row';
 	protected $_rowsetClass = 'Aw_Table_Rowset';
+	
 
 	protected $_dateAdded;
 	
 	protected static $_table;
 	
 	public static function getTable() {
-        // This is breaking the deals form. We'll discuss on Thursday
-		//if (!self::$_table) {
-			self::$_table = new static();
-		//}
-		return self::$_table;
+		return new static();
 	}
 
 	/**
@@ -45,7 +42,7 @@ abstract class Aw_Table_TableAbstract extends Zend_Db_Table_Abstract {
 	}
 	
 	public static function getOptions() {
-		$static = self::getTable();
+		$static = static::getTable();
 		return $static->fetchAll()->getPair();
 	}
 	
