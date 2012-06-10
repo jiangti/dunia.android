@@ -17,8 +17,11 @@ class PubController extends Zend_Controller_Action
 		$select = $table->select();
 		$select
 			->where('dateProcessed is null')
-			->order(sprintf('FIELD(%d, `id`) desc', $mailShare->id))
 		;
+		
+		if ($mailShare) {
+			$select->order(sprintf('FIELD(%d, `id`) desc', $mailShare->id));
+		}
 		
 		$emailShares = $table->fetchAll($select);
 		
