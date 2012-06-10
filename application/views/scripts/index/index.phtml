@@ -66,6 +66,16 @@
 	</div>
 </div>
 
+<div style="display:none">
+	<div id="advanced-filter" style="margin-top: 18px; margin-right: -5px; direction: ltr; overflow: hidden; text-align: left; position: relative; color: rgb(0, 0, 0); font-family: Arial,sans-serif; -moz-user-select: none; font-size: 13px; background: none repeat scroll 0% 0% rgb(255, 255, 255); padding: 1px 6px; border: 1px solid rgb(113, 123, 135); box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); min-width: 28px;" title="I like ...">Pub Type
+		<ul style="text-align: left" id="category-list">
+		    <?php foreach($this->categories as $index => $value): ?>
+    			<li><input type="checkbox" value="<?php echo $index; ?>"/><?php echo $value; ?></li>
+		    <?php endforeach; ?>
+		</ul>
+	</div>
+</div>
+
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -77,7 +87,6 @@ $(document).ready(function() {
 			stop: function() {
 				var value0 = $('select#valueA').val();
 				var value1 = $('select#valueB').val();
-
 				AppMap.setMarkersByTime(value0, value1);
 			}
 		}
@@ -118,8 +127,8 @@ $(document).ready(function() {
 			event.preventDefault();
 			var object = event.context;
 
-			object.set('flag', !(object.get('flag')))
-			AppMap.setMarkersVisible(object.get('name'), object.get('flag'))
+			object.set('flag', !(object.get('flag')));
+			AppMap.setMarkersVisible(object.get('name'), object.get('flag'));
 		}
 	});
 
@@ -133,20 +142,14 @@ $(document).ready(function() {
 
     google.maps.event.addListener(AppMap.map, 'tilesloaded', function(event) {
     	AppMap.fetchBars();
+    	$('#category-list li input[type="checkbox"]').click(function(e) {
+    	    AppMap.chikaBowBow(this);
+        });
     });
 
 });
 </script>
 
-<div style="display:none">
-	<div id="advanced-filter" style="margin-top: 18px; margin-right: -5px; direction: ltr; overflow: hidden; text-align: left; position: relative; color: rgb(0, 0, 0); font-family: Arial,sans-serif; -moz-user-select: none; font-size: 13px; background: none repeat scroll 0% 0% rgb(255, 255, 255); padding: 1px 6px; border: 1px solid rgb(113, 123, 135); box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); min-width: 28px;" title="I like ...">Pub Type
-		<ul style="text-align: left" id="category-list">
-		    <?php foreach($this->categories as $index => $value): ?>
-    			<li><input type="checkbox" value="<?php echo $index; ?>" checked="checked"/><?php echo $value; ?></li>
-		    <?php endforeach; ?>
-		</ul>
-	</div>
-</div>
 
 <?php $this->headScript()->appendFile('/contrib/selectToUiSlider/js/selectToUISlider.jQuery.js'); ?>
 <?php $this->headLink()->appendStylesheet('/contrib/selectToUiSlider/css/ui.slider.extras.css'); ?>

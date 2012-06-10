@@ -243,6 +243,15 @@ $(document).ready(function() {
                     infoWindow.open(map, this);
                 });
             });
+        },
+        chikaBowBow: function(elem) {
+        		this.mapMarkers.filterProperty('idPubType', elem.value).forEach(function(value, index) {
+        			if (elem.checked) {
+        				value.setAnimation(google.maps.Animation.BOUNCE);
+        			} else {
+        				value.setAnimation(null);
+        			}
+        		});
         }
     });
 
