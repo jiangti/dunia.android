@@ -6,6 +6,7 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	 * @var Model_Address
 	 */
 	public $address;
+    public $pubType;
 	public $email;
 	public $url;
 	public $active;
@@ -16,6 +17,7 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	public $validated;
 
 	public $idAddress;
+    public $idPubType;
 	
 	public $twitter;
 	
@@ -65,10 +67,11 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 
 	    $address = new Model_Address();
 	    $address->setFromArray($pub->getAddress());
-	    
-	    $this->setAddress($address);
-	    
-	    return $this;
+
+        $this->setAddress($address);
+        $this->pubType = $pub->getPubType();
+
+        return $this;
 	}
 
 	public function save() {
@@ -77,6 +80,10 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	    if ($this->address) {
 	        $this->idAddress = $this->address->save();
 	    }
+
+        if ($this->pubType) {
+            $this->idPubType = $this->pubType->id;
+        }
 	    
 	    if ($this->id) {
 	        $pubRow = $pubTable->find($this->id)->current();

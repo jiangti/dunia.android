@@ -53,7 +53,7 @@ class MapController extends Model_Controller_Action {
 		$bound->swlng  = $swlong;
 
         if ($zoom >= 17) {
-		    $pubs = $pubService->findPromoWithNoDealPub($lat, $long, null, null, null, $bound);
+		    $pubs = $pubService->findPromo($lat, $long, null, null, null, $bound, true);
         } else {
             $pubs = $pubService->findPromo($lat, $long, null, null, null, $bound);
         }
@@ -84,7 +84,7 @@ class MapController extends Model_Controller_Action {
 	            'itsOn'		=> array($pub['itsOn']),
                 'promos'    => $pub['promos'],
 	            'url'		=> array($pub['url']),
-	            'idPubType' => $pub['idPubType'],
+                'icon'      => array($pub['icon'])
 	        );
 	    }
 	    

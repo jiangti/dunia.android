@@ -50,6 +50,13 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 		    	$array['validated'] = $data->verified;
 		    	$array['twitter'] 	= (isset($data->contact->twitter) ? $data->contact->twitter: null);
 		    	$array['telephone'] = (isset($data->contact->phone) ? $data->contact->phone: null);
+
+                $categories = $data->categories;
+                if (is_array($data->categories)) {
+                    $category = array_shift($data->categories);
+
+                    $array['idPubType'] = $category->id;
+                }
 		    	
 		    	$row = Model_DbTable_Pub::getRow($array);
 		    	
@@ -280,6 +287,9 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     				'latitude',
     				'distance' => new Zend_Db_Expr("ROUND(6371000 * acos(cos(radians('$latitude')) * cos(radians(a.latitude)) * cos(radians(a.longitude) - radians('$longitude')) + sin(radians('$latitude')) * sin(radians(a.latitude))), 2)"))
     			)
+            ->joinLeft(array('pT' => 'pubType'),
+                    'pT.id = p.idPubType',
+                    array('icon'))
 	    	->order('distance')
 	    	->where(sprintf('a.latitude between %s and %s', $x0, $x1))
 	    	->where(sprintf('a.longitude between %s and %s', $y0, $y1))
@@ -287,6 +297,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	
     	return $select;
     }
+
     /**
      * @param unknown_type $latitude
      * @param unknown_type $longitude
@@ -308,15 +319,20 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     /**
      * @return Zend_Db_Table_Select
      */
-    private function _getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour, Model_Location_Bound $bound = null) {
+    private function _getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour, Model_Location_Bound $bound = null, $includeNoPromos = false) {
     	$select = $this->_getFindPubSelect($latitude, $longitude, $query, $bound);
-    	 
+
     	if ($hour) {
     		$hour = str_pad($hour . ':00:00', 8, '0', STR_PAD_LEFT);
     	} else {
     		$hour = date("H:i:00");
     	}
-    	 
+
+        $joinType = 'join';
+        if ($includeNoPromos) {
+            $joinType = 'joinLeft';
+        }
+
         $expr = new Zend_Db_Expr(sprintf("IF(find_in_set('%s', p0.day), CASE
                 WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
                 WHEN '%s' < p0.timeStart THEN 'later'
@@ -325,17 +341,16 @@ class Service_Pub extends Aw_Service_ServiceAbstract
                 END, 'none')", date('D'), $hour, $hour, $hour));
 
     	$select
-	    	->join(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array('idPub'))
-	    	->join(array('p0' => 'promo'), 'p0.id = php.idPromo',
+	    	->$joinType(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array('idPub'))
+	    	->$joinType(array('p0' => 'promo'), 'p0.id = php.idPromo',
 	    		array(
 	    			'timeStart' => 'DATE_FORMAT(p0.timeStart, "%H:%i")',
 	    			'timeEnd'   => 'DATE_FORMAT(p0.timeEnd, "%H:%i")', 'price', 'itsOn' => $expr)
 	    		)
-	    	->join(array('phl' => 'promoHasLiquorType'), 'p0.id = phl.idPromo', array())
-	    	->join(array('lt' => 'liquorType'), 'lt.id = phl.idLiquorType', array('liquorType' => 'name'))
+	    	->$joinType(array('phl' => 'promoHasLiquorType'), 'p0.id = phl.idPromo', array())
+	    	->$joinType(array('lt' => 'liquorType'), 'lt.id = phl.idLiquorType', array('liquorType' => 'name'))
 	    	->joinLeft(array('ls' => 'liquorSize'), 'phl.idLiquorSize = ls.id', array('liquorSize' => 'name'));
 
-    	
     	$select0 = clone $select;
     	
 	    $select0->where('find_in_set(?, p0.day)', date('D'));
@@ -344,48 +359,22 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 	    $id = array_unique(ipull($rows, 'id'));
 	    
 	    $select1 = clone $select;
-	    
-	    $select1
-	    	->where('find_in_set(?, p0.day) = 0', date('D'))
-	    ;
+
+        if ($includeNoPromos) {
+            $select1->where('find_in_set(?, p0.day) = 0 OR p0.day is null', date('D'));
+        } else {
+            $select1->where('find_in_set(?, p0.day) = 0', date('D'));
+        }
 
         if ($id) {
             $select1->where('p.id not in (?)', $id);
         }
 	    $select->where('find_in_set(?, p0.day)', date('D'))->reset(Zend_Db_Select::ORDER);
-	    
+
 	    $unionSelect = $select->getTable()->select(false);
-	    
 	    return $unionSelect->union(array($select, $select1));
 	    
 	    
-    }
-    
-    public function findPromoWithNoDealPub($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null, Model_Location_Bound $bound = null) {
-    	$select = $this->_getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour, $bound);
-    	
-    	$cols = $select->getPart(Zend_Db_Select::COLUMNS);
-    	$select->reset(Zend_Db_Select::COLUMNS);
-    	$select->reset(Zend_Db_Select::ORDER);
-    	foreach ($cols as $index => $col) {
-    		if ($index > 3) {
-    			
-    			if ($col[1] instanceof Zend_Db_Expr) {
-    				$col[0] = null;
-    			}
-    			
-    			if ($col[2]) {
-    				$select->columns(array($col[2] => $col[1]), $col[0]);
-    			} else {
-    				$select->columns($col[1], $col[0]);
-    			}
-    		}
-    	}
-    	
-    	$select1 = $this->_getFindPubSelect($latitude, $longitude, $query, $bound);
-
-        $select1->joinLeft(array('php' => new Zend_Db_Expr('(' . $select . ')')), 'p.id = php.idPub');
-        return $this->_formatPromoData($select1->getTable()->fetchAll($select1));
     }
 
     /**
@@ -397,20 +386,20 @@ class Service_Pub extends Aw_Service_ServiceAbstract
      * @param string day [MON,TUE,WED...]
      * @param int 0-12
      */
-    public function findPromo($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null, Model_Location_Bound $bound = null) {
+    public function findPromo($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null, Model_Location_Bound $bound = null, $includeNoPromos = false) {
     	
     	$table = new Model_DbTable_Pub();
     	
-    	$select = $this->_getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour, $bound);
+    	$select = $this->_getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour, $bound, $includeNoPromos);
 
     	$data = $select->getTable()->fetchAll($select);
-        
+
 		return $this->_formatPromoData($data);
     }
     
     private function _formatPromoData($data) {
     	$return = array();
-    	
+
     	foreach ($data as $promoRow) {
     		$newPromo = array();
     		$address  = (string) $promoRow->getAddress(); //This is bad with the n+1 problem.

@@ -10,6 +10,11 @@ class Model_DbTable_Pub extends Model_DbTable_TableAbstract {
 	        'refTableClass'     => 'Model_DbTable_Address',
 	        'refColumns'        => 'id'
 	    ),
+        'pubType' => array(
+            'columns'           => 'idPubType',
+            'refTableClass'     => 'Model_DbTable_PubType',
+            'refColumns'        => 'id'
+        ),
 	);
 	
 	public function searchByName($name) {
