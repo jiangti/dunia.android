@@ -212,6 +212,7 @@ $(document).ready(function() {
                     html:     overlayHtml,
                     idBeer:   id,
                     type:     type,
+                    idPubType: marker.idPubType
                 };
                 
                 

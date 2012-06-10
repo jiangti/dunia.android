@@ -385,7 +385,6 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     	$select1 = $this->_getFindPubSelect($latitude, $longitude, $query, $bound);
 
         $select1->joinLeft(array('php' => new Zend_Db_Expr('(' . $select . ')')), 'p.id = php.idPub');
-
         return $this->_formatPromoData($select1->getTable()->fetchAll($select1));
     }
 

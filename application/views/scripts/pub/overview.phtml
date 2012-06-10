@@ -166,9 +166,15 @@ $(document).ready(function() {
 
 	$("#overview-sidebar").sticky({topSpacing: 0});
 
+
+	config = {
+	    tipUrl: '<?php echo $this->url(array('controller' => 'foursquare', 'action' => 'fetch-tips'), null, true); ?>',
+	    pub: <?php echo json_encode($this->pubRow->toArray()); ?>
+	};
+
 	AppClass = Ember.Application.extend({
 		ready: function() {
-			this.AppController.initialize(<?php echo json_encode($this->pubRow->toArray()); ?>);
+			this.AppController.initialize(config.pub);
 		},
 	});
 
@@ -183,7 +189,7 @@ $(document).ready(function() {
 	App.AppControllerClass = Ember.Object.extend({
 		row: null,
 		tips: App.TipProxyClass.create({content: []}),
-		tipUrl: '<?php echo $this->url(array('controller' => 'foursquare', 'action' => 'fetch-tips'), null, true); ?>',
+		tipUrl: config.tipUrl,
 		initialize: function(data) {
 			this.row = data;
 			this.loadTips();
@@ -203,8 +209,6 @@ $(document).ready(function() {
 		}
 	});
 
-	
-	
 	App.AppController = App.AppControllerClass.create({});
 
 	App.tipsView = Ember.View.extend({

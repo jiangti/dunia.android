@@ -46,6 +46,7 @@
 		</fieldset>
 		</div>
 	</div>
+		
 	<div id="nav">
 		<?php echo $this->render('partials/nav.phtml'); ?>
    	</div>
@@ -87,8 +88,11 @@ $(document).ready(function() {
         zoom: 15,
         maxZoom: 20,
         center: amHere,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        streetViewControl: true,
+        overviewMapControl: true
     };
+
 
     AppMap = Dunia.Map.create({
         longitude: '<?php echo $this->long; ?>',
@@ -96,6 +100,11 @@ $(document).ready(function() {
         map:       new google.maps.Map(document.getElementById("map_canvas"), myOptions)
     });
 
+
+    $control = $("#advanced-filter").detach();
+
+    // Push the control to the top right position on the map
+    AppMap.map.controls[google.maps.ControlPosition.TOP_LEFT].push($control[0]);
 
     var input = document.getElementById('location');
     var autocomplete = new google.maps.places.Autocomplete(input);
@@ -128,5 +137,16 @@ $(document).ready(function() {
 
 });
 </script>
+
+<div style="display:none">
+	<div id="advanced-filter" style="margin-top: 18px; margin-right: -5px; direction: ltr; overflow: hidden; text-align: left; position: relative; color: rgb(0, 0, 0); font-family: Arial,sans-serif; -moz-user-select: none; font-size: 13px; background: none repeat scroll 0% 0% rgb(255, 255, 255); padding: 1px 6px; border: 1px solid rgb(113, 123, 135); box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); min-width: 28px;" title="I like ...">Pub Type
+		<ul style="text-align: left" id="category-list">
+		    <?php foreach($this->categories as $index => $value): ?>
+    			<li><input type="checkbox" value="<?php echo $index; ?>" checked="checked"/><?php echo $value; ?></li>
+		    <?php endforeach; ?>
+		</ul>
+	</div>
+</div>
+
 <?php $this->headScript()->appendFile('/contrib/selectToUiSlider/js/selectToUISlider.jQuery.js'); ?>
 <?php $this->headLink()->appendStylesheet('/contrib/selectToUiSlider/css/ui.slider.extras.css'); ?>

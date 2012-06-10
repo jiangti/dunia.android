@@ -19,9 +19,11 @@ class MapController extends Model_Controller_Action {
 		$lat  = $this->_getParam('lat', $lat);
 		$long = $this->_getParam('long', $long);
 		
-		$pubs = $pubService->findPromoWithNoDealPub($lat, $long);
+		$params = $this->_getParams();
+		$params['ne'] = sprintf('%s,%s', $lat + 0.1, $long + 0.1);
+		$params['sw'] = sprintf('%s,%s', $lat - 0.1, $long - 0.1);
 		
-		$this->_generateResponse($pubs);
+		$this->_forward('fetch-bound', null, null, $params);
 	}
 	
 	public function fetchBoundAction() {
@@ -82,6 +84,7 @@ class MapController extends Model_Controller_Action {
 	            'itsOn'		=> array($pub['itsOn']),
                 'promos'    => $pub['promos'],
 	            'url'		=> array($pub['url']),
+	            'idPubType' => $pub['idPubType'],
 	        );
 	    }
 	    

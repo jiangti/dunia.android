@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 @import "compass/css3/box-shadow";
 @import url('snickles/stylesheet.css');
-
+@import "compass/css3/transition";
 /**
  * Global variables
  */
@@ -547,4 +547,26 @@ a.cancel {
             margin: 10px;
         }
     }
+}
+
+#advanced-filter {
+	max-height: 16px;
+	@include transition-property(max-height);
+    @include transition-duration(1s);
+    @include transition-timing-function(ease-out); 
+	&:hover {
+		max-height: 500px;
+	}
+}
+
+#category-list {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 0;
+}
+
+.glow {
+    -webkit-box-shadow:0 0 15px #ffffff; 
+    -moz-box-shadow: 0 0 15px #ffffff; 
+    box-shadow:0 0 15px #ffffff; 
 }

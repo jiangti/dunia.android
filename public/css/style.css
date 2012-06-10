@@ -1,4 +1,4 @@
-@import url('snickles/stylesheet.css');
+@import url("snickles/stylesheet.css");
 @CHARSET "UTF-8";
 /**
  * Global variables
@@ -566,4 +566,42 @@ a.cancel {
 /* line 546, sass/style.scss */
 #services ul li {
   margin: 10px;
+}
+
+/* line 552, sass/style.scss */
+#advanced-filter {
+  max-height: 16px;
+  -webkit-transition-property: max-height;
+  -moz-transition-property: max-height;
+  -ms-transition-property: max-height;
+  -o-transition-property: max-height;
+  transition-property: max-height;
+  -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -ms-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  transition-duration: 1s;
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  -ms-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+/* line 557, sass/style.scss */
+#advanced-filter:hover {
+  max-height: 500px;
+}
+
+/* line 562, sass/style.scss */
+#category-list {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 0;
+}
+
+/* line 568, sass/style.scss */
+.glow {
+  -webkit-box-shadow: 0 0 15px #ffffff;
+  -moz-box-shadow: 0 0 15px #ffffff;
+  box-shadow: 0 0 15px #ffffff;
 }

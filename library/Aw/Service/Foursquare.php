@@ -32,6 +32,30 @@ class Aw_Service_Foursquare extends EpiFoursquare {
                                       self::CATEGORY_LOUNGE, self::CATEGORY_NIGHTCLUB, self::CATEGORY_OTHER_NIGHTLIFE,
                                       self::CATEGORY_SAKE_BAR, self::CATEGORY_SPEAKEASY, self::CATEGORY_SPORTS_BAR,
                                       self::CATEGORY_WHISKY_BAR, self::CATEGORY_WINE_BAR);
+    
+    
+    public static $categoriesName = array(
+        self::CATEGORY_PUB             => 'Pub',
+        self::CATEGORY_BAR             => 'Bar',
+        self::CATEGORY_DISTILLERY      => 'Distillery',
+        self::CATEGORY_NIGHTLIFE_SPOT  => 'Nightlife Spot',
+        self::CATEGORY_BEER_GARDEN     => 'Beer Garden',
+        self::CATEGORY_BREWERY         => 'Brewery',
+        self::CATEGORY_COCKTAIL_BAR    => 'Cocktail Bar',
+        self::CATEGORY_DIVE_BAR        => 'Dive Bar',
+        self::CATEGORY_GAY_BAR         => 'Gay Bar',
+        self::CATEGORY_HOOKAH_BAR      => 'Hookah Bar',
+        self::CATEGORY_HOTEL_BAR       => 'Hotel Bar',
+        self::CATEGORY_KARAOKE_BAR     => 'Karaoke Bar',
+        self::CATEGORY_LOUNGE          => 'Lounge',
+        self::CATEGORY_NIGHTCLUB       => 'Nightclub',
+        self::CATEGORY_OTHER_NIGHTLIFE => 'Other Nightlife',
+        self::CATEGORY_SAKE_BAR        => 'Sake Bar',
+        self::CATEGORY_SPEAKEASY       => 'Speakeasy',
+        self::CATEGORY_SPORTS_BAR      => 'Sports Bar',
+        self::CATEGORY_WHISKY_BAR      => 'Whisky Bar',
+        self::CATEGORY_WINE_BAR        => 'Wine Bar',
+    );
 
     
     public $latutude, $longitude;
