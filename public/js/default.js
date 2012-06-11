@@ -244,14 +244,15 @@ $(document).ready(function() {
                 });
             });
         },
-        chikaBowBow: function(elem) {
-        		this.mapMarkers.filterProperty('idPubType', elem.value).forEach(function(value, index) {
-        			if (elem.checked) {
-        				value.setAnimation(google.maps.Animation.BOUNCE);
-        			} else {
-        				value.setAnimation(null);
-        			}
-        		});
+        chikaBowBow: function(elem) { 
+        	/** Becuase its gonna get bouncy. **/
+        	this.mapMarkers.filterProperty('idPubType', elem.value).forEach(function(value, index) {
+        		if (elem.checked) {
+        			value.setAnimation(google.maps.Animation.BOUNCE);
+        		} else {
+        			value.setAnimation(null);
+        		}
+        	});
         }
     });
 

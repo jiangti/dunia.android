@@ -36,7 +36,7 @@
         
         <?php
             $days   = Model_Day::$days;
-            $promos = $this->pub->getPromosByDay();
+            $promos = $this->pub->getPromos();
         ?>
         
 		<div id="edit-section">
@@ -74,16 +74,36 @@
                 </tr>
             </thead>
             <tbody>
+                <?php $days = array_flip(Model_Day::$days); ?>
+                <?php foreach($promos as $promo): ?>
+                    <?php
+                    $prev = $curr = $key = null;
+                    $cols = array();
+                    
+                    foreach(explode(",", $promo->day) as $index => $day) {
+                        $curr = $days[$day];
+                        if ($curr - 1 === $prev) {
+                            $cols[$key]++;
+                        } else {
+                            $key = $day;
+                            $cols[$key] = 1;
+                        }
+                        $prev = $curr;
+                    }
+                    ?>
                 <tr>
-                <?php foreach ($days as $dayInt => $day): ?>
-                    <td width="<?php echo (1/sizeof($days)) * 100; ?>%">
-                    <?php if (isset($promos[$dayInt])) {
-                        foreach ($promos[$dayInt] as $promo): ?>
-                            <div class="promo">
-                                <div class="time">
-                                    <?php echo $this->formatDate($promo->timeStart, 'H:i'); ?> - <?php echo $this->formatDate($promo->timeEnd, 'H:i'); ?>
-                                </div>
-                                <div class="promoContent"><strong><?php echo $this->currency($promo->price); ?></strong><br />
+                
+                <?php foreach($days as $index => $value): ?>
+                    <?php if(isset($cols[$index])): ?>
+                    <?php $skip = $cols[$index] - 1; ?>
+                    <td colspan="<?php echo $cols[$index]; ?>">
+                        
+                        <div class="promo glow">
+                            <div class="time">
+                                <?php echo $this->formatDate($promo->timeStart, 'ga'); ?> - <?php echo $this->formatDate($promo->timeEnd, 'ga'); ?>
+                            </div>
+                                <div>
+                                    <p><strong><?php echo $this->currency($promo->price); ?></strong></p>
                                     <?php foreach ($promo->getLiquorTypes() as $liquor) {
                                         echo ' ' . $liquor->name;
                                         $size = $promo->getLiquorSizes();
@@ -93,12 +113,15 @@
                                         echo '<div class="promoDescription">' . $promo->description . '</div>';
                                     } ?>
                                 </div>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php } ?>
+                        </div>
+                    
                     </td>
+                    <?php else: ?>
+                    <?php echo ($skip ? $skip--: '<td></td>'); ?>
+                    <?php endif; ?>
                 <?php endforeach; ?>
                 </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
         
