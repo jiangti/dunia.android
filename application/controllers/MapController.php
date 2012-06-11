@@ -19,7 +19,7 @@ class MapController extends Model_Controller_Action {
 		$lat  = $this->_getParam('lat', $lat);
 		$long = $this->_getParam('long', $long);
 		
-		$params = $this->_getParams();
+		$params = $this->_getAllParams();
 		$params['ne'] = sprintf('%s,%s', $lat + 0.1, $long + 0.1);
 		$params['sw'] = sprintf('%s,%s', $lat - 0.1, $long - 0.1);
 		
