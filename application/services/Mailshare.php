@@ -42,7 +42,6 @@ class Service_Mailshare {
             $db = Zend_Db_Table_Abstract::getDefaultAdapter();
             $db->beginTransaction();
             $mailShare = Model_DbTable_MailShare::getRow($data);
-            $mailShare->dateProcessed = date('Y-m-d H:i:s');
             $id = $mailShare->save();
             $db->commit();
             return $id;
