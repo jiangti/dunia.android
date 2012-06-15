@@ -41,9 +41,21 @@ class Service_Mailshare {
         try {
             $db = Zend_Db_Table_Abstract::getDefaultAdapter();
             $db->beginTransaction();
+            
             $mailShare = Model_DbTable_MailShare::getRow($data);
             $mailShare->dateProcessed = date('Y-m-d H:i:s');
             $id = $mailShare->save();
+            
+            $file = base64_decode($data['image']);
+            
+            $directory = sprintf(APPLICATION_ROOT . '/public/mail/%d', $id);
+            
+            if (!file_exists($directory)) {
+                mkdir($directory, 0777, true);
+            }
+            
+            file_put_contents($directory . '/xxxx.jpg', $file);
+            
             $db->commit();
             return $id;
         } catch (Exception $e) {
