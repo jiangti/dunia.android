@@ -49,8 +49,18 @@ class MailshareController extends Zend_Controller_Action {
 
     public function uploadAction() {
         $service = new Service_Mailshare();
-        
+
         if ($id = $service->add($this->_request->getPost())) {
+            try {
+                $directory = sprintf(APPLICATION_ROOT . '/public/mail/%d', $id);
+                if (!file_exists($directory)) {
+                    mkdir($directory, 0777, true);
+                }
+                move_uploaded_file($_FILES["file"]["tmp_name"], $directory.'/photo.jpg');
+                exit;
+            } catch (Exception $e) {
+                throw $e;
+            }
         } else {
             throw new Zend_Application_Exception('Cannot add new mail shared record.');
         }
