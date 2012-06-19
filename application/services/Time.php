@@ -32,18 +32,19 @@ class Service_Time extends Aw_Service_ServiceAbstract {
             $endSuffix = $end . 'pm';
         } else {
             if (stripos($end, 'am') !== false) {
-                $endSuffix = '11:59:59pm';
+                $endSuffix = '11:59pm';
             } else {
                 $endSuffix = $end;
             }
         }
         
-        $this->_start = date('H:i:s', strtotime($startSuffix));
-        $this->_end = date('H:i:s', strtotime($endSuffix));
+        $this->_start = date('H:i', strtotime($startSuffix));
+        $this->_end = date('H:i', strtotime($endSuffix));
         
         if ($this->_start >= $this->_end) {
-            $this->_end = '23:59:59';
+            $this->_end = '23:59';
         }
+        
         
     }
     
