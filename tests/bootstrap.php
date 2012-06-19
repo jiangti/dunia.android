@@ -12,4 +12,4 @@ APPLICATION_ENV,
 APPLICATION_PATH . '/configs/application.ini'
 );
 
-$application->bootstrap();
+$application->bootstrap('db');

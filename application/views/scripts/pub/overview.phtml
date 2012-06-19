@@ -103,14 +103,14 @@
                                 <?php echo $this->formatDate($promo->timeStart, 'ga'); ?> - <?php echo $this->formatDate($promo->timeEnd, 'ga'); ?>
                             </div>
                                 <div>
-                                    <p><strong><?php echo $this->currency($promo->price); ?></strong></p>
+                                    <u><?php echo $this->currency($promo->price); ?></u>
                                     <?php foreach ($promo->getLiquorTypes() as $liquor) {
                                         echo ' ' . $liquor->name;
                                         $size = $promo->getLiquorSizes();
                                         foreach ($size as $s) {
                                             echo ' (' . $s['name'] . ')';
                                         }
-                                        echo '<div class="promoDescription">' . $promo->description . '</div>';
+                                        echo '<span class="promoDescription">' . $promo->description . '</span>';
                                     } ?>
                                 </div>
                         </div>
