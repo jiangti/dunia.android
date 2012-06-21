@@ -605,10 +605,10 @@ a.cancel {
   overflow: hidden;
   text-align: left;
   position: relative;
-  color: black;
+  color: #444;
   font-family: 'Imprima',Arial,sans-serif;
   font-size: 15px;
-  background: none repeat scroll 0% 0% white;
+  background: url("/img/texture.png") repeat scroll 0% 0% white;
   padding: 1px 6px;
   border: 1px solid #717b87;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
