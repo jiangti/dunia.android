@@ -13,28 +13,28 @@ $(document).ready(function() {
     Dunia.markerProperties = Em.Object.create({
         now: marker.create({
         	name:   'now',
-        	title:  'Its On Now',
+        	title:  'It\'s on now',
         	icon:   '/img/icons/markers/half.png',
             smallIcon: '/img/icons/markers/half_sml.png',
             zIndex: 20
         }),
         earlier: marker.create({
         	name:   'earlier',
-        	title:  'Miss It',
+        	title:  'Missed it',
             icon: '/img/icons/markers/empty.png',
             smallIcon: '/img/icons/markers/empty_sml.png',
             zIndex: 18
         }),
         later: marker.create({
         	name:   'later',
-        	title:  'Coming Soon',
+        	title:  'Coming soon',
             icon: '/img/icons/markers/full.png',
             smallIcon: '/img/icons/markers/full_sml.png',
             zIndex: 19
         }),
         none: marker.create({
         	name:   'none',
-        	title:  'Not Today',
+        	title:  'Not today',
             icon: '/img/icons/markers/bar.png',
             smallIcon: '/img/icons/markers/beer_sml.png',
             zIndex: 15
@@ -194,7 +194,7 @@ $(document).ready(function() {
                     '<h2>';
 
                 if (pubType) {
-                    overlayHtml += '<img src="' + pubType + '" width="32" height="32" /> ';
+                    overlayHtml += '<img src="' + pubType + '" width="28" height="28" /> ';
                 }
 
                 overlayHtml += name + '</h2>' +

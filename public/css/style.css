@@ -1,4 +1,4 @@
-@import url("snickles/stylesheet.css");
+@import url('snickles/stylesheet.css');
 @CHARSET "UTF-8";
 /**
  * Global variables
@@ -320,96 +320,109 @@ h1 {
 }
 /* line 305, sass/style.scss */
 #bottom-info-bar .summary {
-  font-family: "SnicklesRegular";
-  font-size: 20px;
+  font-family: 'Imprima',Arial,sans-serif;
+  font-size: 18px;
+  font-variant: small-caps;
 }
 /* line 306, sass/style.scss */
 #bottom-info-bar .summary img {
   vertical-align: middle;
   padding-right: 3px;
 }
+/* line 314, sass/style.scss */
+#bottom-info-bar .summary a {
+  text-decoration: none;
+  color: #222;
+}
 
-/* line 330, sass/style.scss */
+/* line 335, sass/style.scss */
 .overlay {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 335, sass/style.scss */
+/* line 340, sass/style.scss */
 .overlay h2 {
   margin: 0 0 5px 0;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   color: #555;
   text-align: center;
-  font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman","Helvetica Neue Roman","TeXGyreHerosRegular","Helvetica","Tahoma","Geneva","Arial",sans-serif;
+  font-family: 'Imprima',"Arial",sans-serif;
+  font-variant: small-caps;
+  vertical-align: middle;
 }
-/* line 344, sass/style.scss */
+/* line 350, sass/style.scss */
+.overlay h2 img {
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 357, sass/style.scss */
 .overlay .overlayContent {
   border: 1px solid rgba(104, 187, 235, 0.9);
   border-left: 0;
   border-right: 0;
   margin: 0;
 }
-/* line 350, sass/style.scss */
+/* line 363, sass/style.scss */
 .overlay .overlayContent div {
   padding: 20px 5px;
   font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman","Helvetica Neue Roman","TeXGyreHerosRegular","Helvetica","Tahoma","Geneva","Arial",sans-serif;
   font-size: 20px;
 }
-/* line 355, sass/style.scss */
+/* line 368, sass/style.scss */
 .overlay .overlayContent div span.price {
   font-weight: bold;
   font-size: 30px;
 }
-/* line 360, sass/style.scss */
+/* line 373, sass/style.scss */
 .overlay .overlayContent div span.liquorType {
   font-weight: normal;
   font-size: 24px;
 }
-/* line 365, sass/style.scss */
+/* line 378, sass/style.scss */
 .overlay .overlayContent div div.left {
   padding: 0;
 }
-/* line 369, sass/style.scss */
+/* line 382, sass/style.scss */
 .overlay .overlayContent div div.right {
   padding: 0;
   margin-left: 10px;
 }
-/* line 373, sass/style.scss */
+/* line 386, sass/style.scss */
 .overlay .overlayContent div div.right div.time, .overlay .overlayContent div div.right div.size {
   font-size: 14px;
   padding: 0;
 }
-/* line 381, sass/style.scss */
+/* line 394, sass/style.scss */
 .overlay .overlayContent div.deal {
   padding: 0;
   margin-bottom: 10px;
   overflow: auto;
 }
-/* line 387, sass/style.scss */
+/* line 400, sass/style.scss */
 .overlay .overlayContent h3 {
   text-align: center;
   color: #fff;
   background-color: rgba(104, 187, 235, 0.9);
-  font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman","Helvetica Neue Roman","TeXGyreHerosRegular","Helvetica","Tahoma","Geneva","Arial",sans-serif;
-  font-size: 14px;
-  font-weight: bold;
+  font-family: 'Imprima',"Arial",sans-serif;
+  font-size: 17px;
+  font-weight: normal;
   margin: 0;
   padding: 0;
 }
-/* line 399, sass/style.scss */
+/* line 413, sass/style.scss */
 .overlay .foot {
   margin-top: 10px;
   overflow: auto;
   position: relative;
 }
-/* line 404, sass/style.scss */
+/* line 418, sass/style.scss */
 .overlay .foot .address {
   color: #555;
   font-size: 80%;
 }
-/* line 409, sass/style.scss */
+/* line 423, sass/style.scss */
 .overlay .foot a {
   text-decoration: none;
   color: #1291ff;
@@ -418,7 +431,7 @@ h1 {
   right: 0;
 }
 
-/* line 418, sass/style.scss */
+/* line 432, sass/style.scss */
 a.small-icon {
   display: block;
   width: 16px;
@@ -428,21 +441,21 @@ a.small-icon {
   text-indent: -9999px;
 }
 
-/* line 427, sass/style.scss */
+/* line 441, sass/style.scss */
 a.ok {
   background: url(/img/icons/famfamfam/accept.png) no-repeat;
 }
 
-/* line 431, sass/style.scss */
+/* line 445, sass/style.scss */
 a.cancel {
   background: url(/img/icons/famfamfam/cancel.png) no-repeat;
 }
 
-/* line 435, sass/style.scss */
+/* line 449, sass/style.scss */
 .admin-nav {
   list-style: none;
 }
-/* line 439, sass/style.scss */
+/* line 453, sass/style.scss */
 .admin-nav li a {
   font-size: 18px;
   text-decoration: none;
@@ -454,7 +467,7 @@ a.cancel {
   border-color: #ddd;
   color: #555;
 }
-/* line 451, sass/style.scss */
+/* line 465, sass/style.scss */
 .admin-nav li a.selected {
   background: #00b7ea;
   /* Old browsers */
@@ -490,45 +503,45 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
-/* line 479, sass/style.scss */
+/* line 493, sass/style.scss */
 #flagForm #dealSelector {
   padding: 20px;
   font-size: 15px;
   border-right: 1px solid #ccc;
   margin-right: 20px;
 }
-/* line 487, sass/style.scss */
+/* line 501, sass/style.scss */
 #flagForm #dealSubforms dd {
   margin-bottom: 10px;
 }
-/* line 492, sass/style.scss */
+/* line 506, sass/style.scss */
 #flagForm dt > label {
   font-weight: bold;
   font-size: 15px;
 }
-/* line 496, sass/style.scss */
+/* line 510, sass/style.scss */
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;
 }
-/* line 501, sass/style.scss */
+/* line 515, sass/style.scss */
 #flagForm fieldset {
   border: 0;
   padding: 0;
 }
-/* line 506, sass/style.scss */
+/* line 520, sass/style.scss */
 #flagForm hr {
   color: #ddd;
 }
 
-/* line 511, sass/style.scss */
+/* line 525, sass/style.scss */
 .venuePic {
   margin: 10px;
   padding: 4px;
   border: 1px solid #ccc;
 }
 
-/* line 517, sass/style.scss */
+/* line 531, sass/style.scss */
 #mailshare form {
   -webkit-box-shadow: 0px 0px 5px #333333;
   -moz-box-shadow: 0px 0px 5px #333333;
@@ -536,7 +549,7 @@ a.cancel {
   padding: 20px;
 }
 
-/* line 522, sass/style.scss */
+/* line 536, sass/style.scss */
 #facebookConnect, #signInWithTwitter {
   margin: 20px;
   display: block;
@@ -545,12 +558,12 @@ a.cancel {
   width: 169px;
 }
 
-/* line 530, sass/style.scss */
+/* line 544, sass/style.scss */
 #facebookConnect {
   background: url("/img/icons/facebookconnect.png") no-repeat scroll 0 0 transparent;
 }
 
-/* line 534, sass/style.scss */
+/* line 548, sass/style.scss */
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }
@@ -558,19 +571,19 @@ a.cancel {
 /**
  * User Profile
  */
-/* line 543, sass/style.scss */
+/* line 557, sass/style.scss */
 #services ul {
   list-style: none;
   padding: 0;
 }
-/* line 547, sass/style.scss */
+/* line 561, sass/style.scss */
 #services ul li {
   margin: 10px;
 }
 
-/* line 553, sass/style.scss */
+/* line 567, sass/style.scss */
 #advanced-filter {
-  max-height: 16px;
+  max-height: 22px;
   -webkit-transition-property: max-height;
   -moz-transition-property: max-height;
   -ms-transition-property: max-height;
@@ -586,20 +599,63 @@ a.cancel {
   -ms-transition-timing-function: ease-out;
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
+  margin-top: 18px;
+  margin-right: -5px;
+  direction: ltr;
+  overflow: hidden;
+  text-align: left;
+  position: relative;
+  color: black;
+  font-family: 'Imprima',Arial,sans-serif;
+  font-size: 15px;
+  background: none repeat scroll 0% 0% white;
+  padding: 1px 6px;
+  border: 1px solid #717b87;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  min-width: 28px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-border-radius: 4px 4px;
+  -moz-border-radius: 4px / 4px;
+  -ms-border-radius: 4px / 4px;
+  -o-border-radius: 4px / 4px;
+  border-radius: 4px / 4px;
 }
-/* line 558, sass/style.scss */
+/* line 572, sass/style.scss */
 #advanced-filter:hover {
   max-height: 500px;
 }
+/* line 576, sass/style.scss */
+#advanced-filter h3 {
+  margin: 0;
+  font-weight: normal;
+  font-family: 'Merriweather';
+  font-family: 'Imprima',Arial,sans-serif;
+  font-size: 18px;
+  font-variant: small-caps;
+}
 
-/* line 563, sass/style.scss */
+/* line 610, sass/style.scss */
 #category-list {
   list-style-type: none;
   padding: 0;
-  margin-left: 0;
+  margin: 5px;
+  margin-right: 15px;
+}
+/* line 616, sass/style.scss */
+#category-list label {
+  display: inline-block;
+}
+/* line 620, sass/style.scss */
+#category-list label, #category-list input {
+  vertical-align: middle;
 }
 
-/* line 569, sass/style.scss */
+/* line 625, sass/style.scss */
 .glow {
   -webkit-border-radius: 3px 3px;
   -moz-border-radius: 3px / 3px;
@@ -608,7 +664,7 @@ a.cancel {
   border-radius: 3px / 3px;
 }
 
-/* line 573, sass/style.scss */
+/* line 629, sass/style.scss */
 .promo {
   margin: 3px;
 }
