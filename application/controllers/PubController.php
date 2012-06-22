@@ -137,7 +137,7 @@ class PubController extends Zend_Controller_Action
     public function overviewAction()
     {
         $id = $this->_getParam('id');
-        
+
         $pub = new Model_Pub();
         $this->view->pub = $pub->getById($id);
         
