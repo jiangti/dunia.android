@@ -45,14 +45,6 @@ class Form_Deal extends Form_Abstract {
 			$fieldset->setOption('escape', false);
 		}
 
-        foreach ($this->getElements() as $element) {
-            $element->removeDecorator('HtmlTag');
-
-            if ($decorator = $element->getDecorator('Label')) {
-                $decorator->setOption('tag', null);
-            }
-        }
-
 		$this->dualSubmit();
 	}
 	

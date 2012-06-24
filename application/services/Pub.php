@@ -361,7 +361,9 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 	    $select1 = clone $select;
 
         if ($includeNoPromos) {
-            $select1->where('find_in_set(?, p0.day) = 0 OR p0.day is null', date('D'));
+            $select1->where('find_in_set(?, p0.day) = 0 OR p0.day is null', date('D'))
+                // Filter out venues with too few checkins, otherwise the map gets tons of irrelevant markers
+                ->where('checkinsCount > 5');
         } else {
             $select1->where('find_in_set(?, p0.day) = 0', date('D'));
         }
