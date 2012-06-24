@@ -22,6 +22,7 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	public $twitter;
 	
 	public $telephone;
+    public $checkinsCount;
 
 
 	public function setAddress(Model_Address $address) {
