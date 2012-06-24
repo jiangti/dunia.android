@@ -1,17 +1,16 @@
 <?php
-class Model_DbTable_PubHasPromo extends Aw_Table_Relation_TableAbstract {
-	protected $_name = 'pubHasPromo';
-	protected $_primary = array('idPub', 'idPromo');
-	
+class Model_DbTable_Checkin extends Aw_Table_Relation_TableAbstract {
+	protected $_name = 'checkin';
+
 	protected $_referenceMap = array(
 		'pub' => array(
 			'columns'       => 'idPub',
 			'refTableClass' => 'Model_DbTable_Pub',
 			'refColumns'    => 'id'
 		),
-		'promo' => array(
-			'columns'       => 'idPromo',
-			'refTableClass' => 'Model_DbTable_Promo',
+		'user' => array(
+			'columns'       => 'idUser',
+			'refTableClass' => 'Model_DbTable_User',
 			'refColumns'    => 'id'
 		)
 	);

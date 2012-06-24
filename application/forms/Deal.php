@@ -3,14 +3,14 @@ class Form_Deal extends Form_Abstract {
 	protected $_record;
 	public function init() {
 		parent::init();
-		
+
 		$name = new Aw_Form_Element_Text('name');
-		
+
 		$name
 			->setLabel('Name')
 			->setRequired(true)
 		;
-		
+
 		$email = new Aw_Form_Element_Email('email');
 		$email->setLabel('Email');
 		
@@ -33,8 +33,7 @@ class Form_Deal extends Form_Abstract {
 		
 		$file = new Aw_Form_Element_File('file');
 		$file->setMultiFile(3);
-		
-		
+
 		$this->addElements(array($name, $email, $url, $location, $file));
 		
 		$this->setAttrib('enctype', 'multipart/form-data');
@@ -45,8 +44,15 @@ class Form_Deal extends Form_Abstract {
 			$fieldset = $subForm->getDecorator('fieldSet');
 			$fieldset->setOption('escape', false);
 		}
-		
-		
+
+        foreach ($this->getElements() as $element) {
+            $element->removeDecorator('HtmlTag');
+
+            if ($decorator = $element->getDecorator('Label')) {
+                $decorator->setOption('tag', null);
+            }
+        }
+
 		$this->dualSubmit();
 	}
 	

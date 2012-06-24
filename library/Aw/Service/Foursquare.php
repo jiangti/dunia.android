@@ -110,8 +110,45 @@ class Aw_Service_Foursquare extends EpiFoursquare {
     	curl_close($ch);
     	return json_decode($response);
     }
-    
-    
+
+    public function crawlCheckins($idUser, $fromDate = null, $limit = 250) {
+
+        $checkinTable = new Model_DbTable_Checkin();
+        $db = Zend_Db_Table::getDefaultAdapter();
+
+        $options = array(
+            'limit' => $limit
+        );
+
+        if ($fromDate) {
+            $options['afterTimestamp'] = $fromDate;
+        }
+
+
+
+        $offset = 0;
+
+        do {
+            $checkins = $this->get('/users/self/checkins', $options);
+
+            foreach ($checkins->response->checkins->items as $checkin) {
+                if ($checkin->venue->id) {
+                    $row = $checkinTable->createRow();
+
+                    $row['idUser']       = $idUser;
+                    $row['idPub']        = $db->fetchOne($db->select()->from(array('p' => 'pub'), array('id'))->where('idFoursquare = "' . $checkin->venue->id . '"'));
+                    $row['idFoursquare'] = $checkin->venue->id;
+                    $row['createdAt']    = $checkin->createdAt;
+
+                    $row->save();
+                }
+            }
+
+            $offset += $limit;
+            $options['offset'] = $offset;
+
+        } while (count($checkins->response->checkins->items) == $limit);
+    }
     /*
     $clientId = 'a40b1aece83e8d94a08fff1e94f87c2f04af2881a';
     $clientSecret = 'e83c621567e6c430848db6dc5dde94b9';
