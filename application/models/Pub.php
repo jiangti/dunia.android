@@ -22,7 +22,7 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	public $twitter;
 	
 	public $telephone;
-    public $checkinsCount;
+	public $checkinsCount;
 
 
 	public function setAddress(Model_Address $address) {
@@ -63,7 +63,6 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	
 	public function getById($id) {
 	    $pub = Model_DbTable_Pub::retrieveById($id);
-	    
 	    $this->setFromArray($pub);
 
 	    $address = new Model_Address();

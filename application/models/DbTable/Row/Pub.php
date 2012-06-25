@@ -90,15 +90,18 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 	}
 	
 	public function addDealFromArray($data) {
-		
 	    $days = array();
 	    foreach ($data['days'] as $day) {
 	    	$dayEnum = new Model_Day($day);
 	    	$days[] = $dayEnum->getAbbr();
 	    }
 	    
-		$array['timeStart']   = $data['start'];
-		$array['timeEnd']     = $data['end'];
+	    $service = new Service_Time();
+	    
+	    $service->setTime($data['time']);
+	    
+		$array['timeStart']   = $service->getStart();
+		$array['timeEnd']     = $service->getEnd();
 		$array['day']         = $days;
 		$array['price']       = $data['value'];
 		$array['description'] = $data['description'];
