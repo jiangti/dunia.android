@@ -26,6 +26,8 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 		
 		$timeKeys = range(0, 23.5, 0.5);
 		
+		
+		/**
 		foreach ($timeKeys as $index => $value) {
 			$val = (int) $value;
 			if ($index % 2) {
@@ -50,11 +52,15 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 			->setLabel('End Time')
 			->setMultiOptions($timeRanges)
 		;
-		
 		$greater = new Aw_Validate_GreaterThanElement();
 		$greater->setElement($start);
 		
 		$end->addValidator($greater);
+		*/
+		
+		$time = new Aw_Form_Element_Text('time');
+		$time->setLabel('Time');
+		
 		
 		
 		$liquorType = new Zend_Form_Element_MultiCheckbox('liquorType');
@@ -89,7 +95,7 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 		$delete->setLabel('Delete'); */
 		
 		
-		$this->addElements(array($id, $description, $deal, $start, $end, $liquorType, $liquorSize, $days));
+		$this->addElements(array($id, $description, $deal, $time, $liquorType, $liquorSize, $days));
 		return $return;
 	}
 	
@@ -99,8 +105,15 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
         $data['id']          = $record->id;
 		$data['value']       = $record->price;
 		$data['description'] = $record->description;
-		$data['start']       = substr($record->timeStart, 0, 5);
-		$data['end']         = substr($record->timeEnd, 0, 5);
+		/**
+		 * @tdodo
+		 */
+		
+		
+		$data['start']       = date('g:ia', strtotime($record->timeStart));
+		$data['end']         = date('g:ia', strtotime($record->timeEnd));
+		
+		$data['time']        = sprintf('%s-%s', $data['start'], $data['end']);
 		
 		$data['liquorType']  = $record->getLiquorTypes()->getCol('id');
 		$data['liquorSize'] = $record->getLiquorSizes()->getCol('id');
