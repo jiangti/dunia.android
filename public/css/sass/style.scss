@@ -58,16 +58,20 @@ body {
 }
 
 .sticky, .sticky-style {
-    border: 1px solid #696;
     text-align: left;
-    padding: 0px 5px;
-    -webkit-box-shadow: #666 0px 0px 3px;
-    -moz-box-shadow: #666 0px 0px 3px;
-    box-shadow: #666 0px 0px 3px;
-    background: #EEFF99;
+    padding: 5px 0;
+    margin: 15px 0;
+    background: #fff;
     behavior: url(/PIE.htc);
     z-index: 1000;
     width: 100%;
+
+    img {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 4px;
+        border: 1px solid #f1f1f1;
+    }
 }
 
 form dl {
@@ -229,7 +233,12 @@ h1 {
 
 .pub-overview {
     h2 {
+        margin-top: 10px;
         color: #555;
+        font-family: 'Imprima', Arial, sans-serif;
+        font-weight: normal;
+        font-size: 25px;
+        border-bottom: 1px solid #eee;
     }
 
     h1 {
@@ -242,6 +251,11 @@ h1 {
             display: inline-block;
             margin-top: -5px;
         }
+    }
+
+    label {
+        //font-family: 'Imprima', Arial, sans-serif;
+        //font-size: 16px;
     }
 
     ul {
@@ -259,7 +273,7 @@ h1 {
         overflow: auto;
 
         .venuePic {
-            margin: 10px;
+            margin: 9px;
             padding: 4px;
             border: 1px solid #ccc;
         }

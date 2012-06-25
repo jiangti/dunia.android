@@ -31,7 +31,7 @@ $().ready(function() {
 	
 	$('form', $table).ajaxForm({success: function(responseText, statusText, xhr, $form) {
 		var data = jQuery.parseJSON(responseText);
-		$('.delete', $form).unbind('click').html('<a target="_blank" href="<?php echo $this->url(array('action' => 'share', 'controller' => 'pub', 'id' => '')); ?>' + data.id + '">Go to Pub Edit Page</a>');
+		$('.delete', $form).unbind('click').html('<a target="_blank" href="<?php echo $this->url(array('action' => 'overview', 'controller' => 'pub', 'id' => '')); ?>' + data.id + '">Go to Pub Edit Page</a>');
 	}});
 	
 	$('input[type="submit"]', $table).enable(false);

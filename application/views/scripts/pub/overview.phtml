@@ -8,10 +8,31 @@
 	
     
     <div class="grid_6">
-        <h1><?php if ($type->icon) { echo '<img src="' . $type->icon . '" width="32" height="32" /> '; } echo $this->pub->name; ?></h1>
+        <h1><?php if ($type && $type->icon) { echo '<img src="' . $type->icon . '" width="32" height="32" /> '; } echo $this->pub->name; ?></h1>
+
+        <?php
+        $images = $this->pub->getImageLinks();
+
+        if (count($images)) : ?>
+            <div id="photos">
+                <h2>Photos</h2>
+                <ul>
+                    <?php
+                    foreach ($images as $img) {
+                        echo '<li>
+                        <a href="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=600&amp;ar=x">
+                            <img class="venuePic" src="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=125&amp;h=125&amp;zc=1&amp;ar=x"/>
+                        </a>
+                        </li>';
+                    } ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+
         <script type="text/x-handlebars">
             {{#view App.tipsView}}
                 <div id="tipsWrapper">
+
                     {{#collection tipsCollectionView}}
                     <li>
                         <div class="tip-container">
@@ -28,9 +49,6 @@
                         <div class="separator"></div>
                     </li>
                     {{/collection}}
-                </div>
-                <div style="text-align: right;">
-                    <img src="/img/icons/social/poweredByFoursquare_gray.png" width="128" height="14" />
                 </div>
             {{/view}}
         </script>
@@ -51,7 +69,7 @@
 		<?php endif; ?>
 		<?php echo $this->form; ?>
 		</div>
-        
+
     </div>
 
     <div class="grid_6 sidebar omega" id="overview-sidebar">
@@ -66,9 +84,6 @@
     		</div>
         </div>
 
-        <?php echo $this->partial('partials/addthis.phtml'); ?>
-        
-        
         <table id="promos" class="generic" cellspacing="1px" cellpadding="0px" border="0">
 	    <caption><a href="#" id="edit-section-button" class="ss_sprite ss_application_edit pad"></a></caption>
             <thead>
@@ -114,8 +129,9 @@
                                             $size = $promo->getLiquorSizes();
                                             foreach ($size as $s) {
                                                 echo ' (' . $s['name'] . ')';
+                                                break;
                                             }
-                                            echo '<span class="promoDescription">' . $promo->description . '</span>';
+                                            echo '<div class="promoDescription">' . $promo->description . '</div>';
                                         } ?>
                                     </div>
                             </div>
@@ -123,7 +139,7 @@
                         </td>
                     <?php else: ?>
                         <?php
-                            if ($skip) {
+                            if (isset($skip) && $skip) {
                                 $skip--;
                             } else {
                                 echo '<td></td>';
@@ -134,7 +150,9 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-        
+        <br />
+        <?php echo $this->partial('partials/addthis.phtml'); ?>
+
     </div>
 </div>
 
@@ -239,14 +257,20 @@ $(document).ready(function() {
 				url: this.tipUrl,
 				data: {idFoursquare: this.row.idFoursquare},
 				success: function(data) {
-					data.forEach(function(value, index) {
-                        value.user.canonicalUrl = 'https://foursquare.com/user/' + value.user.id;
-                        value.date              = moment(value.createdAt * 1000).format('MMMM D, YYYY');
-                        console.log(value.date);
+                    if (data.length) {
+                        data.forEach(function(value, index) {
+                            value.user.canonicalUrl = 'https://foursquare.com/user/' + value.user.id;
+                            value.date              = moment(value.createdAt * 1000).format('MMMM D, YYYY');
 
-						App.TipClass.create(value);
-						$this.tips.pushObject(App.TipClass.create(value));
-					});
+                            App.TipClass.create(value);
+                            $this.tips.pushObject(App.TipClass.create(value));
+                        });
+                        $('#tipsWrapper').prepend('<h2>Tips' +
+                            '<div class="right">' +
+                            '<img src="/img/icons/social/poweredByFoursquare_gray.png" width="128" height="14" />' +
+                            '</div>' +
+                            '</h2>');
+                    }
 				}
 			});
 		}
