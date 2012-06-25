@@ -1,5 +1,5 @@
 <?php
-class PubController extends Zend_Controller_Action
+class PubController extends Model_Controller_Action
 {
 	public function init() {
 		$contextSwitch = $this->_helper->getHelper('contextSwitch');
@@ -137,11 +137,11 @@ class PubController extends Zend_Controller_Action
     public function overviewAction()
     {
         $id = $this->_getParam('id');
-        
+
         $pub = new Model_Pub();
         $this->view->pub = $pub->getById($id);
         
-        if (Zend_Registry::get('device')->getType() == 'mobile' || $this->_getParam('mobile')) {
+        if ($this->isMobile() || $this->_getParam('mobile')) {
             $this->_helper->layout()->setLayout('mobile-min');
             $this->_helper->viewRenderer->setRender('overview-mobile');
             

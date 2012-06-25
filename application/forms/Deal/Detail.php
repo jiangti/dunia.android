@@ -79,8 +79,6 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 			->setSeparator(' ');
 		;
 		
-		
-		
 		$dayOptions = Model_Day::$days;
 		
 		$days = new Zend_Form_Element_MultiCheckbox('days');
@@ -90,11 +88,7 @@ class Form_Deal_Detail extends Aw_Form_SubForm_Abstract {
 			->setMultiOptions($dayOptions)
 			->setSeparator(' ');
 		;
-		
-		/* $delete = new Zend_Form_Element_Button('delete');
-		$delete->setLabel('Delete'); */
-		
-		
+
 		$this->addElements(array($id, $description, $deal, $time, $liquorType, $liquorSize, $days));
 		return $return;
 	}

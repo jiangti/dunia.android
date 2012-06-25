@@ -2,7 +2,7 @@
 class IndexController extends Model_Controller_Action {
     
 	public function indexAction() {
-        if (Zend_Registry::get('device')->getType() == 'mobile' || $this->_getParam('mobile')) {
+        if ($this->isMobile() || $this->_getParam('mobile')) {
             $this->_helper->layout()->setLayout('mobile');
             $this->_helper->viewRenderer->setRender('list');
         } else {

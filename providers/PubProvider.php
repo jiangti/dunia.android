@@ -38,6 +38,35 @@ class PubProvider extends Aw_Tool_Framework_ProviderAbstract {
 		$progress->finish();
 	}
 
+    public function checkinsFromDiscoverAction() {
+
+        $discoverTable = new Model_DbTable_Discover();
+        $pubTable      = new Model_DbTable_Pub();
+        $db            = Zend_Db_Table::getDefaultAdapter();
+
+        $select = $db->select()
+            ->from(array('d' => 'discover'), array('id', 'json'))
+        ;
+        $discover = $db->fetchPairs($select);
+
+        $pubs = $pubTable->fetchAll();
+
+        $progress = new Aw_ProgressBar(new Aw_ProgressBar_Adapter_Console(), 0, count($pubs));
+
+        foreach ($pubs as $pub) {
+            if (isset($discover[$pub->idFoursquare])) {
+                $json = json_decode($discover[$pub->idFoursquare]);
+                if ($json->stats->checkinsCount) {
+                    $pub->checkinsCount = $json->stats->checkinsCount;
+                    $pub->save();
+                }
+            }
+            $progress->next();
+        }
+
+        $progress->finish();
+    }
+
     public function mergeCategories() {
         $pubTable      = new Model_DbTable_Pub();
         $pubTypeTable  = new Model_DbTable_PubType();
