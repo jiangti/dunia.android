@@ -1,4 +1,4 @@
-@import url('snickles/stylesheet.css');
+@import url("snickles/stylesheet.css");
 @CHARSET "UTF-8";
 /**
  * Global variables
@@ -581,8 +581,14 @@ a.cancel {
   box-shadow: 0px 0px 5px #333333;
   padding: 20px;
 }
+/* line 584, sass/style.scss */
+#mailshare form.done {
+  -webkit-box-shadow: 0px 0px 5px green;
+  -moz-box-shadow: 0px 0px 5px green;
+  box-shadow: 0px 0px 5px green;
+}
 
-/* line 586, sass/style.scss */
+/* line 589, sass/style.scss */
 #facebookConnect, #signInWithTwitter {
   margin: 20px;
   display: block;
@@ -591,12 +597,12 @@ a.cancel {
   width: 169px;
 }
 
-/* line 594, sass/style.scss */
+/* line 597, sass/style.scss */
 #facebookConnect {
   background: url("/img/icons/facebookconnect.png") no-repeat scroll 0 0 transparent;
 }
 
-/* line 598, sass/style.scss */
+/* line 601, sass/style.scss */
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }
@@ -604,17 +610,17 @@ a.cancel {
 /**
  * User Profile
  */
-/* line 607, sass/style.scss */
+/* line 610, sass/style.scss */
 #services ul {
   list-style: none;
   padding: 0;
 }
-/* line 611, sass/style.scss */
+/* line 614, sass/style.scss */
 #services ul li {
   margin: 10px;
 }
 
-/* line 617, sass/style.scss */
+/* line 620, sass/style.scss */
 #advanced-filter {
   max-height: 22px;
   -webkit-transition-property: max-height;
@@ -658,11 +664,11 @@ a.cancel {
   -o-border-radius: 4px / 4px;
   border-radius: 4px / 4px;
 }
-/* line 622, sass/style.scss */
+/* line 625, sass/style.scss */
 #advanced-filter:hover {
   max-height: 500px;
 }
-/* line 626, sass/style.scss */
+/* line 629, sass/style.scss */
 #advanced-filter h3 {
   margin: 0;
   font-weight: normal;
@@ -671,23 +677,23 @@ a.cancel {
   font-size: 18px;
 }
 
-/* line 659, sass/style.scss */
+/* line 662, sass/style.scss */
 #category-list {
   list-style-type: none;
   padding: 0;
   margin: 5px;
   margin-right: 15px;
 }
-/* line 665, sass/style.scss */
+/* line 668, sass/style.scss */
 #category-list label {
   display: inline-block;
 }
-/* line 669, sass/style.scss */
+/* line 672, sass/style.scss */
 #category-list label, #category-list input {
   vertical-align: middle;
 }
 
-/* line 674, sass/style.scss */
+/* line 677, sass/style.scss */
 .glow {
   -webkit-border-radius: 3px 3px;
   -moz-border-radius: 3px / 3px;
@@ -696,13 +702,13 @@ a.cancel {
   border-radius: 3px / 3px;
 }
 
-/* line 678, sass/style.scss */
+/* line 681, sass/style.scss */
 .promo {
   margin: 3px;
 }
 
 /* ribbon style */
-/* line 684, sass/style.scss */
+/* line 687, sass/style.scss */
 .ribbon-wrapper {
   position: relative;
   border-top: -10px solid #cccccc;
@@ -712,7 +718,7 @@ a.cancel {
   -webkit-border-top-colors: rgba(0, 0, 0, 0.02) rgba(0, 0, 0, 0.04) rgba(0, 0, 0, 0.06) rgba(0, 0, 0, 0.08) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.12) rgba(0, 0, 0, 0.14) rgba(0, 0, 0, 0.16) rgba(0, 0, 0, 0.18) rgba(0, 0, 0, 0.2);
 }
 
-/* line 692, sass/style.scss */
+/* line 695, sass/style.scss */
 .ribbon-front {
   background-color: #4E9BDE;
   height: 35px;
@@ -721,7 +727,7 @@ a.cancel {
   left: -10px;
   z-index: 2;
 }
-/* line 699, sass/style.scss */
+/* line 702, sass/style.scss */
 .ribbon-front h2 {
   color: white;
   border: 0;
@@ -729,7 +735,7 @@ a.cancel {
   font-style: italic;
 }
 
-/* line 710, sass/style.scss */
+/* line 713, sass/style.scss */
 .ribbon-front,
 .ribbon-back-left,
 .ribbon-back-right {
@@ -739,7 +745,7 @@ a.cancel {
   -o-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.55);
 }
 
-/* line 720, sass/style.scss */
+/* line 723, sass/style.scss */
 .ribbon-edge-topleft,
 .ribbon-edge-topright,
 .ribbon-edge-bottomleft,
@@ -751,49 +757,49 @@ a.cancel {
   width: 0px;
 }
 
-/* line 733, sass/style.scss */
+/* line 736, sass/style.scss */
 .ribbon-edge-bottomleft,
 .ribbon-edge-bottomright {
   top: 35px;
 }
 
-/* line 738, sass/style.scss */
+/* line 741, sass/style.scss */
 .ribbon-edge-topleft,
 .ribbon-edge-bottomleft {
   left: -10px;
   border-color: transparent #4976A4 transparent transparent;
 }
 
-/* line 743, sass/style.scss */
+/* line 746, sass/style.scss */
 .ribbon-edge-topleft {
   top: 10px;
   border-width: -10px 10px 0 0;
 }
 
-/* line 747, sass/style.scss */
+/* line 750, sass/style.scss */
 .ribbon-edge-bottomleft {
   border-width: 0 10px 10px 0;
 }
 
-/* line 752, sass/style.scss */
+/* line 755, sass/style.scss */
 .ribbon-edge-topright,
 .ribbon-edge-bottomright {
   left: 300px;
   border-color: transparent transparent transparent #4976A4;
 }
 
-/* line 757, sass/style.scss */
+/* line 760, sass/style.scss */
 .ribbon-edge-topright {
   top: 0px;
   border-width: 0px 0 0 0px;
 }
 
-/* line 761, sass/style.scss */
+/* line 764, sass/style.scss */
 .ribbon-edge-bottomright {
   border-width: 0 0 0px 0px;
 }
 
-/* line 765, sass/style.scss */
+/* line 768, sass/style.scss */
 .ribbon-back-left {
   position: absolute;
   top: 10px;
@@ -804,7 +810,7 @@ a.cancel {
   z-index: 0;
 }
 
-/* line 774, sass/style.scss */
+/* line 777, sass/style.scss */
 .ribbon-back-right {
   position: absolute;
   top: 0px;

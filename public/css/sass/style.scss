@@ -581,6 +581,9 @@ a.cancel {
 #mailshare form {
     @include single-box-shadow;
     padding: 20px;
+    &.done {
+        @include single-box-shadow(green);
+    }
 }
 
 #facebookConnect, #signInWithTwitter {
