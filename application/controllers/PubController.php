@@ -16,7 +16,8 @@ class PubController extends Model_Controller_Action
 		
 		$select = $table->select();
 		$select
-			->order('dateProcessed asc')
+		    ->order('isnull(dateProcessed) desc')
+			->order('dateProcessed desc')
 			->limit(50)
 		;
 		
