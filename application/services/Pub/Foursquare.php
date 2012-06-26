@@ -59,7 +59,7 @@ class Service_Pub_Foursquare extends Service_Pub {
 	            'v'			 => 20111212,
 	            'limit'	     => 50,
 	            'intent'     => 'browse',
-	            'categoryId' => implode(',', Aw_Service_Foursquare::$allowedCategories),
+	            'categoryId' => '4d4b7105d754a06376d81259',
 	            'll'         => $this->latitude . ',' . $this->longitude));
 	}
 	

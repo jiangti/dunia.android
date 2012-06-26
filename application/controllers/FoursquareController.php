@@ -91,11 +91,11 @@ class FoursquareController extends Model_Controller_Action {
 	}
 	
 	public function getAction() {
-	    $lat  = $this->_getParam('lat', $lat);
-	    $long = $this->_getParam('long', $long);
+	    $lat  = $this->_getParam('lat');
+	    $long = $this->_getParam('long');
 	    $pubService = new Service_Pub_Foursquare();
-	    $pubService->latitude = $latitude;
-	    $pubService->longitude = $longitude;
+	    $pubService->latitude = $lat;
+	    $pubService->longitude = $long;
 	    
 	    $json = $pubService->get();
 	    $this->_helper->sendJson($json);
