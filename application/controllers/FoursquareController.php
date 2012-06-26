@@ -90,6 +90,17 @@ class FoursquareController extends Model_Controller_Action {
 	    exit;
 	}
 	
+	public function getAction() {
+	    $lat  = $this->_getParam('lat', $lat);
+	    $long = $this->_getParam('long', $long);
+	    $pubService = new Service_Pub_Foursquare();
+	    $pubService->latitude = $latitude;
+	    $pubService->longitude = $longitude;
+	    
+	    $json = $pubService->get();
+	    $this->_helper->sendJson($json);
+	}
+	
 	public function crawlAction() {
 	    $user = $this->_getUser();
 	    
