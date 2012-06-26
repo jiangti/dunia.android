@@ -20,8 +20,8 @@ class MapController extends Model_Controller_Action {
 		$long = $this->_getParam('long', $long);
 		
 		$params = $this->_getAllParams();
-		$params['ne'] = sprintf('%s,%s', $lat - 0.05, $long + 0.05);
-		$params['sw'] = sprintf('%s,%s', $lat + 0.05, $long - 0.05);
+		$params['ne'] = sprintf('%s,%s', $lat + 0.005, $long + 0.005);
+        $params['sw'] = sprintf('%s,%s', $lat - 0.005, $long - 0.005);
 		
 		$this->_forward('fetch-bound', null, null, $params);
 	}
