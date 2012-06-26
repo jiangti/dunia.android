@@ -13,7 +13,7 @@ class Aw_Plugin_Context extends Zend_Controller_Plugin_Abstract {
             Zend_Registry::set('device', $device);
         }
 
-        if ($device->getType() == 'mobile' && !$device->getFeature('is_tablet')) {
+        if ($device->getType() == 'mobile' && $device->getFeature('is_tablet') == 'false') {
             Zend_Layout::getMvcInstance()->setLayout('mobile');
         }
 

@@ -1,4 +1,4 @@
-@import url("snickles/stylesheet.css");
+@import url('snickles/stylesheet.css');
 @CHARSET "UTF-8";
 /**
  * Global variables
@@ -28,28 +28,32 @@ body {
 
 /* line 60, sass/style.scss */
 .sticky, .sticky-style {
-  border: 1px solid #696;
   text-align: left;
-  padding: 0px 5px;
-  -webkit-box-shadow: #666 0px 0px 3px;
-  -moz-box-shadow: #666 0px 0px 3px;
-  box-shadow: #666 0px 0px 3px;
-  background: #EEFF99;
+  padding: 5px 0;
+  margin: 15px 0;
+  background: #fff;
   behavior: url(/PIE.htc);
   z-index: 1000;
   width: 100%;
 }
+/* line 69, sass/style.scss */
+.sticky img, .sticky-style img {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 4px;
+  border: 1px solid #f1f1f1;
+}
 
-/* line 73, sass/style.scss */
+/* line 77, sass/style.scss */
 form dl {
   margin: 4px 0px;
 }
-/* line 74, sass/style.scss */
+/* line 78, sass/style.scss */
 form dl dd {
   margin: 4px 0px;
 }
 
-/* line 80, sass/style.scss */
+/* line 84, sass/style.scss */
 a#logo {
   text-indent: -9999px;
   display: block;
@@ -61,7 +65,7 @@ a#logo {
   background-repeat: no-repeat;
 }
 
-/* line 91, sass/style.scss */
+/* line 95, sass/style.scss */
 form fieldset {
   border: inset 1px darkgrey;
   border-radius: 3px;
@@ -69,32 +73,32 @@ form fieldset {
   -moz-border-radius: 3px;
 }
 
-/* line 98, sass/style.scss */
+/* line 102, sass/style.scss */
 .pad_top {
   padding-top: 5px;
 }
 
-/* line 102, sass/style.scss */
+/* line 106, sass/style.scss */
 .pad_bottom {
   padding-bottom: 5px;
 }
 
-/* line 106, sass/style.scss */
+/* line 110, sass/style.scss */
 .right {
   float: right;
 }
 
-/* line 110, sass/style.scss */
+/* line 114, sass/style.scss */
 .left {
   float: left;
 }
 
-/* line 114, sass/style.scss */
+/* line 118, sass/style.scss */
 h1 {
   color: #555;
 }
 
-/* line 118, sass/style.scss */
+/* line 122, sass/style.scss */
 #header {
   margin: 0;
   padding: 0;
@@ -125,30 +129,30 @@ h1 {
   -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 }
-/* line 132, sass/style.scss */
+/* line 136, sass/style.scss */
 #header label {
   margin-left: 20px;
   font-size: 120%;
 }
-/* line 137, sass/style.scss */
+/* line 141, sass/style.scss */
 #header #form {
   float: left;
   top: 8px;
   position: relative;
 }
-/* line 143, sass/style.scss */
+/* line 147, sass/style.scss */
 #header #nav {
   float: right;
   position: relative;
   top: 10px;
 }
-/* line 148, sass/style.scss */
+/* line 152, sass/style.scss */
 #header #nav a {
   display: block;
   float: right;
   margin-right: 12px;
 }
-/* line 155, sass/style.scss */
+/* line 159, sass/style.scss */
 #header a {
   color: #eef;
   font-size: 110%;
@@ -156,18 +160,18 @@ h1 {
   text-decoration: none;
 }
 
-/* line 164, sass/style.scss */
+/* line 168, sass/style.scss */
 #profile-nav {
   height: 23px;
 }
-/* line 166, sass/style.scss */
+/* line 170, sass/style.scss */
 #profile-nav img {
   float: left;
   margin: 0 5px 0 7px;
   position: relative;
 }
 
-/* line 173, sass/style.scss */
+/* line 177, sass/style.scss */
 .content {
   background-color: white;
   padding-bottom: 20px;
@@ -183,42 +187,42 @@ h1 {
 /**
  * Promos
  */
-/* line 191, sass/style.scss */
+/* line 195, sass/style.scss */
 #promos td {
   padding: 0;
 }
 
-/* line 195, sass/style.scss */
+/* line 199, sass/style.scss */
 .promo {
   padding: 0;
 }
-/* line 197, sass/style.scss */
+/* line 201, sass/style.scss */
 .promo .time {
   background-color: #eee;
   margin: 0;
   padding: 5px;
   font-size: 9px;
 }
-/* line 204, sass/style.scss */
+/* line 208, sass/style.scss */
 .promo .promoDescription {
   text-align: left;
   font-size: x-small;
   font-size: 9px;
 }
 
-/* line 212, sass/style.scss */
+/* line 216, sass/style.scss */
 .promoContent {
   text-align: center;
   padding: 5px;
   font-size: 11px;
 }
 
-/* line 218, sass/style.scss */
+/* line 222, sass/style.scss */
 #flag {
   text-align: right;
   margin-top: 10px;
 }
-/* line 222, sass/style.scss */
+/* line 226, sass/style.scss */
 #flag a {
   color: #1291ff;
   text-decoration: none;
@@ -226,48 +230,53 @@ h1 {
   background: url(/img/icons/famfamfam/flag_red.png) no-repeat;
 }
 
-/* line 231, sass/style.scss */
-.pub-overview h2 {
-  color: #555;
-}
 /* line 235, sass/style.scss */
+.pub-overview h2 {
+  margin-top: 10px;
+  color: #555;
+  font-family: 'Imprima', Arial, sans-serif;
+  font-weight: normal;
+  font-size: 25px;
+  border-bottom: 1px solid #eee;
+}
+/* line 244, sass/style.scss */
 .pub-overview h1 {
   font-family: 'Imprima', Arial, sans-serif;
   font-size: 34px;
   font-weight: normal;
 }
-/* line 240, sass/style.scss */
+/* line 249, sass/style.scss */
 .pub-overview h1 img {
   vertical-align: middle;
   display: inline-block;
   margin-top: -5px;
 }
-/* line 247, sass/style.scss */
+/* line 261, sass/style.scss */
 .pub-overview ul {
   list-style: none;
   padding-left: 0;
   overflow: auto;
 }
-/* line 253, sass/style.scss */
+/* line 267, sass/style.scss */
 .pub-overview .addthis_toolbox > a {
   margin: 5px;
 }
-/* line 257, sass/style.scss */
+/* line 271, sass/style.scss */
 .pub-overview #photos {
   clear: both;
   overflow: auto;
 }
-/* line 261, sass/style.scss */
+/* line 275, sass/style.scss */
 .pub-overview #photos .venuePic {
-  margin: 10px;
+  margin: 9px;
   padding: 4px;
   border: 1px solid #ccc;
 }
-/* line 267, sass/style.scss */
+/* line 281, sass/style.scss */
 .pub-overview #photos li {
   float: left;
 }
-/* line 272, sass/style.scss */
+/* line 286, sass/style.scss */
 .pub-overview .tip-container {
   clear: both;
   overflow: auto;
@@ -276,49 +285,49 @@ h1 {
   color: #444;
   margin: 10px;
 }
-/* line 280, sass/style.scss */
+/* line 294, sass/style.scss */
 .pub-overview .tip-container img {
   border: 1px solid #ccc;
   padding: 3px;
   margin-right: 10px;
 }
-/* line 286, sass/style.scss */
+/* line 300, sass/style.scss */
 .pub-overview .tip-container a {
   padding: 0;
   text-decoration: none;
   color: #2398C9;
   font-weight: bold;
 }
-/* line 293, sass/style.scss */
+/* line 307, sass/style.scss */
 .pub-overview .tip-container .date {
   color: #999;
 }
-/* line 300, sass/style.scss */
+/* line 314, sass/style.scss */
 .pub-overview #tipsWrapper ul li {
   overflow: auto;
   margin-bottom: 5px;
 }
-/* line 305, sass/style.scss */
+/* line 319, sass/style.scss */
 .pub-overview #tipsWrapper ul .separator {
   border-bottom: 1px solid #f1f1f1;
   margin: 0 10px;
 }
-/* line 311, sass/style.scss */
+/* line 325, sass/style.scss */
 .pub-overview .details {
   overflow: auto;
   margin-bottom: 20px;
 }
-/* line 313, sass/style.scss */
+/* line 327, sass/style.scss */
 .pub-overview .details .contact .address {
   float: left;
   padding: 5px;
 }
-/* line 318, sass/style.scss */
+/* line 332, sass/style.scss */
 .pub-overview .details .contact .urls {
   float: right;
   padding: 5px;
 }
-/* line 328, sass/style.scss */
+/* line 342, sass/style.scss */
 .pub-overview .sidebar {
   height: 100%;
   border-left: solid 1px #f1f1f1;
@@ -327,7 +336,7 @@ h1 {
 /**
 * Index page (big map)
 */
-/* line 339, sass/style.scss */
+/* line 353, sass/style.scss */
 #bottom-info-bar {
   height: 25px;
   position: fixed;
@@ -343,30 +352,30 @@ h1 {
   -webkit-border-top-left-radius: 50px 100px;
   border-top-left-radius: 50px 100px;
 }
-/* line 340, sass/style.scss */
+/* line 354, sass/style.scss */
 #bottom-info-bar .summary {
   font-family: 'Imprima', Arial, sans-serif;
   font-size: 18px;
   margin-right: 20px;
 }
-/* line 341, sass/style.scss */
+/* line 355, sass/style.scss */
 #bottom-info-bar .summary img {
   vertical-align: middle;
   padding-right: 3px;
 }
-/* line 348, sass/style.scss */
+/* line 362, sass/style.scss */
 #bottom-info-bar .summary a {
   text-decoration: none;
   color: #222;
 }
 
-/* line 372, sass/style.scss */
+/* line 386, sass/style.scss */
 .overlay {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 377, sass/style.scss */
+/* line 391, sass/style.scss */
 .overlay h2 {
   margin: 0 0 5px 0;
   font-size: 24px;
@@ -376,55 +385,55 @@ h1 {
   font-family: 'Imprima', "Arial", sans-serif;
   vertical-align: middle;
 }
-/* line 386, sass/style.scss */
+/* line 400, sass/style.scss */
 .overlay h2 img {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 393, sass/style.scss */
+/* line 407, sass/style.scss */
 .overlay .overlayContent {
   border: 1px solid rgba(104, 187, 235, 0.9);
   border-left: 0;
   border-right: 0;
   margin: 0;
 }
-/* line 399, sass/style.scss */
+/* line 413, sass/style.scss */
 .overlay .overlayContent div {
   padding: 20px 5px;
   font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
   font-size: 20px;
 }
-/* line 404, sass/style.scss */
+/* line 418, sass/style.scss */
 .overlay .overlayContent div span.price {
   font-weight: bold;
   font-size: 30px;
 }
-/* line 409, sass/style.scss */
+/* line 423, sass/style.scss */
 .overlay .overlayContent div span.liquorType {
   font-weight: normal;
   font-size: 24px;
 }
-/* line 414, sass/style.scss */
+/* line 428, sass/style.scss */
 .overlay .overlayContent div div.left {
   padding: 0;
 }
-/* line 418, sass/style.scss */
+/* line 432, sass/style.scss */
 .overlay .overlayContent div div.right {
   padding: 0;
   margin-left: 10px;
 }
-/* line 422, sass/style.scss */
+/* line 436, sass/style.scss */
 .overlay .overlayContent div div.right div.time, .overlay .overlayContent div div.right div.size {
   font-size: 14px;
   padding: 0;
 }
-/* line 430, sass/style.scss */
+/* line 444, sass/style.scss */
 .overlay .overlayContent div.deal {
   padding: 0;
   margin-bottom: 10px;
   overflow: auto;
 }
-/* line 436, sass/style.scss */
+/* line 450, sass/style.scss */
 .overlay .overlayContent h3 {
   text-align: center;
   color: #fff;
@@ -435,18 +444,18 @@ h1 {
   margin: 0;
   padding: 0;
 }
-/* line 449, sass/style.scss */
+/* line 463, sass/style.scss */
 .overlay .foot {
   margin-top: 10px;
   overflow: auto;
   position: relative;
 }
-/* line 454, sass/style.scss */
+/* line 468, sass/style.scss */
 .overlay .foot .address {
   color: #555;
   font-size: 80%;
 }
-/* line 459, sass/style.scss */
+/* line 473, sass/style.scss */
 .overlay .foot a {
   text-decoration: none;
   color: #1291ff;
@@ -455,7 +464,7 @@ h1 {
   right: 0;
 }
 
-/* line 469, sass/style.scss */
+/* line 483, sass/style.scss */
 a.small-icon {
   display: block;
   width: 16px;
@@ -465,21 +474,21 @@ a.small-icon {
   text-indent: -9999px;
 }
 
-/* line 478, sass/style.scss */
+/* line 492, sass/style.scss */
 a.ok {
   background: url(/img/icons/famfamfam/accept.png) no-repeat;
 }
 
-/* line 482, sass/style.scss */
+/* line 496, sass/style.scss */
 a.cancel {
   background: url(/img/icons/famfamfam/cancel.png) no-repeat;
 }
 
-/* line 486, sass/style.scss */
+/* line 500, sass/style.scss */
 .admin-nav {
   list-style: none;
 }
-/* line 490, sass/style.scss */
+/* line 504, sass/style.scss */
 .admin-nav li a {
   font-size: 18px;
   text-decoration: none;
@@ -491,7 +500,7 @@ a.cancel {
   border-color: #ddd;
   color: #555;
 }
-/* line 502, sass/style.scss */
+/* line 516, sass/style.scss */
 .admin-nav li a.selected {
   background: #00b7ea;
   /* Old browsers */
@@ -527,45 +536,45 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
-/* line 529, sass/style.scss */
+/* line 543, sass/style.scss */
 #flagForm #dealSelector {
   padding: 20px;
   font-size: 15px;
   border-right: 1px solid #ccc;
   margin-right: 20px;
 }
-/* line 537, sass/style.scss */
+/* line 551, sass/style.scss */
 #flagForm #dealSubforms dd {
   margin-bottom: 10px;
 }
-/* line 542, sass/style.scss */
+/* line 556, sass/style.scss */
 #flagForm dt > label {
   font-weight: bold;
   font-size: 15px;
 }
-/* line 546, sass/style.scss */
+/* line 560, sass/style.scss */
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;
 }
-/* line 551, sass/style.scss */
+/* line 565, sass/style.scss */
 #flagForm fieldset {
   border: 0;
   padding: 0;
 }
-/* line 556, sass/style.scss */
+/* line 570, sass/style.scss */
 #flagForm hr {
   color: #ddd;
 }
 
-/* line 561, sass/style.scss */
+/* line 575, sass/style.scss */
 .venuePic {
   margin: 10px;
   padding: 4px;
   border: 1px solid #ccc;
 }
 
-/* line 567, sass/style.scss */
+/* line 581, sass/style.scss */
 #mailshare form {
   -webkit-box-shadow: 0px 0px 5px #333333;
   -moz-box-shadow: 0px 0px 5px #333333;
@@ -573,7 +582,7 @@ a.cancel {
   padding: 20px;
 }
 
-/* line 572, sass/style.scss */
+/* line 586, sass/style.scss */
 #facebookConnect, #signInWithTwitter {
   margin: 20px;
   display: block;
@@ -582,12 +591,12 @@ a.cancel {
   width: 169px;
 }
 
-/* line 580, sass/style.scss */
+/* line 594, sass/style.scss */
 #facebookConnect {
   background: url("/img/icons/facebookconnect.png") no-repeat scroll 0 0 transparent;
 }
 
-/* line 584, sass/style.scss */
+/* line 598, sass/style.scss */
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }
@@ -595,17 +604,17 @@ a.cancel {
 /**
  * User Profile
  */
-/* line 593, sass/style.scss */
+/* line 607, sass/style.scss */
 #services ul {
   list-style: none;
   padding: 0;
 }
-/* line 597, sass/style.scss */
+/* line 611, sass/style.scss */
 #services ul li {
   margin: 10px;
 }
 
-/* line 603, sass/style.scss */
+/* line 617, sass/style.scss */
 #advanced-filter {
   max-height: 22px;
   -webkit-transition-property: max-height;
@@ -649,11 +658,11 @@ a.cancel {
   -o-border-radius: 4px / 4px;
   border-radius: 4px / 4px;
 }
-/* line 608, sass/style.scss */
+/* line 622, sass/style.scss */
 #advanced-filter:hover {
   max-height: 500px;
 }
-/* line 612, sass/style.scss */
+/* line 626, sass/style.scss */
 #advanced-filter h3 {
   margin: 0;
   font-weight: normal;
@@ -662,23 +671,23 @@ a.cancel {
   font-size: 18px;
 }
 
-/* line 645, sass/style.scss */
+/* line 659, sass/style.scss */
 #category-list {
   list-style-type: none;
   padding: 0;
   margin: 5px;
   margin-right: 15px;
 }
-/* line 651, sass/style.scss */
+/* line 665, sass/style.scss */
 #category-list label {
   display: inline-block;
 }
-/* line 655, sass/style.scss */
+/* line 669, sass/style.scss */
 #category-list label, #category-list input {
   vertical-align: middle;
 }
 
-/* line 660, sass/style.scss */
+/* line 674, sass/style.scss */
 .glow {
   -webkit-border-radius: 3px 3px;
   -moz-border-radius: 3px / 3px;
@@ -687,7 +696,120 @@ a.cancel {
   border-radius: 3px / 3px;
 }
 
-/* line 664, sass/style.scss */
+/* line 678, sass/style.scss */
 .promo {
   margin: 3px;
+}
+
+/* ribbon style */
+/* line 684, sass/style.scss */
+.ribbon-wrapper {
+  position: relative;
+  border-top: -10px solid #cccccc;
+  -moz-border-bottom-colors: rgba(0, 0, 0, 0.02) rgba(0, 0, 0, 0.04) rgba(0, 0, 0, 0.06) rgba(0, 0, 0, 0.08) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.12) rgba(0, 0, 0, 0.14) rgba(0, 0, 0, 0.16) rgba(0, 0, 0, 0.18) rgba(0, 0, 0, 0.2);
+  -webkit-border-bottom-colors: rgba(0, 0, 0, 0.02) rgba(0, 0, 0, 0.04) rgba(0, 0, 0, 0.06) rgba(0, 0, 0, 0.08) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.12) rgba(0, 0, 0, 0.14) rgba(0, 0, 0, 0.16) rgba(0, 0, 0, 0.18) rgba(0, 0, 0, 0.2);
+  -moz-border-top-colors: rgba(0, 0, 0, 0.02) rgba(0, 0, 0, 0.04) rgba(0, 0, 0, 0.06) rgba(0, 0, 0, 0.08) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.12) rgba(0, 0, 0, 0.14) rgba(0, 0, 0, 0.16) rgba(0, 0, 0, 0.18) rgba(0, 0, 0, 0.2);
+  -webkit-border-top-colors: rgba(0, 0, 0, 0.02) rgba(0, 0, 0, 0.04) rgba(0, 0, 0, 0.06) rgba(0, 0, 0, 0.08) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.12) rgba(0, 0, 0, 0.14) rgba(0, 0, 0, 0.16) rgba(0, 0, 0, 0.18) rgba(0, 0, 0, 0.2);
+}
+
+/* line 692, sass/style.scss */
+.ribbon-front {
+  background-color: #4E9BDE;
+  height: 35px;
+  width: 100%;
+  position: relative;
+  left: -10px;
+  z-index: 2;
+}
+/* line 699, sass/style.scss */
+.ribbon-front h2 {
+  color: white;
+  border: 0;
+  padding: 2px 20px;
+  font-style: italic;
+}
+
+/* line 710, sass/style.scss */
+.ribbon-front,
+.ribbon-back-left,
+.ribbon-back-right {
+  -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.55);
+  -khtml-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.55);
+  -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.55);
+  -o-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.55);
+}
+
+/* line 720, sass/style.scss */
+.ribbon-edge-topleft,
+.ribbon-edge-topright,
+.ribbon-edge-bottomleft,
+.ribbon-edge-bottomright {
+  position: absolute;
+  z-index: 1;
+  border-style: solid;
+  height: 0px;
+  width: 0px;
+}
+
+/* line 733, sass/style.scss */
+.ribbon-edge-bottomleft,
+.ribbon-edge-bottomright {
+  top: 35px;
+}
+
+/* line 738, sass/style.scss */
+.ribbon-edge-topleft,
+.ribbon-edge-bottomleft {
+  left: -10px;
+  border-color: transparent #4976A4 transparent transparent;
+}
+
+/* line 743, sass/style.scss */
+.ribbon-edge-topleft {
+  top: 10px;
+  border-width: -10px 10px 0 0;
+}
+
+/* line 747, sass/style.scss */
+.ribbon-edge-bottomleft {
+  border-width: 0 10px 10px 0;
+}
+
+/* line 752, sass/style.scss */
+.ribbon-edge-topright,
+.ribbon-edge-bottomright {
+  left: 300px;
+  border-color: transparent transparent transparent #4976A4;
+}
+
+/* line 757, sass/style.scss */
+.ribbon-edge-topright {
+  top: 0px;
+  border-width: 0px 0 0 0px;
+}
+
+/* line 761, sass/style.scss */
+.ribbon-edge-bottomright {
+  border-width: 0 0 0px 0px;
+}
+
+/* line 765, sass/style.scss */
+.ribbon-back-left {
+  position: absolute;
+  top: 10px;
+  left: -25px;
+  width: 25px;
+  height: 35px;
+  background-color: #4E9BDE;
+  z-index: 0;
+}
+
+/* line 774, sass/style.scss */
+.ribbon-back-right {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 0px;
+  height: 40px;
+  z-index: 0;
 }
