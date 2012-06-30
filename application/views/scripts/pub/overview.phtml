@@ -129,7 +129,16 @@
                         <?php $skip = $cols[$index] - 1; ?>
                         <td colspan="<?php echo $cols[$index]; ?>">
                             <div class="promo glow">
-                                <div class="time">
+                                <div class="time" title="<?php echo $this->formatTimeShort($promo->timeStart); ?> - <?php echo $this->formatTimeShort($promo->timeEnd); ?> <?php echo $this->currency($promo->price); ?> <?php foreach ($promo->getLiquorTypes() as $liquor) {
+                                    echo ' ' . $liquor->name;
+                                    $size = $promo->getLiquorSizes();
+                                    foreach ($size as $s) {
+                                        echo ' (' . $s['name'] . ')';
+                                        break;
+                                    }
+                                } ?>
+                                
+                                <?php echo ($promo->description ?  '&rarr; ' . $promo->description : null); ?>">
                                 <b>
                                     <?php echo $this->formatTimeShort($promo->timeStart); ?> - <?php echo $this->formatTimeShort($promo->timeEnd); ?>
                                 </b>
@@ -162,8 +171,6 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <br />
-        <?php echo $this->partial('partials/addthis.phtml'); ?>
 
     </div>
 </div>
@@ -299,6 +306,8 @@ $(document).ready(function() {
             })
 		})
 	});
+
+	$('.promo.glow > .time[title]').tooltip();
 
 });
 </script>

@@ -821,3 +821,15 @@ a.cancel {
   height: 40px;
   z-index: 0;
 }
+
+/* line 788, sass/style.scss */
+.tooltip {
+  display: none;
+  background: transparent url("/css/images/black_arrow.png");
+  font-size: 12px;
+  height: 70px;
+  width: 160px;
+  padding: 25px;
+  color: #eee;
+  z-index: 1000;
+}
