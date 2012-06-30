@@ -676,6 +676,8 @@ a.cancel {
 
 .glow {
     @include border-radius(3px, 3px);
+    max-height: 42px;
+    overflow: hidden;
 }
 
 .promo {

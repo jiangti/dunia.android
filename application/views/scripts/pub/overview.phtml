@@ -101,7 +101,7 @@
             <thead>
                 <tr>
                     <?php foreach ($days as $day): ?>
-                        <th><?php echo $day; ?></th>
+                        <th width="14.2%"><?php echo $day; ?></th>
                     <?php endforeach; ?>
                 </tr>
             </thead>
@@ -111,8 +111,7 @@
                     <?php
                     $prev = $curr = $key = null;
                     $cols = array();
-
-                    foreach(explode(",", $promo->day) as $index => $day) {
+                    foreach(explode(",", $promo->day) as $day) {
                         $curr = $days[$day];
                         if ($curr - 1 === $prev) {
                             $cols[$key]++;
@@ -129,23 +128,24 @@
                     <?php if(isset($cols[$index])): ?>
                         <?php $skip = $cols[$index] - 1; ?>
                         <td colspan="<?php echo $cols[$index]; ?>">
-
                             <div class="promo glow">
                                 <div class="time">
-                                <?php echo $this->formatDate($promo->timeStart, 'g:ia'); ?> - <?php echo $this->formatDate($promo->timeEnd, 'g:ia'); ?>
+                                <b>
+                                    <?php echo $this->formatTimeShort($promo->timeStart); ?> - <?php echo $this->formatTimeShort($promo->timeEnd); ?>
+                                </b>
+                                <?php echo $this->currency($promo->price); ?>
+                                
+                                <?php foreach ($promo->getLiquorTypes() as $liquor) {
+                                    echo ' ' . $liquor->name;
+                                    $size = $promo->getLiquorSizes();
+                                    foreach ($size as $s) {
+                                        echo ' (' . $s['name'] . ')';
+                                        break;
+                                    }
+                                } ?>
+                                
+                                <?php echo ($promo->description ?  '&rarr; ' . $promo->description : null); ?>
                                 </div>
-                                    <div>
-                                        <u><?php echo $this->currency($promo->price); ?></u>
-                                        <?php foreach ($promo->getLiquorTypes() as $liquor) {
-                                            echo ' ' . $liquor->name;
-                                            $size = $promo->getLiquorSizes();
-                                            foreach ($size as $s) {
-                                                echo ' (' . $s['name'] . ')';
-                                                break;
-                                            }
-                                            echo '<div class="promoDescription">' . $promo->description . '</div>';
-                                        } ?>
-                                    </div>
                             </div>
 
                         </td>
@@ -233,7 +233,7 @@ $(document).ready(function() {
 
 	$("#image-region").sticky({topSpacing: 52});
 
-	$("#overview-sidebar").sticky({topSpacing: 0});
+	//$("#overview-sidebar").sticky({topSpacing: 0});
 
 
 	config = {
