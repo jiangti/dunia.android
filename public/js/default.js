@@ -77,7 +77,7 @@ $(document).ready(function() {
                         markers.push(value);
                     });
                 },
-                url: '/map/fetch-bound/lat/' + latitude + '/long/' + longitude + '/ne/' + map.getBounds().getNorthEast().lat() + ',' + map.getBounds().getNorthEast().lng() + '/sw/' + map.getBounds().getSouthWest().lat() + ',' + map.getBounds().getSouthWest().lng() + '/zoom/' + map.getZoom(),
+                url: '/map/fetch-bound/lat/' + map.center.lat() + '/long/' + map.center.lng() + '/ne/' + map.getBounds().getNorthEast().lat() + ',' + map.getBounds().getNorthEast().lng() + '/sw/' + map.getBounds().getSouthWest().lat() + ',' + map.getBounds().getSouthWest().lng() + '/zoom/' + map.getZoom(),
                 dataType: 'json'
             });
         },

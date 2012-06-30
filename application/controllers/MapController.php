@@ -29,13 +29,13 @@ class MapController extends Model_Controller_Action {
 	public function fetchBoundAction() {
 		$user = $this->_getUser();
 		
-		$lat = ($user->getLat() ?: self::LAT);
-		$long = ($user->getLong() ?: self::LONG);
-		
-		$lat  = $this->_getParam('lat', $lat);
-		$long = $this->_getParam('long', $long);
-		
-		$ne = $this->_getParam('ne');
+		$lat  = $this->_getParam('lat', $user->getLat());
+		$long = $this->_getParam('long', $user->getLong());
+	    
+		setcookie('lat', $lat, time() + 86400 * 30, '/');
+	    setcookie('long', $long, time() + 86400 * 30, '/');
+	    
+	    $ne = $this->_getParam('ne');
 		$sw = $this->_getParam('sw');
 
         $zoom = $this->_getParam('zoom');
