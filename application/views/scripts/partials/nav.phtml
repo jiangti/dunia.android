@@ -1,14 +1,18 @@
-<?php
-    $auth = Aw_Auth::getInstance();
-    if ($auth->hasIdentity()) :
-        $session = new Zend_Session_Namespace('user');
-        $user    = $session->user;
-?>
-    <a href="/user/logout">Logout</a>
-    <a href="/user/profile" id="profile-nav"><img src="<?php echo $user->avatar; ?>" width="23" height="23" /><?php echo $user->firstName; ?></a>
-    <?php else: ?>
-    <a href="/user/login">Login</a>
-    <?php endif; ?>
-<a href="#">Tell a friend</a>
-<a href="/pub/">Pubs Index</a>
-<a href="<?php echo $this->url(array('controller' => 'pub', 'action' => 'email')); ?>">Mail Share</a>
+<div class="nav-collapse">
+    <ul class="nav pull-right">
+        <li><a href="<?php echo $this->url(array('controller' => 'pub', 'action' => 'email')); ?>">Mail Share</a></li>
+        <li><a href="/pub/">Pubs Index</a></li>
+        <li><a href="#">Tell a friend</a></li>
+        <?php
+        $auth = Aw_Auth::getInstance();
+        if ($auth->hasIdentity()) :
+            $session = new Zend_Session_Namespace('user');
+            $user    = $session->user;
+    ?>
+            <li><a href="/user/profile" id="profile-nav"><img src="<?php echo $user->avatar; ?>" width="23" height="23" /><?php echo $user->firstName; ?></a></li>
+            <li><a href="/user/logout">Logout</a></li>
+            <?php else: ?>
+            <li><a href="/user/login">Login</a></li>
+            <?php endif; ?>
+    </ul>
+</div>

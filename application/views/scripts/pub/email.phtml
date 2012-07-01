@@ -2,18 +2,41 @@
 	->appendFile($this->baseUrl('js/jquery.form.js'));
 ?>
 
-<div class="container_12" id="mailshare">
+<div class="container content" id="mailshare">
 
-<div class="grid_12">
-<p>Note: Use this only for merging pictures, because merging all data could be hard and i ain't good programmer.</p>
-</div>
+    <div class="row">
+        <div id="sidebar-row" class="span12">
+            <h1>Mail Share</h1>
+        </div>
+    </div>
 
-<?php foreach($this->forms as $index => $form): ?>
-	<div class="grid_4" >
-		<?php echo $form; ?>
-	</div>
-<?php endforeach; ?>
-	
+    <?php // This chunk is ugly but at the moment it's the best I can get with bootstrap that is responsive design
+        $i = 0;
+        foreach($this->forms as $index => $form):
+            if (!($i%3)):
+    ?>
+        <div class="row-fluid">
+            <ul class="thumbnails">
+    <?php
+            endif;
+            $i++;
+    ?>
+            <li class="span4" >
+                <div class="thumbnail">
+                    <div style="padding: 0 10px;">
+                        <?php echo $form; ?>
+                    </div>
+                </div>
+            </li>
+    <?php
+            if (!($i%3)):
+    ?>
+            </ul>
+        </div>
+    <?php
+            endif;
+        endforeach;
+    ?>
 </div>
 <script type="text/javascript">
 <!--

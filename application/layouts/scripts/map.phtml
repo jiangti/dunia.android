@@ -4,11 +4,12 @@
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 		<?php
 		    $this->headLink()
+                ->appendStylesheet($this->baseUrl('contrib/bootstrap/css/bootstrap.css'), 'screen, projection')
+                ->appendStylesheet($this->baseUrl('contrib/bootstrap/css/bootstrap-responsive.css'), 'screen, projection')
                 ->appendStylesheet($this->baseUrl('/contrib/jquery-ui-1.8.17.custom/css/custom-theme/jquery-ui-1.8.17.custom.css'), 'screen, projection')
-                ->appendStylesheet($this->baseUrl('contrib/adapt-960/assets/css/960.css'), 'screen, projection')
                 ->appendStylesheet($this->baseUrl('/css/formalize/formalize.css'), 'screen, projection')
-                ->appendStylesheet($this->baseUrl('css/style.css'), 'screen, projection')
                 ->appendStylesheet('http://fonts.googleapis.com/css?family=Imprima', 'screen, projection')
+                ->appendStylesheet($this->baseUrl('css/style.css'), 'screen, projection')
             ;
 
             $this->headScript()

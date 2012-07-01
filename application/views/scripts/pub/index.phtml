@@ -14,36 +14,44 @@ $(function() {
 });
 //-->
 </script>
-<div class="container_12">
-	<div class="grid_12 pad_bottom pad_top sticky">
-    	<form action="" method="get" class="formalize">
-    		<input id="tags" type="text" name="q" autocomplete="off" autofocus="autofocus" /> <input type="submit" value="Search">
-    		<button type="button" id="new-pub">New</button>
-    	</form>
-	</div>
-	<div class="grid_12">
-		<table class="generic" cellspacing="1px" cellpadding="0px" border="0">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Address</th>
-				</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<th colspan="2">
-					    <?php echo $this->pubs; ?>
-					</th>
-				</tr>
-			</tfoot>
-			<tbody>
-				<?php foreach($this->pubs as $pub): ?>
-				<tr>
-					<td><a href="<?php echo  $this->url(array('id' => $pub->id, 'action' => 'overview')); ?>" class="ss_sprite ss_application_edit"><?php echo $pub; ?></a></td>
-					<td><?php echo $pub->getAddress()->formatOutput(' '); ?></td>
-				</tr>
-				<?php endforeach; ?>
-			</tbody>
-		</table>
-	</div>
+
+<div class="container content">
+    <div class="row">
+        <div class="span3">
+            <h1>Pubs Index</h1>
+        </div>
+        <div class="span9">
+            <form action="" method="get" class="formalize pull-right">
+                <input id="tags" type="text" name="q" autocomplete="off" autofocus="autofocus" /> <input type="submit" value="Search">
+                <button type="button" id="new-pub">New</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <table class="generic" cellspacing="1px" cellpadding="0px" border="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th colspan="2">
+                            <?php echo $this->pubs; ?>
+                        </th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <?php foreach($this->pubs as $pub): ?>
+                    <tr>
+                        <td><a href="<?php echo  $this->url(array('id' => $pub->id, 'action' => 'overview')); ?>" class="ss_sprite ss_application_edit"><?php echo $pub; ?></a></td>
+                        <td><?php echo $pub->getAddress()->formatOutput(' '); ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

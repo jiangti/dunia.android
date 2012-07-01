@@ -3,173 +3,172 @@
     $type    = $this->pub->pubType;
 ?>
 
-<div class="pub-overview container_12 content">
+<div class="container content">
+    <div class="pub-overview row">
 
-	
-    
-    <div class="grid_6">
-        <h1><?php if ($type && $type->icon) { echo '<img src="' . $type->icon . '" width="32" height="32" /> '; } echo $this->pub->name; ?></h1>
-
-        <?php
-        $images = $this->pub->getImageLinks();
-
-        if (count($images)) : ?>
-            <div id="photos">
-                <h2>Photos</h2>
-                <ul>
-                    <?php
-                    foreach ($images as $img) {
-                        echo '<li>
-                        <a href="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=600&amp;ar=x">
-                            <img class="venuePic" src="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=125&amp;h=125&amp;zc=1&amp;ar=x"/>
-                        </a>
-                        </li>';
-                    } ?>
-                </ul>
+        <div id="sidebar-row" class="span6">
+            <div class="sidebar" id="overview-sidebar">
+            <div class="details">
+                <div id="map_canvas" style="width: 100%; height: 200px;"></div>
+                <div class="contact">
+                    <div class="address"><?php echo $address->formatOutput('<br />'); ?></div>
+                    <div class="urls">
+                        <div><a href="<?php echo $this->pub->url; ?>"><?php echo $this->pub->url; ?></a></div>
+                        <div><a href="mailto:<?php echo $this->pub->email; ?>"><?php echo $this->pub->email; ?></a></div>
+                    </div>
+                </div>
             </div>
-        <?php endif; ?>
 
-        <script type="text/x-handlebars">
-            {{#view App.tipsView}}
-                <div id="tipsWrapper">
+            <div class="ribbon-wrapper">
+                <div class="ribbon-front">
+                    <h2>Weekly Specials</h2>
+                </div>
+                <div class="ribbon-edge-topleft"></div>
+                <div class="ribbon-edge-topright"></div>
+                <div class="ribbon-edge-bottomleft"></div>
+                <div class="ribbon-edge-bottomright"></div>
+                <div class="ribbon-back-left"></div>
+                <div class="ribbon-back-right"></div>
+            </div>
 
-                    {{#collection tipsCollectionView}}
-                    <li>
-                        <div class="tip-container">
+            <?php
+                $days   = Model_Day::$days;
+                $promos = $this->pub->getPromos();
+            ?>
+            <table id="promos" class="generic" cellspacing="1px" cellpadding="0px" border="0">
+            <caption><a href="#" id="edit-section-button" class="ss_sprite ss_application_edit pad"></a></caption>
+                <thead>
+                    <tr>
+                        <?php foreach ($days as $day): ?>
+                            <th><?php echo $day; ?></th>
+                        <?php endforeach; ?>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $days = array_flip(Model_Day::$days); ?>
+                    <?php foreach($promos as $promo): ?>
+                        <?php
+                        $prev = $curr = $key = null;
+                        $cols = array();
+
+                        foreach(explode(",", $promo->day) as $index => $day) {
+                            $curr = $days[$day];
+                            if ($curr - 1 === $prev) {
+                                $cols[$key]++;
+                            } else {
+                                $key = $day;
+                                $cols[$key] = 1;
+                            }
+                            $prev = $curr;
+                        }
+                        ?>
+                    <tr>
+
+                    <?php foreach($days as $index => $value): ?>
+                        <?php if(isset($cols[$index])): ?>
+                            <?php $skip = $cols[$index] - 1; ?>
+                            <td colspan="<?php echo $cols[$index]; ?>">
+
+                                <div class="promo glow">
+                                    <div class="time">
+                                    <?php echo $this->formatDate($promo->timeStart, 'g:ia'); ?> - <?php echo $this->formatDate($promo->timeEnd, 'g:ia'); ?>
+                                    </div>
+                                        <div>
+                                            <span class="price"><?php echo $this->currency($promo->price, null, null, $superIndex = true); ?></span>
+                                            <?php foreach ($promo->getLiquorTypes() as $liquor) {
+                                                echo ' <span class="liquorType">' . $liquor->name . "</span>";
+                                                $size = $promo->getLiquorSizes();
+                                                echo '<div>';
+                                                foreach ($size as $s) {
+                                                    echo ' (' . $s['name'] . ')';
+                                                    break;
+                                                }
+                                                echo '</div>';
+                                                echo '<div class="promoDescription">' . $promo->description . '</div>';
+                                            } ?>
+                                        </div>
+                                </div>
+
+                            </td>
+                        <?php else: ?>
+                            <?php
+                                if (isset($skip) && $skip) {
+                                    $skip--;
+                                } else {
+                                    echo '<td></td>';
+                                } ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <br />
+            <?php echo $this->partial('partials/addthis.phtml'); ?>
+            </div>
+        </div>
+
+        <div id="content-row" class="span6">
+            <div style="padding-left: 10px;">
+                <h1><?php if ($type && $type->icon) { echo '<img src="' . $type->icon . '" width="32" height="32" /> '; } echo $this->pub->name; ?></h1>
+
+                <?php
+                $images = $this->pub->getImageLinks();
+
+                if (count($images)) : ?>
+                    <div id="photos">
+                        <h2>Photos</h2>
+                        <ul>
+                            <?php
+                            foreach ($images as $img) {
+                                echo '<li>
+                                <a href="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=600&amp;ar=x">
+                                    <img class="venuePic" src="/phpThumb/phpThumb.php?src=' . $img . '&amp;w=125&amp;h=125&amp;zc=1&amp;ar=x"/>
+                                </a>
+                                </li>';
+                            } ?>
+                        </ul>
+                    </div>
+                    <?php endif; ?>
+
+                <script type="text/x-handlebars">
+                    {{#view App.tipsView}}
+                    <div id="tipsWrapper">
+
+                        {{#collection tipsCollectionView}}
+                        <li>
+                            <div class="tip-container">
                                 <div class="image" style="float: left" >
                                     <a clas {{bindAttr href="content.user.canonicalUrl"}}>
-                                        <img {{bindAttr src="content.user.photo"}} width="40" height="40"/>
+                                    <img {{bindAttr src="content.user.photo"}} width="40" height="40"/>
                                     </a>
                                 </div>
                                 <div>
                                     <div><a {{bindAttr href="content.user.canonicalUrl"}}>{{content.user.firstName}} {{content.user.lastName}}</a> <span class="date">{{content.date}}</span></div>
                                     <div>{{content.text}}</div>
                                 </div>
-                        </div>
-                        <div class="separator"></div>
-                    </li>
-                    {{/collection}}
-                </div>
-            {{/view}}
-        </script>
-        
-        <?php
-            $days   = Model_Day::$days;
-            $promos = $this->pub->getPromos();
-        ?>
-
-
-        <div id="edit-section">
-		<?php if($this->pubRow): ?>
-			<div class="sticky-style grid_6 alpha" id="image-region">
-			<?php foreach($this->pubRow->getImagesWebUri() as $image): ?>
-				<a class="image" href="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=600"><img src="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=100" alt="" /></a>
-			<?php endforeach; ?>
-			</div>
-		<?php endif; ?>
-		<?php echo $this->form; ?>
-		</div>
-
-    </div>
-
-    <div class="grid_6 sidebar omega" id="overview-sidebar">
-        <div class="details">
-            <div id="map_canvas" style="width: 100%; height: 200px;"></div>
-            <div class="contact">
-                <div class="address"><?php echo $address->formatOutput('<br />'); ?></div>
-                <div class="urls">
-                    <div><a href="<?php echo $this->pub->url; ?>"><?php echo $this->pub->url; ?></a></div>
-                    <div><a href="mailto:<?php echo $this->pub->email; ?>"><?php echo $this->pub->email; ?></a></div>
-                </div>
-    		</div>
-        </div>
-
-        <div class="ribbon-wrapper">
-            <div class="ribbon-front">
-                <h2>Weekly Specials</h2>
-            </div>
-            <div class="ribbon-edge-topleft"></div>
-            <div class="ribbon-edge-topright"></div>
-            <div class="ribbon-edge-bottomleft"></div>
-            <div class="ribbon-edge-bottomright"></div>
-            <div class="ribbon-back-left"></div>
-            <div class="ribbon-back-right"></div>
-        </div>
-
-        <table id="promos" class="generic" cellspacing="1px" cellpadding="0px" border="0">
-	    <caption><a href="#" id="edit-section-button" class="ss_sprite ss_application_edit pad"></a></caption>
-            <thead>
-                <tr>
-                    <?php foreach ($days as $day): ?>
-                        <th><?php echo $day; ?></th>
-                    <?php endforeach; ?>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $days = array_flip(Model_Day::$days); ?>
-                <?php foreach($promos as $promo): ?>
-                    <?php
-                    $prev = $curr = $key = null;
-                    $cols = array();
-
-                    foreach(explode(",", $promo->day) as $index => $day) {
-                        $curr = $days[$day];
-                        if ($curr - 1 === $prev) {
-                            $cols[$key]++;
-                        } else {
-                            $key = $day;
-                            $cols[$key] = 1;
-                        }
-                        $prev = $curr;
-                    }
-                    ?>
-                <tr>
-
-                <?php foreach($days as $index => $value): ?>
-                    <?php if(isset($cols[$index])): ?>
-                        <?php $skip = $cols[$index] - 1; ?>
-                        <td colspan="<?php echo $cols[$index]; ?>">
-
-                            <div class="promo glow">
-                                <div class="time">
-                                <?php echo $this->formatDate($promo->timeStart, 'g:ia'); ?> - <?php echo $this->formatDate($promo->timeEnd, 'g:ia'); ?>
-                                </div>
-                                    <div>
-                                        <u><?php echo $this->currency($promo->price); ?></u>
-                                        <?php foreach ($promo->getLiquorTypes() as $liquor) {
-                                            echo ' ' . $liquor->name;
-                                            $size = $promo->getLiquorSizes();
-                                            foreach ($size as $s) {
-                                                echo ' (' . $s['name'] . ')';
-                                                break;
-                                            }
-                                            echo '<div class="promoDescription">' . $promo->description . '</div>';
-                                        } ?>
-                                    </div>
                             </div>
+                            <div class="separator"></div>
+                        </li>
+                        {{/collection}}
+                    </div>
+                    {{/view}}
+                </script>
 
-                        </td>
-                    <?php else: ?>
-                        <?php
-                            if (isset($skip) && $skip) {
-                                $skip--;
-                            } else {
-                                echo '<td></td>';
-                            } ?>
+                <div id="edit-section">
+                    <?php if($this->pubRow): ?>
+                    <div class="sticky-style grid_6 alpha" id="image-region">
+                        <?php foreach($this->pubRow->getImagesWebUri() as $image): ?>
+                        <a class="image" href="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=600"><img src="/phpThumb/phpThumb.php?src=<?php echo $image; ?>&amp;w=100" alt="" /></a>
+                        <?php endforeach; ?>
+                    </div>
                     <?php endif; ?>
-                <?php endforeach; ?>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        <br />
-        <?php echo $this->partial('partials/addthis.phtml'); ?>
-
+                    <?php echo $this->form; ?>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-<div id="dialog"></div>
-
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -191,24 +190,6 @@ $(document).ready(function() {
         shadow: markerShadow
     });
 
-    $('#dialog').dialog({
-        autoOpen: false,
-        width: 650,
-        position: ['center', 100]
-    });
-
-    $("#flag a").click(function() {
-        $.ajax({
-            url: '/pub/flag',
-            data: {idPub: <?php echo $this->pub->id; ?>},
-            success: function (data) {
-                $('#dialog').html(data);
-                $('#dialog').dialog('open');
-            }
-        })
-        return false;
-    });
-
     $('#photos a').lightBox();
 
     $('#edit-section-button').click(function(e) {
@@ -216,7 +197,6 @@ $(document).ready(function() {
 		$.scrollTo($('#edit-section'), 500);
 	});
 	
-
     $('a.open').click(function() {
 		popup = window.open($('#url').val() , 'popup', 'height=600,width=800');
 		if (window.focus) { popup.focus(); }
@@ -233,7 +213,7 @@ $(document).ready(function() {
 
 	$("#image-region").sticky({topSpacing: 52});
 
-	$("#overview-sidebar").sticky({topSpacing: 0});
+	//$("#overview-sidebar").sticky({topSpacing: 0});
 
 
 	config = {
@@ -305,5 +285,4 @@ $(document).ready(function() {
 <?php
     $this->headScript()->appendFile('/js/jquery.scrollTo-min.js');
     $this->headScript()->appendFile('/js/moment.min.js');
-    $this->headLink()->appendStylesheet('http://fonts.googleapis.com/css?family=Imprima', 'screen, projection');
 ?>

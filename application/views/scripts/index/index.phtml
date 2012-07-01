@@ -1,8 +1,17 @@
-<div id="header" style="margin: 0;">
-    <a style="float: left;" id="logo" href="/">Dunia</a>
-	<div id="form">
+<div class="navbar">
+    <div id="header" class="navbar-inner">
+
+            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a id="logo" class="brand" href="/">Dunia</a>
+
+	<form id="form">
 		<?php echo $this->form->location; ?>
-		<div style="margin-left: 275px; margin-top:-22px; width: 200px">
+		<div style="margin-left: 300px; margin-top:-30px; width: 200px;">
 		<fieldset style="border: none; margin: 0px; padding: 0px;">
 			<label for="valueA" style="display:none;">From:</label>
 			<select name="valueA" id="valueA" style="display:none;">
@@ -44,14 +53,12 @@
 				<option value="24:00" selected="selected">24:00</option>
 			</select>
 		</fieldset>
-		</div>
-	</div>
-		
-	<div id="nav">
-		<?php echo $this->render('partials/nav.phtml'); ?>
-   	</div>
+        </div>
+	</form>
+        <?php echo $this->render('partials/nav.phtml'); ?>
+    </div>
 </div>
-<div id="map_canvas" style="height:95%;"></div>
+<div id="map_canvas" style="margin-top:-20px;height:95%;"></div>
 
 <div id="bottom-info-bar">
 	<div class="left summary" id="summary-bar">

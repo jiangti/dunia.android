@@ -2,9 +2,9 @@
 
 class Zend_View_Helper_Currency extends Zend_View_Helper_Abstract
 {
-    function currency($value, $zeroLabel=null, $decimals=null) {
+    function currency($value, $zeroLabel = null, $decimals = null, $superIndex = true) {
         
-        $symbol = '$';
+        $symbol = $superIndex? '<sup>$</sup>' : '$';
         $value = str_replace(array(',', ' ','$'), '', $value);
         if ($value == '' or $value == 0) {
             if (is_numeric($zeroLabel)) {
