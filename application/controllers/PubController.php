@@ -16,7 +16,9 @@ class PubController extends Model_Controller_Action
 		
 		$select = $table->select();
 		$select
-			->where('dateProcessed is null')
+		    ->order('isnull(dateProcessed) desc')
+			->order('dateProcessed desc')
+			->limit(50)
 		;
 		
 		if ($mailShare) {
@@ -32,6 +34,8 @@ class PubController extends Model_Controller_Action
 			$form = new Form_MailShare();
 			$form->setAction($this->view->url(array('controller' => 'mailshare', 'action' => 'merge')));
 			$form->setRecord($emailShare);
+			
+			$form->setAttrib('class', ($emailShare->dateProcessed ? 'done': ''));
 			
 			$forms[] = $form;
 		}
@@ -247,4 +251,5 @@ class PubController extends Model_Controller_Action
         }
         $this->view->form = $form;
     }
+    
 }

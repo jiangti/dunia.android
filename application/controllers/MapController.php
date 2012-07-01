@@ -20,8 +20,8 @@ class MapController extends Model_Controller_Action {
 		$long = $this->_getParam('long', $long);
 		
 		$params = $this->_getAllParams();
-		$params['ne'] = sprintf('%s,%s', $lat + 0.1, $long + 0.1);
-		$params['sw'] = sprintf('%s,%s', $lat - 0.1, $long - 0.1);
+		$params['ne'] = sprintf('%s,%s', $lat + 0.005, $long + 0.005);
+        $params['sw'] = sprintf('%s,%s', $lat - 0.005, $long - 0.005);
 		
 		$this->_forward('fetch-bound', null, null, $params);
 	}
@@ -29,13 +29,13 @@ class MapController extends Model_Controller_Action {
 	public function fetchBoundAction() {
 		$user = $this->_getUser();
 		
-		$lat = ($user->getLat() ?: self::LAT);
-		$long = ($user->getLong() ?: self::LONG);
-		
-		$lat  = $this->_getParam('lat', $lat);
-		$long = $this->_getParam('long', $long);
-		
-		$ne = $this->_getParam('ne');
+		$lat  = $this->_getParam('lat', $user->getLat());
+		$long = $this->_getParam('long', $user->getLong());
+	    
+		setcookie('lat', $lat, time() + 86400 * 30, '/');
+	    setcookie('long', $long, time() + 86400 * 30, '/');
+	    
+	    $ne = $this->_getParam('ne');
 		$sw = $this->_getParam('sw');
 
         $zoom = $this->_getParam('zoom');

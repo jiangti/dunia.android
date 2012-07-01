@@ -108,6 +108,7 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <div id="content-row" class="span6">
             <div style="padding-left: 10px;">
                 <h1><?php if ($type && $type->icon) { echo '<img src="' . $type->icon . '" width="32" height="32" /> '; } echo $this->pub->name; ?></h1>
@@ -146,6 +147,66 @@
                                 <div>
                                     <div><a {{bindAttr href="content.user.canonicalUrl"}}>{{content.user.firstName}} {{content.user.lastName}}</a> <span class="date">{{content.date}}</span></div>
                                     <div>{{content.text}}</div>
+=======
+        <table id="promos" class="generic" cellspacing="1px" cellpadding="0px" border="0">
+	    <caption><a href="#" id="edit-section-button" class="ss_sprite ss_application_edit pad"></a></caption>
+            <thead>
+                <tr>
+                    <?php foreach ($days as $day): ?>
+                        <th width="14.2%"><?php echo $day; ?></th>
+                    <?php endforeach; ?>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $days = array_flip(Model_Day::$days); ?>
+                <?php foreach($promos as $promo): ?>
+                    <?php
+                    $prev = $curr = $key = null;
+                    $cols = array();
+                    foreach(explode(",", $promo->day) as $day) {
+                        $curr = $days[$day];
+                        if ($curr - 1 === $prev) {
+                            $cols[$key]++;
+                        } else {
+                            $key = $day;
+                            $cols[$key] = 1;
+                        }
+                        $prev = $curr;
+                    }
+                    ?>
+                <tr>
+
+                <?php foreach($days as $index => $value): ?>
+                    <?php if(isset($cols[$index])): ?>
+                        <?php $skip = $cols[$index] - 1; ?>
+                        <td colspan="<?php echo $cols[$index]; ?>">
+                            <div class="promo glow">
+                                <div class="time" title="<?php echo $this->formatTimeShort($promo->timeStart); ?> - <?php echo $this->formatTimeShort($promo->timeEnd); ?> <?php echo $this->currency($promo->price); ?> <?php foreach ($promo->getLiquorTypes() as $liquor) {
+                                    echo ' ' . $liquor->name;
+                                    $size = $promo->getLiquorSizes();
+                                    foreach ($size as $s) {
+                                        echo ' (' . $s['name'] . ')';
+                                        break;
+                                    }
+                                } ?>
+                                
+                                <?php echo ($promo->description ?  '&rarr; ' . $promo->description : null); ?>">
+                                <b>
+                                    <?php echo $this->formatTimeShort($promo->timeStart); ?> - <?php echo $this->formatTimeShort($promo->timeEnd); ?>
+                                </b>
+                                <?php echo $this->currency($promo->price); ?>
+                                
+                                <?php foreach ($promo->getLiquorTypes() as $liquor) {
+                                    echo ' ' . $liquor->name;
+                                    $size = $promo->getLiquorSizes();
+                                    foreach ($size as $s) {
+                                        echo ' (' . $s['name'] . ')';
+                                        break;
+                                    }
+                                } ?>
+                                
+                                <?php echo ($promo->description ?  '&rarr; ' . $promo->description : null); ?>
+>>>>>>> 2055760b60abb8a757fa24ac801a5fc6b865cc4e
                                 </div>
                             </div>
                             <div class="separator"></div>
@@ -163,10 +224,19 @@
                         <?php endforeach; ?>
                     </div>
                     <?php endif; ?>
+<<<<<<< HEAD
                     <?php echo $this->form; ?>
                 </div>
             </div>
         </div>
+=======
+                <?php endforeach; ?>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+>>>>>>> 2055760b60abb8a757fa24ac801a5fc6b865cc4e
     </div>
 </div>
 <script type="text/javascript">

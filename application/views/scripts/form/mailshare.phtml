@@ -1,6 +1,6 @@
 <?php $form = $this->element; ?>
 <div>
-	<form action="<?php echo $form->getAction(); ?>" method="post">
+	<form action="<?php echo $form->getAction(); ?>" method="post" class="<?php echo $form->getAttrib('class'); ?>">
 	<div>By: <b><?php echo $this->escape($form->getRecord()->from); ?></b></div>
 	<?php echo $form->subject; ?>
 	<?php echo $form->hidden; ?>

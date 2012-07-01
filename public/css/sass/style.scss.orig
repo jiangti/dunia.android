@@ -4,7 +4,6 @@
 @import "compass/css3/transition";
 @import "compass/css3/border-radius";
 @import "compass/layout/stretching";
-
 /**
  * Global variables
  */
@@ -614,6 +613,8 @@ a.cancel {
     border: 1px solid #ccc;
 }
 
+<<<<<<< HEAD
+=======
 #mailshare form {
     @include single-box-shadow;
     padding: 20px;
@@ -622,6 +623,7 @@ a.cancel {
     }
 }
 
+>>>>>>> 2055760b60abb8a757fa24ac801a5fc6b865cc4e
 #facebookConnect, #signInWithTwitter {
     margin: 20px;
     display: block;

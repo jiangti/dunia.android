@@ -52,15 +52,19 @@ class Service_Pub_Foursquare extends Service_Pub {
 		}
 	}
 	
+	public function get() {
+	    $this->isNotEmpty(array('Latitude' => $this->latitude, 'Longitude' => $this->longitude));
+	    $pubs = $this->_foursquare->getLin('/venues/search', array(
+	            'radius'	 => 100,
+	            'v'			 => 20111212,
+	            'limit'	     => 50,
+	            'intent'     => 'browse',
+	            'categoryId' => '4d4b7105d754a06376d81259',
+	            'll'         => $this->latitude . ',' . $this->longitude));
+	}
+	
 	public function crawlLinear() {
-		$this->isNotEmpty(array('Latitude' => $this->latitude, 'Longitude' => $this->longitude));
-		$pubs = $this->_foursquare->getLin('/venues/search', array(
-				'radius'	 => 100,
-				'v'			 => 20111212,
-				'limit'	     => 50,
-                'intent'     => 'browse',
-                'categoryId' => implode(',', Aw_Service_Foursquare::$allowedCategories),
-                'll'         => $this->latitude . ',' . $this->longitude));
+        $pubs = $this->get();
 		$this->_crawl($pubs);
 	}
 
@@ -119,4 +123,6 @@ class Service_Pub_Foursquare extends Service_Pub {
 		}
 		
 	}
+	
+	
 }

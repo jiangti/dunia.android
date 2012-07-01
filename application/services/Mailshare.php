@@ -28,6 +28,7 @@ class Service_Mailshare {
             $pub->mergeMailShare($mailShare);
 
             $mailShare->dateProcessed = date('Y-m-d H:i:s');
+            $mailShare->idPub = $pub->id;
             $mailShare->save();
 
             $db->commit();

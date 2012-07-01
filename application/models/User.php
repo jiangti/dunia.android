@@ -21,11 +21,11 @@ class Model_User extends Aw_Model_ModelAbstract {
 	
 	
 	public function getLat() {
-		return self::DEFAULT_LATITUDE;
+	    return idx($_COOKIE, 'lat', self::DEFAULT_LATITUDE);
 	}
 	
 	public function getLong() {
-		return self::DEFAULT_LONGITUDE;
+		return idx($_COOKIE, 'long', self::DEFAULT_LONGITUDE);
 	}
 
     public function save() {
