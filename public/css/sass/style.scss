@@ -66,7 +66,7 @@ body {
     background: #fff;
     behavior: url(/PIE.htc);
     z-index: 1000;
-    width: 100%;
+    width: 50%;
 
     img {
         display: inline-block;
@@ -100,6 +100,20 @@ form fieldset {
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
+
+    padding: 10px;
+
+    legend {
+        width: auto;
+        border-bottom: 0;
+        text-align: right;
+
+        a {
+            margin: 0 10px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+    }
 }
 
 .pad_top {
@@ -189,6 +203,10 @@ h1 {
     h1 {
         margin-top: 30px;
     }
+
+    @media (max-width: 767px) {
+        margin-top: 0;
+    }
 }
 
 .container {
@@ -275,10 +293,17 @@ h1 {
     }
 
     h1 {
+        float: left;
+        margin-left: 10px;
         img {
             vertical-align: middle;
             display: inline-block;
             margin-top: -5px;
+        }
+
+        @media (max-width: 767px) {
+            float: none;
+            margin-bottom: 20px;
         }
     }
 
@@ -376,11 +401,19 @@ h1 {
         span.price {
             font-weight: bold;
             font-size: 22px;
+            color: #000000;
         }
 
         span.liquorType {
+            font-family: 'Imprima', Arial, sans-serif;
             font-weight: normal;
-            font-size: 18px;
+            font-size: 20px;
+        }
+
+        .liquorSize {
+            font-family: 'Imprima', Arial, sans-serif;
+            font-style: italic;
+            padding: 5px;
         }
     }
 }
@@ -683,12 +716,18 @@ a.cancel {
 
 .glow {
     @include border-radius(3px, 3px);
-    max-height: 42px;
     overflow: hidden;
 }
 
 .promo {
     margin: 3px;
+
+    .thePromo {
+        padding: 10px;
+        border: 1px solid #eee;
+
+        color: #444;
+    }
 }
 
 /* ribbon style */
@@ -703,6 +742,7 @@ a.cancel {
 }
 .ribbon-front {
     background-color: #4E9BDE;	height: 35px;
+    @include nav-gradient;
     width: 100%;
     position: relative;
     left:-10px;
@@ -711,7 +751,7 @@ a.cancel {
     h2 {
         color: white;
         border: 0;
-        padding: 2px 20px;
+        padding: 0px 20px 4px 20px;
         font-style: italic;
     }
 }
@@ -724,6 +764,7 @@ a.cancel {
     -khtml-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
     -webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
     -o-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+    @include nav-gradient;
 }
 
 .ribbon-edge-topleft,
