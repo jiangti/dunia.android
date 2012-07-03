@@ -104,7 +104,7 @@ $(document).ready(function() {
 
     var amHere = new google.maps.LatLng('<?php echo $this->lat; ?>', '<?php echo $this->long; ?>');
     var myOptions = {
-        zoom: 15,
+        zoom: <?php echo $this->zoom; ?>,
         maxZoom: 20,
         center: amHere,
         mapTypeId: google.maps.MapTypeId.ROADMAP,

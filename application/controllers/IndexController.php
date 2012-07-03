@@ -14,6 +14,7 @@ class IndexController extends Model_Controller_Action {
 
             $this->view->lat  = $user->getLat();
             $this->view->long = $user->getLong();
+            $this->view->zoom = $user->getZoom();
         }
         
         $this->view->categories = Aw_Service_Foursquare::$categoriesName;
