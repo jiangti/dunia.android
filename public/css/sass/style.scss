@@ -199,8 +199,13 @@ h1 {
  * Promos
  */
 
-#promos td {
-    padding: 0;
+table.promos.generic { 
+    td {
+        padding: 0;
+    }
+    th.today {
+        color: red;
+    }
 }
 
 .promo {

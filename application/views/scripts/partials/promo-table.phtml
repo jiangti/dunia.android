@@ -1,0 +1,78 @@
+<?php
+                $days   = Model_Day::$days;
+                $promos = $this->pub->getPromos();
+            ?>
+            <table class="promos generic" cellspacing="1px" cellpadding="0px" border="0">
+                <thead>
+                    <tr>
+                        <?php foreach ($days as $index => $day): ?>
+                            <th width="14.2%" <?php echo ($index == date('N') ?'class="today"' : null); ?>><?php echo $day; ?></th>
+                        <?php endforeach; ?>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $days = array_flip(Model_Day::$days); ?>
+                    <?php foreach($promos as $promo): ?>
+                        <?php
+                        $prev = $curr = $key = null;
+                        $cols = array();
+                        foreach(explode(",", $promo->day) as $day) {
+                            $curr = $days[$day];
+                            if ($curr - 1 === $prev) {
+                                $cols[$key]++;
+                            } else {
+                                $key = $day;
+                                $cols[$key] = 1;
+                            }
+                            $prev = $curr;
+                        }
+                        ?>
+                    <tr>
+    
+                    <?php foreach($days as $index => $value): ?>
+                        <?php if(isset($cols[$index])): ?>
+                            <?php $skip = $cols[$index] - 1; ?>
+                            <td colspan="<?php echo $cols[$index]; ?>">
+                                <div class="promo glow">
+                                    <div class="time" title="<?php echo $this->formatTimeShort($promo->timeStart); ?> - <?php echo $this->formatTimeShort($promo->timeEnd); ?> <?php echo $this->currency($promo->price); ?> <?php foreach ($promo->getLiquorTypes() as $liquor) {
+                                        echo ' ' . $liquor->name;
+                                        $size = $promo->getLiquorSizes();
+                                        foreach ($size as $s) {
+                                            echo ' (' . $s['name'] . ')';
+                                            break;
+                                        }
+                                    } ?>
+                                    
+                                    <?php echo ($promo->description ?  '&rarr; ' . $promo->description : null); ?>">
+                                    <b>
+                                        <?php echo $this->formatTimeShort($promo->timeStart); ?> - <?php echo $this->formatTimeShort($promo->timeEnd); ?>
+                                    </b>
+                                    <?php echo $this->currency($promo->price); ?>
+                                    
+                                    <?php foreach ($promo->getLiquorTypes() as $liquor) {
+                                        echo ' ' . $liquor->name;
+                                        $size = $promo->getLiquorSizes();
+                                        foreach ($size as $s) {
+                                            echo ' (' . $s['name'] . ')';
+                                            break;
+                                        }
+                                    } ?>
+                                    
+                                    <?php echo ($promo->description ?  '&rarr; ' . $promo->description : null); ?>
+                                    </div>
+                                </div>
+    
+                            </td>
+                        <?php else: ?>
+                            <?php
+                                if (isset($skip) && $skip) {
+                                    $skip--;
+                                } else {
+                                    echo '<td></td>';
+                                } ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>

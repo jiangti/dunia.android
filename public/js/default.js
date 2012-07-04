@@ -172,7 +172,7 @@ $(document).ready(function() {
                 );
                 
                 if (type == 'none') {
-                    promos = 'There are no promos available for today';
+                    promos = marker.dealise;
                 } else {
                     for (var j = 0; j < marker.promos.length; j++) {
                         var promo = marker.promos[j];
