@@ -15,7 +15,7 @@ body {
   padding: 0;
   margin: 0;
   height: 100%;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   line-height: normal;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ececec), to(#dddddd));
@@ -914,4 +914,53 @@ a.cancel {
   padding: 25px;
   color: #eee;
   z-index: 1000;
+}
+
+/**
+ * About Page
+ */
+/* line 852, sass/style.scss */
+#about h1 {
+  margin-bottom: 15px;
+}
+/* line 856, sass/style.scss */
+#about h2, #about h3 {
+  margin-top: 10px;
+  color: #444;
+  font-family: 'Imprima', Arial, sans-serif;
+  font-weight: normal;
+}
+/* line 863, sass/style.scss */
+#about h2 {
+  font-size: 28px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+/* line 869, sass/style.scss */
+#about h3 {
+  margin: 0;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: bold;
+}
+/* line 876, sass/style.scss */
+#about p {
+  font-size: 15px;
+  line-height: 20px;
+}
+/* line 882, sass/style.scss */
+#about .team p {
+  font-size: 13px;
+  line-height: 18px;
+}
+/* line 887, sass/style.scss */
+#about .team img {
+  float: left;
+  margin-right: 15px;
+  padding: 3px;
+  border: 1px solid #ccc;
+}
+/* line 894, sass/style.scss */
+#about .team div {
+  margin-bottom: 20px;
 }

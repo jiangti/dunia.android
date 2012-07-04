@@ -72,5 +72,9 @@ class IndexController extends Model_Controller_Action {
             $user->save();
         }
     }
+
+    public function aboutAction() {
+
+    }
 }
 
