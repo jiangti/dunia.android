@@ -31,16 +31,16 @@ class MapController extends Model_Controller_Action {
 		
 		$lat  = $this->_getParam('lat', $user->getLat());
 		$long = $this->_getParam('long', $user->getLong());
-	    
-		setcookie('lat', $lat, time() + 86400 * 30, '/');
-	    setcookie('long', $long, time() + 86400 * 30, '/');
-	    
-	    $ne = $this->_getParam('ne');
-		$sw = $this->_getParam('sw');
-
         $zoom = $this->_getParam('zoom');
-		
-		list($nelat, $nelong) = explode(",", $ne);
+
+        setcookie('lat', $lat, time() + 86400, '/');
+        setcookie('long', $long, time() + 86400, '/');
+        setcookie('zoom', $zoom, time() + 86400, '/');
+
+        $ne = $this->_getParam('ne');
+        $sw = $this->_getParam('sw');
+
+        list($nelat, $nelong) = explode(",", $ne);
 		list($swlat, $swlong) = explode(",", $sw);
 		
 		$pubService = new Service_Pub();
