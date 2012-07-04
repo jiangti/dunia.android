@@ -37,79 +37,9 @@
                         <div class="ribbon-back-left"></div>
                         <div class="ribbon-back-right"></div>
                     </div>
-
-                    <?php
-                        $days   = Model_Day::$days;
-                        $promos = $this->pub->getPromos();
-                    ?>
-                    <table id="promos" class="generic" cellspacing="1px" cellpadding="0px" border="0">
-                    <caption><a href="#" id="edit-section-button" class="ss_sprite ss_application_edit pad"></a></caption>
-                        <thead>
-                            <tr>
-                                <?php foreach ($days as $day): ?>
-                                    <th><?php echo $day; ?></th>
-                                <?php endforeach; ?>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $days = array_flip(Model_Day::$days); ?>
-                            <?php foreach($promos as $promo): ?>
-                                <?php
-                                $prev = $curr = $key = null;
-                                $cols = array();
-
-                                foreach(explode(",", $promo->day) as $index => $day) {
-                                    $curr = $days[$day];
-                                    if ($curr - 1 === $prev) {
-                                        $cols[$key]++;
-                                    } else {
-                                        $key = $day;
-                                        $cols[$key] = 1;
-                                    }
-                                    $prev = $curr;
-                                }
-                                ?>
-                            <tr>
-
-                            <?php foreach($days as $index => $value): ?>
-                                <?php if(isset($cols[$index])): ?>
-                                    <?php $skip = $cols[$index] - 1; ?>
-                                    <td colspan="<?php echo $cols[$index]; ?>">
-
-                                        <div class="promo glow">
-                                            <div class="time">
-                                                <?php echo $this->formatDate($promo->timeStart, 'g:ia'); ?> - <?php echo $this->formatDate($promo->timeEnd, 'g:ia'); ?>
-                                            </div>
-                                            <div class="thePromo">
-                                                <span class="price"><?php echo $this->currency($promo->price, null, null, $superIndex = true); ?></span>
-                                                <?php foreach ($promo->getLiquorTypes() as $liquor) {
-                                                    echo ' <span class="liquorType">' . $liquor->name . "</span>";
-                                                    $size = $promo->getLiquorSizes();
-                                                    echo '<div class="liquorSize">';
-                                                    foreach ($size as $s) {
-                                                        echo ' (' . $s['name'] . ')';
-                                                        break;
-                                                    }
-                                                    echo '</div>';
-                                                    echo '<div class="promoDescription">' . $promo->description . '</div>';
-                                                } ?>
-                                            </div>
-                                        </div>
-
-                                    </td>
-                                <?php else: ?>
-                                    <?php
-                                        if (isset($skip) && $skip) {
-                                            $skip--;
-                                        } else {
-                                            echo '<td></td>';
-                                        } ?>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                    
+                    <?php echo $this->partial('partials/promo-table.phtml', array('pub' => $this->pub)); ?>
+                    
                     <br />
                     <?php echo $this->partial('partials/addthis.phtml'); ?>
                     </div>
