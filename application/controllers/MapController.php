@@ -85,7 +85,8 @@ class MapController extends Model_Controller_Action {
                 'promos'    => $pub['promos'],
 	            'url'		=> array($pub['url']),
                 'icon'      => array($pub['icon']),
-	            'idPubType' => $pub['idPubType']
+	            'idPubType' => $pub['idPubType'],
+	            'dealise'   => $this->view->partial('partials/promo-table.phtml', array('pub' => Model_DbTable_Pub::retrieveById($pub['id'])))
 	        );
 	    }
 	    
