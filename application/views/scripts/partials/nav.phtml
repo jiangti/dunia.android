@@ -1,6 +1,6 @@
 <div class="nav-collapse">
     <ul class="nav pull-right">
-        <li><a href="<?php echo $this->url(array('controller' => 'pub', 'action' => 'email')); ?>">Mail Share</a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'pub', 'action' => 'email')); ?>" id="mailShare">Mail Share</a></li>
         <li><a href="/pub/">Pubs Index</a></li>
         <li><a href="#">Tell a friend</a></li>
         <li><a href="/index/about">About us</a></li>
@@ -9,11 +9,12 @@
         if ($auth->hasIdentity()) :
             $session = new Zend_Session_Namespace('user');
             $user    = $session->user;
-    ?>
+        ?>
             <li><a href="/user/profile" id="profile-nav"><img src="<?php echo $user->avatar; ?>" width="23" height="23" /><?php echo $user->firstName; ?></a></li>
             <li><a href="/user/logout">Logout</a></li>
-            <?php else: ?>
+        <?php else: ?>
             <li><a href="/user/login">Login</a></li>
-            <?php endif; ?>
+        <?php endif; ?>
+        <li><a href="#" id="help">Help</a></li>
     </ul>
 </div>
