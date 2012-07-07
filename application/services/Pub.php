@@ -380,7 +380,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 	    $select1->reset(Zend_Db_Select::ORDER);
 	    $select2->reset(Zend_Db_Select::ORDER);
 	    $select3->reset(Zend_Db_Select::ORDER);
-	    $select3->where('p.checkinsCount > 100');
+	    $select3->where('p.checkinsCount > 150');
 	    
 	    $unionSelect = $select1->getTable()->select(false);
 	    
@@ -392,7 +392,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 	    
 	    $select3->joinLeft(array('php' => 'pubHasPromo'), 'php.idPub = p.id', $nulls)->where('php.idPub is null');
 	    $select = $unionSelect->union(array($select1, $select2, $select3));
-        $select->order('priority')->order('distance')->limit(200);
+        $select->order('priority')->order('distance')->limit(100);
 	    return $select;
 	    
 	    
