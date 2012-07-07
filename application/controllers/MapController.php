@@ -52,11 +52,9 @@ class MapController extends Model_Controller_Action {
 		$bound->swlat  = $swlat;
 		$bound->swlng  = $swlong;
 
-        if ($zoom >= 17) {
-		    $pubs = $pubService->findPromo($lat, $long, null, null, null, $bound, true);
-        } else {
-            $pubs = $pubService->findPromo($lat, $long, null, null, null, $bound);
-        }
+		
+        $pubs = $pubService->findPromo($lat, $long, null, null, null, $bound);
+        
 		$this->_generateResponse($pubs);
 		
 	}

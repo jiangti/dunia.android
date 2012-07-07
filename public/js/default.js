@@ -35,9 +35,16 @@ $(document).ready(function() {
         none: marker.create({
         	name:   'none',
         	title:  'Not today',
-            icon: '/img/icons/markers/bar.png',
+            icon: '/img/icons/markers/bar.black.png',
             smallIcon: '/img/icons/markers/beer_sml.png',
             zIndex: 15
+        }),
+        zero: marker.create({
+        	name:   'zero',
+        	title:  'Zero',
+            icon: '/img/icons/markers/bar.png',
+            smallIcon: '/img/icons/markers/beer_sml.png',
+            zIndex: 10
         })
     });
     
@@ -46,7 +53,8 @@ $(document).ready(function() {
             Dunia.markerProperties.now, 
     	    Dunia.markerProperties.earlier,
     	    Dunia.markerProperties.later, 
-    	    Dunia.markerProperties.none
+    	    Dunia.markerProperties.none,
+    	    Dunia.markerProperties.zero,
         ]
     });
     
@@ -109,6 +117,7 @@ $(document).ready(function() {
             Dunia.markerProperties.earlier.set('count', 0);
             Dunia.markerProperties.later.set('count', 0);
             Dunia.markerProperties.none.set('count', 0);
+            Dunia.markerProperties.zero.set('count', 0);
 
             this.markers    = new Array();
             this.mapMarkers = new Array();
