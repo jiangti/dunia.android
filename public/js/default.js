@@ -36,7 +36,7 @@ $(document).ready(function() {
         	name:   'none',
         	title:  'Not today',
             icon: '/img/icons/markers/bar.black.png',
-            smallIcon: '/img/icons/markers/beer_sml.png',
+            smallIcon: '/img/icons/markers/black_sml.png',
             zIndex: 15
         }),
         zero: marker.create({

@@ -214,6 +214,25 @@ h1 {
     margin-right: auto;
 }
 
+.sidebar-nav-fixed {
+    position:fixed;
+    top:60px;
+    //width:21.97%;
+}
+
+@media (max-width: 767px) {
+    .sidebar-nav-fixed {
+        width:auto;
+    }
+}
+
+@media (max-width: 979px) {
+    .sidebar-nav-fixed {
+        position:static;
+        width: auto;
+    }
+}
+
 /**
  * Promos
  */
@@ -901,4 +920,54 @@ a.cancel {
         }
     }
 
+}
+
+#help {
+
+    h2 {
+        margin-top: 5%;
+    }
+    a.email {
+        padding: 0;
+    }
+    .hero-unit, #helpWrapper {
+        margin: 2.5%;
+    }
+
+    #helpWrapper p {
+        font-size: 13px;
+        line-height: 18px;
+    }
+
+    ol li {
+        list-style: lower-roman;
+    }
+
+    li {
+        margin-bottom: 1%;
+    }
+
+    ul li {
+        list-style: image;
+    }
+
+    li.itson {
+         list-style-image: url(/img/icons/markers/half_sml.png);
+    }
+
+    li.soon {
+         list-style-image: url(/img/icons/markers/full_sml.png);
+    }
+
+    li.missed {
+         list-style-image: url(/img/icons/markers/empty_sml.png);
+    }
+
+    li.notoday {
+         list-style-image: url(/img/icons/markers/black_sml.png);
+    }
+
+    li.zero {
+         list-style-image: url(/img/icons/markers/beer_sml.png);
+    }
 }

@@ -76,5 +76,9 @@ class IndexController extends Model_Controller_Action {
     public function aboutAction() {
 
     }
+
+    public function helpAction() {
+
+    }
 }
 
