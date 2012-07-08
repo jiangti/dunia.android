@@ -146,8 +146,8 @@ class PubController extends Model_Controller_Action
         $this->view->pub = $pub->getById($id);
         
         if ($this->isMobile() || $this->_getParam('mobile')) {
-            $this->_helper->layout()->setLayout('mobile-min');
-            $this->_helper->viewRenderer->setRender('overview-mobile');
+            //$this->_helper->layout()->setLayout('mobile-min');
+            //$this->_helper->viewRenderer->setRender('overview-mobile');
             
             $service = new Service_Pub();
             $tips = $service->fetchTips($pub->idFoursquare);

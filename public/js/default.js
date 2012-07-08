@@ -181,8 +181,11 @@ $(document).ready(function() {
                 );
                 
                 if (type == 'none') {
-                    promos = marker.dealise;
+                    promos += '<h3>Weekly Specials</h3>' +
+                        '<div>' + marker.dealise + '</div>';
                 } else {
+                    promos += '<h3>Today\'s deals</h3>' +
+                        '<div>';
                     for (var j = 0; j < marker.promos.length; j++) {
                         var promo = marker.promos[j];
                         if (promo.itsOn != 'none') {
@@ -197,6 +200,7 @@ $(document).ready(function() {
                                 '</div></div>';
                         }
                     }
+                    promos += '</div>';
                 }
 
                 var overlayHtml = '<div class="overlay">' +
@@ -207,10 +211,7 @@ $(document).ready(function() {
                 }
 
                 overlayHtml += name + '</h2>' +
-                    '<div class="overlayContent">' +
-                    '<h3>Today\'s deals</h3>' +
-                    '<div>' + promos + '</div>' +
-                    '</div>' +
+                    '<div class="overlayContent">' + promos + '</div>' +
                     '<div class="foot">' +
                     '<div class="address">' + address + '</div>' +
                     '<a href="' + marker.url[0] + '" title="' + name + '" data-ajax="false">More info >></a>' +

@@ -140,6 +140,8 @@ $(document).ready(function() {
 
     autocomplete.bindTo('bounds', AppMap.map);
 
+    console.log($('.pac-container'));
+
 	var view = Ember.View.create({
 		templateName: 'summary-bar',
 		summaries: Dunia.summary.summaries,

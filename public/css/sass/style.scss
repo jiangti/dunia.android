@@ -554,6 +554,40 @@ table.promos.generic {
             margin: 0;
             padding: 0;
         }
+
+        table {
+            div {
+                font-size: 12px;
+                padding: 0;
+            }
+            th {
+                padding: 2px 5px;
+                font-variant: small-caps;
+            }
+
+            // toMixin
+            span.price {
+                font-weight: bold;
+                font-size: 22px;
+                color: #000000;
+            }
+
+            span.liquorType {
+                font-family: 'Imprima', Arial, sans-serif;
+                font-weight: normal;
+                font-size: 20px;
+            }
+
+            .liquorSize {
+                font-family: 'Imprima', Arial, sans-serif;
+                font-style: italic;
+                padding: 5px;
+            }
+            // </toMixin>
+            .thePromo {
+                padding: 8px 4px 4px 4px;
+            }
+        }
     }
 
     .foot {
@@ -970,4 +1004,8 @@ a.cancel {
     li.zero {
          list-style-image: url(/img/icons/markers/beer_sml.png);
     }
+}
+
+.pac-container {
+    line-height: 20px;
 }
