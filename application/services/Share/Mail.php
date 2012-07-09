@@ -73,6 +73,7 @@ class Service_Share_Mail extends Aw_Service_ServiceAbstract {
 			->setSubject('Upload to dunia.com.au successful.')
 			->addTo('jiangti.wan.leong@gmail.com', 'Wan-Leong Jiangti')
 			->addTo('victorgarciagonzalez@gmail.com', "Víctor García")
+			->addTo('gabriel.tsang@hotmail.com', "Gabriel Tsang")
 			->addTo($email, $name)
 		;
 		
