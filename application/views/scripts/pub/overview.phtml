@@ -42,6 +42,13 @@
                     
                     <br />
                     <?php echo $this->partial('partials/addthis.phtml'); ?>
+                    
+                    <ul>
+                        <?php foreach($this->changeLogs as $changeLog): ?>
+                            <li><?php echo $changeLog; ?> - <?php echo $this->formatDate($changeLog->datetime); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    
                     </div>
                 </div>
 
@@ -135,10 +142,11 @@ $(document).ready(function() {
 	});
 	
     $('a.open').click(function() {
-		popup = window.open($('#url').val() , 'popup', 'height=600,width=800');
+		popup = window.open($('#url').val() , 'popup', 'height=600,width=800,scrollbars=1,status=1,location=1,resizable=1');
 		if (window.focus) { popup.focus(); }
 		return false;
 	});
+	
 
 	$('form fieldset legend > a').click(function(e) {
 		e.preventDefault();

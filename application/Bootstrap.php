@@ -52,4 +52,22 @@ class Bootstrap extends Aw_BootstrapAbstract {
         Zend_Registry::set('config', $this->getOptions());
     }
     
+    public function _initLog() {
+        $this->bootstrap('db');
+        
+        
+        
+        $columnMapping = array(
+            'priority' => 'priority',
+            'message' => 'message',
+            'idPub'=> 'idPub',
+        );
+        
+        $writer1 = new Zend_Log_Writer_Db(Zend_Db_Table_Abstract::getDefaultAdapter(), 'log', $columnMapping);
+        
+        $log = new Zend_Log($writer1);
+        $log->setEventItem('idPub', null);
+        Zend_Registry::set('Logger', $log);
+    }
+    
 }

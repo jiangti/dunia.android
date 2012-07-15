@@ -140,9 +140,11 @@ class PubController extends Model_Controller_Action
     
     public function overviewAction()
     {
+        
         $id = $this->_getParam('id');
-
+        
         $pub = new Model_Pub();
+
         $this->view->pub = $pub->getById($id);
         
         if ($this->isMobile() || $this->_getParam('mobile')) {
@@ -156,6 +158,7 @@ class PubController extends Model_Controller_Action
             
         }
         
+        $this->view->changeLogs = $pub->getChangeLogs();
         $this->_share();
     }
     

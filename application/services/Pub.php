@@ -168,7 +168,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
                 
                 //Reset and readd all again. Easiest approach for now.
                 
-                $pub->resetPromo();
+                $currentCount = $pub->resetPromo();
             }
             
            	$filePath = APPLICATION_ROOT . '/public/images/pub/' . $pub->id;
@@ -185,10 +185,18 @@ class Service_Pub extends Aw_Service_ServiceAbstract
             	$counter++;
             }
             
+            $count = 0;
+            
             foreach ($data as $index => $value) {
                 if (stripos($index, 'detail') !== false && ($value['value'] || $value['description'])) {
                     $pub->addDealFromArray($value);
+                    
+                    $count++;
                 }
+            }
+            
+            if ($count > $currentCount) {
+                Zend_Registry::get('Logger')->info('[username] has added a promo deal.', array('idPub' => $pub->id));
             }
             
             $db->commit();

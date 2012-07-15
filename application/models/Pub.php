@@ -23,6 +23,8 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	
 	public $telephone;
 	public $checkinsCount;
+	
+	protected $_pub = null;
 
 
 	public function setAddress(Model_Address $address) {
@@ -56,6 +58,10 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	    return $weekly;
 	}
 	
+	public function getChangeLogs() {
+	    return $this->_pub->getChangeLogs();
+	}
+	
 	public function getTips() {
 	    $pubRow = Model_DbTable_Pub::retrieveById($this->id);
 	    return $pubRow->findDependentRowset('Model_DbTable_Tip');
@@ -64,6 +70,8 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	public function getById($id) {
 	    $pub = Model_DbTable_Pub::retrieveById($id);
 	    $this->setFromArray($pub);
+	    
+	    $this->_pub = $pub;
 
 	    $address = new Model_Address();
 	    $address->setFromArray($pub->getAddress());

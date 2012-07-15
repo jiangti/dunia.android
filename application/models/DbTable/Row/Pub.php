@@ -117,9 +117,17 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 	}
 	
 	public function resetPromo() {
-		foreach ($this->getPromos() as $promo) {
+	    $promos = $this->getPromos();
+		
+	    $count = count($promos);
+		
+		foreach ($promos as $promo) {
 			$promo->delete();
 		}
+		
+		return $count;
+		
+		
 	}
 	
 	public function addPromo(Model_DbTable_Row_Promo $promo) {
@@ -182,6 +190,14 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 		return $files;
 	}
 	
+	public function getChangeLogs() {
+	    
+	    $select = Model_DbTable_Log::getSelect(true);
+	    $select->order('datetime desc');
+	    
+	    return $this->findDependentRowset(new Model_DbTable_Log(), null, $select);
+	}
+	
 	public function getImagesWebUri() {
 		$files = glob($this->getImageDirectory() . '/*');
 		foreach ($files as $index => $image) {
@@ -202,6 +218,23 @@ class Model_DbTable_Row_Pub extends Model_DbTable_Row_RowAbstract {
 	            $this->save();
 	        }
 	    }
+	    
+	    $changeLog = array();
+	    
+	    
+	    if ($this->_cleanData['email'] != $this->email) {
+	        $changeLog[] = 'Email';
+	    }
+	    
+	    if ($this->_cleanData['url'] != $this->url) {
+	        $changeLog[] = 'Url';
+	    }
+	    
+	    if ($changeLog) {
+	        $message = sprintf('%s has been updated by [username]', implode(" & ", $changeLog));
+	        Zend_Registry::get('Logger')->info($message, array('idPub' => $this->id));
+	    }
+	    
 	}
 	
 	public function __toString() {
