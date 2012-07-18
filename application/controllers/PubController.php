@@ -129,6 +129,11 @@ class PubController extends Model_Controller_Action
         $service = new Service_Pub();
         $select = $service->searchPub($this->_getParam('q'));
         
+        if ($this->_getParam('checked')) {
+            $select->where('isChecked is null');
+            $select->joinLeft(array('php' => 'pubHasPromo'), 'php.idPub = p.id', array())->where('php.idPub is null');
+        }
+
         $paginator = Zend_Paginator::factory($select);
         
         $paginator->setCurrentPageNumber($this->_request->getParam('page'))
@@ -136,6 +141,8 @@ class PubController extends Model_Controller_Action
         ;
         
         $this->view->pubs = $paginator;
+        
+        $this->view->reversi = ($this->_getParam('checked') ? 0: 1);
     }
     
     public function overviewAction()

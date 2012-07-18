@@ -23,6 +23,8 @@ class Form_Pub extends Zend_Form {
         $element = new Zend_Form_Element_Text('url', array(
             'label' => 'Website'
         ));
+        
+        
         $this->addElement($element);
         
         $this->addSubForm(new Form_Address(), 'address');

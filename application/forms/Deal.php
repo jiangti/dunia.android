@@ -20,6 +20,11 @@ class Form_Deal extends Form_Abstract {
 			->setDescription('<a class="open" ref="">Open</a>')
 		;
 		
+		$isChecked = new Aw_Form_Element_Checkbox('isChecked', array(
+            'label' => 'Is Checked?'
+		));
+		
+		
 		$description = $url->getDecorator('description');
 		$description->setOption('tag', 'span');
 		$description->setOption('escape', false);
@@ -34,7 +39,7 @@ class Form_Deal extends Form_Abstract {
 		$file = new Aw_Form_Element_File('file');
 		$file->setMultiFile(3);
 
-		$this->addElements(array($name, $email, $url, $location, $file));
+		$this->addElements(array($name, $email, $url, $isChecked, $location, $file));
 		
 		$this->setAttrib('enctype', 'multipart/form-data');
 		

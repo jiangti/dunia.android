@@ -23,6 +23,7 @@ class Model_Pub extends Aw_Model_ModelAbstract {
 	
 	public $telephone;
 	public $checkinsCount;
+	public $isChecked;
 	
 	protected $_pub = null;
 
