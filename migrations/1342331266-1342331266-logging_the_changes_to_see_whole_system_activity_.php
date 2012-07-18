@@ -10,7 +10,7 @@ class DbSchema_1342331266 extends Akrabat_Db_Schema_AbstractChange
             CREATE TABLE `log`(
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
               `message` VARCHAR(255),
-              `datetime` TIMESTAMP(0),
+              `datetime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
               `priority` INT UNSIGNED,
               `idPub` INT UNSIGNED NULL,
               PRIMARY KEY (`id`)
