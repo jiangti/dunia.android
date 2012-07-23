@@ -19,7 +19,7 @@
                 ->appendFile( '/contrib/bootstrap/js/bootstrap-popover.js')
             ;
 		?>
-		<?php echo $this->headLink(); ?>
+		
 		<?php echo $this->headScript(); ?>
 		<script type="text/javascript">
 		</script>
@@ -45,4 +45,6 @@
       </script>
 	<?php echo $this->layout()->content; ?>
 	</body>
+    <?php echo $this->headLink(); ?>
+    <?php echo $this->placeholder('js'); ?>
 </html>

@@ -10,6 +10,7 @@
     </div>
 
     <div data-role="content" style="height: 95%; padding: 0">
+        <?php $this->placeholder('js')->captureStart(); ?>
         <script type="text/javascript">
             $(document).ready(function() {
                 var amHere = new google.maps.LatLng('<?php echo $this->lat; ?>', '<?php echo $this->long; ?>');
@@ -46,6 +47,7 @@
 
             });
         </script>
+        <?php $this->placeholder('js')->captureEnd(); ?>
         <div id="map_canvas" style="z-index: 0;height:100%;min-height:300px;"></div>
     </div>
 

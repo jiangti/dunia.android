@@ -29,7 +29,7 @@ $this->headScript()
 ;
 ?>
 <?php echo $this->headLink(); ?>
-<?php echo $this->headScript(); ?>
+
 <script type="text/javascript">
 <!--
 thirsty = {};
@@ -84,12 +84,14 @@ thirsty = {};
 
     </script>
     
-    <script type="text/javascript">
+	<?php echo $this->headScript(); ?>
+	 <script type="text/javascript">
 	<!--
 	$(document).ready(function(){
 	    $(".sticky").sticky({topSpacing:0});
 	});
 	//-->
 	</script>
+	<?php echo $this->placeholder('js'); ?>
 </body>
 </html>

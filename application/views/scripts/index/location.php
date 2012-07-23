@@ -1,4 +1,4 @@
-
+<?php $this->placeholder('js')->captureStart(); ?>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -25,7 +25,7 @@
                     }
                 });
                 
-            }, 
+            },
             function (msg) {
                 var s = document.querySelector('#info');
                 s.innerHTML = typeof msg == 'string' ? msg : "failed";
@@ -38,5 +38,5 @@
     });
 
 </script>
-
+<?php $this->placeholder('js')->captureEnd(); ?>
 <div id="info"></div>
