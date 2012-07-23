@@ -1,4 +1,4 @@
-@import url('snickles/stylesheet.css');
+@import url("snickles/stylesheet.css");
 @CHARSET "UTF-8";
 /**
  * Global variables
@@ -1020,57 +1020,68 @@ a.cancel {
   margin-bottom: 20px;
 }
 
-/* line 961, sass/style.scss */
+/* line 959, sass/style.scss */
+.state-progress {
+  text-align: center;
+  padding-top: 10px;
+}
+/* line 962, sass/style.scss */
+.state-progress span {
+  font-size: 9px;
+  font-weight: bold;
+}
+
+/* line 970, sass/style.scss */
 #help h2 {
   margin-top: 5%;
 }
-/* line 964, sass/style.scss */
+/* line 973, sass/style.scss */
 #help a.email {
   padding: 0;
 }
-/* line 967, sass/style.scss */
+/* line 976, sass/style.scss */
 #help .hero-unit, #help #helpWrapper {
   margin: 2.5%;
 }
-/* line 971, sass/style.scss */
+/* line 980, sass/style.scss */
 #help #helpWrapper p {
   font-size: 13px;
   line-height: 18px;
 }
-/* line 976, sass/style.scss */
+/* line 985, sass/style.scss */
 #help ol li {
   list-style: lower-roman;
 }
-/* line 980, sass/style.scss */
+/* line 989, sass/style.scss */
 #help li {
   margin-bottom: 1%;
 }
-/* line 984, sass/style.scss */
+/* line 993, sass/style.scss */
 #help ul li {
   list-style: image;
 }
-/* line 988, sass/style.scss */
+/* line 997, sass/style.scss */
 #help li.itson {
   list-style-image: url(/img/icons/markers/half_sml.png);
 }
-/* line 992, sass/style.scss */
+/* line 1001, sass/style.scss */
 #help li.soon {
   list-style-image: url(/img/icons/markers/full_sml.png);
 }
-/* line 996, sass/style.scss */
+/* line 1005, sass/style.scss */
 #help li.missed {
   list-style-image: url(/img/icons/markers/empty_sml.png);
 }
-/* line 1000, sass/style.scss */
+/* line 1009, sass/style.scss */
 #help li.notoday {
   list-style-image: url(/img/icons/markers/black_sml.png);
 }
-/* line 1004, sass/style.scss */
+/* line 1013, sass/style.scss */
 #help li.zero {
   list-style-image: url(/img/icons/markers/beer_sml.png);
 }
 
-/* line 1009, sass/style.scss */
+/* line 1018, sass/style.scss */
 .pac-container {
   line-height: 20px;
 }

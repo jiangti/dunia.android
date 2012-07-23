@@ -143,6 +143,8 @@ class PubController extends Model_Controller_Action
         $this->view->pubs = $paginator;
         
         $this->view->reversi = ($this->_getParam('checked') ? 0: 1);
+        
+        $this->view->stateProgress = $service->getCheckedProgressByState(array('nsw', 'wa', 'vic', 'qld'));
     }
     
     public function overviewAction()

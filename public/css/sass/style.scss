@@ -956,6 +956,15 @@ a.cancel {
 
 }
 
+.state-progress {
+    text-align: center;
+    padding-top: 10px;
+    span {
+        font-size: 9px;
+        font-weight: bold;
+    }
+}
+
 #help {
 
     h2 {

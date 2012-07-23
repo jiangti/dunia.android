@@ -466,4 +466,41 @@ class Service_Pub extends Aw_Service_ServiceAbstract
         $select = $this->_getFindPubSelect($latitude, $longitude);
         return $select->getTable()->fetchAll($select);
     }
+    
+    
+    public function getCheckedProgressByState(array $states) {
+        //SELECT COUNT(1), a.state FROM pub p JOIN address a ON p.idAddress = a.id
+        //WHERE  a.state IN ('WA', 'NSW', 'VIC') GROUP BY a.state
+        //
+        //
+        //SELECT COUNT(1), a.state FROM pub p JOIN address a ON p.idAddress = a.id
+        //WHERE  p.isChecked = 1 AND a.state IN ('WA', 'NSW', 'VIC') GROUP BY a.state
+        
+        $db = Zend_Db_Table_Abstract::getDefaultAdapter();
+        
+        $select = new Zend_Db_Select($db);
+        
+        $select
+            ->from(array('p' => 'pub'), array())
+            ->join(array('a' => 'address'), 'p.idAddress = a.id', array('state','count' => new Zend_Db_Expr('count(1)')))
+            ->where('state in (?)', $states)
+            ->group('state')
+        ;
+        
+        $rows0 = $db->fetchPairs($select);
+        
+        $select
+            ->where('p.isChecked = 1')
+        ;
+        
+        $rows1 = $db->fetchPairs($select);
+        
+        $memory = array();
+        
+        foreach ($rows0 as $key => $value) {
+            $memory[$key] = array(idx($rows1, $key, 0), $value);
+        }
+        
+        return $memory;
+    }
 }
