@@ -1,4 +1,5 @@
 <?php
+require_once APPLICATION_ROOT . '/library/Aw/Contrib/Epi/EpiCurl.php';
 /*
  *  Class to integrate with Foursquare's API.
  *    Authenticated calls are done using OAuth and require access tokens for a user.
