@@ -18,7 +18,6 @@
  */
 
 require_once dirname(dirname(__FILE__)).'/__init_script__.php';
-phutil_require_module('phutil', 'console');
 
 $args = new PhutilArgumentParser($argv);
 $args->setTagline('utf8 charset test script');
@@ -55,11 +54,6 @@ $args->parse(array(
     'name'      => 'test',
     'short'     => 't',
     'help'      => 'Print file names containing invalid UTF-8 to stdout.',
-  ),
-  array(
-    'name'      => 'help',
-    'short'     => 'h',
-    'help'      => 'Show this help.',
   ),
   array(
     'name'      => 'files',
@@ -161,6 +155,8 @@ function show(array $files, $context) {
     }
 
   }
+
+  return 0;
 }
 
 function show_problems($line) {

@@ -51,10 +51,20 @@ function id($x) {
  *                  $default is returned without raising a warning.
  * @group   util
  */
-
 function idx(array $array, $key, $default = null) {
-  return array_key_exists($key, $array) ? $array[$key] : $default;
+  // isset() is a micro-optimization - it is fast but fails for null values.
+  if (isset($array[$key])) {
+    return $array[$key];
+  }
+
+  // Comparing $default is also a micro-optimization.
+  if ($default === null || array_key_exists($key, $array)) {
+    return null;
+  }
+
+  return $default;
 }
+
 
 /**
  * Call a method on a list of objects. Short for "method pull", this function
@@ -470,8 +480,14 @@ function array_select_keys(array $dict, array $keys) {
 function assert_instances_of(array $arr, $class) {
   foreach ($arr as $key => $object) {
     if (!($object instanceof $class)) {
+      $given = gettype($object);
+      if (is_object($object)) {
+        $given = 'instance of '.get_class($object);
+      }
       throw new InvalidArgumentException(
-        "Array item with key '{$key}' must be an instance of '{$class}'.");
+        "Array item with key '{$key}' must be an instance of {$class}, ".
+        "{$given} given."
+        );
     }
   }
   return $arr;

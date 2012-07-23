@@ -1,6 +1,17 @@
 <?php
 abstract class Aw_Table_RowAbstract extends Zend_Db_Table_Row_Abstract {
+	/**
+	 * @var Zend_Db_Table_Rowset_Abstract
+	 */
+	protected $_rowset;
 	protected static $_cols = null;
+	
+
+
+	public function setRowset($rowset) {
+		$this->_rowset = $rowset;
+		return $this;
+	}
 	
 	protected function _getCols() {
 		return $this->getTable()->info('cols');

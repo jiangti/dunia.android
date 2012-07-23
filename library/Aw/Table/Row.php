@@ -1,17 +1,8 @@
 <?php
 class Aw_Table_Row extends Aw_Table_RowAbstract {
-	/**
-	 * @var Zend_Db_Table_Rowset_Abstract
-	 */
-	protected $_rowset;
+	
 	public function loadManyToManyRowset() {
 
-	}
-	
-	
-	public function setRowset($rowset) {
-		$this->_rowset = $rowset;
-		return $this;
 	}
 
 	/**
