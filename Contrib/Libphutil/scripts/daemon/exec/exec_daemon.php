@@ -56,6 +56,10 @@ $args->parse(
       'help' => 'Load __library__.',
     ),
     array(
+      'name'  => 'verbose',
+      'help'  => 'Enable verbose activity logging.',
+    ),
+    array(
       'name' => 'more',
       'wildcard' => true,
     ),
@@ -63,6 +67,7 @@ $args->parse(
 
 $trace_memory = $args->getArg('trace-memory');
 $trace_mode = $args->getArg('trace') || $trace_memory;
+$verbose = $args->getArg('verbose');
 
 $log = $args->getArg('log');
 if ($log) {
@@ -76,14 +81,11 @@ $load = $args->getArg('load-phutil-library');
 $argv = $args->getArg('more');
 
 if ($load) {
-  phutil_require_module('phutil', 'filesystem');
   foreach ($load as $library) {
     $library = Filesystem::resolvePath($library);
     phutil_load_library($library);
   }
 }
-
-phutil_require_module('phutil', 'symbols');
 
 PhutilErrorHandler::initialize();
 function phutil_daemon_error_listener($event, $value, array $metadata) {
@@ -113,5 +115,8 @@ if ($trace_mode) {
 }
 if ($trace_memory) {
   $daemon->setTraceMemory();
+}
+if ($verbose) {
+  $daemon->setVerbose(true);
 }
 $daemon->execute();

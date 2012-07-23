@@ -66,14 +66,22 @@ function phutil_is_windows() {
 /**
  * @group library
  */
+function phutil_is_hiphop_runtime() {
+  return (array_key_exists('HPHP', $_ENV) && $_ENV['HPHP'] === 1);
+}
+
+/**
+ * @group library
+ */
 final class PhutilBootloader {
 
   private static $instance;
 
-  private $registeredLibraries = array();
-  private $libraryMaps         = array();
-  private $moduleStack         = array();
-  private $currentLibrary      = null;
+  private $registeredLibraries  = array();
+  private $libraryMaps          = array();
+  private $moduleStack          = array();
+  private $currentLibrary       = null;
+  private $classTree            = array();
 
   public static function getInstance() {
     if (!self::$instance) {
@@ -84,6 +92,10 @@ final class PhutilBootloader {
 
   private function __construct() {
     // This method intentionally left blank.
+  }
+
+  public function getClassTree() {
+    return $this->classTree;
   }
 
   public function registerLibrary($name, $path) {
@@ -108,6 +120,26 @@ final class PhutilBootloader {
     }
 
     $this->registeredLibraries[$name] = $path;
+
+    // TODO: Remove this once we drop libphutil v1 support.
+    $version = $this->getLibraryFormatVersion($name);
+    if ($version == 1) {
+      return $this;
+    }
+
+    // For libphutil v2 libraries, load all functions when we load the library.
+
+    if (!class_exists('PhutilSymbolLoader', false)) {
+      $root = $this->getLibraryRoot('phutil');
+      $this->executeInclude($root.'/symbols/PhutilSymbolLoader.php');
+    }
+
+    $loader = new PhutilSymbolLoader();
+    $loader
+      ->setLibrary($name)
+      ->setType('function')
+      ->selectAndLoadSymbols();
+
     return $this;
   }
 
@@ -125,8 +157,59 @@ final class PhutilBootloader {
         throw new PhutilBootloaderException(
           "Include of '{$root}/__phutil_library_map__.php' failed!");
       }
+
+      $map = $this->libraryMaps[$name];
+
+      // NOTE: We can't use "idx()" here because it may not be loaded yet.
+      $version = isset($map['__library_version__'])
+        ? $map['__library_version__']
+        : 1;
+
+      switch ($version) {
+        case 1:
+          // NOTE: In the original version of the library, the map stored
+          // separate 'requires_class' (always a string) and
+          // 'requires_interface' keys (always an array). Load them into the
+          // classtree.
+
+          // TODO: Remove support once we drop libphutil v1 support.
+          foreach ($map['requires_class'] as $child => $parent) {
+            $this->classTree[$parent][] = $child;
+          }
+          foreach ($map['requires_interface'] as $child => $parents) {
+            foreach ($parents as $parent) {
+              $this->classTree[$parent][] = $child;
+            }
+          }
+          break;
+        case 2:
+          // NOTE: In version 2 of the library format, all parents (both
+          // classes and interfaces) are stored in the 'xmap'. The value is
+          // either a string for a single parent (the common case) or an array
+          // for multiple parents.
+          foreach ($map['xmap'] as $child => $parents) {
+            foreach ((array)$parents as $parent) {
+              $this->classTree[$parent][] = $child;
+            }
+          }
+          break;
+        default:
+          throw new Exception("Unsupported library version '{$version}'!");
+      }
+
     }
     return $this->libraryMaps[$name];
+  }
+
+  public function getLibraryFormatVersion($name) {
+    $map = $this->getLibraryMap($name);
+
+    // NOTE: We can't use "idx()" here because it may not be loaded yet.
+    $version = isset($map['__library_version__'])
+      ? $map['__library_version__']
+      : 1;
+
+    return $version;
   }
 
   public function getLibraryRoot($name) {
@@ -169,15 +252,25 @@ final class PhutilBootloader {
   }
 
   public function loadModule($library, $module) {
+    $version = $this->getLibraryFormatVersion($library);
+    if ($version == 2) {
+      // If a v1 library has a "phutil_require_module(...)" for a v2 library,
+      // ignore it. We load functions on library registration and autoload
+      // classes.
+      return;
+    }
+
     $this->pushModuleStack($library, $module);
     phutil_require_source('__init__.php');
     $this->popModuleStack();
   }
 
-  public function loadClass($name, $library, $module) {
-    $this->pushModuleStack($library, $module);
-    phutil_require_source($name.'.php');
-    $this->popModuleStack();
+  public function loadLibrarySource($library, $source) {
+    $path = $this->getLibraryRoot($library).'/'.$source;
+    $okay = $this->executeInclude($path);
+    if (!$okay) {
+      throw new PhutilBootloaderException("Include of '{$path}' failed!");
+    }
   }
 
   public function loadSource($source) {
@@ -297,16 +390,20 @@ final class PhutilLibraryConflictException extends Exception {
   }
 }
 
-phutil_register_library('phutil', __FILE__);
-
-phutil_require_module('phutil', 'symbols');
 
 /**
  * @group library
  */
-function __phutil_autoload($class) {
+function __phutil_autoload($class_name) {
   try {
-    PhutilSymbolLoader::loadClass($class);
+    $loader = new PhutilSymbolLoader();
+    $symbols = $loader
+      ->setType('class')
+      ->setName($class_name)
+      ->selectAndLoadSymbols();
+    if (!$symbols) {
+      throw new PhutilMissingSymbolException($class_name);
+    }
   } catch (PhutilMissingSymbolException $ex) {
     // If there are other SPL autoloaders installed, we need to give them a
     // chance to load the class. Throw the exception if we're the last
@@ -320,3 +417,5 @@ function __phutil_autoload($class) {
 }
 
 spl_autoload_register('__phutil_autoload', $throw = true);
+
+phutil_register_library('phutil', __FILE__);
