@@ -1,4 +1,4 @@
-define(['libs/jquery', '/contrib/selectToUiSlider/js/selectToUISlider.jQuery.js', 'libs/bootstrap', './default'], function() {
+define(['libs/jquery', 'libs/jquery.ui', '/contrib/selectToUiSlider/js/selectToUISlider.jQuery.js', 'libs/bootstrap', './default'], function() {
 	$(document).ready(function() {
 		
 		$("#mailShare").popover({
