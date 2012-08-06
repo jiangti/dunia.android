@@ -1,4 +1,5 @@
-require(['libs/ember'], function(Ember) {
+var Dunia;
+define(['libs/ember'], function(Ember) {
 	$(document).ready(function() {
 
 		Dunia = Ember.Application.create();
@@ -329,5 +330,6 @@ require(['libs/ember'], function(Ember) {
 	    }
 	    return formatted;
 	};
+	
 });
 

@@ -1,12 +1,12 @@
-requirejs.config({
+require.config({
 	paths: {
-		"jquery.ui": "/contrib/jquery-ui-1.8.17.custom/js/jquery-ui-1.8.17.custom.min.js"
-	}
+        'jquery.min': '/contrib/jquery-ui-1.8.17.custom/js/jquery-ui-1.8.17.custom.min',
+        'jquery.slider': '/contrib/selectToUiSlider/js/selectToUISlider.jQuery'
+    }
 });
 
 // Start the main app logic.
-requirejs(['libs/ember', 'libs/routes'], function() {
-	var app = new routes();
+requirejs(['libs/route'], function(app) {
 	app.get("/$", function(req) {
 		require(['app/controllers/map/index']);
 	});
