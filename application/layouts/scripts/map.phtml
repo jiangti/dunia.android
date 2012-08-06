@@ -2,7 +2,12 @@
 <html>
 	<head>
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-		<script data-main="/js/main.js" src="/js/require.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<?php if (APPLICATION_ENV == 'production'): ?>
+		<script data-main="/js/main-build.js" src="/js/require.js"></script>
+		<?php else: ?>
+		<script data-main="/js/main-build.js" src="/js/require.js"></script>
+		<?php endif; ?>
 		
 		<?php
 		    $this->headLink()
