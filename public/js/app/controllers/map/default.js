@@ -1,4 +1,4 @@
-require(['ember'], function(Ember) {
+require(['libs/ember'], function(Ember) {
 	$(document).ready(function() {
 
 		Dunia = Ember.Application.create();

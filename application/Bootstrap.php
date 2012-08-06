@@ -8,8 +8,6 @@ class Bootstrap extends Aw_BootstrapAbstract {
 				        'basePath'  => APPLICATION_PATH));
 		
 		Zend_Registry::set("Zend_Application", $this);
-		//$pluginLoader = new Zend_Loader_PluginLoader();
-		//$pluginLoader->addPrefixPath('Application_Plugin', APPLICATION_ROOT . '/application/plugins/');
 	}
 	
 	public function _initLibraries() {
@@ -29,11 +27,8 @@ class Bootstrap extends Aw_BootstrapAbstract {
         $view
         	->headScript()
         	->prependFile('/contrib/jquery-ui-1.8.17.custom/js/jquery-1.7.1.min.js')
-            //->appendFile('/js/ember-0.9.7.1.min.js')
-            ->appendFile('/js/ember-0.9.8.1.min.js')
         	->appendFile('http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places')
         	->appendFile('/js/jquery.corner.js')
-        	->appendFile('/js/default.js')
         ;
         
         Zend_Paginator::setDefaultScrollingStyle('Sliding');
