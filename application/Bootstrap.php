@@ -27,7 +27,6 @@ class Bootstrap extends Aw_BootstrapAbstract {
         $view
         	->headScript()
         	->appendFile('http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places')
-        	->appendFile('/js/jquery.corner.js')
         ;
         
         Zend_Paginator::setDefaultScrollingStyle('Sliding');
