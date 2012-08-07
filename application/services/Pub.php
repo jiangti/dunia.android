@@ -16,6 +16,8 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     		}
     	}
     	
+    	$lucene = new Service_Pub_Lucene();
+    	
     	if ($goOn) {
 	    	
 	    	$db = Zend_Db_Table_Abstract::getDefaultAdapter();
@@ -61,6 +63,9 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 		    	$row = Model_DbTable_Pub::getRow($array);
 		    	
 		    	$row->save();
+		    	
+		    	$lucene->add($row);
+		    	
 		    	$db->commit();
 	    		
 	    	} catch (Exception $e) {
@@ -101,6 +106,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     
     public function savePub(Model_DbTable_Row_Pub $pub)
     {
+        $lucene = new Service_Pub_Lucene();
 
         $notEmpty = new Zend_Validate_NotEmpty();
         if (!$notEmpty->isValid($pub->name)) {
@@ -119,6 +125,9 @@ class Service_Pub extends Aw_Service_ServiceAbstract
         try {
             $db->beginTransaction();
             $pub->save();
+            
+            $lucene->add($pub);
+            
             $db->commit();
         } catch (Exception $e) {
             $db->rollBack();
@@ -146,6 +155,8 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     public function savePubFromShareArray($data, Model_DbTable_Row_Pub $pub = null)
     {
         $db = Model_Db::getInstance();
+        
+        $lucene = new Service_Pub_Lucene();
         
         try {
             
@@ -198,6 +209,8 @@ class Service_Pub extends Aw_Service_ServiceAbstract
             if ($count > $currentCount) {
                 Zend_Registry::get('Logger')->info('[username] has added a promo deal.', array('idPub' => $pub->id));
             }
+            
+            $lucene->add($pub);
             
             $db->commit();
         } catch (Exception $e) {
@@ -469,12 +482,6 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     
     
     public function getCheckedProgressByState(array $states) {
-        //SELECT COUNT(1), a.state FROM pub p JOIN address a ON p.idAddress = a.id
-        //WHERE  a.state IN ('WA', 'NSW', 'VIC') GROUP BY a.state
-        //
-        //
-        //SELECT COUNT(1), a.state FROM pub p JOIN address a ON p.idAddress = a.id
-        //WHERE  p.isChecked = 1 AND a.state IN ('WA', 'NSW', 'VIC') GROUP BY a.state
         
         $db = Zend_Db_Table_Abstract::getDefaultAdapter();
         
