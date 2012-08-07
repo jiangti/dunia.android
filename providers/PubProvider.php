@@ -8,6 +8,37 @@ class PubProvider extends Aw_Tool_Framework_ProviderAbstract {
 		}
 	}
 	
+	public function findIndexAction() {
+	    $service = new Service_Pub_Lucene();
+	    $pubTable = new Model_DbTable_Pub();
+	     
+	    $docs = $service->search('Albion');
+	    $pubs = $pubTable->find(array_map(function($a) { return $a->key; }, $docs));
+	    foreach ($pubs as $pub) {
+	        var_dump((string) $pub->getAddress());
+	    }
+	}
+	
+	
+	public function rebuildIndexAction() {
+	    $service = new Service_Pub_Lucene();
+	    $pubTable = new Model_DbTable_Pub();
+	    
+	    $paginator = Zend_Paginator::factory($pubTable->select());
+	    
+	    $progressBar = new Aw_ProgressBar(new Aw_ProgressBar_Adapter_Console(), 0, $paginator->getTotalItemCount());
+	    
+	    $paginator->setItemCountPerPage(50);
+	    
+	    foreach ($paginator->getPagesInRange(0, $paginator->getTotalItemCount() / 50) as $page) {
+    	    foreach ($paginator->getItemsByPage($page) as $pub) {
+    	        $service->add($pub);
+    	        $progressBar->next();
+    	    }
+	    }
+	    $progressBar->finish();
+	}
+	
 	public function discoverMergeAction() {
 		
 		$discoverTable = new Model_DbTable_Discover();
