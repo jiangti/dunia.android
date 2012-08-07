@@ -1,6 +1,6 @@
 var Dunia;
 define(['libs/ember'], function(Ember) {
-	return function() {
+	return {init: function() {
 		Dunia = Ember.Application.create();
 	    
 	    var marker = Em.Object.extend({
@@ -290,8 +290,6 @@ define(['libs/ember'], function(Ember) {
 	            }
 	        }
 	    });
-	
-	};
-	
+	}}
 });
 

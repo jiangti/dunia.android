@@ -1,6 +1,6 @@
 define(['libs/jquery', 'libs/jquery.form', 'libs/jquery.lightbox-0.5.min'], function() {
-	return function() {
-		alert('s');
+	return {init: function() {
+		
 		var $table = $('#mailshare');
 		$("input[name='subject']", $table).autocomplete({
 			source: '/pub/search/format/json',
@@ -54,5 +54,5 @@ define(['libs/jquery', 'libs/jquery.form', 'libs/jquery.lightbox-0.5.min'], func
 			}
 			
 		});
-	}
+	}}
 });

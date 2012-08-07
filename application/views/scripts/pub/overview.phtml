@@ -155,11 +155,6 @@ $(document).ready(function() {
 
 	$('#image-region a.image').lightBox({fixedNavigation:true});
 
-	$("#image-region").sticky({topSpacing: 52});
-
-	//$("#overview-sidebar").sticky({topSpacing: 0});
-
-
 	config = {
 	    tipUrl: '<?php echo $this->url(array('controller' => 'foursquare', 'action' => 'fetch-tips'), null, true); ?>',
 	    pub: <?php echo json_encode($this->pubRow->toArray()); ?>

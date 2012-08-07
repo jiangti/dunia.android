@@ -10,13 +10,13 @@ require.config({
 requirejs(['libs/route'], function(app) {
 		app.get("^/$", function(req) {
 			require(['app/controllers/map/index'], function(init) {
-			    init();
+			    init.init();
 			});
 		});
 		
 		app.get("/pub/email", function(req) {
 			require(['app/controllers/pub/email'], function(init) {
-				init();
+				init.init();
 			});
 		});
 });
