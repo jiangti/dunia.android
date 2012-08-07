@@ -1,7 +1,6 @@
 var Dunia;
 define(['libs/ember'], function(Ember) {
-	$(document).ready(function() {
-
+	return function() {
 		Dunia = Ember.Application.create();
 	    
 	    var marker = Em.Object.extend({
@@ -292,43 +291,6 @@ define(['libs/ember'], function(Ember) {
 	        }
 	    });
 	
-	});
-	
-	
-	/**
-	 * Utility functions
-	 */
-	
-	/**
-	 * Calculates the difference between obj2 and obj1
-	 * @param {Array} obj2
-	 * @param {Array} obj1
-	 * @return {Array}
-	 */
-	function diff(obj2, obj1) {
-	    var result = [];
-	
-	    var temporary = [];
-	
-	    $.each(obj1, function (key, value) {
-	        temporary.push(value.id[0]);
-	    });
-	
-	    $.each(obj2, function (key, value) {
-	        if (temporary.indexOf(value.id[0]) == -1) {
-	            result.push(value);
-	        }
-	    });
-	
-	    return result;
-	}
-	
-	String.prototype.format = function() {
-	    var formatted = this;
-	    for(arg in arguments) {
-	        formatted = formatted.replace("{" + arg + "}", arguments[arg]);
-	    }
-	    return formatted;
 	};
 	
 });

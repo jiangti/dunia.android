@@ -72,6 +72,7 @@ jQuery.fn.selectToUISlider = function(settings){
 	}
 	//return tooltip text from option index
 	function ttText(optIndex){
+		if (selectOptions.length == 0) return null;
 		return (options.tooltipSrc == 'text') ? selectOptions[optIndex].text : selectOptions[optIndex].value;
 	}
 	

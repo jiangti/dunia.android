@@ -1,6 +1,6 @@
-define(['libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/bootstrap', './default'], function() {
-	$(document).ready(function() {
-		
+define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/bootstrap'], function(init) {
+	init();
+	return function() {
 		$("#mailShare").popover({
 	        placement : 'bottom',
 	        content   : "In Mail Share you will find those pictures that fellow users have uploaded but haven't been " +
@@ -76,6 +76,5 @@ define(['libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/bootstrap', './d
 	    google.maps.event.addListener(AppMap.map, 'tilesloaded', function(event) {
 	    	AppMap.fetchBars();
 	    });
-	    
-	});
+	}
 });
