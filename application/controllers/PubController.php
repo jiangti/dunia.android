@@ -48,8 +48,25 @@ class PubController extends Model_Controller_Action
 	
 	public function searchAction() {
 		if ($name = $this->_getParam('term')) {
+		    
+		    if (strlen($name) > 2) {
+		    
 			$pubTable = new Model_DbTable_Pub();
-			$rows = $pubTable->searchByName($name);
+			//$rows = $pubTable->searchByName($name);
+			
+		    $service = new Service_Pub_Lucene();
+		    $docs = $service->search($name . '*');
+		    
+		    $rows = $pubTable->find(array_map(function($a) {
+		        return $a->key;
+		    }, $docs));
+		    
+		    } else {
+		        
+		        $rows = array();
+		        
+		    }
+		    
 		}
 		$data = array();
 		foreach ($rows as $row) {
