@@ -9,15 +9,19 @@ class Form_Deal extends Form_Abstract {
 		$name
 			->setLabel('Name')
 			->setRequired(true)
+			->addFilter('StringTrim')
 		;
 
 		$email = new Aw_Form_Element_Email('email');
-		$email->setLabel('Email');
+		$email->setLabel('Email')
+		    ->addFilter('StringTrim')
+		;
 		
 		$url = new Aw_Form_Element_Url('url');
 		$url
 			->setLabel('Url')
 			->setDescription('<a class="open" ref="">Open</a>')
+			->addFilter('StringTrim')
 		;
 		
 		$isChecked = new Aw_Form_Element_Checkbox('isChecked', array(
