@@ -1,0 +1,50 @@
+/**
+ * About Page
+ */
+/* line 6, sass/about.scss */
+#about h1 {
+  margin-bottom: 15px;
+}
+/* line 10, sass/about.scss */
+#about h2, #about h3 {
+  margin-top: 10px;
+  color: #444;
+  font-family: 'Imprima', Arial, sans-serif;
+  font-weight: normal;
+}
+/* line 17, sass/about.scss */
+#about h2 {
+  font-size: 28px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+/* line 23, sass/about.scss */
+#about h3 {
+  margin: 0;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: bold;
+}
+/* line 30, sass/about.scss */
+#about p {
+  font-size: 15px;
+  line-height: 20px;
+}
+/* line 36, sass/about.scss */
+#about .team p {
+  font-size: 13px;
+  line-height: 18px;
+}
+/* line 41, sass/about.scss */
+#about .team img {
+  float: left;
+  margin-right: 15px;
+  padding: 3px;
+  border: 1px solid #ccc;
+}
+/* line 48, sass/about.scss */
+#about .team div {
+  margin-bottom: 20px;
+}
+
+@CHARSET "UTF-8";

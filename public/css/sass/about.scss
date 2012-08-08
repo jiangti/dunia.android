@@ -1,0 +1,53 @@
+/**
+ * About Page
+ */
+
+#about {
+    h1 {
+        margin-bottom: 15px;
+    }
+
+    h2, h3 {
+        margin-top: 10px;
+        color: #444;
+        font-family: 'Imprima', Arial, sans-serif;
+        font-weight: normal;
+    }
+
+    h2 {
+        font-size: 28px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        margin: 0;
+        font-style: italic;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    .team {
+        p {
+            font-size: 13px;
+            line-height: 18px;
+        }
+
+        img {
+            float: left;
+            margin-right: 15px;
+            padding: 3px;
+            border: 1px solid #ccc;
+        }
+
+        div {
+            margin-bottom: 20px;
+        }
+    }
+
+}@CHARSET "UTF-8";

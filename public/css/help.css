@@ -1,0 +1,49 @@
+/* line 3, sass/help.scss */
+#help h2 {
+  margin-top: 5%;
+}
+/* line 6, sass/help.scss */
+#help a.email {
+  padding: 0;
+}
+/* line 9, sass/help.scss */
+#help .hero-unit, #help #helpWrapper {
+  margin: 2.5%;
+}
+/* line 13, sass/help.scss */
+#help #helpWrapper p {
+  font-size: 13px;
+  line-height: 18px;
+}
+/* line 18, sass/help.scss */
+#help ol li {
+  list-style: lower-roman;
+}
+/* line 22, sass/help.scss */
+#help ul li {
+  list-style: image;
+}
+/* line 26, sass/help.scss */
+#help li {
+  margin-bottom: 1%;
+}
+/* line 28, sass/help.scss */
+#help li.itson {
+  list-style-image: url(/img/icons/markers/half_sml.png);
+}
+/* line 31, sass/help.scss */
+#help li.soon {
+  list-style-image: url(/img/icons/markers/full_sml.png);
+}
+/* line 34, sass/help.scss */
+#help li.missed {
+  list-style-image: url(/img/icons/markers/empty_sml.png);
+}
+/* line 37, sass/help.scss */
+#help li.notoday {
+  list-style-image: url(/img/icons/markers/black_sml.png);
+}
+/* line 40, sass/help.scss */
+#help li.zero {
+  list-style-image: url(/img/icons/markers/beer_sml.png);
+}
