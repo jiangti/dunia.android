@@ -1,4 +1,4 @@
-define(['libs/jquery.lightbox-0.5.min', 'libs/ember','libs/moment.min', 'libs/jquery.scrollTo-min', 'google.map'], function() {
+define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquery.scrollTo-min', 'google.map'], function() {
 	return {init: function() {
 	var center = new google.maps.LatLng(parseFloat(config.lat), parseFloat(config.long));
     var myOptions = {
