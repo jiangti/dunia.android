@@ -31,7 +31,7 @@ var routes = function() {
         groups[matches[1]] = i++;
         newRegexp = newRegexp.replace(matches[0], "([^/.\\\\]+)"); 
       }
-      newRegexp += "$"; // Only do a full string match
+      //newRegexp += "$"; // Only do a full string match
       return { "groups" : groups, "regexp": new RegExp(newRegexp)};
     };
      

@@ -1,3 +1,5 @@
+var App;
+
 require.config({
 	paths: {
         'jquery.min': '/contrib/jquery-ui-1.8.17.custom/js/jquery-ui-1.8.17.custom.min',
@@ -5,17 +7,22 @@ require.config({
         'google.map': 'http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places'
     }
 });
-
 // Start the main app logic.
-requirejs(['libs/route', 'libs/jquery'], function(app) {
+requirejs(['libs/route', 'libs/jquery', 'libs/ember'], function(app) {
 		app.get("^/$", function(req) {
 			require(['app/controllers/map/index'], function(init) {
 			    init.init();
 			});
 		});
 		
-		app.get("/pub/email", function(req) {
+		app.get("^/pub/email", function(req) {
 			require(['app/controllers/pub/email'], function(init) {
+				init.init();
+			});
+		});
+		
+		app.get("^/pub/overview", function(req) {
+			require(['app/controllers/pub/overview'], function(init) {
 				init.init();
 			});
 		});
