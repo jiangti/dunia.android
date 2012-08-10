@@ -1,5 +1,4 @@
 var App;
-
 require.config({
 	paths: {
         'jquery.min': '/contrib/jquery-ui-1.8.17.custom/js/jquery-ui-1.8.17.custom.min',
@@ -18,14 +17,20 @@ requirejs(['libs/route', 'libs/jquery', 'libs/ember'], function(app) {
 			});
 		});
 		
-		app.get("^/pub/email", function(req) {
+		app.get("^/pub/email/", function(req) {
 			require(['app/controllers/pub/email'], function(init) {
 				init.init();
 			});
 		});
 		
-		app.get("^/pub/overview", function(req) {
+		app.get("^/pub/overview/", function(req) {
 			require(['app/controllers/pub/overview'], function(init) {
+				init.init();
+			});
+		});
+		
+		app.get("^/pub/", function(req) {
+			require(['app/controllers/pub/index'], function(init) {
 				init.init();
 			});
 		});

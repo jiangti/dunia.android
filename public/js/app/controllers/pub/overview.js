@@ -1,4 +1,4 @@
-define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquery.scrollTo-min', 'google.map'], function() {
+define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquery.scrollTo-min'], function() {
 	return {init: function() {
 	var center = new google.maps.LatLng(parseFloat(config.lat), parseFloat(config.long));
     var myOptions = {
@@ -17,7 +17,6 @@ define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquer
         shadow: markerShadow
     });
 
-    $('#photos a').lightBox();
 
     $('#edit-section-button').click(function(e) {
 		e.preventDefault();
