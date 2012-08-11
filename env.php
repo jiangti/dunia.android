@@ -9,4 +9,18 @@ set_include_path(implode(PATH_SEPARATOR, array(
     get_include_path(),
 )));
 
+require_once APPLICATION_ROOT . '/library/Zend/Loader/AutoloaderFactory.php';
+require_once APPLICATION_ROOT . '/library/Zend/Loader/ClassMapAutoloader.php';
+Zend_Loader_AutoloaderFactory::factory(array(
+    'Zend_Loader_ClassMapAutoloader' => array(
+            APPLICATION_ROOT . '/autoload_classmap.php',
+        ),
+    'Zend_Loader_StandardAutoloader' => array(
+        'prefixes' => array(
+            'Zend' =>APPLICATION_ROOT . '/library/Zend'
+        ),
+    'fallback_autoloader' => true)
+    )
+);
+
 require_once __DIR__ . '/library/Aw/Util.php';
