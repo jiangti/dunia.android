@@ -1,7 +1,6 @@
-var Dunia;
 define(['libs/ember'], function(Ember) {
 	return {init: function() {
-		Dunia = Ember.Application.create();
+		window.Dunia = Ember.Application.create();
 	    
 	    var marker = Em.Object.extend({
 	    	count: 0,

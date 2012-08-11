@@ -44,7 +44,7 @@ define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquer
 		}
 	});
 
-	App = AppClass.create();
+	window.App = AppClass.create();
 
 	App.TipProxyClass = Ember.ArrayProxy.extend({
 		
@@ -99,8 +99,5 @@ define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquer
 	});
 	
 	App.tipsView.appendTo('#tipsWrapper');
-
-	$('.promo.glow > .time[title]').tooltip();
-	
 	}}
 });
