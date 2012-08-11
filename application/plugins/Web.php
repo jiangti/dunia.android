@@ -6,7 +6,7 @@ class Plugin_Web extends Zend_Controller_Plugin_Abstract {
         $caching = (boolean) $application->getOptionByDot('settings.caching');
         $frontendOptions = array(
                 'lifetime' => 86400,
-                'caching' => true,
+                'caching' => $caching,
                 'debug_header' => false, // for debugging
                 'default_options' => array(
                     'cache_with_get_variables' => true,
