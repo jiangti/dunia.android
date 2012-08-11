@@ -4,6 +4,7 @@
 @import "compass/css3/transition";
 @import "compass/css3/border-radius";
 @import "compass/layout/stretching";
+@import "compass/typography/lists/inline-block-list";
 @import "mixin";   
 /**
  * Global variables
@@ -135,9 +136,18 @@ h1 {
     }
 
     #form {
-        float: left;
         top: 8px;
+        display: inline;
         position: relative;
+        
+        ul.nav {
+          @include inline-block-list-container;
+          padding-top: 8px;
+          > li {
+                @include inline-block-list-item;
+                margin: 0 10px;
+            }
+        }
     }
 
 

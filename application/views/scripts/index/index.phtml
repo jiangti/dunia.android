@@ -9,9 +9,10 @@
         </a>
         <a id="logo" class="brand" href="/">Dunia</a>
 
-        <form id="form" onsubmit="return false;">
-            <?php echo $this->form->location; ?>
-            <div style="margin-left: 300px; margin-top:-30px; width: 200px;">
+        <form id="form" onsubmit="return false;" style="display: inline">
+            <ul class="nav">
+                <li><?php echo $this->form->location; ?></li>
+                <li><div style="width: 200px;">
             <fieldset style="border: none; margin: 0px; padding: 0px;">
                 <label for="valueA" style="display:none;">From:</label>
                 <select name="valueA" id="valueA" style="display:none;">
@@ -53,7 +54,17 @@
                     <option value="24:00" selected="selected">24:00</option>
                 </select>
             </fieldset>
-            </div>
+            </div></li>
+                <li>
+                <select style="width: auto">
+                    <?php foreach(Model_Day::$daysName as $key => $value): ?>
+                        <option <?php echo (($key == date('N')) ? 'selected="selected"': null); ?> value="<?php echo $key; ?>"><?php echo $value; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                </li>
+            </ul>
+            
+            
         </form>
         <?php echo $this->render('partials/nav.phtml'); ?>
     </div>

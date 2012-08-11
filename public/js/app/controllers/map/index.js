@@ -1,4 +1,4 @@
-define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/bootstrap'], function(init) {
+define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/bootstrap', 'addthis'], function(init) {
 	return {init: function() {
 		init.init();
 		$("#mailShare").popover({
@@ -76,5 +76,7 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
 	    google.maps.event.addListener(AppMap.map, 'tilesloaded', function(event) {
 	    	AppMap.fetchBars();
 	    });
+	    
+	    addthis.init();
 	}}
 });
