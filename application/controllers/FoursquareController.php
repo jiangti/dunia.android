@@ -98,7 +98,7 @@ class FoursquareController extends Model_Controller_Action {
 	    $pubService->longitude = $long;
 	    
 	    $json = $pubService->get();
-	    $this->_helper->json->sendJson($json);
+	    $this->_helper->sendJson($json);
 	}
 	
 	public function crawlAction() {
