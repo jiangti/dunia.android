@@ -73,7 +73,7 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
 	        AppMap.map.setCenter(place.geometry.location);
 	    });
 	    
-	    google.maps.event.addListener(AppMap.map, 'tilesloaded', function(event) {
+	    google.maps.event.addListener(AppMap.map, 'idle', function(event) {
 	    	AppMap.fetchBars();
 	    });
 	    
