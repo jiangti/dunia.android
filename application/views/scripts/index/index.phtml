@@ -56,7 +56,7 @@
             </fieldset>
             </div></li>
                 <li>
-                <select style="width: auto">
+                <select style="width: auto" id="day-select">
                     <?php foreach(Model_Day::$daysName as $key => $value): ?>
                         <option <?php echo (($key == date('N')) ? 'selected="selected"': null); ?> value="<?php echo $key; ?>"><?php echo $value; ?></option>
                     <?php endforeach; ?>

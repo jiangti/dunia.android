@@ -52,8 +52,9 @@ class MapController extends Model_Controller_Action {
 		$bound->swlat  = $swlat;
 		$bound->swlng  = $swlong;
 
+		$options['day'] = $this->_getParam('day', null);
 		
-        $pubs = $pubService->findPromo($lat, $long, null, null, null, $bound);
+        $pubs = $pubService->findPromo($lat, $long, null, null, null, $bound, false, $options);
         
 		$this->_generateResponse($pubs);
 		

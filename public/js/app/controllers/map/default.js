@@ -72,6 +72,18 @@ define(['libs/ember'], function(Ember) {
 	            var latitude  = this.get('latitude');
 	            var markers   = this.get('markers');
 	            var map       = this.get('map');
+	            
+	            var data = {
+	                	lat: map.center.lat(),
+	                	long: map.center.lng(),
+	                	ne: map.getBounds().getNorthEast().lat() + ',' + map.getBounds().getNorthEast().lng(),
+	                	sw: map.getBounds().getSouthWest().lat() + ',' + map.getBounds().getSouthWest().lng(),
+	                	zoom: map.getZoom()
+	            };
+	            
+	            if ($('#day-select')) {
+	            	data['day'] = $('#day-select').val();
+	            }
 	
 	            $.ajax({
 	                success: function(data) {
@@ -85,8 +97,9 @@ define(['libs/ember'], function(Ember) {
 	                        markers.push(value);
 	                    });
 	                },
-	                url: '/map/fetch-bound/lat/' + map.center.lat() + '/long/' + map.center.lng() + '/ne/' + map.getBounds().getNorthEast().lat() + ',' + map.getBounds().getNorthEast().lng() + '/sw/' + map.getBounds().getSouthWest().lat() + ',' + map.getBounds().getSouthWest().lng() + '/zoom/' + map.getZoom(),
-	                dataType: 'json'
+	                url: '/map/fetch-bound/' ,
+	                dataType: 'json',
+	                data: data
 	            });
 	        },
 	

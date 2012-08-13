@@ -1,6 +1,7 @@
 define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/bootstrap', 'addthis'], function(init) {
 	return {init: function() {
 		init.init();
+		
 		$("#mailShare").popover({
 	        placement : 'bottom',
 	        content   : "In Mail Share you will find those pictures that fellow users have uploaded but haven't been " +
@@ -41,6 +42,9 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
 	    	}
 	    });
 	    
+	    
+	    
+	    
 	    AppMap = Dunia.Map.create({
 	        longitude: myOptions.longitude,
 	        latitude:  myOptions.latitude,
@@ -74,6 +78,11 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
 	    });
 	    
 	    google.maps.event.addListener(AppMap.map, 'idle', function(event) {
+	    	AppMap.fetchBars();
+	    });
+	    
+	    $('#day-select').change(function() {
+	    	AppMap.cleanMarkers();
 	    	AppMap.fetchBars();
 	    });
 	    

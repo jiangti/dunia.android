@@ -339,13 +339,22 @@ class Service_Pub extends Aw_Service_ServiceAbstract
     /**
      * @return Zend_Db_Table_Select
      */
-    private function _getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour, Model_Location_Bound $bound = null, $includeNoPromos = false) {
+    private function _getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour, Model_Location_Bound $bound = null, $includeNoPromos = false, $options = array()) {
         
         if ($hour) {
             $hour = str_pad($hour . ':00:00', 8, '0', STR_PAD_LEFT);
         } else {
             $hour = date("H:i:00");
         }
+        
+        
+        if (idx($options, 'day')) {
+            $days = Model_Day::$days;
+            $day = $days[$options['day']];
+        } else {
+            $day = date('D');
+        }
+        
         
         $joinType = 'join';
         if ($includeNoPromos) {
@@ -357,7 +366,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
                 WHEN '%s' < p0.timeStart THEN 'later'
                 WHEN '%s' > p0.timeEnd THEN 'earlier'
                 ELSE 'none'
-                END, 'none')", date('D'), $hour, $hour, $hour));
+                END, 'none')", $day, $hour, $hour, $hour));
         
 
     	foreach (array('select1', 'select2') as $index => $var) {
@@ -374,9 +383,8 @@ class Service_Pub extends Aw_Service_ServiceAbstract
         	    ->joinLeft(array('ls'   => 'liquorSize'),  'phl.idLiquorSize = ls.id', array('liquorSize' => 'name'))
     	    ;
     	}
-    	
-    	$select1->where('find_in_set(?, p0.day)', date('D'));
-    	
+
+    	$select1->where('find_in_set(?, p0.day)', $day);
     	
 	    $db = Zend_Db_Table_Abstract::getDefaultAdapter();
 	    $rows = $db->fetchAll($select1);
@@ -385,11 +393,11 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 	    
         if ($includeNoPromos) {
             $select2
-                ->where('find_in_set(?, p0.day) = 0 OR p0.day is null', date('D'))
+                ->where('find_in_set(?, p0.day) = 0 OR p0.day is null', $day)
                 ->where('checkinsCount > 5')
             ;
         } else {
-            $select2->where('find_in_set(?, p0.day) = 0', date('D'));
+            $select2->where('find_in_set(?, p0.day) = 0', $day);
         }
 
         if ($id) {
@@ -428,12 +436,11 @@ class Service_Pub extends Aw_Service_ServiceAbstract
      * @param string day [MON,TUE,WED...]
      * @param int 0-12
      */
-    public function findPromo($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null, Model_Location_Bound $bound = null, $includeNoPromos = false) {
+    public function findPromo($latitude, $longitude, $query = null, $dayOfWeek = null, $hour = null, Model_Location_Bound $bound = null, $includeNoPromos = false, array $options = array()) {
     	
     	$table = new Model_DbTable_Pub();
     	
-    	$select = $this->_getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour, $bound, $includeNoPromos);
-    	
+    	$select = $this->_getPubsPromoSelect($latitude, $longitude, $query, $dayOfWeek, $hour, $bound, $includeNoPromos, $options);
     	$data = $select->getTable()->fetchAll($select);
 
 		return $this->_formatPromoData($data);
