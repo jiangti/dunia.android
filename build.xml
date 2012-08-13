@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="dunia.com.au" default="build">
+	<target name="build">
+		<exec command="nodejs r.js -o app.build.js  name=main out=main-build.js" dir="public/js" passthru="true" />
+		<exec command="compass compile" dir="public/css" passthru="true" />
+	</target>
+	
+	<target name="deploy" depends="build">
+	   <exec command="ssh dunia.com.au@dunia.com.au 'cd app; git pull;'" passthru="true" />
+	</target>
+</project>
