@@ -52,14 +52,14 @@ class PubController extends Model_Controller_Action
 		    if (strlen($name) > 2) {
 		    
 			$pubTable = new Model_DbTable_Pub();
-			//$rows = $pubTable->searchByName($name);
+			$rows = $pubTable->searchByName($name);
 			
-		    $service = new Service_Pub_Lucene();
-		    $docs = $service->search($name . '*');
+		    #$service = new Service_Pub_Lucene();
+		    #$docs = $service->search('"'. $name . '"');
 		    
-		    $rows = $pubTable->find(array_map(function($a) {
-		        return $a->key;
-		    }, $docs));
+		    #$rows = $pubTable->find(array_map(function($a) {
+		    #    return $a->key;
+		    #}, $docs));
 		    
 		    } else {
 		        
