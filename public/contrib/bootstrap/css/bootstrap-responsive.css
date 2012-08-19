@@ -142,8 +142,8 @@
   }
   .navbar-fixed-top,
   .navbar-fixed-bottom {
-    margin-right: -20px;
-    margin-left: -20px;
+    /*margin-right: -20px;*/
+    /*margin-left: -20px;*/
   }
   .container-fluid {
     padding: 0;
@@ -807,9 +807,4 @@
   }
 }
 
-@media (min-width: 980px) {
-  .nav-collapse.collapse {
-    height: auto !important;
-    overflow: visible !important;
-  }
-}
+

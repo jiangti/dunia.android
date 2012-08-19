@@ -27,8 +27,16 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
 	    });
 	
 	    $("#help").hover(function() {
-	        $("#form input, #summary-bar, #mailShare").popover('toggle');
+            var selector = "#form input, #summary-bar, #mailShare";
+
+            // We don't want to show mailShare popOver when menu is on mobile mode
+            if ($(this).closest('div').hasClass('in')) {
+                selector = "#form input, #summary-bar";
+            }
+	        $(selector).popover('toggle');
 	    });
+
+
 	    
 	    $('select#valueA, select#valueB').selectToUISlider({
 	    	labels: 6,
