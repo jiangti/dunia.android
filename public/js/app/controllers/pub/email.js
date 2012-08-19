@@ -58,7 +58,7 @@ define(['libs/jquery', 'libs/jquery.form', 'libs/jquery.lightbox-0.5.min', 'maso
 		var $container = $('#container');
 		$container.masonry({
 	        itemSelector : '.item',
-	        isAnimated: false
+	        isAnimated: true
 	    });
 	}}
 });

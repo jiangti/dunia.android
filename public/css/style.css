@@ -1,20 +1,20 @@
 @import url("snickles/stylesheet.css");
 @CHARSET "UTF-8";
 @CHARSET "UTF-8";
-/* line 3, /home/jiangti/www/thirst.git/public/css/sass/form.scss */
+/* line 3, sass/form.scss */
 form dl {
   margin: 4px 0px;
 }
-/* line 4, /home/jiangti/www/thirst.git/public/css/sass/form.scss */
+/* line 4, sass/form.scss */
 form dl dd {
   margin: 4px 0px;
 }
-/* line 9, /home/jiangti/www/thirst.git/public/css/sass/form.scss */
+/* line 9, sass/form.scss */
 form dl input[type="file"] {
   display: block;
 }
 
-/* line 14, /home/jiangti/www/thirst.git/public/css/sass/form.scss */
+/* line 14, sass/form.scss */
 form fieldset {
   border: inset 1px darkgrey;
   border-radius: 3px;
@@ -22,13 +22,13 @@ form fieldset {
   -moz-border-radius: 3px;
   padding: 10px;
 }
-/* line 22, /home/jiangti/www/thirst.git/public/css/sass/form.scss */
+/* line 22, sass/form.scss */
 form fieldset legend {
   width: auto;
   border-bottom: 0;
   text-align: right;
 }
-/* line 27, /home/jiangti/www/thirst.git/public/css/sass/form.scss */
+/* line 27, sass/form.scss */
 form fieldset legend a {
   margin: 0 10px;
   font-size: 16px;
@@ -168,7 +168,7 @@ h1 {
   white-space: nowrap;
   margin: 0 10px;
 }
-/* line 7, /usr/local/share/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+/* line 7, ../../../../../../usr/local/share/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
 #header #form ul.nav2 > li {
   *display: inline;
 }
@@ -741,42 +741,17 @@ a.cancel {
   background: none repeat scroll 0 0 #eee;
 }
 /* line 702, sass/style.scss */
-#mailshare .masonry,
-#mailshare .masonry .masonry-brick {
-  -webkit-transition-duration: 0.7s;
-  -moz-transition-duration: 0.7s;
-  -ms-transition-duration: 0.7s;
-  -o-transition-duration: 0.7s;
-  transition-duration: 0.7s;
-}
-/* line 710, sass/style.scss */
-#mailshare .masonry {
-  -webkit-transition-property: height, width;
-  -moz-transition-property: height, width;
-  -ms-transition-property: height, width;
-  -o-transition-property: height, width;
-  transition-property: height, width;
-}
-/* line 718, sass/style.scss */
-#mailshare .masonry .masonry-brick {
-  -webkit-transition-property: left, right, top;
-  -moz-transition-property: left, right, top;
-  -ms-transition-property: left, right, top;
-  -o-transition-property: left, right, top;
-  transition-property: left, right, top;
-}
-/* line 728, sass/style.scss */
 #mailshare form input[type=text] {
   width: 180px;
 }
-/* line 731, sass/style.scss */
+/* line 705, sass/style.scss */
 #mailshare form.done {
   -webkit-box-shadow: 0px 0px 5px green;
   -moz-box-shadow: 0px 0px 5px green;
   box-shadow: 0px 0px 5px green;
 }
 
-/* line 737, sass/style.scss */
+/* line 711, sass/style.scss */
 #facebookConnect, #signInWithTwitter {
   margin: 20px;
   display: block;
@@ -785,12 +760,12 @@ a.cancel {
   width: 169px;
 }
 
-/* line 745, sass/style.scss */
+/* line 719, sass/style.scss */
 #facebookConnect {
   background: url("/img/icons/facebookconnect.png") no-repeat scroll 0 0 transparent;
 }
 
-/* line 749, sass/style.scss */
+/* line 723, sass/style.scss */
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }
@@ -798,17 +773,17 @@ a.cancel {
 /**
  * User Profile
  */
-/* line 758, sass/style.scss */
+/* line 732, sass/style.scss */
 #services ul {
   list-style: none;
   padding: 0;
 }
-/* line 762, sass/style.scss */
+/* line 736, sass/style.scss */
 #services ul li {
   margin: 10px;
 }
 
-/* line 768, sass/style.scss */
+/* line 742, sass/style.scss */
 #advanced-filter {
   max-height: 15px;
   -webkit-transition-property: max-height;
@@ -827,28 +802,28 @@ a.cancel {
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-/* line 773, sass/style.scss */
+/* line 747, sass/style.scss */
 #advanced-filter:hover {
   max-height: 500px;
 }
 
-/* line 778, sass/style.scss */
+/* line 752, sass/style.scss */
 #category-list {
   list-style-type: none;
   padding: 0;
   margin: 5px;
   margin-right: 15px;
 }
-/* line 784, sass/style.scss */
+/* line 758, sass/style.scss */
 #category-list label {
   display: inline-block;
 }
-/* line 788, sass/style.scss */
+/* line 762, sass/style.scss */
 #category-list label, #category-list input {
   vertical-align: middle;
 }
 
-/* line 793, sass/style.scss */
+/* line 767, sass/style.scss */
 .glow {
   -webkit-border-radius: 3px 3px;
   -moz-border-radius: 3px / 3px;
@@ -858,18 +833,18 @@ a.cancel {
   overflow: hidden;
 }
 
-/* line 798, sass/style.scss */
+/* line 772, sass/style.scss */
 .promo {
   margin: 3px;
 }
-/* line 801, sass/style.scss */
+/* line 775, sass/style.scss */
 .promo .thePromo {
   padding: 10px;
   border: 1px solid #eee;
   color: #444;
 }
 
-/* line 810, sass/style.scss */
+/* line 784, sass/style.scss */
 .tooltip {
   display: none;
   background: transparent url("/css/images/black_arrow.png");
@@ -881,19 +856,19 @@ a.cancel {
   z-index: 1000;
 }
 
-/* line 823, sass/style.scss */
+/* line 797, sass/style.scss */
 .state-progress {
   text-align: center;
   padding-top: 10px;
 }
-/* line 826, sass/style.scss */
+/* line 800, sass/style.scss */
 .state-progress span {
   font-size: 9px;
   font-weight: bold;
 }
 
 /* ribbon style */
-/* line 5, /home/jiangti/www/thirst.git/public/css/sass/ribbon.scss */
+/* line 5, sass/ribbon.scss */
 .ribbon-wrapper {
   position: relative;
   border-top: -10px solid #cccccc;
@@ -903,7 +878,7 @@ a.cancel {
   -webkit-border-top-colors: rgba(0, 0, 0, 0.02) rgba(0, 0, 0, 0.04) rgba(0, 0, 0, 0.06) rgba(0, 0, 0, 0.08) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.12) rgba(0, 0, 0, 0.14) rgba(0, 0, 0, 0.16) rgba(0, 0, 0, 0.18) rgba(0, 0, 0, 0.2);
 }
 
-/* line 13, /home/jiangti/www/thirst.git/public/css/sass/ribbon.scss */
+/* line 13, sass/ribbon.scss */
 .ribbon-front {
   background-color: #4E9BDE;
   height: 35px;
@@ -913,7 +888,7 @@ a.cancel {
   left: -10px;
   z-index: 2;
 }
-/* line 21, /home/jiangti/www/thirst.git/public/css/sass/ribbon.scss */
+/* line 21, sass/ribbon.scss */
 .ribbon-front h2 {
   color: white;
   border: 0;
@@ -921,7 +896,7 @@ a.cancel {
   font-style: italic;
 }
 
-/* line 32, /home/jiangti/www/thirst.git/public/css/sass/ribbon.scss */
+/* line 32, sass/ribbon.scss */
 .ribbon-front,
 .ribbon-back-left,
 .ribbon-back-right {
@@ -932,7 +907,7 @@ a.cancel {
   background: #00b7ea;
 }
 
-/* line 43, /home/jiangti/www/thirst.git/public/css/sass/ribbon.scss */
+/* line 43, sass/ribbon.scss */
 .ribbon-edge-topleft,
 .ribbon-edge-topright,
 .ribbon-edge-bottomleft,
@@ -944,49 +919,49 @@ a.cancel {
   width: 0px;
 }
 
-/* line 56, /home/jiangti/www/thirst.git/public/css/sass/ribbon.scss */
+/* line 56, sass/ribbon.scss */
 .ribbon-edge-bottomleft,
 .ribbon-edge-bottomright {
   top: 35px;
 }
 
-/* line 61, /home/jiangti/www/thirst.git/public/css/sass/ribbon.scss */
+/* line 61, sass/ribbon.scss */
 .ribbon-edge-topleft,
 .ribbon-edge-bottomleft {
   left: -10px;
   border-color: transparent #4976A4 transparent transparent;
 }
 
-/* line 66, /home/jiangti/www/thirst.git/public/css/sass/ribbon.scss */
+/* line 66, sass/ribbon.scss */
 .ribbon-edge-topleft {
   top: 10px;
   border-width: -10px 10px 0 0;
 }
 
-/* line 70, /home/jiangti/www/thirst.git/public/css/sass/ribbon.scss */
+/* line 70, sass/ribbon.scss */
 .ribbon-edge-bottomleft {
   border-width: 0 10px 10px 0;
 }
 
-/* line 75, /home/jiangti/www/thirst.git/public/css/sass/ribbon.scss */
+/* line 75, sass/ribbon.scss */
 .ribbon-edge-topright,
 .ribbon-edge-bottomright {
   left: 300px;
   border-color: transparent transparent transparent #4976A4;
 }
 
-/* line 80, /home/jiangti/www/thirst.git/public/css/sass/ribbon.scss */
+/* line 80, sass/ribbon.scss */
 .ribbon-edge-topright {
   top: 0px;
   border-width: 0px 0 0 0px;
 }
 
-/* line 84, /home/jiangti/www/thirst.git/public/css/sass/ribbon.scss */
+/* line 84, sass/ribbon.scss */
 .ribbon-edge-bottomright {
   border-width: 0 0 0px 0px;
 }
 
-/* line 88, /home/jiangti/www/thirst.git/public/css/sass/ribbon.scss */
+/* line 88, sass/ribbon.scss */
 .ribbon-back-left {
   position: absolute;
   top: 10px;
@@ -997,7 +972,7 @@ a.cancel {
   z-index: 0;
 }
 
-/* line 97, /home/jiangti/www/thirst.git/public/css/sass/ribbon.scss */
+/* line 97, sass/ribbon.scss */
 .ribbon-back-right {
   position: absolute;
   top: 0px;
@@ -1010,104 +985,104 @@ a.cancel {
 /**
  * About Page
  */
-/* line 6, /home/jiangti/www/thirst.git/public/css/sass/about.scss */
+/* line 6, sass/about.scss */
 #about h1 {
   margin-bottom: 15px;
 }
-/* line 10, /home/jiangti/www/thirst.git/public/css/sass/about.scss */
+/* line 10, sass/about.scss */
 #about h2, #about h3 {
   margin-top: 10px;
   color: #444;
   font-family: 'Imprima', Arial, sans-serif;
   font-weight: normal;
 }
-/* line 17, /home/jiangti/www/thirst.git/public/css/sass/about.scss */
+/* line 17, sass/about.scss */
 #about h2 {
   font-size: 28px;
   margin-top: 40px;
   margin-bottom: 20px;
 }
-/* line 23, /home/jiangti/www/thirst.git/public/css/sass/about.scss */
+/* line 23, sass/about.scss */
 #about h3 {
   margin: 0;
   font-style: italic;
   font-size: 20px;
   font-weight: bold;
 }
-/* line 30, /home/jiangti/www/thirst.git/public/css/sass/about.scss */
+/* line 30, sass/about.scss */
 #about p {
   font-size: 15px;
   line-height: 20px;
 }
-/* line 36, /home/jiangti/www/thirst.git/public/css/sass/about.scss */
+/* line 36, sass/about.scss */
 #about .team p {
   font-size: 13px;
   line-height: 18px;
 }
-/* line 41, /home/jiangti/www/thirst.git/public/css/sass/about.scss */
+/* line 41, sass/about.scss */
 #about .team img {
   float: left;
   margin-right: 15px;
   padding: 3px;
   border: 1px solid #ccc;
 }
-/* line 48, /home/jiangti/www/thirst.git/public/css/sass/about.scss */
+/* line 48, sass/about.scss */
 #about .team div {
   margin-bottom: 20px;
 }
 
 @CHARSET "UTF-8";
-/* line 3, /home/jiangti/www/thirst.git/public/css/sass/help.scss */
+/* line 3, sass/help.scss */
 #help h2 {
   margin-top: 5%;
 }
-/* line 6, /home/jiangti/www/thirst.git/public/css/sass/help.scss */
+/* line 6, sass/help.scss */
 #help a.email {
   padding: 0;
 }
-/* line 9, /home/jiangti/www/thirst.git/public/css/sass/help.scss */
+/* line 9, sass/help.scss */
 #help .hero-unit, #help #helpWrapper {
   margin: 2.5%;
 }
-/* line 13, /home/jiangti/www/thirst.git/public/css/sass/help.scss */
+/* line 13, sass/help.scss */
 #help #helpWrapper p {
   font-size: 13px;
   line-height: 18px;
 }
-/* line 18, /home/jiangti/www/thirst.git/public/css/sass/help.scss */
+/* line 18, sass/help.scss */
 #help ol li {
   list-style: lower-roman;
 }
-/* line 22, /home/jiangti/www/thirst.git/public/css/sass/help.scss */
+/* line 22, sass/help.scss */
 #help ul li {
   list-style: image;
 }
-/* line 26, /home/jiangti/www/thirst.git/public/css/sass/help.scss */
+/* line 26, sass/help.scss */
 #help li {
   margin-bottom: 1%;
 }
-/* line 28, /home/jiangti/www/thirst.git/public/css/sass/help.scss */
+/* line 28, sass/help.scss */
 #help li.itson {
   list-style-image: url(/img/icons/markers/half_sml.png);
 }
-/* line 31, /home/jiangti/www/thirst.git/public/css/sass/help.scss */
+/* line 31, sass/help.scss */
 #help li.soon {
   list-style-image: url(/img/icons/markers/full_sml.png);
 }
-/* line 34, /home/jiangti/www/thirst.git/public/css/sass/help.scss */
+/* line 34, sass/help.scss */
 #help li.missed {
   list-style-image: url(/img/icons/markers/empty_sml.png);
 }
-/* line 37, /home/jiangti/www/thirst.git/public/css/sass/help.scss */
+/* line 37, sass/help.scss */
 #help li.notoday {
   list-style-image: url(/img/icons/markers/black_sml.png);
 }
-/* line 40, /home/jiangti/www/thirst.git/public/css/sass/help.scss */
+/* line 40, sass/help.scss */
 #help li.zero {
   list-style-image: url(/img/icons/markers/beer_sml.png);
 }
 
-/* line 838, sass/style.scss */
+/* line 812, sass/style.scss */
 .pac-container {
   line-height: 20px;
 }
