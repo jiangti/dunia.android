@@ -40,11 +40,6 @@ define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquer
         return false;
     });
 
-    $('#edit-section-button').click(function(e) {
-		e.preventDefault();
-		$.scrollTo($('#edit-section'), 500);
-	});
-	
     $('a.open').click(function() {
 		popup = window.open($('#url').val() , 'popup', 'height=600,width=800,scrollbars=1,status=1,location=1,resizable=1');
 		if (window.focus) { popup.focus(); }
