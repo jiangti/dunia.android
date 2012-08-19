@@ -28,11 +28,7 @@ body {
     line-height: normal;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ececec), to(#dddddd));
-    background: -webkit-linear-gradient(top, #ececec, #dddddd);
-    background: -moz-linear-gradient(top, #ececec, #dddddd);
-    background: -ms-linear-gradient(top, #ececec, #dddddd);
-    background: -o-linear-gradient(top, #ececec, #dddddd);
+    background-color: #ececec;
     
 
 }
