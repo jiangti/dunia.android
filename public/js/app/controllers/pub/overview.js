@@ -115,5 +115,39 @@ define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquer
 		jwerty.key('ctrl+alt+k', function () { 
 			$('#isChecked').click().focus();
 		});
+		
+		jwerty.key('ctrl+alt+a', function () { 
+			$('#addMore').triggerHandler('click');
+		});
+		
+		
+		var skip = true;
+		
+		$('form input[id*="time"]').each(function(e) {
+		    var $this = $(this);
+		    
+		    if ($this.val()) {
+		    } else {
+		    	if (skip) {
+		    		skip = false;
+		    		return true;
+		    	}
+		    	
+		    	$dd = $this.parents('fieldset').parent('dd');
+		        $dt = $dd.prev();
+		        
+		        $dd.hide();
+		        $dt.hide();
+		    }
+		});
+		
+		$('#addMore').click(function() {
+			var $dd = $('form > dl > dd:hidden:first');
+			var $dt = $dd.next();
+			
+			$dd.slideDown();
+			$dt.slideDown();
+		});
+		
 	}}
 });
