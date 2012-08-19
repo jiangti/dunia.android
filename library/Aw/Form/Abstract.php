@@ -8,15 +8,19 @@ abstract class Aw_Form_Abstract extends Zend_Form {
 
 		$this->setAttrib('class', 'uniform');
 
-
-		$submit = new Zend_Form_Element_Submit('submit');
-		$submit
-			->setLabel('Submit')
-			->setOrder(999);
-		;
-
-		$this->addElements(array($submit));
-		
+        $this->_addSubmit();
+	}
+	
+	protected function _addSubmit() {
+	    $submit = new Zend_Form_Element_Submit('submit');
+	    $submit
+    	    ->setLabel('Submit')
+    	    ->setOrder(999)
+    	    ->setAttribs(array('class' => 'btn'))
+    	;
+    	
+	    
+	    $this->addElements(array($submit));
 	}
 	
 	protected $_record;
@@ -48,13 +52,4 @@ abstract class Aw_Form_Abstract extends Zend_Form {
 		$this->addElements(array($submit));
 	}
 	
-	public function render(Zend_View_Interface $view = null) {
-		
-		foreach ($this->getElements() as $element) {
-			if ($element instanceof Zend_Form_Element_Submit) {
-			}
-		}
-		
-		return parent::render($view);
-	}
 }

@@ -1,5 +1,5 @@
 <?php
-class Form_MailShare extends Aw_Form_Abstract {
+class Form_MailShare extends Aw_Form_Twitter_FormAbstract {
 	public function init() {
 		parent::init();
 		

@@ -15,8 +15,8 @@
 		</div>
 	<?php endforeach; ?>
 	</div>
-	<dd id="submit-element">
-	<input type="submit" value="Submit" id="submit" name="submit"> <a href="#" class="delete" data-mail="<?php echo $form->getRecord()->id; ?>">Delete</a>
+	<dd id="<?php echo ($form->getName() ? $form->getName() . '-': null); ?>submit-element">
+	<?php echo $form->submit->renderViewHelper(); ?> <a href="#" class="delete" data-mail="<?php echo $form->getRecord()->id; ?>">Delete</a>
 	</dd>
 	</form>
 </div>

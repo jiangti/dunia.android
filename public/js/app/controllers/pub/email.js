@@ -1,14 +1,14 @@
-define(['libs/jquery', 'libs/jquery.form', 'libs/jquery.lightbox-0.5.min'], function() {
+define(['libs/jquery', 'libs/jquery.form', 'libs/jquery.lightbox-0.5.min', 'masonry'], function() {
 	return {init: function() {
 		
 		var $table = $('#mailshare');
-		$("input[name='subject']", $table).autocomplete({
+		$("input[name*='subject']", $table).autocomplete({
 			source: '/pub/search/format/json',
 			select: function (event, ul) {
 				var $this = $(this);
 				$form = $this.parents('form');
-				$('input[name="hidden"]', $form).val(ul.item.id);
-				$('input[type="submit"]', $form).enable(true);
+				$('input[name*="hidden"]', $form).val(ul.item.id);
+				$('input[type*="submit"]', $form).enable(true);
 			}
 		});
 		
@@ -17,7 +17,7 @@ define(['libs/jquery', 'libs/jquery.form', 'libs/jquery.lightbox-0.5.min'], func
 			$('.delete', $form).unbind('click').html('<a target="_blank" href="' + config.url + data.id + '">Go to Pub Edit Page</a>');
 		}});
 		
-		$('input[type="submit"]', $table).enable(false);
+		$('input[type*="submit"]', $table).enable(false);
 		
 		$(".delete").click(function(e) {
 			e.preventDefault();
@@ -54,5 +54,11 @@ define(['libs/jquery', 'libs/jquery.form', 'libs/jquery.lightbox-0.5.min'], func
 			}
 			
 		});
+		
+		var $container = $('#container');
+		$container.masonry({
+	        itemSelector : '.item',
+	        isAnimated: false
+	    });
 	}}
 });

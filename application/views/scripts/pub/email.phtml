@@ -1,38 +1,22 @@
 <div class="container content" id="mailshare">
-
+    
     <div class="row">
-        <div id="sidebar-row" class="span12">
-            <h1>Mail Share</h1>
-        </div>
+    	<div class="span12">
+    	    <div class="page-header">
+    	        <h1>Community Contribution</h1>
+    	    </div>
+    	</div>
     </div>
-
-    <?php // This chunk is ugly but at the moment it's the best I can get with bootstrap that is responsive design
-        $i = 0;
-        foreach($this->forms as $index => $form):
-            if (!($i%3)):
-    ?>
-        <div class="row-fluid">
-            <ul class="thumbnails">
-    <?php
-            endif;
-            $i++;
-    ?>
-            <li class="span4" >
-                <div class="thumbnail">
-                    <div style="padding: 0 10px;">
-                        <?php echo $form; ?>
-                    </div>
-                </div>
-            </li>
-    <?php
-            if (!($i%3)):
-    ?>
-            </ul>
-        </div>
-    <?php
-            endif;
-        endforeach;
-    ?>
+    
+    
+    <div class="row">
+    <div id="container" class="span12">
+        <?php foreach($this->forms as $form): ?>
+    	<div class="item"><?php echo $form; ?></div>
+    	<?php endforeach; ?>
+    </div>
+    <div class="row">
+        
 </div>
 <script type="text/javascript">
 <!--
