@@ -59,6 +59,14 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
 	        map:       new google.maps.Map(document.getElementById("map_canvas"), myOptions)
 	    });
 
+        google.maps.event.addListener(AppMap.map.getStreetView(), 'visible_changed', function() {
+            var toggle = AppMap.map.getStreetView().getVisible();
+            if (toggle == false) {
+                AppMap.setMarkersSize(32, 37);
+            } else {
+                AppMap.setMarkersSize(250, 289);
+            }
+        });
 
 	    var input = document.getElementById('location');
 	    var autocomplete = new google.maps.places.Autocomplete(input);

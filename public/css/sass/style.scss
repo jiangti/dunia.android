@@ -399,6 +399,13 @@ table.promos.generic {
     }
 
     .details {
+        #street-view {
+            position: relative;
+            z-index: 10;
+            top: 195px;
+            margin-left: 5px;
+        }
+
         .contact {
             .address {
                 float: left;

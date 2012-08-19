@@ -172,6 +172,18 @@ define(['libs/ember'], function(Ember) {
 	                }
 	            }
 	        },
+
+            setMarkersSize: function(width, height) {
+                var markers = this.get('mapMarkers');
+
+                if (markers) {
+                    for (var i = 0; i < markers.length; i++ ) {
+                        console.log(markers[i]);
+                        markers[i].icon.size       = new google.maps.Size(width, height);
+                        markers[i].icon.scaledSize = new google.maps.Size(width, height);
+                    }
+                }
+            },
 	
 	        setMarkers: function(markers) {
 	            var map = this.get('map');
@@ -236,7 +248,7 @@ define(['libs/ember'], function(Ember) {
 	                var markerData = {
 	                    map: map,
 	                    position: point,
-	                    icon:     properties.icon,
+	                    icon:     new google.maps.MarkerImage(properties.icon),
 	                    shadow:   properties.shadow,
 	                    zIndex:   properties.zIndex,
 	                    html:     overlayHtml,

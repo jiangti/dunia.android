@@ -4,7 +4,8 @@ define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquer
     var myOptions = {
         zoom: 16,
         center: center,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        streetViewControl: false
     };
 
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
@@ -17,6 +18,27 @@ define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquer
         shadow: markerShadow
     });
 
+    var panorama = map.getStreetView();
+    panorama.setPosition(center);
+    panorama.setPov({
+        heading: 265,
+        zoom: 0,
+        pitch: 0
+        }
+    );
+
+    $('#street-view').click(function() {
+        var toggle = panorama.getVisible();
+
+        if (toggle == false) {
+            panorama.setVisible(true);
+            $(this).text('Map');
+        } else {
+            panorama.setVisible(false);
+            $(this).text('Street View');
+        }
+        return false;
+    });
 
     $('#edit-section-button').click(function(e) {
 		e.preventDefault();
