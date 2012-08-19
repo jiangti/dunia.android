@@ -6,6 +6,7 @@
 @import "compass/layout/stretching";
 @import "compass/typography/lists/inline-block-list";
 @import "mixin";   
+@import "form";  
 /**
  * Global variables
  */
@@ -25,13 +26,14 @@ body {
     font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 12px;
     line-height: normal;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ececec), to(#dddddd));
     background: -webkit-linear-gradient(top, #ececec, #dddddd);
     background: -moz-linear-gradient(top, #ececec, #dddddd);
     background: -ms-linear-gradient(top, #ececec, #dddddd);
     background: -o-linear-gradient(top, #ececec, #dddddd);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    
 
 }
 
@@ -52,13 +54,6 @@ body {
     }
 }
 
-form dl {
-    dd {
-        margin: 4px 0px;
-    }
-    margin: 4px 0px;
-}
-
 a#logo {
     text-indent: -9999px;
     display: block;
@@ -69,27 +64,6 @@ a#logo {
     margin-left: 20px;
     background-image: url('/img/dunia.png');
     background-repeat: no-repeat;
-}
-
-form fieldset {
-    border: inset 1px darkgrey;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-
-    padding: 10px;
-
-    legend {
-        width: auto;
-        border-bottom: 0;
-        text-align: right;
-
-        a {
-            margin: 0 10px;
-            font-size: 16px;
-            text-decoration: none;
-        }
-    }
 }
 
 .pad_top {
@@ -186,6 +160,7 @@ h1 {
 }
 
 .content {
+    padding: 5px;
     background-color: white;
     //padding-bottom: 20px;
     border: solid 1px #D9D9D9;
@@ -195,14 +170,15 @@ h1 {
     -moz-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
+    
     margin-top: 50px;
 
     h1 {
         margin-top: 30px;
     }
 
-    @media (max-width: 767px) {
-        margin-top: 0;
+    @media (max-width: 979px) {
+        margin-top: -8px;
     }
 }
 
@@ -444,6 +420,7 @@ table.promos.generic {
             padding: 5px;
         }
     }
+    
 }
 
 /**
@@ -712,11 +689,52 @@ a.cancel {
     border: 1px solid #ccc;
 }
 
-#mailshare form {
-    @include single-box-shadow;
-    padding: 20px;
-    &.done {
-        @include single-box-shadow(green);
+#mailshare {
+    dd {
+        margin-left: 0px;
+    }
+    .item {
+        @include border-radius(4px, 4px);
+        width: 350px;
+        margin: 10px;
+        float: left;
+        padding: 5px;
+        background: none repeat scroll 0 0 #eee;
+    }
+    
+    .masonry,
+    .masonry .masonry-brick {
+      -webkit-transition-duration: 0.7s;
+         -moz-transition-duration: 0.7s;
+          -ms-transition-duration: 0.7s;
+           -o-transition-duration: 0.7s;
+              transition-duration: 0.7s;
+    }
+    
+    .masonry {
+      -webkit-transition-property: height, width;
+         -moz-transition-property: height, width;
+          -ms-transition-property: height, width;
+           -o-transition-property: height, width;
+              transition-property: height, width;
+    }
+    
+    .masonry .masonry-brick {
+      -webkit-transition-property: left, right, top;
+         -moz-transition-property: left, right, top;
+          -ms-transition-property: left, right, top;
+           -o-transition-property: left, right, top;
+              transition-property: left, right, top;
+    }
+
+    
+    form {
+        input[type=text] {
+            width: 180px;
+        }
+        &.done {
+            @include single-box-shadow(green);
+        }
     }
 }
 

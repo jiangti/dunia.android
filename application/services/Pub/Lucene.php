@@ -6,6 +6,7 @@ class Service_Pub_Lucene extends Aw_Service_ServiceAbstract {
 	public function search($text) {
 	    $index = $this->_getIndex();
 	    return $index->find($text);
+	    
 	}
 	
 	public function add(Model_DbTable_Row_Pub $pub) {

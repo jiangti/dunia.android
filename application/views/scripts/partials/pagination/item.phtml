@@ -5,7 +5,7 @@
     <?php if ($this->pageCount): ?>
     <div class="paginationControl">
     <!-- Previous page link -->
-	    Page x of y - total items ()
+	    <?php echo $this->currentItemCount;  ?> of <?php echo $this->pageCount; ?> pages - total items <?php echo $this->totalItemCount; ?>
 	    <?php if (isset($this->previous)): ?>
 	      <a href="<?php echo $this->url(array('page' => $this->previous)); ?>">
 	        &lt; Previous

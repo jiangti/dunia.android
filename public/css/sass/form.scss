@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+form dl {
+    dd {
+        margin: 4px 0px;
+    }
+    margin: 4px 0px;
+    
+    input[type="file"] {
+        display: block;
+    }
+}
+
+form fieldset {
+    border: inset 1px darkgrey;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+
+    padding: 10px;
+
+    legend {
+        width: auto;
+        border-bottom: 0;
+        text-align: right;
+
+        a {
+            margin: 0 10px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+    }
+}

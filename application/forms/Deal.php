@@ -47,12 +47,19 @@ class Form_Deal extends Form_Abstract {
 		
 		$this->setAttrib('enctype', 'multipart/form-data');
 		
-		foreach (range(0, 6) as $index) {
+		foreach (range(0, 10) as $index) {
 			$subForm = new Form_Deal_Detail();
 			$this->addSubForm($subForm, 'detail' . $index);
 			$fieldset = $subForm->getDecorator('fieldSet');
 			$fieldset->setOption('escape', false);
 		}
+		
+		$button = new Zend_Form_Element_Button('addMore');
+		$button->setLabel('<i class="icon-plus"></i> Add More');
+		$button->setAttrib('escape', false);
+		
+		$this->addElement($button);
+		
 
 		$this->dualSubmit();
 	}

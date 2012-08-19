@@ -32,10 +32,19 @@ class MailshareController extends Zend_Controller_Action {
 
         $form = new Form_MailShare();
 
-        if ($this->_request->isPost() && $form->isValid($this->_request->getPost())) {
+        $post = $this->_request->getPost();
+
+        foreach ($post as $index => $var) {
+            if (stripos($index, 'name') !== false) {
+                $post = $post[$index];
+                break;
+            }
+        }
+        
+        
+        if ($this->_request->isPost() && $form->isValid($post)) {
             $service = new Service_Mailshare();
             $pubRow = $service->merge($form->getValues());
-
             if ($this->_request->isXmlHttpRequest()) {
                 echo json_encode($pubRow->toArray());
                 exit;
