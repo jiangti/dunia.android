@@ -131,22 +131,34 @@ h1 {
 
     label {
         float: left;
-        margin-left: 20px;
+        margin:3px 10px 0 20px;
         font-size: 120%;
     }
 
     #form {
-        top: 8px;
         display: inline;
         position: relative;
+        float: left;
+        margin: 0;
         
-        ul.nav {
+        ul.nav2 {
           @include inline-block-list-container;
           padding-top: 8px;
           > li {
                 @include inline-block-list-item;
                 margin: 0 10px;
             }
+        }
+
+        #day-select {
+            width: auto;
+            margin-top: 1px;
+
+        }
+
+        #slider {
+            margin: -16px 20px 0 20px;
+            width: 200px;
         }
     }
 
