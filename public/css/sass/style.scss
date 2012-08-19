@@ -6,6 +6,7 @@
 @import "compass/layout/stretching";
 @import "compass/typography/lists/inline-block-list";
 @import "mixin";   
+@import "form";   
 /**
  * Global variables
  */
@@ -47,13 +48,6 @@ body {
     }
 }
 
-form dl {
-    dd {
-        margin: 4px 0px;
-    }
-    margin: 4px 0px;
-}
-
 a#logo {
     text-indent: -9999px;
     display: block;
@@ -64,27 +58,6 @@ a#logo {
     margin-left: 20px;
     background-image: url('/img/dunia.png');
     background-repeat: no-repeat;
-}
-
-form fieldset {
-    border: inset 1px darkgrey;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-
-    padding: 10px;
-
-    legend {
-        width: auto;
-        border-bottom: 0;
-        text-align: right;
-
-        a {
-            margin: 0 10px;
-            font-size: 16px;
-            text-decoration: none;
-        }
-    }
 }
 
 .pad_top {
