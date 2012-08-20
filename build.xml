@@ -8,4 +8,10 @@
 	<target name="deploy" depends="build">
 	   <exec command="ssh dunia.com.au@dunia.com.au 'cd app; git pull;'" passthru="true" />
 	</target>
+
+
+	<target name="classmap">
+       <exec command="php bin/classmap_generator.php" passthru="true" />
+    </target>
+	
 </project>
