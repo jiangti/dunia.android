@@ -11,7 +11,7 @@ class Model_Service extends Aw_Model_ModelAbstract {
                 return Aw_Auth_Adapter_Google::getAuthorizationUrl();
             case 'foursquare':
                 $foursquare = Zend_Controller_Front::getInstance()->getParam('bootstrap')->getPluginResource('foursquare')->getFoursquare();
-                return $foursquare->getAuthorizeUrl('http://127.0.0.1/user/connect-foursquare');
+                return $foursquare->getAuthorizeUrl('http://dunia.com.au/user/connect-foursquare');
         }
 	}
 
