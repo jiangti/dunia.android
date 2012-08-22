@@ -67,7 +67,7 @@ class UserController extends Model_Controller_Action
                 $user->setTable(new Model_DbTable_User());
             }
 
-            $token = $foursquare->getAccessToken($code, 'http://127.0.0.1/user/connect-foursquare');
+            $token = $foursquare->getAccessToken($code, 'http://dunia.com.au/user/connect-foursquare');
             $foursquare->setAccessToken($token->access_token);
 
             $foursquareUser = $foursquare->get('/users/self');
