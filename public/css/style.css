@@ -81,35 +81,36 @@ a#logo {
   text-indent: -9999px;
   display: block;
   height: 32px;
-  width: 92px;
+  width: 106px;
   padding: 0;
   margin-top: 3px;
   margin-left: 20px;
   background-image: url("/img/dunia.png");
+  background-size: 106px 32px;
   background-repeat: no-repeat;
 }
 
-/* line 65, sass/style.scss */
+/* line 66, sass/style.scss */
 .pad_top {
   padding-top: 5px;
 }
 
-/* line 69, sass/style.scss */
+/* line 70, sass/style.scss */
 .pad_bottom {
   padding-bottom: 5px;
 }
 
-/* line 73, sass/style.scss */
+/* line 74, sass/style.scss */
 .right {
   float: right;
 }
 
-/* line 77, sass/style.scss */
+/* line 78, sass/style.scss */
 .left {
   float: left;
 }
 
-/* line 81, sass/style.scss */
+/* line 82, sass/style.scss */
 h1 {
   font-family: 'Imprima', Arial, sans-serif;
   font-size: 34px;
@@ -117,7 +118,7 @@ h1 {
   color: #555;
 }
 
-/* line 88, sass/style.scss */
+/* line 89, sass/style.scss */
 #header {
   margin: 0;
   padding: 0;
@@ -133,20 +134,20 @@ h1 {
   -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 }
-/* line 102, sass/style.scss */
+/* line 103, sass/style.scss */
 #header label {
   float: left;
   margin: 3px 10px 0 20px;
   font-size: 120%;
 }
-/* line 108, sass/style.scss */
+/* line 109, sass/style.scss */
 #header #form {
   display: inline;
   position: relative;
   float: left;
   margin: 0;
 }
-/* line 114, sass/style.scss */
+/* line 115, sass/style.scss */
 #header #form ul.nav2 {
   margin: 0;
   padding: 0;
@@ -154,7 +155,7 @@ h1 {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 116, sass/style.scss */
+/* line 117, sass/style.scss */
 #header #form ul.nav2 > li {
   list-style-image: none;
   list-style-type: none;
@@ -168,23 +169,23 @@ h1 {
   white-space: nowrap;
   margin: 0 10px;
 }
-/* line 122, sass/style.scss */
+/* line 123, sass/style.scss */
 #header #form #location {
   margin-top: 5px;
   margin-bottom: 0;
 }
-/* line 127, sass/style.scss */
+/* line 128, sass/style.scss */
 #header #form #day-select {
   width: auto;
   margin-top: 5px;
   margin-bottom: 0;
 }
-/* line 133, sass/style.scss */
+/* line 134, sass/style.scss */
 #header #form #slider {
   margin: -12px 15px 0 15px;
   width: 200px;
 }
-/* line 141, sass/style.scss */
+/* line 142, sass/style.scss */
 #header a {
   font-weight: normal;
   color: #eef;
@@ -193,18 +194,18 @@ h1 {
   text-decoration: none;
 }
 
-/* line 153, sass/style.scss */
+/* line 154, sass/style.scss */
 #profile-nav {
   height: 23px;
 }
-/* line 155, sass/style.scss */
+/* line 156, sass/style.scss */
 #profile-nav img {
   float: left;
   margin: 0 5px 0 7px;
   position: relative;
 }
 
-/* line 162, sass/style.scss */
+/* line 163, sass/style.scss */
 .content {
   padding: 5px;
   background-color: white;
@@ -217,37 +218,37 @@ h1 {
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
   margin-top: 50px;
 }
-/* line 176, sass/style.scss */
+/* line 177, sass/style.scss */
 .content h1 {
   margin-top: 30px;
 }
 @media (max-width: 979px) {
-  /* line 162, sass/style.scss */
+  /* line 163, sass/style.scss */
   .content {
     margin-top: -8px;
   }
 }
 
-/* line 185, sass/style.scss */
+/* line 186, sass/style.scss */
 .container {
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 190, sass/style.scss */
+/* line 191, sass/style.scss */
 .sidebar-nav-fixed {
   position: fixed;
   top: 60px;
 }
 
 @media (max-width: 767px) {
-  /* line 197, sass/style.scss */
+  /* line 198, sass/style.scss */
   .sidebar-nav-fixed {
     width: auto;
   }
 }
 @media (max-width: 979px) {
-  /* line 203, sass/style.scss */
+  /* line 204, sass/style.scss */
   .sidebar-nav-fixed {
     position: static;
     width: auto;
@@ -256,50 +257,50 @@ h1 {
 /**
  * Promos
  */
-/* line 214, sass/style.scss */
+/* line 215, sass/style.scss */
 table.promos.generic td {
   padding: 0;
 }
-/* line 217, sass/style.scss */
+/* line 218, sass/style.scss */
 table.promos.generic th.today {
   color: red;
 }
 
-/* line 222, sass/style.scss */
+/* line 223, sass/style.scss */
 .promo {
   padding: 0;
 }
-/* line 224, sass/style.scss */
+/* line 225, sass/style.scss */
 .promo .time {
   background-color: #eee;
   margin: 0;
   padding: 5px;
   font-size: 9px;
 }
-/* line 231, sass/style.scss */
+/* line 232, sass/style.scss */
 .promo .promoDescription {
   text-align: left;
   font-size: x-small;
   font-size: 9px;
 }
-/* line 236, sass/style.scss */
+/* line 237, sass/style.scss */
 .promo div {
   line-height: 100%;
 }
 
-/* line 241, sass/style.scss */
+/* line 242, sass/style.scss */
 .promoContent {
   text-align: center;
   padding: 5px;
   font-size: 11px;
 }
 
-/* line 247, sass/style.scss */
+/* line 248, sass/style.scss */
 #flag {
   text-align: right;
   margin-top: 10px;
 }
-/* line 251, sass/style.scss */
+/* line 252, sass/style.scss */
 #flag a {
   color: #1291ff;
   text-decoration: none;
@@ -307,29 +308,29 @@ table.promos.generic th.today {
   background: url(/img/icons/famfamfam/flag_red.png) no-repeat;
 }
 
-/* line 261, sass/style.scss */
+/* line 262, sass/style.scss */
 .pub-overview #content-row {
   float: left;
 }
-/* line 265, sass/style.scss */
+/* line 266, sass/style.scss */
 .pub-overview #sidebar-row {
   float: right !important;
   margin-left: auto;
 }
 @media (max-width: 767px) {
-  /* line 271, sass/style.scss */
+  /* line 272, sass/style.scss */
   .pub-overview #content-row {
     display: inline-block;
     margin-top: 20px;
     width: 100%;
   }
-  /* line 277, sass/style.scss */
+  /* line 278, sass/style.scss */
   .pub-overview #sidebar-row {
     float: none !important;
     margin-left: 0;
   }
 }
-/* line 283, sass/style.scss */
+/* line 284, sass/style.scss */
 .pub-overview h2 {
   margin-top: 10px;
   color: #555;
@@ -338,54 +339,54 @@ table.promos.generic th.today {
   font-size: 25px;
   border-bottom: 1px solid #eee;
 }
-/* line 292, sass/style.scss */
+/* line 293, sass/style.scss */
 .pub-overview h1 {
   float: left;
   margin-left: 10px;
 }
-/* line 295, sass/style.scss */
+/* line 296, sass/style.scss */
 .pub-overview h1 img {
   vertical-align: middle;
   display: inline-block;
   margin-top: -5px;
 }
 @media (max-width: 767px) {
-  /* line 292, sass/style.scss */
+  /* line 293, sass/style.scss */
   .pub-overview h1 {
     float: none;
     margin-bottom: 20px;
   }
 }
-/* line 307, sass/style.scss */
+/* line 308, sass/style.scss */
 .pub-overview label {
   display: inline-block;
 }
-/* line 313, sass/style.scss */
+/* line 314, sass/style.scss */
 .pub-overview ul {
   list-style: none;
   padding-left: 0;
   overflow: auto;
 }
-/* line 319, sass/style.scss */
+/* line 320, sass/style.scss */
 .pub-overview .addthis_toolbox > a {
   margin: 5px;
 }
-/* line 323, sass/style.scss */
+/* line 324, sass/style.scss */
 .pub-overview #photos {
   clear: both;
   overflow: auto;
 }
-/* line 327, sass/style.scss */
+/* line 328, sass/style.scss */
 .pub-overview #photos .venuePic {
   margin: 9px;
   padding: 4px;
   border: 1px solid #ccc;
 }
-/* line 333, sass/style.scss */
+/* line 334, sass/style.scss */
 .pub-overview #photos li {
   float: left;
 }
-/* line 338, sass/style.scss */
+/* line 339, sass/style.scss */
 .pub-overview .tip-container {
   clear: both;
   overflow: auto;
@@ -394,73 +395,73 @@ table.promos.generic th.today {
   color: #444;
   margin: 10px;
 }
-/* line 346, sass/style.scss */
+/* line 347, sass/style.scss */
 .pub-overview .tip-container img {
   border: 1px solid #ccc;
   padding: 3px;
   margin-right: 10px;
 }
-/* line 352, sass/style.scss */
+/* line 353, sass/style.scss */
 .pub-overview .tip-container a {
   padding: 0;
   text-decoration: none;
   color: #2398C9;
   font-weight: bold;
 }
-/* line 359, sass/style.scss */
+/* line 360, sass/style.scss */
 .pub-overview .tip-container .date {
   color: #999;
 }
-/* line 366, sass/style.scss */
+/* line 367, sass/style.scss */
 .pub-overview #tipsWrapper ul li {
   overflow: auto;
   margin-bottom: 5px;
 }
-/* line 371, sass/style.scss */
+/* line 372, sass/style.scss */
 .pub-overview #tipsWrapper ul .separator {
   border-bottom: 1px solid #f1f1f1;
   margin: 0 10px;
 }
-/* line 377, sass/style.scss */
+/* line 378, sass/style.scss */
 .pub-overview .details {
   overflow: auto;
   margin-bottom: 20px;
 }
-/* line 378, sass/style.scss */
+/* line 379, sass/style.scss */
 .pub-overview .details #street-view {
   position: relative;
   z-index: 10;
   top: 195px;
   margin-left: 5px;
 }
-/* line 386, sass/style.scss */
+/* line 387, sass/style.scss */
 .pub-overview .details .contact .address {
   float: left;
   padding: 5px;
 }
-/* line 391, sass/style.scss */
+/* line 392, sass/style.scss */
 .pub-overview .details .contact .urls {
   float: right;
   padding: 5px;
 }
-/* line 401, sass/style.scss */
+/* line 402, sass/style.scss */
 .pub-overview .sidebar {
   height: 100%;
   border-left: solid 1px #f1f1f1;
 }
-/* line 405, sass/style.scss */
+/* line 406, sass/style.scss */
 .pub-overview .sidebar span.price {
   font-weight: bold;
   font-size: 22px;
   color: #000000;
 }
-/* line 411, sass/style.scss */
+/* line 412, sass/style.scss */
 .pub-overview .sidebar span.liquorType {
   font-family: 'Imprima', Arial, sans-serif;
   font-weight: normal;
   font-size: 20px;
 }
-/* line 417, sass/style.scss */
+/* line 418, sass/style.scss */
 .pub-overview .sidebar .liquorSize {
   font-family: 'Imprima', Arial, sans-serif;
   font-style: italic;
@@ -470,7 +471,7 @@ table.promos.generic th.today {
 /**
 * Index page (big map)
 */
-/* line 430, sass/style.scss */
+/* line 431, sass/style.scss */
 #bottom-info-bar {
   height: 25px;
   position: fixed;
@@ -486,30 +487,30 @@ table.promos.generic th.today {
   -webkit-border-top-left-radius: 50px 100px;
   border-top-left-radius: 50px 100px;
 }
-/* line 431, sass/style.scss */
+/* line 432, sass/style.scss */
 #bottom-info-bar .summary {
   font-family: 'Imprima', Arial, sans-serif;
   font-size: 18px;
   margin-right: 20px;
 }
-/* line 432, sass/style.scss */
+/* line 433, sass/style.scss */
 #bottom-info-bar .summary img {
   vertical-align: middle;
   padding-right: 3px;
 }
-/* line 439, sass/style.scss */
+/* line 440, sass/style.scss */
 #bottom-info-bar .summary a {
   text-decoration: none;
   color: #222;
 }
 
-/* line 463, sass/style.scss */
+/* line 464, sass/style.scss */
 .overlay {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 468, sass/style.scss */
+/* line 469, sass/style.scss */
 .overlay h2 {
   margin: 0 0 5px 0;
   font-size: 24px;
@@ -519,55 +520,55 @@ table.promos.generic th.today {
   font-family: 'Imprima', "Arial", sans-serif;
   vertical-align: middle;
 }
-/* line 477, sass/style.scss */
+/* line 478, sass/style.scss */
 .overlay h2 img {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 484, sass/style.scss */
+/* line 485, sass/style.scss */
 .overlay .overlayContent {
   border: 1px solid rgba(104, 187, 235, 0.9);
   border-left: 0;
   border-right: 0;
   margin: 0;
 }
-/* line 490, sass/style.scss */
+/* line 491, sass/style.scss */
 .overlay .overlayContent div {
   padding: 20px 5px;
   font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
   font-size: 20px;
 }
-/* line 495, sass/style.scss */
+/* line 496, sass/style.scss */
 .overlay .overlayContent div span.price {
   font-weight: bold;
   font-size: 30px;
 }
-/* line 500, sass/style.scss */
+/* line 501, sass/style.scss */
 .overlay .overlayContent div span.liquorType {
   font-weight: normal;
   font-size: 24px;
 }
-/* line 505, sass/style.scss */
+/* line 506, sass/style.scss */
 .overlay .overlayContent div div.left {
   padding: 0;
 }
-/* line 509, sass/style.scss */
+/* line 510, sass/style.scss */
 .overlay .overlayContent div div.right {
   padding: 0;
   margin-left: 10px;
 }
-/* line 513, sass/style.scss */
+/* line 514, sass/style.scss */
 .overlay .overlayContent div div.right div.time, .overlay .overlayContent div div.right div.size {
   font-size: 14px;
   padding: 0;
 }
-/* line 521, sass/style.scss */
+/* line 522, sass/style.scss */
 .overlay .overlayContent div.deal {
   padding: 0;
   margin-bottom: 10px;
   overflow: auto;
 }
-/* line 527, sass/style.scss */
+/* line 528, sass/style.scss */
 .overlay .overlayContent h3 {
   text-align: center;
   color: #fff;
@@ -578,50 +579,50 @@ table.promos.generic th.today {
   margin: 0;
   padding: 0;
 }
-/* line 540, sass/style.scss */
+/* line 541, sass/style.scss */
 .overlay .overlayContent table div {
   font-size: 12px;
   padding: 0;
 }
-/* line 544, sass/style.scss */
+/* line 545, sass/style.scss */
 .overlay .overlayContent table th {
   padding: 2px 5px;
   font-variant: small-caps;
 }
-/* line 550, sass/style.scss */
+/* line 551, sass/style.scss */
 .overlay .overlayContent table span.price {
   font-weight: bold;
   font-size: 22px;
   color: #000000;
 }
-/* line 556, sass/style.scss */
+/* line 557, sass/style.scss */
 .overlay .overlayContent table span.liquorType {
   font-family: 'Imprima', Arial, sans-serif;
   font-weight: normal;
   font-size: 20px;
 }
-/* line 562, sass/style.scss */
+/* line 563, sass/style.scss */
 .overlay .overlayContent table .liquorSize {
   font-family: 'Imprima', Arial, sans-serif;
   font-style: italic;
   padding: 5px;
 }
-/* line 568, sass/style.scss */
+/* line 569, sass/style.scss */
 .overlay .overlayContent table .thePromo {
   padding: 8px 4px 4px 4px;
 }
-/* line 574, sass/style.scss */
+/* line 575, sass/style.scss */
 .overlay .foot {
   margin-top: 10px;
   overflow: auto;
   position: relative;
 }
-/* line 579, sass/style.scss */
+/* line 580, sass/style.scss */
 .overlay .foot .address {
   color: #555;
   font-size: 80%;
 }
-/* line 584, sass/style.scss */
+/* line 585, sass/style.scss */
 .overlay .foot a {
   text-decoration: none;
   color: #1291ff;
@@ -630,7 +631,7 @@ table.promos.generic th.today {
   right: 0;
 }
 
-/* line 594, sass/style.scss */
+/* line 595, sass/style.scss */
 a.small-icon {
   display: block;
   width: 16px;
@@ -640,21 +641,21 @@ a.small-icon {
   text-indent: -9999px;
 }
 
-/* line 603, sass/style.scss */
+/* line 604, sass/style.scss */
 a.ok {
   background: url(/img/icons/famfamfam/accept.png) no-repeat;
 }
 
-/* line 607, sass/style.scss */
+/* line 608, sass/style.scss */
 a.cancel {
   background: url(/img/icons/famfamfam/cancel.png) no-repeat;
 }
 
-/* line 611, sass/style.scss */
+/* line 612, sass/style.scss */
 .admin-nav {
   list-style: none;
 }
-/* line 615, sass/style.scss */
+/* line 616, sass/style.scss */
 .admin-nav li a {
   font-size: 18px;
   text-decoration: none;
@@ -666,7 +667,7 @@ a.cancel {
   border-color: #ddd;
   color: #555;
 }
-/* line 627, sass/style.scss */
+/* line 628, sass/style.scss */
 .admin-nav li a.selected {
   background: #00b7ea;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -687,49 +688,49 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
-/* line 654, sass/style.scss */
+/* line 655, sass/style.scss */
 #flagForm #dealSelector {
   padding: 20px;
   font-size: 15px;
   border-right: 1px solid #ccc;
   margin-right: 20px;
 }
-/* line 662, sass/style.scss */
+/* line 663, sass/style.scss */
 #flagForm #dealSubforms dd {
   margin-bottom: 10px;
 }
-/* line 667, sass/style.scss */
+/* line 668, sass/style.scss */
 #flagForm dt > label {
   font-weight: bold;
   font-size: 15px;
 }
-/* line 671, sass/style.scss */
+/* line 672, sass/style.scss */
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;
 }
-/* line 676, sass/style.scss */
+/* line 677, sass/style.scss */
 #flagForm fieldset {
   border: 0;
   padding: 0;
 }
-/* line 681, sass/style.scss */
+/* line 682, sass/style.scss */
 #flagForm hr {
   color: #ddd;
 }
 
-/* line 686, sass/style.scss */
+/* line 687, sass/style.scss */
 .venuePic {
   margin: 10px;
   padding: 4px;
   border: 1px solid #ccc;
 }
 
-/* line 693, sass/style.scss */
+/* line 694, sass/style.scss */
 #mailshare dd {
   margin-left: 0px;
 }
-/* line 696, sass/style.scss */
+/* line 697, sass/style.scss */
 #mailshare .item {
   -webkit-border-radius: 4px 4px;
   -moz-border-radius: 4px / 4px;
@@ -740,18 +741,18 @@ a.cancel {
   padding: 5px;
   background: none repeat scroll 0 0 #eee;
 }
-/* line 706, sass/style.scss */
+/* line 707, sass/style.scss */
 #mailshare form input[type=text] {
   width: 180px;
 }
-/* line 709, sass/style.scss */
+/* line 710, sass/style.scss */
 #mailshare form.done {
   -webkit-box-shadow: 0px 0px 5px green;
   -moz-box-shadow: 0px 0px 5px green;
   box-shadow: 0px 0px 5px green;
 }
 
-/* line 715, sass/style.scss */
+/* line 716, sass/style.scss */
 #facebookConnect, #signInWithTwitter {
   margin: 20px;
   display: block;
@@ -760,12 +761,12 @@ a.cancel {
   width: 169px;
 }
 
-/* line 723, sass/style.scss */
+/* line 724, sass/style.scss */
 #facebookConnect {
   background: url("/img/icons/facebookconnect.png") no-repeat scroll 0 0 transparent;
 }
 
-/* line 727, sass/style.scss */
+/* line 728, sass/style.scss */
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }
@@ -773,17 +774,17 @@ a.cancel {
 /**
  * User Profile
  */
-/* line 736, sass/style.scss */
+/* line 737, sass/style.scss */
 #services ul {
   list-style: none;
   padding: 0;
 }
-/* line 740, sass/style.scss */
+/* line 741, sass/style.scss */
 #services ul li {
   margin: 10px;
 }
 
-/* line 746, sass/style.scss */
+/* line 747, sass/style.scss */
 #advanced-filter {
   max-height: 15px;
   -webkit-transition-property: max-height;
@@ -799,28 +800,28 @@ a.cancel {
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-/* line 751, sass/style.scss */
+/* line 752, sass/style.scss */
 #advanced-filter:hover {
   max-height: 500px;
 }
 
-/* line 756, sass/style.scss */
+/* line 757, sass/style.scss */
 #category-list {
   list-style-type: none;
   padding: 0;
   margin: 5px;
   margin-right: 15px;
 }
-/* line 762, sass/style.scss */
+/* line 763, sass/style.scss */
 #category-list label {
   display: inline-block;
 }
-/* line 766, sass/style.scss */
+/* line 767, sass/style.scss */
 #category-list label, #category-list input {
   vertical-align: middle;
 }
 
-/* line 771, sass/style.scss */
+/* line 772, sass/style.scss */
 .glow {
   -webkit-border-radius: 3px 3px;
   -moz-border-radius: 3px / 3px;
@@ -828,18 +829,18 @@ a.cancel {
   overflow: hidden;
 }
 
-/* line 776, sass/style.scss */
+/* line 777, sass/style.scss */
 .promo {
   margin: 3px;
 }
-/* line 779, sass/style.scss */
+/* line 780, sass/style.scss */
 .promo .thePromo {
   padding: 10px;
   border: 1px solid #eee;
   color: #444;
 }
 
-/* line 788, sass/style.scss */
+/* line 789, sass/style.scss */
 .tooltip {
   display: none;
   background: transparent url("/css/images/black_arrow.png");
@@ -851,12 +852,12 @@ a.cancel {
   z-index: 1000;
 }
 
-/* line 801, sass/style.scss */
+/* line 802, sass/style.scss */
 .state-progress {
   text-align: center;
   padding-top: 10px;
 }
-/* line 804, sass/style.scss */
+/* line 805, sass/style.scss */
 .state-progress span {
   font-size: 9px;
   font-weight: bold;
@@ -1077,13 +1078,13 @@ a.cancel {
   list-style-image: url(/img/icons/markers/beer_sml.png);
 }
 
-/* line 816, sass/style.scss */
+/* line 817, sass/style.scss */
 .pac-container {
   line-height: 20px;
 }
 
 /* Bootstrap override */
-/* line 821, sass/style.scss */
+/* line 822, sass/style.scss */
 .navbar-inverse .navbar-inner {
   border-color: #00B7EA;
 }
