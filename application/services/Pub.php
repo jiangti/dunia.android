@@ -394,7 +394,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
         if ($includeNoPromos) {
             $select2
                 ->where('find_in_set(?, p0.day) = 0 OR p0.day is null', $day)
-                ->where('checkinsCount > 5')
+                ->where('checkinsCount > 15')
             ;
         } else {
             $select2->where('find_in_set(?, p0.day) = 0', $day);
@@ -420,8 +420,14 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 	    }
 	    
 	    $select3->joinLeft(array('php' => 'pubHasPromo'), 'php.idPub = p.id', $nulls)->where('php.idPub is null');
-	    $select = $unionSelect->union(array($select1, $select2, $select3));
-        $select->order('priority')->order('distance')->limit(100);
+
+        // If we want to see a different day then do not show stuff that doesn't happen that day!
+        if (strtolower($day) != strtolower(date('D'))) {
+            $select = $select1;
+        } else {
+            $select = $unionSelect->union(array($select1, $select2, $select3));
+            $select->order('priority')->order('distance')->limit(100);
+        }
 	    return $select;
 	    
 	    
