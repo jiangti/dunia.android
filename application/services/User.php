@@ -25,11 +25,7 @@ class Service_User extends Aw_Service_ServiceAbstract
 
             }
 
-            if (!$auth->hasIdentity()) {
-                $result = $auth->authenticate($adapter);
-            } else {
-                $result = null;
-            }
+            $result = $auth->authenticate($adapter);
 
             // Link this service to a user if it exists or create a new one if not
             $this->linkSessionServices();
