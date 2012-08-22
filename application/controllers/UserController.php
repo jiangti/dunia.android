@@ -6,22 +6,27 @@ class UserController extends Model_Controller_Action
     public function loginAction()
     {
         $auth = Aw_Auth::getInstance();
+        $user = new Service_User();
+
         if ($auth->hasIdentity()) {
-            $this->_redirect('/');
+            if ($this->hasParam('provider')) {
+                // If we have logged in but we are connecting an additional service
+                $user->login($this->getAllParams());
+            } else {
+                $this->redirect('/');
+            }
         }
 
         // Here the response of the providers are registered
-        if ($this->_hasParam('provider')) {
-
-            $user   = new Service_User();
-            $result = $user->login($this->_getAllParams());
+        if ($this->hasParam('provider')) {
+            $result = $user->login($this->getAllParams());
 
             // What to do when invalid
             if (!$result || !$result->isValid()) {
                 $auth->clearIdentity($this->_getParam('provider'));
                 throw new Exception('Error!!');
             } else {
-                $this->_redirect('/');
+                $this->redirect('/');
             }
         } else { // Normal login page
             //$this->view->googleAuthUrl   = Aw_Auth_Adapter_Google::getAuthorizationUrl();
@@ -34,7 +39,7 @@ class UserController extends Model_Controller_Action
     public function profileAction() {
         $auth = Aw_Auth::getInstance();
         if (!$auth->hasIdentity()) {
-            $this->_redirect('/user/login');
+            $this->redirect('/user/login');
         }
 
     }
@@ -43,7 +48,7 @@ class UserController extends Model_Controller_Action
     {
         $auth = Aw_Auth::getInstance();
         if (!$auth->hasIdentity()) {
-            $this->_redirect('/user/login');
+            $this->redirect('/user/login');
         }
         $this->view->providers = $auth->getIdentity();
     }
@@ -53,7 +58,7 @@ class UserController extends Model_Controller_Action
         Aw_Auth::getInstance()->clearIdentity();
         $session = new Zend_Session_Namespace('user');
         $session->unsetAll();
-        $this->_redirect('/');
+        $this->redirect('/');
     }
 
     public function connectFoursquareAction() {
@@ -74,7 +79,7 @@ class UserController extends Model_Controller_Action
             $user->addService('foursquare', $token->access_token, $foursquareUser->response->user->id);
         }
 
-        $this->_redirect('/user/profile');
+        $this->redirect('/user/profile');
     }
 
     public function loginTwitterAction() {
