@@ -54,7 +54,7 @@ define(['libs/ember'], function(Ember) {
 	    	    Dunia.markerProperties.earlier,
 	    	    Dunia.markerProperties.later, 
 	    	    Dunia.markerProperties.none,
-	    	    Dunia.markerProperties.zero,
+	    	    Dunia.markerProperties.zero
 	        ]
 	    });
 	    
@@ -65,6 +65,7 @@ define(['libs/ember'], function(Ember) {
 	        markers:    new Array(),
 	        mapMarkers: new Array(),
 	        infoWindow: new google.maps.InfoWindow(),
+
 	
 	        fetchBars: function() {
 	            var self      = this;
@@ -162,7 +163,6 @@ define(['libs/ember'], function(Ember) {
 	                	markers[i].promos.forEach(function(value, key) {
 	                		
 	                		if (value.itsOn != 'none') {
-	                			console.log(timeStart, timeEnd);
 	                			if (value.timeStart >= timeStart && value.timeEnd <= timeEnd) {
 	                				isVisible = true;
 	                			}	
@@ -178,7 +178,6 @@ define(['libs/ember'], function(Ember) {
 
                 if (markers) {
                     for (var i = 0; i < markers.length; i++ ) {
-                        console.log(markers[i]);
                         markers[i].icon.size       = new google.maps.Size(width, height);
                         markers[i].icon.scaledSize = new google.maps.Size(width, height);
                     }
@@ -266,7 +265,7 @@ define(['libs/ember'], function(Ember) {
 	                }
 	                
 	                var mapMarker = new google.maps.Marker(markerData);
-	                
+	                mapMarker.setVisible(properties.flag);
 	                
 	                $this.get('mapMarkers').push(mapMarker);
 	                
