@@ -155,17 +155,15 @@ define(['libs/ember'], function(Ember) {
 	        },
 	        
 	        setMarkersByTime: function(timeStart, timeEnd) {
-	        	this.showAll();
 	        	var markers = this.get('mapMarkers');
 	            if (markers) {
 	                for (var i = 0; i < markers.length; i++ ) {
 	                	var isVisible = false;
 	                	markers[i].promos.forEach(function(value, key) {
-	                		
 	                		if (value.itsOn != 'none') {
 	                			if (value.timeStart >= timeStart && value.timeEnd <= timeEnd) {
 	                				isVisible = true;
-	                			}	
+	                			}
 	                		}
 	                	});
 	                	markers[i].setVisible(isVisible);
