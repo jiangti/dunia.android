@@ -6,19 +6,14 @@ class UserController extends Model_Controller_Action
     public function loginAction()
     {
         $auth = Aw_Auth::getInstance();
-        $user = new Service_User();
-
         if ($auth->hasIdentity()) {
-            if ($this->hasParam('provider')) {
-                // If we have logged in but we are connecting an additional service
-                $user->login($this->getAllParams());
-            } else {
-                $this->redirect('/');
-            }
+            $this->redirect('/');
         }
 
         // Here the response of the providers are registered
         if ($this->hasParam('provider')) {
+
+            $user   = new Service_User();
             $result = $user->login($this->getAllParams());
 
             // What to do when invalid
