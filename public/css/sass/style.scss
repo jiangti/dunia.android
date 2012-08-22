@@ -113,21 +113,25 @@ h1 {
         
         ul.nav2 {
           @include inline-block-list-container;
-          padding-top: 8px;
           > li {
                 @include inline-block-list-item;
                 margin: 0 10px;
             }
         }
 
+        #location {
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
         #day-select {
             width: auto;
-            margin-top: 1px;
-
+            margin-top: 5px;
+            margin-bottom: 0;
         }
 
         #slider {
-            margin: -16px 15px 0 15px;
+            margin: -12px 15px 0 15px;
             width: 200px;
         }
     }
@@ -811,4 +815,9 @@ a.cancel {
 
 .pac-container {
     line-height: 20px;
+}
+
+/* Bootstrap override */
+.navbar-inverse .navbar-inner {
+    border-color: #00B7EA;
 }
