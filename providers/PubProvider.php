@@ -8,11 +8,11 @@ class PubProvider extends Aw_Tool_Framework_ProviderAbstract {
 		}
 	}
 	
-	public function findIndexAction() {
+	public function findIndexAction($value) {
 	    $service = new Service_Pub_Lucene();
 	    $pubTable = new Model_DbTable_Pub();
 	     
-	    $docs = $service->search('Albion');
+	    $docs = $service->search($value);
 	    $pubs = $pubTable->find(array_map(function($a) { return $a->key; }, $docs));
 	    foreach ($pubs as $pub) {
 	        var_dump((string) $pub->getAddress());
