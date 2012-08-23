@@ -353,7 +353,9 @@ class Service_Pub extends Aw_Service_ServiceAbstract
             $day = $days[$options['day']];
         } else {
             $day = date('D');
+            $includeNoPromos = false;
         }
+        
         
         
         $joinType = 'join';
