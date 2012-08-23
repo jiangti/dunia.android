@@ -1,4 +1,4 @@
-<div class="navbar">
+<div class="navbar navbar-inverse">
     <div id="header" class="navbar-inner">
 
         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
@@ -9,7 +9,7 @@
         </a>
         <a id="logo" class="brand" href="/">Dunia</a>
 
-        <form id="form" onsubmit="return false;" style="display: inline">
+        <form id="form" class="hidden-phone" onsubmit="return false;" style="display: inline">
             <ul class="nav2">
                 <li><?php echo $this->form->location; ?></li>
                 <li>
@@ -17,7 +17,7 @@
                         <fieldset style="border: none; margin: 0px; padding: 0px;">
                             <label for="valueA" style="display:none;">From:</label>
                             <select name="valueA" id="valueA" style="display:none;">
-                                <option value="9:00" selected="selected">9:00</option>
+                                <option value="09:00" selected="selected">9:00</option>
                                 <option value="10:00">10:00</option>
                                 <option value="11:00">11:00</option>
                                 <option value="12:00">Noon</option>
@@ -37,7 +37,7 @@
 
                             <label for="valueB" style="display:none;">To:</label>
                             <select name="valueB" id="valueB" style="display:none;">
-                                <option value="9:00">9:00</option>
+                                <option value="09:00">9:00</option>
                                 <option value="10:00">10:00</option>
                                 <option value="11:00">11:00</option>
                                 <option value="12:00">Noon</option>

@@ -1,4 +1,4 @@
-define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/bootstrap', 'addthis'], function(init) {
+define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/bootstrap'], function(init) {
 	return {init: function() {
 		init.init();
 		
@@ -102,6 +102,5 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
 	    	AppMap.fetchBars();
 	    });
 	    
-	    addthis.init();
 	}}
 });

@@ -7,21 +7,21 @@ class UserController extends Model_Controller_Action
     {
         $auth = Aw_Auth::getInstance();
         if ($auth->hasIdentity()) {
-            $this->_redirect('/');
+            $this->redirect('/');
         }
 
         // Here the response of the providers are registered
-        if ($this->_hasParam('provider')) {
+        if ($this->hasParam('provider')) {
 
             $user   = new Service_User();
-            $result = $user->login($this->_getAllParams());
+            $result = $user->login($this->getAllParams());
 
             // What to do when invalid
             if (!$result || !$result->isValid()) {
                 $auth->clearIdentity($this->_getParam('provider'));
                 throw new Exception('Error!!');
             } else {
-                $this->_redirect('/');
+                $this->redirect('/');
             }
         } else { // Normal login page
             //$this->view->googleAuthUrl   = Aw_Auth_Adapter_Google::getAuthorizationUrl();
@@ -34,7 +34,7 @@ class UserController extends Model_Controller_Action
     public function profileAction() {
         $auth = Aw_Auth::getInstance();
         if (!$auth->hasIdentity()) {
-            $this->_redirect('/user/login');
+            $this->redirect('/user/login');
         }
 
     }
@@ -43,7 +43,7 @@ class UserController extends Model_Controller_Action
     {
         $auth = Aw_Auth::getInstance();
         if (!$auth->hasIdentity()) {
-            $this->_redirect('/user/login');
+            $this->redirect('/user/login');
         }
         $this->view->providers = $auth->getIdentity();
     }
@@ -53,7 +53,7 @@ class UserController extends Model_Controller_Action
         Aw_Auth::getInstance()->clearIdentity();
         $session = new Zend_Session_Namespace('user');
         $session->unsetAll();
-        $this->_redirect('/');
+        $this->redirect('/');
     }
 
     public function connectFoursquareAction() {
@@ -67,14 +67,14 @@ class UserController extends Model_Controller_Action
                 $user->setTable(new Model_DbTable_User());
             }
 
-            $token = $foursquare->getAccessToken($code, 'http://127.0.0.1/user/connect-foursquare');
+            $token = $foursquare->getAccessToken($code, 'http://dunia.com.au/user/connect-foursquare');
             $foursquare->setAccessToken($token->access_token);
 
             $foursquareUser = $foursquare->get('/users/self');
             $user->addService('foursquare', $token->access_token, $foursquareUser->response->user->id);
         }
 
-        $this->_redirect('/user/profile');
+        $this->redirect('/user/profile');
     }
 
     public function loginTwitterAction() {
