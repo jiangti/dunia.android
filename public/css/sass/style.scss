@@ -114,6 +114,8 @@ h1 {
         
         ul.nav2 {
           @include inline-block-list-container;
+          padding-top: 8px;
+          
           > li {
                 @include inline-block-list-item;
                 margin: 0 10px;

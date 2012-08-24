@@ -351,11 +351,19 @@ class Service_Pub extends Aw_Service_ServiceAbstract
         if (idx($options, 'day')) {
             $days = Model_Day::$days;
             $day = $days[$options['day']];
+            
+            $expr = new Zend_Db_Expr(sprintf("IF(find_in_set('%s', p0.day), 'later', 'none')", $day, $hour, $hour, $hour));
+            
         } else {
             $day = date('D');
-            $includeNoPromos = false;
+            
+            $expr = new Zend_Db_Expr(sprintf("IF(find_in_set('%s', p0.day), CASE
+                WHEN '%s' BETWEEN p0.timeStart AND p0.timeEnd THEN 'now'
+                WHEN '%s' < p0.timeStart THEN 'later'
+                WHEN '%s' > p0.timeEnd THEN 'earlier'
+                ELSE 'none'
+                END, 'none')", $day, $hour, $hour, $hour));
         }
-        
         
         
         $joinType = 'join';
