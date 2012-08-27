@@ -490,7 +490,7 @@ table.promos.generic th.today {
   -webkit-border-top-left-radius: 50px 100px;
   border-top-left-radius: 50px 100px;
 }
-@media (max-width: 320px) {
+@media (max-width: 480px) {
   /* line 432, sass/style.scss */
   #bottom-info-bar {
     display: none;
@@ -529,7 +529,7 @@ table.promos.generic th.today {
   font-family: 'Imprima', "Arial", sans-serif;
   vertical-align: middle;
 }
-@media (max-width: 320px) {
+@media (max-width: 480px) {
   /* line 475, sass/style.scss */
   .overlay h2 {
     font-size: 15px;
@@ -558,7 +558,7 @@ table.promos.generic th.today {
   font-weight: bold;
   font-size: 30px;
 }
-@media (max-width: 320px) {
+@media (max-width: 480px) {
   /* line 508, sass/style.scss */
   .overlay .overlayContent div span.price {
     font-size: 15px;
@@ -569,7 +569,7 @@ table.promos.generic th.today {
   font-weight: normal;
   font-size: 24px;
 }
-@media (max-width: 320px) {
+@media (max-width: 480px) {
   /* line 517, sass/style.scss */
   .overlay .overlayContent div span.liquorType {
     font-size: 15px;
@@ -628,7 +628,7 @@ table.promos.generic th.today {
   font-weight: normal;
   font-size: 20px;
 }
-@media (max-width: 320px) {
+@media (max-width: 480px) {
   /* line 577, sass/style.scss */
   .overlay .overlayContent table span.liquorType {
     font-size: 15px;
