@@ -227,13 +227,13 @@ define(['libs/ember'], function(Ember) {
 	                }
 	
 	                var overlayHtml = '<div class="overlay">' +
-	                    '<h2>';
+	                    '<h2><a href="' + marker.url[0] + '" title="' + name + '" data-ajax="false">';
 	
 	                if (pubType) {
 	                    overlayHtml += '<img src="' + pubType + '" width="28" height="28" /> ';
 	                }
 	
-	                overlayHtml += name + '</h2>' +
+	                overlayHtml += name + '</a></h2>' +
 	                    '<div class="overlayContent">' + promos + '</div>' +
 	                    '<div class="foot">' +
 	                    '<div class="address">' + address + '</div>' +

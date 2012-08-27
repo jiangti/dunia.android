@@ -114,7 +114,6 @@ h1 {
         
         ul.nav2 {
           @include inline-block-list-container;
-          padding-top: 8px;
           
           > li {
                 @include inline-block-list-item;
@@ -471,6 +470,11 @@ table.promos.generic {
     h2 {
         margin: 0 0 5px 0;
         font-size: 24px;
+        
+        @media (max-width: 320px) {
+            font-size: 15px;
+        }
+        
         font-weight: bold;
         color: #555;
         text-align: center;
@@ -493,15 +497,24 @@ table.promos.generic {
         div {
             padding: 20px 5px;
             font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+            
             font-size: 20px;
 
             span.price {
                 font-weight: bold;
                 font-size: 30px;
+                
+                @media (max-width: 320px) {
+                    font-size: 15px;
+                }
             }
 
             span.liquorType {
                 font-weight: normal;
+                
+                @media (max-width: 320px) {
+                    font-size: 15px;
+                }
                 font-size: 24px;
             }
 
@@ -559,6 +572,11 @@ table.promos.generic {
             span.liquorType {
                 font-family: 'Imprima', Arial, sans-serif;
                 font-weight: normal;
+                
+                @media (max-width: 320px) {
+                    font-size: 15px;
+                }
+                
                 font-size: 20px;
             }
 

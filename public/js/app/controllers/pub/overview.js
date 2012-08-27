@@ -1,4 +1,4 @@
-define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquery.scrollTo-min'], function() {
+define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquery.scrollTo-min', 'libs/jwerty'], function() {
 	return {init: function() {
 		var center = new google.maps.LatLng(parseFloat(config.lat), parseFloat(config.long));
 	    var myOptions = {
@@ -135,6 +135,13 @@ define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquer
 			$dt.slideDown();
 			$dd.slideDown();
 		});
+		
+		//var $form = $('form.uniform');
+		//
+		//jwerty.key('alt+shift+S', function () { $form.submit(); });
+		//jwerty.key('alt+shift+U', function () { $('#url').click().focus(); });
+		//jwerty.key('alt+shift+E', function () { $('#email').click().focus(); });
+		//jwerty.key('alt+shift+C', function () { $('#isChecked').click().focus(); });
 	
 	
 	}}
