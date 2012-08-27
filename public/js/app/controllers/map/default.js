@@ -14,35 +14,35 @@ define(['libs/ember'], function(Ember) {
 	        now: marker.create({
 	        	name:   'now',
 	        	title:  'It\'s on now',
-	        	icon:   '/img/icons/markers/half.png',
+	        	icon:   '/img/icons/markers/now.svg',
 	            smallIcon: '/img/icons/markers/half_sml.png',
 	            zIndex: 20
 	        }),
 	        earlier: marker.create({
 	        	name:   'earlier',
 	        	title:  'Missed it',
-	            icon: '/img/icons/markers/empty.png',
+	            icon: '/img/icons/markers/gone.svg',
 	            smallIcon: '/img/icons/markers/empty_sml.png',
 	            zIndex: 18
 	        }),
 	        later: marker.create({
 	        	name:   'later',
 	        	title:  'Coming soon',
-	            icon: '/img/icons/markers/full.png',
+	            icon: '/img/icons/markers/coming.svg',
 	            smallIcon: '/img/icons/markers/full_sml.png',
 	            zIndex: 19
 	        }),
 	        none: marker.create({
 	        	name:   'none',
 	        	title:  'Not today',
-	            icon: '/img/icons/markers/bar.black.png',
+	            icon: '/img/icons/markers/notoday.svg',
 	            smallIcon: '/img/icons/markers/black_sml.png',
 	            zIndex: 15
 	        }),
 	        zero: marker.create({
 	        	name:   'zero',
 	        	title:  'Zero',
-	            icon: '/img/icons/markers/bar.png',
+	            icon: '/img/icons/markers/none.svg',
 	            smallIcon: '/img/icons/markers/beer_sml.png',
 	            zIndex: 10
 	        })
@@ -245,7 +245,7 @@ define(['libs/ember'], function(Ember) {
 	                var markerData = {
 	                    map: map,
 	                    position: point,
-	                    icon:     new google.maps.MarkerImage(properties.icon),
+	                    icon:     new google.maps.MarkerImage(properties.icon, null, null, null, new google.maps.Size(29, 44)),
 	                    shadow:   properties.shadow,
 	                    zIndex:   properties.zIndex,
 	                    html:     overlayHtml,
