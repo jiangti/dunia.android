@@ -314,8 +314,9 @@ table.promos.generic {
             margin-bottom: 20px;
         }
         
-        @media (max-width: 767px) {
+        @media (max-width: 480px) {
             margin-bottom: 0px;
+            font-size: 26px;
         }
     }
 
