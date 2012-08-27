@@ -225,6 +225,12 @@ h1 {
 .content h1 {
   margin-top: 30px;
 }
+@media (max-width: 480px) {
+  /* line 178, sass/style.scss */
+  .content h1 {
+    margin: 0px;
+  }
+}
 @media (max-width: 979px) {
   /* line 164, sass/style.scss */
   .content {
@@ -232,26 +238,26 @@ h1 {
   }
 }
 
-/* line 187, sass/style.scss */
+/* line 191, sass/style.scss */
 .container {
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 192, sass/style.scss */
+/* line 196, sass/style.scss */
 .sidebar-nav-fixed {
   position: fixed;
   top: 60px;
 }
 
 @media (max-width: 767px) {
-  /* line 199, sass/style.scss */
+  /* line 203, sass/style.scss */
   .sidebar-nav-fixed {
     width: auto;
   }
 }
 @media (max-width: 979px) {
-  /* line 205, sass/style.scss */
+  /* line 209, sass/style.scss */
   .sidebar-nav-fixed {
     position: static;
     width: auto;
@@ -260,50 +266,50 @@ h1 {
 /**
  * Promos
  */
-/* line 216, sass/style.scss */
+/* line 220, sass/style.scss */
 table.promos.generic td {
   padding: 0;
 }
-/* line 219, sass/style.scss */
+/* line 223, sass/style.scss */
 table.promos.generic th.today {
   color: red;
 }
 
-/* line 224, sass/style.scss */
+/* line 228, sass/style.scss */
 .promo {
   padding: 0;
 }
-/* line 226, sass/style.scss */
+/* line 230, sass/style.scss */
 .promo .time {
   background-color: #eee;
   margin: 0;
   padding: 5px;
   font-size: 9px;
 }
-/* line 233, sass/style.scss */
+/* line 237, sass/style.scss */
 .promo .promoDescription {
   text-align: left;
   font-size: x-small;
   font-size: 9px;
 }
-/* line 238, sass/style.scss */
+/* line 242, sass/style.scss */
 .promo div {
   line-height: 100%;
 }
 
-/* line 243, sass/style.scss */
+/* line 247, sass/style.scss */
 .promoContent {
   text-align: center;
   padding: 5px;
   font-size: 11px;
 }
 
-/* line 249, sass/style.scss */
+/* line 253, sass/style.scss */
 #flag {
   text-align: right;
   margin-top: 10px;
 }
-/* line 253, sass/style.scss */
+/* line 257, sass/style.scss */
 #flag a {
   color: #1291ff;
   text-decoration: none;
@@ -311,29 +317,35 @@ table.promos.generic th.today {
   background: url(/img/icons/famfamfam/flag_red.png) no-repeat;
 }
 
-/* line 263, sass/style.scss */
+/* line 267, sass/style.scss */
 .pub-overview #content-row {
   float: left;
 }
-/* line 267, sass/style.scss */
+/* line 271, sass/style.scss */
 .pub-overview #sidebar-row {
   float: right !important;
   margin-left: auto;
 }
 @media (max-width: 767px) {
-  /* line 273, sass/style.scss */
+  /* line 277, sass/style.scss */
   .pub-overview #content-row {
     display: inline-block;
     margin-top: 20px;
     width: 100%;
   }
-  /* line 279, sass/style.scss */
+  /* line 288, sass/style.scss */
   .pub-overview #sidebar-row {
     float: none !important;
     margin-left: 0;
   }
 }
-/* line 285, sass/style.scss */
+@media (max-width: 767px) and (max-width: 480px) {
+  /* line 277, sass/style.scss */
+  .pub-overview #content-row {
+    margin-top: 0px;
+  }
+}
+/* line 294, sass/style.scss */
 .pub-overview h2 {
   margin-top: 10px;
   color: #555;
@@ -342,54 +354,60 @@ table.promos.generic th.today {
   font-size: 25px;
   border-bottom: 1px solid #eee;
 }
-/* line 294, sass/style.scss */
+/* line 303, sass/style.scss */
 .pub-overview h1 {
   float: left;
   margin-left: 10px;
 }
-/* line 297, sass/style.scss */
+/* line 306, sass/style.scss */
 .pub-overview h1 img {
   vertical-align: middle;
   display: inline-block;
   margin-top: -5px;
 }
 @media (max-width: 767px) {
-  /* line 294, sass/style.scss */
+  /* line 303, sass/style.scss */
   .pub-overview h1 {
     float: none;
     margin-bottom: 20px;
   }
 }
-/* line 309, sass/style.scss */
+@media (max-width: 767px) {
+  /* line 303, sass/style.scss */
+  .pub-overview h1 {
+    margin-bottom: 0px;
+  }
+}
+/* line 322, sass/style.scss */
 .pub-overview label {
   display: inline-block;
 }
-/* line 315, sass/style.scss */
+/* line 328, sass/style.scss */
 .pub-overview ul {
   list-style: none;
   padding-left: 0;
   overflow: auto;
 }
-/* line 321, sass/style.scss */
+/* line 334, sass/style.scss */
 .pub-overview .addthis_toolbox > a {
   margin: 5px;
 }
-/* line 325, sass/style.scss */
+/* line 338, sass/style.scss */
 .pub-overview #photos {
   clear: both;
   overflow: auto;
 }
-/* line 329, sass/style.scss */
+/* line 342, sass/style.scss */
 .pub-overview #photos .venuePic {
   margin: 9px;
   padding: 4px;
   border: 1px solid #ccc;
 }
-/* line 335, sass/style.scss */
+/* line 348, sass/style.scss */
 .pub-overview #photos li {
   float: left;
 }
-/* line 340, sass/style.scss */
+/* line 353, sass/style.scss */
 .pub-overview .tip-container {
   clear: both;
   overflow: auto;
@@ -398,73 +416,73 @@ table.promos.generic th.today {
   color: #444;
   margin: 10px;
 }
-/* line 348, sass/style.scss */
+/* line 361, sass/style.scss */
 .pub-overview .tip-container img {
   border: 1px solid #ccc;
   padding: 3px;
   margin-right: 10px;
 }
-/* line 354, sass/style.scss */
+/* line 367, sass/style.scss */
 .pub-overview .tip-container a {
   padding: 0;
   text-decoration: none;
   color: #2398C9;
   font-weight: bold;
 }
-/* line 361, sass/style.scss */
+/* line 374, sass/style.scss */
 .pub-overview .tip-container .date {
   color: #999;
 }
-/* line 368, sass/style.scss */
+/* line 381, sass/style.scss */
 .pub-overview #tipsWrapper ul li {
   overflow: auto;
   margin-bottom: 5px;
 }
-/* line 373, sass/style.scss */
+/* line 386, sass/style.scss */
 .pub-overview #tipsWrapper ul .separator {
   border-bottom: 1px solid #f1f1f1;
   margin: 0 10px;
 }
-/* line 379, sass/style.scss */
+/* line 392, sass/style.scss */
 .pub-overview .details {
   overflow: auto;
   margin-bottom: 20px;
 }
-/* line 380, sass/style.scss */
+/* line 393, sass/style.scss */
 .pub-overview .details #street-view {
   position: relative;
   z-index: 10;
   top: 195px;
   margin-left: 5px;
 }
-/* line 388, sass/style.scss */
+/* line 401, sass/style.scss */
 .pub-overview .details .contact .address {
   float: left;
   padding: 5px;
 }
-/* line 393, sass/style.scss */
+/* line 406, sass/style.scss */
 .pub-overview .details .contact .urls {
   float: right;
   padding: 5px;
 }
-/* line 403, sass/style.scss */
+/* line 416, sass/style.scss */
 .pub-overview .sidebar {
   height: 100%;
   border-left: solid 1px #f1f1f1;
 }
-/* line 407, sass/style.scss */
+/* line 420, sass/style.scss */
 .pub-overview .sidebar span.price {
   font-weight: bold;
   font-size: 22px;
   color: #000000;
 }
-/* line 413, sass/style.scss */
+/* line 426, sass/style.scss */
 .pub-overview .sidebar span.liquorType {
   font-family: 'Imprima', Arial, sans-serif;
   font-weight: normal;
   font-size: 20px;
 }
-/* line 419, sass/style.scss */
+/* line 432, sass/style.scss */
 .pub-overview .sidebar .liquorSize {
   font-family: 'Imprima', Arial, sans-serif;
   font-style: italic;
@@ -474,7 +492,7 @@ table.promos.generic th.today {
 /**
 * Index page (big map)
 */
-/* line 432, sass/style.scss */
+/* line 445, sass/style.scss */
 #bottom-info-bar {
   height: 25px;
   position: fixed;
@@ -491,35 +509,35 @@ table.promos.generic th.today {
   border-top-left-radius: 50px 100px;
 }
 @media (max-width: 480px) {
-  /* line 432, sass/style.scss */
+  /* line 445, sass/style.scss */
   #bottom-info-bar {
     display: none;
   }
 }
-/* line 438, sass/style.scss */
+/* line 451, sass/style.scss */
 #bottom-info-bar .summary {
   font-family: 'Imprima', Arial, sans-serif;
   font-size: 18px;
   margin-right: 20px;
 }
-/* line 439, sass/style.scss */
+/* line 452, sass/style.scss */
 #bottom-info-bar .summary img {
   vertical-align: middle;
   padding-right: 3px;
 }
-/* line 446, sass/style.scss */
+/* line 459, sass/style.scss */
 #bottom-info-bar .summary a {
   text-decoration: none;
   color: #222;
 }
 
-/* line 470, sass/style.scss */
+/* line 483, sass/style.scss */
 .overlay {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 475, sass/style.scss */
+/* line 488, sass/style.scss */
 .overlay h2 {
   margin: 0 0 5px 0;
   font-size: 24px;
@@ -530,72 +548,72 @@ table.promos.generic th.today {
   vertical-align: middle;
 }
 @media (max-width: 480px) {
-  /* line 475, sass/style.scss */
+  /* line 488, sass/style.scss */
   .overlay h2 {
     font-size: 15px;
   }
 }
-/* line 489, sass/style.scss */
+/* line 502, sass/style.scss */
 .overlay h2 img {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 496, sass/style.scss */
+/* line 509, sass/style.scss */
 .overlay .overlayContent {
   border: 1px solid rgba(104, 187, 235, 0.9);
   border-left: 0;
   border-right: 0;
   margin: 0;
 }
-/* line 502, sass/style.scss */
+/* line 515, sass/style.scss */
 .overlay .overlayContent div {
   padding: 20px 5px;
   font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
   font-size: 20px;
 }
-/* line 508, sass/style.scss */
+/* line 521, sass/style.scss */
 .overlay .overlayContent div span.price {
   font-weight: bold;
   font-size: 30px;
 }
 @media (max-width: 480px) {
-  /* line 508, sass/style.scss */
+  /* line 521, sass/style.scss */
   .overlay .overlayContent div span.price {
     font-size: 15px;
   }
 }
-/* line 517, sass/style.scss */
+/* line 530, sass/style.scss */
 .overlay .overlayContent div span.liquorType {
   font-weight: normal;
   font-size: 24px;
 }
 @media (max-width: 480px) {
-  /* line 517, sass/style.scss */
+  /* line 530, sass/style.scss */
   .overlay .overlayContent div span.liquorType {
     font-size: 15px;
   }
 }
-/* line 526, sass/style.scss */
+/* line 539, sass/style.scss */
 .overlay .overlayContent div div.left {
   padding: 0;
 }
-/* line 530, sass/style.scss */
+/* line 543, sass/style.scss */
 .overlay .overlayContent div div.right {
   padding: 0;
   margin-left: 10px;
 }
-/* line 534, sass/style.scss */
+/* line 547, sass/style.scss */
 .overlay .overlayContent div div.right div.time, .overlay .overlayContent div div.right div.size {
   font-size: 14px;
   padding: 0;
 }
-/* line 542, sass/style.scss */
+/* line 555, sass/style.scss */
 .overlay .overlayContent div.deal {
   padding: 0;
   margin-bottom: 10px;
   overflow: auto;
 }
-/* line 548, sass/style.scss */
+/* line 561, sass/style.scss */
 .overlay .overlayContent h3 {
   text-align: center;
   color: #fff;
@@ -606,56 +624,56 @@ table.promos.generic th.today {
   margin: 0;
   padding: 0;
 }
-/* line 561, sass/style.scss */
+/* line 574, sass/style.scss */
 .overlay .overlayContent table div {
   font-size: 12px;
   padding: 0;
 }
-/* line 565, sass/style.scss */
+/* line 578, sass/style.scss */
 .overlay .overlayContent table th {
   padding: 2px 5px;
   font-variant: small-caps;
 }
-/* line 571, sass/style.scss */
+/* line 584, sass/style.scss */
 .overlay .overlayContent table span.price {
   font-weight: bold;
   font-size: 22px;
   color: #000000;
 }
-/* line 577, sass/style.scss */
+/* line 590, sass/style.scss */
 .overlay .overlayContent table span.liquorType {
   font-family: 'Imprima', Arial, sans-serif;
   font-weight: normal;
   font-size: 20px;
 }
 @media (max-width: 480px) {
-  /* line 577, sass/style.scss */
+  /* line 590, sass/style.scss */
   .overlay .overlayContent table span.liquorType {
     font-size: 15px;
   }
 }
-/* line 588, sass/style.scss */
+/* line 601, sass/style.scss */
 .overlay .overlayContent table .liquorSize {
   font-family: 'Imprima', Arial, sans-serif;
   font-style: italic;
   padding: 5px;
 }
-/* line 594, sass/style.scss */
+/* line 607, sass/style.scss */
 .overlay .overlayContent table .thePromo {
   padding: 8px 4px 4px 4px;
 }
-/* line 600, sass/style.scss */
+/* line 613, sass/style.scss */
 .overlay .foot {
   margin-top: 10px;
   overflow: auto;
   position: relative;
 }
-/* line 605, sass/style.scss */
+/* line 618, sass/style.scss */
 .overlay .foot .address {
   color: #555;
   font-size: 80%;
 }
-/* line 610, sass/style.scss */
+/* line 623, sass/style.scss */
 .overlay .foot a {
   text-decoration: none;
   color: #1291ff;
@@ -664,7 +682,7 @@ table.promos.generic th.today {
   right: 0;
 }
 
-/* line 620, sass/style.scss */
+/* line 633, sass/style.scss */
 a.small-icon {
   display: block;
   width: 16px;
@@ -674,21 +692,21 @@ a.small-icon {
   text-indent: -9999px;
 }
 
-/* line 629, sass/style.scss */
+/* line 642, sass/style.scss */
 a.ok {
   background: url(/img/icons/famfamfam/accept.png) no-repeat;
 }
 
-/* line 633, sass/style.scss */
+/* line 646, sass/style.scss */
 a.cancel {
   background: url(/img/icons/famfamfam/cancel.png) no-repeat;
 }
 
-/* line 637, sass/style.scss */
+/* line 650, sass/style.scss */
 .admin-nav {
   list-style: none;
 }
-/* line 641, sass/style.scss */
+/* line 654, sass/style.scss */
 .admin-nav li a {
   font-size: 18px;
   text-decoration: none;
@@ -700,7 +718,7 @@ a.cancel {
   border-color: #ddd;
   color: #555;
 }
-/* line 653, sass/style.scss */
+/* line 666, sass/style.scss */
 .admin-nav li a.selected {
   background: #00b7ea;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -721,49 +739,49 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
-/* line 680, sass/style.scss */
+/* line 693, sass/style.scss */
 #flagForm #dealSelector {
   padding: 20px;
   font-size: 15px;
   border-right: 1px solid #ccc;
   margin-right: 20px;
 }
-/* line 688, sass/style.scss */
+/* line 701, sass/style.scss */
 #flagForm #dealSubforms dd {
   margin-bottom: 10px;
 }
-/* line 693, sass/style.scss */
+/* line 706, sass/style.scss */
 #flagForm dt > label {
   font-weight: bold;
   font-size: 15px;
 }
-/* line 697, sass/style.scss */
+/* line 710, sass/style.scss */
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;
 }
-/* line 702, sass/style.scss */
+/* line 715, sass/style.scss */
 #flagForm fieldset {
   border: 0;
   padding: 0;
 }
-/* line 707, sass/style.scss */
+/* line 720, sass/style.scss */
 #flagForm hr {
   color: #ddd;
 }
 
-/* line 712, sass/style.scss */
+/* line 725, sass/style.scss */
 .venuePic {
   margin: 10px;
   padding: 4px;
   border: 1px solid #ccc;
 }
 
-/* line 719, sass/style.scss */
+/* line 732, sass/style.scss */
 #mailshare dd {
   margin-left: 0px;
 }
-/* line 722, sass/style.scss */
+/* line 735, sass/style.scss */
 #mailshare .item {
   -webkit-border-radius: 4px 4px;
   -moz-border-radius: 4px / 4px;
@@ -776,18 +794,18 @@ a.cancel {
   padding: 5px;
   background: none repeat scroll 0 0 #eee;
 }
-/* line 732, sass/style.scss */
+/* line 745, sass/style.scss */
 #mailshare form input[type=text] {
   width: 180px;
 }
-/* line 735, sass/style.scss */
+/* line 748, sass/style.scss */
 #mailshare form.done {
   -webkit-box-shadow: 0px 0px 5px green;
   -moz-box-shadow: 0px 0px 5px green;
   box-shadow: 0px 0px 5px green;
 }
 
-/* line 741, sass/style.scss */
+/* line 754, sass/style.scss */
 #facebookConnect, #signInWithTwitter {
   margin: 20px;
   display: block;
@@ -796,12 +814,12 @@ a.cancel {
   width: 169px;
 }
 
-/* line 749, sass/style.scss */
+/* line 762, sass/style.scss */
 #facebookConnect {
   background: url("/img/icons/facebookconnect.png") no-repeat scroll 0 0 transparent;
 }
 
-/* line 753, sass/style.scss */
+/* line 766, sass/style.scss */
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }
@@ -809,17 +827,17 @@ a.cancel {
 /**
  * User Profile
  */
-/* line 762, sass/style.scss */
+/* line 775, sass/style.scss */
 #services ul {
   list-style: none;
   padding: 0;
 }
-/* line 766, sass/style.scss */
+/* line 779, sass/style.scss */
 #services ul li {
   margin: 10px;
 }
 
-/* line 772, sass/style.scss */
+/* line 785, sass/style.scss */
 #advanced-filter {
   max-height: 15px;
   -webkit-transition-property: max-height;
@@ -838,28 +856,28 @@ a.cancel {
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-/* line 777, sass/style.scss */
+/* line 790, sass/style.scss */
 #advanced-filter:hover {
   max-height: 500px;
 }
 
-/* line 782, sass/style.scss */
+/* line 795, sass/style.scss */
 #category-list {
   list-style-type: none;
   padding: 0;
   margin: 5px;
   margin-right: 15px;
 }
-/* line 788, sass/style.scss */
+/* line 801, sass/style.scss */
 #category-list label {
   display: inline-block;
 }
-/* line 792, sass/style.scss */
+/* line 805, sass/style.scss */
 #category-list label, #category-list input {
   vertical-align: middle;
 }
 
-/* line 797, sass/style.scss */
+/* line 810, sass/style.scss */
 .glow {
   -webkit-border-radius: 3px 3px;
   -moz-border-radius: 3px / 3px;
@@ -869,18 +887,18 @@ a.cancel {
   overflow: hidden;
 }
 
-/* line 802, sass/style.scss */
+/* line 815, sass/style.scss */
 .promo {
   margin: 3px;
 }
-/* line 805, sass/style.scss */
+/* line 818, sass/style.scss */
 .promo .thePromo {
   padding: 10px;
   border: 1px solid #eee;
   color: #444;
 }
 
-/* line 814, sass/style.scss */
+/* line 827, sass/style.scss */
 .tooltip {
   display: none;
   background: transparent url("/css/images/black_arrow.png");
@@ -892,12 +910,12 @@ a.cancel {
   z-index: 1000;
 }
 
-/* line 827, sass/style.scss */
+/* line 840, sass/style.scss */
 .state-progress {
   text-align: center;
   padding-top: 10px;
 }
-/* line 830, sass/style.scss */
+/* line 843, sass/style.scss */
 .state-progress span {
   font-size: 9px;
   font-weight: bold;
@@ -1118,13 +1136,13 @@ a.cancel {
   list-style-image: url(/img/icons/markers/beer_sml.png);
 }
 
-/* line 842, sass/style.scss */
+/* line 855, sass/style.scss */
 .pac-container {
   line-height: 20px;
 }
 
 /* Bootstrap override */
-/* line 847, sass/style.scss */
+/* line 860, sass/style.scss */
 .navbar-inverse .navbar-inner {
   border-color: #00B7EA;
 }

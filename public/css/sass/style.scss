@@ -177,6 +177,10 @@ h1 {
 
     h1 {
         margin-top: 30px;
+        
+        @media (max-width: 480px) {
+            margin: 0px;
+        }
     }
 
     @media (max-width: 979px) {
@@ -273,6 +277,11 @@ table.promos.generic {
         #content-row {
             display: inline-block;
             margin-top: 20px;
+            
+            @media (max-width: 480px) {
+                margin-top: 0px;
+            }
+            
             width: 100%;
         }
 
@@ -303,6 +312,10 @@ table.promos.generic {
         @media (max-width: 767px) {
             float: none;
             margin-bottom: 20px;
+        }
+        
+        @media (max-width: 767px) {
+            margin-bottom: 0px;
         }
     }
 
