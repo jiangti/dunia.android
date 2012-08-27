@@ -1,5 +1,6 @@
 define(['libs/ember'], function(Ember) {
 	return {init: function() {
+		var timeout = null;
 		window.Dunia = Ember.Application.create();
 	    
 	    var marker = Em.Object.extend({
@@ -226,13 +227,13 @@ define(['libs/ember'], function(Ember) {
 	                }
 	
 	                var overlayHtml = '<div class="overlay">' +
-	                    '<h2>';
+	                    '<h2><a href="' + marker.url[0] + '" title="' + name + '" data-ajax="false">';
 	
 	                if (pubType) {
 	                    overlayHtml += '<img src="' + pubType + '" width="28" height="28" /> ';
 	                }
 	
-	                overlayHtml += name + '</h2>' +
+	                overlayHtml += name + '</a></h2>' +
 	                    '<div class="overlayContent">' + promos + '</div>' +
 	                    '<div class="foot">' +
 	                    '<div class="address">' + address + '</div>' +
@@ -263,6 +264,7 @@ define(['libs/ember'], function(Ember) {
 	                }
 	                
 	                var mapMarker = new google.maps.Marker(markerData);
+	                
 	                mapMarker.setVisible(properties.flag);
 	                
 	                $this.get('mapMarkers').push(mapMarker);
@@ -273,6 +275,22 @@ define(['libs/ember'], function(Ember) {
 	                    infoWindow.setContent(this.html);
 	                    infoWindow.setOptions({maxWidth: 500});
 	                    infoWindow.open(map, this);
+	                });
+	                
+	                google.maps.event.addListener(mapMarker, 'mouseover', function() {
+	                	var $this = this;
+	                	timeout = setTimeout(function() {
+	                		infoWindow.setContent($this.html);
+	                		infoWindow.setOptions({maxWidth: 500});
+	                		infoWindow.open(map, $this);
+	                	}, 400);
+	                });
+	                
+	                google.maps.event.addListener(mapMarker, 'mouseout', function() {
+	                	if (timeout) {
+	                		clearTimeout(timeout);
+	                	}
+	                	timeout = null; 
 	                });
 	            });
 	        },

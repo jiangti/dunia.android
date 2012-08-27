@@ -114,6 +114,7 @@ h1 {
         
         ul.nav2 {
           @include inline-block-list-container;
+          
           > li {
                 @include inline-block-list-item;
                 margin: 0 10px;
@@ -176,6 +177,10 @@ h1 {
 
     h1 {
         margin-top: 30px;
+        
+        @media (max-width: 480px) {
+            margin: 0px;
+        }
     }
 
     @media (max-width: 979px) {
@@ -272,6 +277,11 @@ table.promos.generic {
         #content-row {
             display: inline-block;
             margin-top: 20px;
+            
+            @media (max-width: 480px) {
+                margin-top: 0px;
+            }
+            
             width: 100%;
         }
 
@@ -302,6 +312,11 @@ table.promos.generic {
         @media (max-width: 767px) {
             float: none;
             margin-bottom: 20px;
+        }
+        
+        @media (max-width: 480px) {
+            margin-bottom: 0px;
+            font-size: 26px;
         }
     }
 
@@ -429,6 +444,11 @@ table.promos.generic {
 */
 
 #bottom-info-bar {
+
+    @media (max-width: 480px) {
+        display: none;
+    }
+
     .summary {
         img {
             vertical-align: middle;
@@ -469,6 +489,11 @@ table.promos.generic {
     h2 {
         margin: 0 0 5px 0;
         font-size: 24px;
+        
+        @media (max-width: 480px) {
+            font-size: 15px;
+        }
+        
         font-weight: bold;
         color: #555;
         text-align: center;
@@ -491,15 +516,24 @@ table.promos.generic {
         div {
             padding: 20px 5px;
             font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+            
             font-size: 20px;
 
             span.price {
                 font-weight: bold;
                 font-size: 30px;
+                
+                @media (max-width: 480px) {
+                    font-size: 15px;
+                }
             }
 
             span.liquorType {
                 font-weight: normal;
+                
+                @media (max-width: 480px) {
+                    font-size: 15px;
+                }
                 font-size: 24px;
             }
 
@@ -557,6 +591,11 @@ table.promos.generic {
             span.liquorType {
                 font-family: 'Imprima', Arial, sans-serif;
                 font-weight: normal;
+                
+                @media (max-width: 480px) {
+                    font-size: 15px;
+                }
+                
                 font-size: 20px;
             }
 

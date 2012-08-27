@@ -40,8 +40,6 @@
                     </div>
                     
                     <?php echo $this->partial('partials/promo-table.phtml', array('pub' => $this->pub)); ?>
-                    <br />
--                   <?php echo $this->partial('partials/addthis.phtml'); ?>
                     
                     <ul>
                         <?php foreach($this->changeLogs as $changeLog): ?>
@@ -75,7 +73,6 @@
 
                             <div id="tipsWrapper">
                             <script type="text/x-handlebars" data-template-name="tipsView">
-
                                 {{#collection tipsCollectionView}}
                                 <li>
                                     <div class="tip-container">

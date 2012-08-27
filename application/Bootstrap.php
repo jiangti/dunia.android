@@ -10,6 +10,14 @@ class Bootstrap extends Aw_BootstrapAbstract {
 		Zend_Registry::set("Zend_Application", $this);
 	}
 	
+	public function _initOptimization() {
+	    $classFileIncCache = APPLICATION_ROOT . sprintf('/var/cache/pluginLoaderCache.%s.php', php_sapi_name());
+	    if (file_exists($classFileIncCache)) {
+	        include_once $classFileIncCache;
+	    }
+	    Zend_Loader_PluginLoader::setIncludeFileCache($classFileIncCache);
+	}
+	
 	public function _initLibraries() {
 		require_once APPLICATION_ROOT . '/library/Aw/Contrib/Libphutil/src/utils/utils.php';
 	}
