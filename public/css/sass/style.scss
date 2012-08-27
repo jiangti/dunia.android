@@ -431,7 +431,7 @@ table.promos.generic {
 
 #bottom-info-bar {
 
-    @media (max-width: 320px) {
+    @media (max-width: 480px) {
         display: none;
     }
 
@@ -476,7 +476,7 @@ table.promos.generic {
         margin: 0 0 5px 0;
         font-size: 24px;
         
-        @media (max-width: 320px) {
+        @media (max-width: 480px) {
             font-size: 15px;
         }
         
@@ -509,7 +509,7 @@ table.promos.generic {
                 font-weight: bold;
                 font-size: 30px;
                 
-                @media (max-width: 320px) {
+                @media (max-width: 480px) {
                     font-size: 15px;
                 }
             }
@@ -517,7 +517,7 @@ table.promos.generic {
             span.liquorType {
                 font-weight: normal;
                 
-                @media (max-width: 320px) {
+                @media (max-width: 480px) {
                     font-size: 15px;
                 }
                 font-size: 24px;
@@ -578,7 +578,7 @@ table.promos.generic {
                 font-family: 'Imprima', Arial, sans-serif;
                 font-weight: normal;
                 
-                @media (max-width: 320px) {
+                @media (max-width: 480px) {
                     font-size: 15px;
                 }
                 
