@@ -53,6 +53,9 @@ class MapController extends Model_Controller_Action {
 		$bound->swlng  = $swlong;
 
 		$options['day'] = $this->_getParam('day', null);
+        if (Zend_Registry::get('device')->getType() == 'mobile') {
+            $options['todayOnly'] = true;
+        }
 		
         $pubs = $pubService->findPromo($lat, $long, null, null, null, $bound, false, $options);
         

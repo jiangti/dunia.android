@@ -160,17 +160,14 @@ h1 {
   list-style-image: none;
   list-style-type: none;
   margin-left: 0;
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
   white-space: nowrap;
   margin: 0 10px;
-}
-/* line 7, ../../../../../../usr/local/share/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
-#header #form ul.nav2 > li {
-  *display: inline;
 }
 /* line 124, sass/style.scss */
 #header #form #location {
@@ -548,73 +545,86 @@ table.promos.generic th.today {
   font-family: 'Imprima', "Arial", sans-serif;
   vertical-align: middle;
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   /* line 489, sass/style.scss */
   .overlay h2 {
+    margin: 0;
     font-size: 15px;
   }
 }
-/* line 503, sass/style.scss */
+/* line 504, sass/style.scss */
 .overlay h2 img {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 510, sass/style.scss */
+/* line 511, sass/style.scss */
 .overlay .overlayContent {
   border: 1px solid rgba(104, 187, 235, 0.9);
   border-left: 0;
   border-right: 0;
   margin: 0;
 }
-/* line 516, sass/style.scss */
+/* line 517, sass/style.scss */
 .overlay .overlayContent div {
   padding: 20px 5px;
   font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
   font-size: 20px;
 }
-/* line 522, sass/style.scss */
+@media (max-width: 767px) {
+  /* line 517, sass/style.scss */
+  .overlay .overlayContent div {
+    padding: 5px;
+  }
+}
+/* line 527, sass/style.scss */
 .overlay .overlayContent div span.price {
   font-weight: bold;
   font-size: 30px;
 }
-@media (max-width: 480px) {
-  /* line 522, sass/style.scss */
+@media (max-width: 767px) {
+  /* line 527, sass/style.scss */
   .overlay .overlayContent div span.price {
     font-size: 15px;
   }
 }
-/* line 531, sass/style.scss */
+/* line 536, sass/style.scss */
 .overlay .overlayContent div span.liquorType {
   font-weight: normal;
   font-size: 24px;
 }
-@media (max-width: 480px) {
-  /* line 531, sass/style.scss */
+@media (max-width: 767px) {
+  /* line 536, sass/style.scss */
   .overlay .overlayContent div span.liquorType {
     font-size: 15px;
   }
 }
-/* line 540, sass/style.scss */
+/* line 545, sass/style.scss */
 .overlay .overlayContent div div.left {
   padding: 0;
 }
-/* line 544, sass/style.scss */
+/* line 549, sass/style.scss */
 .overlay .overlayContent div div.right {
   padding: 0;
   margin-left: 10px;
 }
-/* line 548, sass/style.scss */
+/* line 553, sass/style.scss */
 .overlay .overlayContent div div.right div.time, .overlay .overlayContent div div.right div.size {
   font-size: 14px;
   padding: 0;
 }
-/* line 556, sass/style.scss */
+/* line 561, sass/style.scss */
 .overlay .overlayContent div.deal {
   padding: 0;
   margin-bottom: 10px;
   overflow: auto;
 }
-/* line 562, sass/style.scss */
+@media (max-width: 767px) {
+  /* line 561, sass/style.scss */
+  .overlay .overlayContent div.deal {
+    margin-bottom: 5px;
+  }
+}
+/* line 570, sass/style.scss */
 .overlay .overlayContent h3 {
   text-align: center;
   color: #fff;
@@ -625,56 +635,56 @@ table.promos.generic th.today {
   margin: 0;
   padding: 0;
 }
-/* line 575, sass/style.scss */
+/* line 583, sass/style.scss */
 .overlay .overlayContent table div {
   font-size: 12px;
   padding: 0;
 }
-/* line 579, sass/style.scss */
+/* line 587, sass/style.scss */
 .overlay .overlayContent table th {
   padding: 2px 5px;
   font-variant: small-caps;
 }
-/* line 585, sass/style.scss */
+/* line 593, sass/style.scss */
 .overlay .overlayContent table span.price {
   font-weight: bold;
   font-size: 22px;
   color: #000000;
 }
-/* line 591, sass/style.scss */
+/* line 599, sass/style.scss */
 .overlay .overlayContent table span.liquorType {
   font-family: 'Imprima', Arial, sans-serif;
   font-weight: normal;
   font-size: 20px;
 }
-@media (max-width: 480px) {
-  /* line 591, sass/style.scss */
+@media (max-width: 767px) {
+  /* line 599, sass/style.scss */
   .overlay .overlayContent table span.liquorType {
     font-size: 15px;
   }
 }
-/* line 602, sass/style.scss */
+/* line 610, sass/style.scss */
 .overlay .overlayContent table .liquorSize {
   font-family: 'Imprima', Arial, sans-serif;
   font-style: italic;
   padding: 5px;
 }
-/* line 608, sass/style.scss */
+/* line 616, sass/style.scss */
 .overlay .overlayContent table .thePromo {
   padding: 8px 4px 4px 4px;
 }
-/* line 614, sass/style.scss */
+/* line 622, sass/style.scss */
 .overlay .foot {
   margin-top: 10px;
   overflow: auto;
   position: relative;
 }
-/* line 619, sass/style.scss */
+/* line 627, sass/style.scss */
 .overlay .foot .address {
   color: #555;
   font-size: 80%;
 }
-/* line 624, sass/style.scss */
+/* line 632, sass/style.scss */
 .overlay .foot a {
   text-decoration: none;
   color: #1291ff;
@@ -683,7 +693,7 @@ table.promos.generic th.today {
   right: 0;
 }
 
-/* line 634, sass/style.scss */
+/* line 642, sass/style.scss */
 a.small-icon {
   display: block;
   width: 16px;
@@ -693,21 +703,21 @@ a.small-icon {
   text-indent: -9999px;
 }
 
-/* line 643, sass/style.scss */
+/* line 651, sass/style.scss */
 a.ok {
   background: url(/img/icons/famfamfam/accept.png) no-repeat;
 }
 
-/* line 647, sass/style.scss */
+/* line 655, sass/style.scss */
 a.cancel {
   background: url(/img/icons/famfamfam/cancel.png) no-repeat;
 }
 
-/* line 651, sass/style.scss */
+/* line 659, sass/style.scss */
 .admin-nav {
   list-style: none;
 }
-/* line 655, sass/style.scss */
+/* line 663, sass/style.scss */
 .admin-nav li a {
   font-size: 18px;
   text-decoration: none;
@@ -719,7 +729,7 @@ a.cancel {
   border-color: #ddd;
   color: #555;
 }
-/* line 667, sass/style.scss */
+/* line 675, sass/style.scss */
 .admin-nav li a.selected {
   background: #00b7ea;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -740,54 +750,52 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
-/* line 694, sass/style.scss */
+/* line 702, sass/style.scss */
 #flagForm #dealSelector {
   padding: 20px;
   font-size: 15px;
   border-right: 1px solid #ccc;
   margin-right: 20px;
 }
-/* line 702, sass/style.scss */
+/* line 710, sass/style.scss */
 #flagForm #dealSubforms dd {
   margin-bottom: 10px;
 }
-/* line 707, sass/style.scss */
+/* line 715, sass/style.scss */
 #flagForm dt > label {
   font-weight: bold;
   font-size: 15px;
 }
-/* line 711, sass/style.scss */
+/* line 719, sass/style.scss */
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;
 }
-/* line 716, sass/style.scss */
+/* line 724, sass/style.scss */
 #flagForm fieldset {
   border: 0;
   padding: 0;
 }
-/* line 721, sass/style.scss */
+/* line 729, sass/style.scss */
 #flagForm hr {
   color: #ddd;
 }
 
-/* line 726, sass/style.scss */
+/* line 734, sass/style.scss */
 .venuePic {
   margin: 10px;
   padding: 4px;
   border: 1px solid #ccc;
 }
 
-/* line 733, sass/style.scss */
+/* line 741, sass/style.scss */
 #mailshare dd {
   margin-left: 0px;
 }
-/* line 736, sass/style.scss */
+/* line 744, sass/style.scss */
 #mailshare .item {
   -webkit-border-radius: 4px 4px;
   -moz-border-radius: 4px / 4px;
-  -ms-border-radius: 4px / 4px;
-  -o-border-radius: 4px / 4px;
   border-radius: 4px / 4px;
   width: 350px;
   margin: 10px;
@@ -795,18 +803,18 @@ a.cancel {
   padding: 5px;
   background: none repeat scroll 0 0 #eee;
 }
-/* line 746, sass/style.scss */
+/* line 754, sass/style.scss */
 #mailshare form input[type=text] {
   width: 180px;
 }
-/* line 749, sass/style.scss */
+/* line 757, sass/style.scss */
 #mailshare form.done {
   -webkit-box-shadow: 0px 0px 5px green;
   -moz-box-shadow: 0px 0px 5px green;
   box-shadow: 0px 0px 5px green;
 }
 
-/* line 755, sass/style.scss */
+/* line 763, sass/style.scss */
 #facebookConnect, #signInWithTwitter {
   margin: 20px;
   display: block;
@@ -815,12 +823,12 @@ a.cancel {
   width: 169px;
 }
 
-/* line 763, sass/style.scss */
+/* line 771, sass/style.scss */
 #facebookConnect {
   background: url("/img/icons/facebookconnect.png") no-repeat scroll 0 0 transparent;
 }
 
-/* line 767, sass/style.scss */
+/* line 775, sass/style.scss */
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }
@@ -828,78 +836,73 @@ a.cancel {
 /**
  * User Profile
  */
-/* line 776, sass/style.scss */
+/* line 784, sass/style.scss */
 #services ul {
   list-style: none;
   padding: 0;
 }
-/* line 780, sass/style.scss */
+/* line 788, sass/style.scss */
 #services ul li {
   margin: 10px;
 }
 
-/* line 786, sass/style.scss */
+/* line 794, sass/style.scss */
 #advanced-filter {
   max-height: 15px;
   -webkit-transition-property: max-height;
   -moz-transition-property: max-height;
-  -ms-transition-property: max-height;
   -o-transition-property: max-height;
   transition-property: max-height;
   -webkit-transition-duration: 1s;
   -moz-transition-duration: 1s;
-  -ms-transition-duration: 1s;
   -o-transition-duration: 1s;
   transition-duration: 1s;
   -webkit-transition-timing-function: ease-out;
   -moz-transition-timing-function: ease-out;
-  -ms-transition-timing-function: ease-out;
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-/* line 791, sass/style.scss */
+/* line 799, sass/style.scss */
 #advanced-filter:hover {
   max-height: 500px;
 }
 
-/* line 796, sass/style.scss */
+/* line 804, sass/style.scss */
 #category-list {
   list-style-type: none;
   padding: 0;
   margin: 5px;
   margin-right: 15px;
 }
-/* line 802, sass/style.scss */
+/* line 810, sass/style.scss */
 #category-list label {
   display: inline-block;
 }
-/* line 806, sass/style.scss */
+/* line 814, sass/style.scss */
 #category-list label, #category-list input {
   vertical-align: middle;
 }
 
-/* line 811, sass/style.scss */
+/* line 819, sass/style.scss */
 .glow {
   -webkit-border-radius: 3px 3px;
   -moz-border-radius: 3px / 3px;
-  -ms-border-radius: 3px / 3px;
-  -o-border-radius: 3px / 3px;
   border-radius: 3px / 3px;
   overflow: hidden;
 }
 
-/* line 816, sass/style.scss */
+/* line 824, sass/style.scss */
 .promo {
   margin: 3px;
 }
-/* line 819, sass/style.scss */
+/* line 827, sass/style.scss */
 .promo .thePromo {
   padding: 10px;
   border: 1px solid #eee;
   color: #444;
 }
 
-/* line 828, sass/style.scss */
+/* line 836, sass/style.scss */
 .tooltip {
   display: none;
   background: transparent url("/css/images/black_arrow.png");
@@ -911,12 +914,12 @@ a.cancel {
   z-index: 1000;
 }
 
-/* line 841, sass/style.scss */
+/* line 849, sass/style.scss */
 .state-progress {
   text-align: center;
   padding-top: 10px;
 }
-/* line 844, sass/style.scss */
+/* line 852, sass/style.scss */
 .state-progress span {
   font-size: 9px;
   font-weight: bold;
@@ -1137,13 +1140,21 @@ a.cancel {
   list-style-image: url(/img/icons/markers/beer_sml.png);
 }
 
-/* line 856, sass/style.scss */
+/* line 864, sass/style.scss */
 .pac-container {
   line-height: 20px;
 }
 
 /* Bootstrap override */
-/* line 861, sass/style.scss */
+/* line 869, sass/style.scss */
 .navbar-inverse .navbar-inner {
   border-color: #00B7EA;
+}
+
+@media (max-width: 767px) {
+  /* line 874, sass/style.scss */
+  .navbar-fixed-top, .navbar-fixed-bottom {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
 }

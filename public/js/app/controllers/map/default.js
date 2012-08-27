@@ -16,35 +16,35 @@ define(['libs/ember'], function(Ember) {
 	        	name:   'now',
 	        	title:  'It\'s on now',
 	        	icon:   '/img/icons/markers/now.svg',
-	            smallIcon: '/img/icons/markers/half_sml.png',
+                marker: new google.maps.MarkerImage('/img/icons/markers/now.svg', new google.maps.Size(58, 88), null, null, new google.maps.Size(29, 44)),
 	            zIndex: 20
 	        }),
 	        earlier: marker.create({
 	        	name:   'earlier',
 	        	title:  'Missed it',
 	            icon: '/img/icons/markers/gone.svg',
-	            smallIcon: '/img/icons/markers/empty_sml.png',
+                marker: new google.maps.MarkerImage('/img/icons/markers/gone.svg', new google.maps.Size(58, 88), null, null, new google.maps.Size(29, 44)),
 	            zIndex: 18
 	        }),
 	        later: marker.create({
 	        	name:   'later',
 	        	title:  'Coming soon',
 	            icon: '/img/icons/markers/coming.svg',
-	            smallIcon: '/img/icons/markers/full_sml.png',
+                marker: new google.maps.MarkerImage('/img/icons/markers/coming.svg', new google.maps.Size(58, 88), null, null, new google.maps.Size(29, 44)),
 	            zIndex: 19
 	        }),
 	        none: marker.create({
 	        	name:   'none',
 	        	title:  'Not today',
 	            icon: '/img/icons/markers/notoday.svg',
-	            smallIcon: '/img/icons/markers/black_sml.png',
+                marker: new google.maps.MarkerImage('/img/icons/markers/notoday.svg', new google.maps.Size(58, 88), null, null, new google.maps.Size(29, 44)),
 	            zIndex: 15
 	        }),
 	        zero: marker.create({
 	        	name:   'zero',
 	        	title:  'Zero',
 	            icon: '/img/icons/markers/none.svg',
-	            smallIcon: '/img/icons/markers/beer_sml.png',
+                marker: new google.maps.MarkerImage('/img/icons/markers/none.svg', new google.maps.Size(58, 88), null, null, new google.maps.Size(29, 44)),
 	            zIndex: 10
 	        })
 	    });
@@ -177,7 +177,7 @@ define(['libs/ember'], function(Ember) {
 
                 if (markers) {
                     for (var i = 0; i < markers.length; i++ ) {
-                        markers[i].icon.size       = new google.maps.Size(width, height);
+                        markers[i].icon.size       = new google.maps.Size(2 * width, 2 * height);
                         markers[i].icon.scaledSize = new google.maps.Size(width, height);
                     }
                 }
@@ -207,7 +207,7 @@ define(['libs/ember'], function(Ember) {
 	                    promos += '<h3>Weekly Specials</h3>' +
 	                        '<div>' + marker.dealise + '</div>';
 	                } else {
-	                    promos += '<h3>Today\'s deals</h3>' +
+	                    promos += '<h3 class="hidden-phone">Today\'s deals</h3>' +
 	                        '<div>';
 	                    for (var j = 0; j < marker.promos.length; j++) {
 	                        var promo = marker.promos[j];
@@ -246,7 +246,7 @@ define(['libs/ember'], function(Ember) {
 	                var markerData = {
 	                    map: map,
 	                    position: point,
-	                    icon:     new google.maps.MarkerImage(properties.icon, null, null, null, new google.maps.Size(29, 44)),
+	                    icon:     properties.marker,
 	                    shadow:   properties.shadow,
 	                    zIndex:   properties.zIndex,
 	                    html:     overlayHtml,
