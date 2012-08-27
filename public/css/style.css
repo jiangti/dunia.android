@@ -490,30 +490,36 @@ table.promos.generic th.today {
   -webkit-border-top-left-radius: 50px 100px;
   border-top-left-radius: 50px 100px;
 }
-/* line 433, sass/style.scss */
+@media (max-width: 320px) {
+  /* line 432, sass/style.scss */
+  #bottom-info-bar {
+    display: none;
+  }
+}
+/* line 438, sass/style.scss */
 #bottom-info-bar .summary {
   font-family: 'Imprima', Arial, sans-serif;
   font-size: 18px;
   margin-right: 20px;
 }
-/* line 434, sass/style.scss */
+/* line 439, sass/style.scss */
 #bottom-info-bar .summary img {
   vertical-align: middle;
   padding-right: 3px;
 }
-/* line 441, sass/style.scss */
+/* line 446, sass/style.scss */
 #bottom-info-bar .summary a {
   text-decoration: none;
   color: #222;
 }
 
-/* line 465, sass/style.scss */
+/* line 470, sass/style.scss */
 .overlay {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 470, sass/style.scss */
+/* line 475, sass/style.scss */
 .overlay h2 {
   margin: 0 0 5px 0;
   font-size: 24px;
@@ -524,72 +530,72 @@ table.promos.generic th.today {
   vertical-align: middle;
 }
 @media (max-width: 320px) {
-  /* line 470, sass/style.scss */
+  /* line 475, sass/style.scss */
   .overlay h2 {
     font-size: 15px;
   }
 }
-/* line 484, sass/style.scss */
+/* line 489, sass/style.scss */
 .overlay h2 img {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 491, sass/style.scss */
+/* line 496, sass/style.scss */
 .overlay .overlayContent {
   border: 1px solid rgba(104, 187, 235, 0.9);
   border-left: 0;
   border-right: 0;
   margin: 0;
 }
-/* line 497, sass/style.scss */
+/* line 502, sass/style.scss */
 .overlay .overlayContent div {
   padding: 20px 5px;
   font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
   font-size: 20px;
 }
-/* line 503, sass/style.scss */
+/* line 508, sass/style.scss */
 .overlay .overlayContent div span.price {
   font-weight: bold;
   font-size: 30px;
 }
 @media (max-width: 320px) {
-  /* line 503, sass/style.scss */
+  /* line 508, sass/style.scss */
   .overlay .overlayContent div span.price {
     font-size: 15px;
   }
 }
-/* line 512, sass/style.scss */
+/* line 517, sass/style.scss */
 .overlay .overlayContent div span.liquorType {
   font-weight: normal;
   font-size: 24px;
 }
 @media (max-width: 320px) {
-  /* line 512, sass/style.scss */
+  /* line 517, sass/style.scss */
   .overlay .overlayContent div span.liquorType {
     font-size: 15px;
   }
 }
-/* line 521, sass/style.scss */
+/* line 526, sass/style.scss */
 .overlay .overlayContent div div.left {
   padding: 0;
 }
-/* line 525, sass/style.scss */
+/* line 530, sass/style.scss */
 .overlay .overlayContent div div.right {
   padding: 0;
   margin-left: 10px;
 }
-/* line 529, sass/style.scss */
+/* line 534, sass/style.scss */
 .overlay .overlayContent div div.right div.time, .overlay .overlayContent div div.right div.size {
   font-size: 14px;
   padding: 0;
 }
-/* line 537, sass/style.scss */
+/* line 542, sass/style.scss */
 .overlay .overlayContent div.deal {
   padding: 0;
   margin-bottom: 10px;
   overflow: auto;
 }
-/* line 543, sass/style.scss */
+/* line 548, sass/style.scss */
 .overlay .overlayContent h3 {
   text-align: center;
   color: #fff;
@@ -600,56 +606,56 @@ table.promos.generic th.today {
   margin: 0;
   padding: 0;
 }
-/* line 556, sass/style.scss */
+/* line 561, sass/style.scss */
 .overlay .overlayContent table div {
   font-size: 12px;
   padding: 0;
 }
-/* line 560, sass/style.scss */
+/* line 565, sass/style.scss */
 .overlay .overlayContent table th {
   padding: 2px 5px;
   font-variant: small-caps;
 }
-/* line 566, sass/style.scss */
+/* line 571, sass/style.scss */
 .overlay .overlayContent table span.price {
   font-weight: bold;
   font-size: 22px;
   color: #000000;
 }
-/* line 572, sass/style.scss */
+/* line 577, sass/style.scss */
 .overlay .overlayContent table span.liquorType {
   font-family: 'Imprima', Arial, sans-serif;
   font-weight: normal;
   font-size: 20px;
 }
 @media (max-width: 320px) {
-  /* line 572, sass/style.scss */
+  /* line 577, sass/style.scss */
   .overlay .overlayContent table span.liquorType {
     font-size: 15px;
   }
 }
-/* line 583, sass/style.scss */
+/* line 588, sass/style.scss */
 .overlay .overlayContent table .liquorSize {
   font-family: 'Imprima', Arial, sans-serif;
   font-style: italic;
   padding: 5px;
 }
-/* line 589, sass/style.scss */
+/* line 594, sass/style.scss */
 .overlay .overlayContent table .thePromo {
   padding: 8px 4px 4px 4px;
 }
-/* line 595, sass/style.scss */
+/* line 600, sass/style.scss */
 .overlay .foot {
   margin-top: 10px;
   overflow: auto;
   position: relative;
 }
-/* line 600, sass/style.scss */
+/* line 605, sass/style.scss */
 .overlay .foot .address {
   color: #555;
   font-size: 80%;
 }
-/* line 605, sass/style.scss */
+/* line 610, sass/style.scss */
 .overlay .foot a {
   text-decoration: none;
   color: #1291ff;
@@ -658,7 +664,7 @@ table.promos.generic th.today {
   right: 0;
 }
 
-/* line 615, sass/style.scss */
+/* line 620, sass/style.scss */
 a.small-icon {
   display: block;
   width: 16px;
@@ -668,21 +674,21 @@ a.small-icon {
   text-indent: -9999px;
 }
 
-/* line 624, sass/style.scss */
+/* line 629, sass/style.scss */
 a.ok {
   background: url(/img/icons/famfamfam/accept.png) no-repeat;
 }
 
-/* line 628, sass/style.scss */
+/* line 633, sass/style.scss */
 a.cancel {
   background: url(/img/icons/famfamfam/cancel.png) no-repeat;
 }
 
-/* line 632, sass/style.scss */
+/* line 637, sass/style.scss */
 .admin-nav {
   list-style: none;
 }
-/* line 636, sass/style.scss */
+/* line 641, sass/style.scss */
 .admin-nav li a {
   font-size: 18px;
   text-decoration: none;
@@ -694,7 +700,7 @@ a.cancel {
   border-color: #ddd;
   color: #555;
 }
-/* line 648, sass/style.scss */
+/* line 653, sass/style.scss */
 .admin-nav li a.selected {
   background: #00b7ea;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -715,49 +721,49 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
-/* line 675, sass/style.scss */
+/* line 680, sass/style.scss */
 #flagForm #dealSelector {
   padding: 20px;
   font-size: 15px;
   border-right: 1px solid #ccc;
   margin-right: 20px;
 }
-/* line 683, sass/style.scss */
+/* line 688, sass/style.scss */
 #flagForm #dealSubforms dd {
   margin-bottom: 10px;
 }
-/* line 688, sass/style.scss */
+/* line 693, sass/style.scss */
 #flagForm dt > label {
   font-weight: bold;
   font-size: 15px;
 }
-/* line 692, sass/style.scss */
+/* line 697, sass/style.scss */
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;
 }
-/* line 697, sass/style.scss */
+/* line 702, sass/style.scss */
 #flagForm fieldset {
   border: 0;
   padding: 0;
 }
-/* line 702, sass/style.scss */
+/* line 707, sass/style.scss */
 #flagForm hr {
   color: #ddd;
 }
 
-/* line 707, sass/style.scss */
+/* line 712, sass/style.scss */
 .venuePic {
   margin: 10px;
   padding: 4px;
   border: 1px solid #ccc;
 }
 
-/* line 714, sass/style.scss */
+/* line 719, sass/style.scss */
 #mailshare dd {
   margin-left: 0px;
 }
-/* line 717, sass/style.scss */
+/* line 722, sass/style.scss */
 #mailshare .item {
   -webkit-border-radius: 4px 4px;
   -moz-border-radius: 4px / 4px;
@@ -770,18 +776,18 @@ a.cancel {
   padding: 5px;
   background: none repeat scroll 0 0 #eee;
 }
-/* line 727, sass/style.scss */
+/* line 732, sass/style.scss */
 #mailshare form input[type=text] {
   width: 180px;
 }
-/* line 730, sass/style.scss */
+/* line 735, sass/style.scss */
 #mailshare form.done {
   -webkit-box-shadow: 0px 0px 5px green;
   -moz-box-shadow: 0px 0px 5px green;
   box-shadow: 0px 0px 5px green;
 }
 
-/* line 736, sass/style.scss */
+/* line 741, sass/style.scss */
 #facebookConnect, #signInWithTwitter {
   margin: 20px;
   display: block;
@@ -790,12 +796,12 @@ a.cancel {
   width: 169px;
 }
 
-/* line 744, sass/style.scss */
+/* line 749, sass/style.scss */
 #facebookConnect {
   background: url("/img/icons/facebookconnect.png") no-repeat scroll 0 0 transparent;
 }
 
-/* line 748, sass/style.scss */
+/* line 753, sass/style.scss */
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }
@@ -803,17 +809,17 @@ a.cancel {
 /**
  * User Profile
  */
-/* line 757, sass/style.scss */
+/* line 762, sass/style.scss */
 #services ul {
   list-style: none;
   padding: 0;
 }
-/* line 761, sass/style.scss */
+/* line 766, sass/style.scss */
 #services ul li {
   margin: 10px;
 }
 
-/* line 767, sass/style.scss */
+/* line 772, sass/style.scss */
 #advanced-filter {
   max-height: 15px;
   -webkit-transition-property: max-height;
@@ -832,28 +838,28 @@ a.cancel {
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-/* line 772, sass/style.scss */
+/* line 777, sass/style.scss */
 #advanced-filter:hover {
   max-height: 500px;
 }
 
-/* line 777, sass/style.scss */
+/* line 782, sass/style.scss */
 #category-list {
   list-style-type: none;
   padding: 0;
   margin: 5px;
   margin-right: 15px;
 }
-/* line 783, sass/style.scss */
+/* line 788, sass/style.scss */
 #category-list label {
   display: inline-block;
 }
-/* line 787, sass/style.scss */
+/* line 792, sass/style.scss */
 #category-list label, #category-list input {
   vertical-align: middle;
 }
 
-/* line 792, sass/style.scss */
+/* line 797, sass/style.scss */
 .glow {
   -webkit-border-radius: 3px 3px;
   -moz-border-radius: 3px / 3px;
@@ -863,18 +869,18 @@ a.cancel {
   overflow: hidden;
 }
 
-/* line 797, sass/style.scss */
+/* line 802, sass/style.scss */
 .promo {
   margin: 3px;
 }
-/* line 800, sass/style.scss */
+/* line 805, sass/style.scss */
 .promo .thePromo {
   padding: 10px;
   border: 1px solid #eee;
   color: #444;
 }
 
-/* line 809, sass/style.scss */
+/* line 814, sass/style.scss */
 .tooltip {
   display: none;
   background: transparent url("/css/images/black_arrow.png");
@@ -886,12 +892,12 @@ a.cancel {
   z-index: 1000;
 }
 
-/* line 822, sass/style.scss */
+/* line 827, sass/style.scss */
 .state-progress {
   text-align: center;
   padding-top: 10px;
 }
-/* line 825, sass/style.scss */
+/* line 830, sass/style.scss */
 .state-progress span {
   font-size: 9px;
   font-weight: bold;
@@ -1112,13 +1118,13 @@ a.cancel {
   list-style-image: url(/img/icons/markers/beer_sml.png);
 }
 
-/* line 837, sass/style.scss */
+/* line 842, sass/style.scss */
 .pac-container {
   line-height: 20px;
 }
 
 /* Bootstrap override */
-/* line 842, sass/style.scss */
+/* line 847, sass/style.scss */
 .navbar-inverse .navbar-inner {
   border-color: #00B7EA;
 }

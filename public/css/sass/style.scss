@@ -430,6 +430,11 @@ table.promos.generic {
 */
 
 #bottom-info-bar {
+
+    @media (max-width: 320px) {
+        display: none;
+    }
+
     .summary {
         img {
             vertical-align: middle;
