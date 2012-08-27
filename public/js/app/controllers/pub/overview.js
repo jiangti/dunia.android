@@ -108,9 +108,13 @@ define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquer
 			templateName: 'tipsView',
 			tipsCollectionView: Ember.CollectionView.extend({
 				tagName: 'ul',
+				classNames: ['unstyled'],
 	            contentBinding: 'App.AppController.tips',
 	            itemViewClass: Ember.View.extend({
 	            	tagName: ''
+	            }),
+	            emptyView: Ember.View.extend({
+	                template: Ember.Handlebars.compile("Loading tips.. this may take a while.")
 	            })
 			})
 		});
