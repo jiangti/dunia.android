@@ -432,7 +432,7 @@ class Service_Pub extends Aw_Service_ServiceAbstract
 	    $select3->joinLeft(array('php' => 'pubHasPromo'), 'php.idPub = p.id', $nulls)->where('php.idPub is null');
 
         // If we want to see a different day then do not show stuff that doesn't happen that day!
-        if (strtolower($day) != strtolower(date('D'))) {
+        if (strtolower($day) != strtolower(date('D')) || (isset($options['todayOnly']) && $options['todayOnly'])) {
             $select = $select1;
         } else {
             $select = $unionSelect->union(array($select1, $select2, $select3));

@@ -490,7 +490,8 @@ table.promos.generic {
         margin: 0 0 5px 0;
         font-size: 24px;
         
-        @media (max-width: 480px) {
+        @media (max-width: 767px) {
+            margin: 0;
             font-size: 15px;
         }
         
@@ -515,6 +516,10 @@ table.promos.generic {
 
         div {
             padding: 20px 5px;
+            @media (max-width: 767px) {
+                padding: 5px;
+            }
+
             font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
             
             font-size: 20px;
@@ -523,7 +528,7 @@ table.promos.generic {
                 font-weight: bold;
                 font-size: 30px;
                 
-                @media (max-width: 480px) {
+                @media (max-width: 767px) {
                     font-size: 15px;
                 }
             }
@@ -531,7 +536,7 @@ table.promos.generic {
             span.liquorType {
                 font-weight: normal;
                 
-                @media (max-width: 480px) {
+                @media (max-width: 767px) {
                     font-size: 15px;
                 }
                 font-size: 24px;
@@ -556,6 +561,9 @@ table.promos.generic {
         div.deal {
             padding: 0;
             margin-bottom: 10px;
+            @media (max-width: 767px) {
+                margin-bottom: 5px;
+            }
             overflow: auto;
         }
 
@@ -592,7 +600,7 @@ table.promos.generic {
                 font-family: 'Imprima', Arial, sans-serif;
                 font-weight: normal;
                 
-                @media (max-width: 480px) {
+                @media (max-width: 767px) {
                     font-size: 15px;
                 }
                 
@@ -860,4 +868,11 @@ a.cancel {
 /* Bootstrap override */
 .navbar-inverse .navbar-inner {
     border-color: #00B7EA;
+}
+
+@media (max-width: 767px) {
+    .navbar-fixed-top, .navbar-fixed-bottom {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
 }
