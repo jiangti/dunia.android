@@ -16,35 +16,35 @@ define(['libs/ember'], function(Ember) {
 	        	name:   'now',
 	        	title:  'It\'s on now',
 	        	icon:   '/img/icons/markers/now.svg',
-                marker: new google.maps.MarkerImage('/img/icons/markers/now.svg', new google.maps.Size(58, 88), null, null, new google.maps.Size(29, 44)),
+                marker: new google.maps.MarkerImage('/img/icons/markers/now.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)),
 	            zIndex: 20
 	        }),
 	        earlier: marker.create({
 	        	name:   'earlier',
 	        	title:  'Missed it',
 	            icon: '/img/icons/markers/gone.svg',
-                marker: new google.maps.MarkerImage('/img/icons/markers/gone.svg', new google.maps.Size(58, 88), null, null, new google.maps.Size(29, 44)),
+                marker: new google.maps.MarkerImage('/img/icons/markers/gone.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)),
 	            zIndex: 18
 	        }),
 	        later: marker.create({
 	        	name:   'later',
 	        	title:  'Coming soon',
 	            icon: '/img/icons/markers/coming.svg',
-                marker: new google.maps.MarkerImage('/img/icons/markers/coming.svg', new google.maps.Size(58, 88), null, null, new google.maps.Size(29, 44)),
+                marker: new google.maps.MarkerImage('/img/icons/markers/coming.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)),
 	            zIndex: 19
 	        }),
 	        none: marker.create({
 	        	name:   'none',
 	        	title:  'Not today',
 	            icon: '/img/icons/markers/notoday.svg',
-                marker: new google.maps.MarkerImage('/img/icons/markers/notoday.svg', new google.maps.Size(58, 88), null, null, new google.maps.Size(29, 44)),
+                marker: new google.maps.MarkerImage('/img/icons/markers/notoday.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)),
 	            zIndex: 15
 	        }),
 	        zero: marker.create({
 	        	name:   'zero',
 	        	title:  'Zero',
 	            icon: '/img/icons/markers/none.svg',
-                marker: new google.maps.MarkerImage('/img/icons/markers/none.svg', new google.maps.Size(58, 88), null, null, new google.maps.Size(29, 44)),
+                marker: new google.maps.MarkerImage('/img/icons/markers/none.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)),
 	            zIndex: 10
 	        })
 	    });
@@ -119,6 +119,12 @@ define(['libs/ember'], function(Ember) {
 	            });
 	            map.panTo(center);
 	        },
+
+            zoom: function(zoom) {
+                var map = this.get('map');
+
+                map.setZoom(zoom);
+            },
 	
 	        cleanMarkers: function() {
 	            var markers = this.get('mapMarkers');
@@ -175,10 +181,11 @@ define(['libs/ember'], function(Ember) {
             setMarkersSize: function(width, height) {
                 var markers = this.get('mapMarkers');
 
+                var size = new google.maps.Size(width, height);
                 if (markers) {
                     for (var i = 0; i < markers.length; i++ ) {
-                        markers[i].icon.size       = new google.maps.Size(2 * width, 2 * height);
-                        markers[i].icon.scaledSize = new google.maps.Size(width, height);
+                        markers[i].icon.size       = size;
+                        markers[i].icon.scaledSize = size;
                     }
                 }
             },
@@ -252,7 +259,8 @@ define(['libs/ember'], function(Ember) {
 	                    html:     overlayHtml,
 	                    idBeer:   id,
 	                    type:     type,
-	                    idPubType: marker.idPubType
+	                    idPubType: marker.idPubType,
+                        optimized: false
 	                };
 	                
 	                
@@ -329,6 +337,25 @@ define(['libs/ember'], function(Ember) {
 	            }
 	        }
 	    });
+
+        // Javascript mobile detection
+        Dunia.isMobile = Em.Object.create({
+            Android: function() {
+                return navigator.userAgent.match(/Android/i) ? true : false;
+            },
+            BlackBerry: function() {
+                return navigator.userAgent.match(/BlackBerry/i) ? true : false;
+            },
+            iOS: function() {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
+            },
+            Windows: function() {
+                return navigator.userAgent.match(/IEMobile/i) ? true : false;
+            },
+            any: function() {
+                return (Dunia.isMobile.Android() || Dunia.isMobile.BlackBerry() || Dunia.isMobile.iOS() || Dunia.isMobile.Windows());
+            }
+        });
 	}}
 });
 

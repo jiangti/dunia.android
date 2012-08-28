@@ -1,4 +1,4 @@
-define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/bootstrap'], function(init) {
+define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/bootstrap', 'jquery.cookie'], function(init) {
 	return {init: function() {
 		init.init();
 		
@@ -36,8 +36,6 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
 	        $(selector).popover('toggle');
 	    });
 
-
-	    
 	    $('select#valueA, select#valueB').selectToUISlider({
 	    	labels: 6,
 	    	tooltip: false,
@@ -49,22 +47,19 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
 	    		}
 	    	}
 	    });
-	    
-	    
-	    
-	    
-	    AppMap = Dunia.Map.create({
-	        longitude: myOptions.longitude,
-	        latitude:  myOptions.latitude,
-	        map:       new google.maps.Map(document.getElementById("map_canvas"), myOptions)
-	    });
+
+        AppMap = Dunia.Map.create({
+            longitude: myOptions.longitude,
+            latitude:  myOptions.latitude,
+            map:       new google.maps.Map(document.getElementById("map_canvas"), myOptions)
+        });
 
         google.maps.event.addListener(AppMap.map.getStreetView(), 'visible_changed', function() {
             var toggle = AppMap.map.getStreetView().getVisible();
             if (toggle == false) {
-                AppMap.setMarkersSize(32, 37);
+                AppMap.setMarkersSize(29, 44);
             } else {
-                AppMap.setMarkersSize(250, 289);
+                AppMap.setMarkersSize(257, 390);
             }
         });
 
@@ -101,6 +96,21 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
 	    	AppMap.cleanMarkers();
 	    	AppMap.fetchBars();
 	    });
-	    
+
+        /**
+         * We only check for location on mobile. Also when we check for location we set a cookie so
+         * that we don't check again for the session (if a user goes into a pub's page and back we want
+         * to preserve the last part of the map shown). We will provide a 'locate me' button that will
+         * bring the user back to current point if lost.
+         */
+        if ($.cookie('locationSet') == null && Dunia.isMobile.any() && navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                AppMap.center(position.coords.latitude, position.coords.longitude);
+                AppMap.zoom(16);
+                $.cookie('locationSet', 'true');
+            });
+        }
+
+
 	}}
 });
