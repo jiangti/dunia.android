@@ -29,7 +29,7 @@
             }
             ?>
         <tr>
-
+        
         <?php foreach($days as $index => $value): ?>
             <?php if(isset($cols[$index])): ?>
                 <?php $skip = $cols[$index] - 1; ?>
@@ -67,5 +67,9 @@
         <?php endforeach; ?>
         </tr>
         <?php endforeach; ?>
+        
+        <?php if(count($promos) == 0): ?>
+        <tr><td colspan="7">There is no happy hour for this pub, help us out by filling in a happy hour in the form below.</td></tr>
+        <?php endif; ?>
     </tbody>
 </table>
