@@ -12,13 +12,8 @@ set_include_path(implode(PATH_SEPARATOR, array(
 require_once APPLICATION_ROOT . '/library/Zend/Loader/AutoloaderFactory.php';
 require_once APPLICATION_ROOT . '/library/Zend/Loader/ClassMapAutoloader.php';
 Zend_Loader_AutoloaderFactory::factory(array(
-    'Zend_Loader_ClassMapAutoloader' => array(
-            APPLICATION_ROOT . '/autoload_classmap.php',
-        ),
-    'Zend_Loader_StandardAutoloader' => array(
-        'prefixes' => array(
-            'Zend' =>APPLICATION_ROOT . '/library/Zend'
-        ),
+    'Zend_Loader_ClassMapAutoloader' => array(APPLICATION_ROOT . '/autoload_classmap.php',),
+    'Zend_Loader_StandardAutoloader' => array('prefixes' => array('Zend' => APPLICATION_ROOT . '/library/Zend'),
     'fallback_autoloader' => true)
     )
 );

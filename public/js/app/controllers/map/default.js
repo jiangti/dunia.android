@@ -290,7 +290,6 @@ define(['libs/ember'], function(Ember) {
 	
 	                google.maps.event.addListener(mapMarker, 'click', function() {
 	                    infoWindow.setContent(this.html);
-	                    infoWindow.setOptions({maxWidth: 500});
 	                    infoWindow.open(map, this);
 	                });
 	                
@@ -298,7 +297,6 @@ define(['libs/ember'], function(Ember) {
 	                	var $this = this;
 	                	timeout = setTimeout(function() {
 	                		infoWindow.setContent($this.html);
-	                		infoWindow.setOptions({maxWidth: 500});
 	                		infoWindow.open(map, $this);
 	                	}, 400);
 	                });
