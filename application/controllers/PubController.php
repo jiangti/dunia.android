@@ -168,11 +168,12 @@ class PubController extends Model_Controller_Action
     {
         
         $id = $this->_getParam('id');
-        
+
         $pub = new Model_Pub();
 
         $this->view->pub = $pub->getById($id);
-        
+        $this->view->headTitle($pub->name . ' | Dunia | Happy Hours Sydney, Melbourne | Cheap beer, wine, spirits');
+
         if ($this->isMobile() || $this->_getParam('mobile')) {
             //$this->_helper->layout()->setLayout('mobile-min');
             //$this->_helper->viewRenderer->setRender('overview-mobile');
