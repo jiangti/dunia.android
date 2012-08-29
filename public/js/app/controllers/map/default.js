@@ -120,6 +120,15 @@ define(['libs/ember'], function(Ember) {
 	            map.panTo(center);
 	        },
 
+            locate: function() {
+                var self = this;
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    self.center(position.coords.latitude, position.coords.longitude);
+                    self.zoom(16);
+                    $.cookie('locationSet', 'true');
+                });
+            },
+
             zoom: function(zoom) {
                 var map = this.get('map');
 

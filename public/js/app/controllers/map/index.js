@@ -104,13 +104,11 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
          * bring the user back to current point if lost.
          */
         if ($.cookie('locationSet') == null && Dunia.isMobile.any() && navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                AppMap.center(position.coords.latitude, position.coords.longitude);
-                AppMap.zoom(16);
-                $.cookie('locationSet', 'true');
-            });
+            AppMap.locate();
         }
 
-
+        $('#locate-me').on('click', function() {
+            AppMap.locate();
+        });
 	}}
 });
