@@ -648,47 +648,48 @@ table.promos.generic th.today {
 .overlay .overlayContent table th {
   padding: 2px 5px;
   font-variant: small-caps;
+  font-size: 14px;
 }
-/* line 594, sass/style.scss */
+/* line 595, sass/style.scss */
 .overlay .overlayContent table span.price {
   font-weight: bold;
   font-size: 22px;
   color: #000000;
 }
-/* line 600, sass/style.scss */
+/* line 601, sass/style.scss */
 .overlay .overlayContent table span.liquorType {
   font-family: 'Imprima', Arial, sans-serif;
   font-weight: normal;
   font-size: 20px;
 }
 @media (max-width: 767px) {
-  /* line 600, sass/style.scss */
+  /* line 601, sass/style.scss */
   .overlay .overlayContent table span.liquorType {
     font-size: 15px;
   }
 }
-/* line 611, sass/style.scss */
+/* line 612, sass/style.scss */
 .overlay .overlayContent table .liquorSize {
   font-family: 'Imprima', Arial, sans-serif;
   font-style: italic;
   padding: 5px;
 }
-/* line 617, sass/style.scss */
+/* line 618, sass/style.scss */
 .overlay .overlayContent table .thePromo {
   padding: 8px 4px 4px 4px;
 }
-/* line 623, sass/style.scss */
+/* line 624, sass/style.scss */
 .overlay .foot {
   margin-top: 10px;
   overflow: auto;
   position: relative;
 }
-/* line 628, sass/style.scss */
+/* line 629, sass/style.scss */
 .overlay .foot .address {
   color: #555;
   font-size: 80%;
 }
-/* line 633, sass/style.scss */
+/* line 634, sass/style.scss */
 .overlay .foot a {
   text-decoration: none;
   color: #1291ff;
@@ -697,7 +698,7 @@ table.promos.generic th.today {
   right: 0;
 }
 
-/* line 643, sass/style.scss */
+/* line 644, sass/style.scss */
 a.small-icon {
   display: block;
   width: 16px;
@@ -707,21 +708,21 @@ a.small-icon {
   text-indent: -9999px;
 }
 
-/* line 652, sass/style.scss */
+/* line 653, sass/style.scss */
 a.ok {
   background: url(/img/icons/famfamfam/accept.png) no-repeat;
 }
 
-/* line 656, sass/style.scss */
+/* line 657, sass/style.scss */
 a.cancel {
   background: url(/img/icons/famfamfam/cancel.png) no-repeat;
 }
 
-/* line 660, sass/style.scss */
+/* line 661, sass/style.scss */
 .admin-nav {
   list-style: none;
 }
-/* line 664, sass/style.scss */
+/* line 665, sass/style.scss */
 .admin-nav li a {
   font-size: 18px;
   text-decoration: none;
@@ -733,7 +734,7 @@ a.cancel {
   border-color: #ddd;
   color: #555;
 }
-/* line 676, sass/style.scss */
+/* line 677, sass/style.scss */
 .admin-nav li a.selected {
   background: #00b7ea;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -754,49 +755,49 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
-/* line 703, sass/style.scss */
+/* line 704, sass/style.scss */
 #flagForm #dealSelector {
   padding: 20px;
   font-size: 15px;
   border-right: 1px solid #ccc;
   margin-right: 20px;
 }
-/* line 711, sass/style.scss */
+/* line 712, sass/style.scss */
 #flagForm #dealSubforms dd {
   margin-bottom: 10px;
 }
-/* line 716, sass/style.scss */
+/* line 717, sass/style.scss */
 #flagForm dt > label {
   font-weight: bold;
   font-size: 15px;
 }
-/* line 720, sass/style.scss */
+/* line 721, sass/style.scss */
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;
 }
-/* line 725, sass/style.scss */
+/* line 726, sass/style.scss */
 #flagForm fieldset {
   border: 0;
   padding: 0;
 }
-/* line 730, sass/style.scss */
+/* line 731, sass/style.scss */
 #flagForm hr {
   color: #ddd;
 }
 
-/* line 735, sass/style.scss */
+/* line 736, sass/style.scss */
 .venuePic {
   margin: 10px;
   padding: 4px;
   border: 1px solid #ccc;
 }
 
-/* line 742, sass/style.scss */
+/* line 743, sass/style.scss */
 #mailshare dd {
   margin-left: 0px;
 }
-/* line 745, sass/style.scss */
+/* line 746, sass/style.scss */
 #mailshare .item {
   -webkit-border-radius: 4px 4px;
   -moz-border-radius: 4px / 4px;
@@ -809,18 +810,18 @@ a.cancel {
   padding: 5px;
   background: none repeat scroll 0 0 #eee;
 }
-/* line 755, sass/style.scss */
+/* line 756, sass/style.scss */
 #mailshare form input[type=text] {
   width: 180px;
 }
-/* line 758, sass/style.scss */
+/* line 759, sass/style.scss */
 #mailshare form.done {
   -webkit-box-shadow: 0px 0px 5px green;
   -moz-box-shadow: 0px 0px 5px green;
   box-shadow: 0px 0px 5px green;
 }
 
-/* line 764, sass/style.scss */
+/* line 765, sass/style.scss */
 #facebookConnect, #signInWithTwitter {
   margin: 20px;
   display: block;
@@ -829,12 +830,12 @@ a.cancel {
   width: 169px;
 }
 
-/* line 772, sass/style.scss */
+/* line 773, sass/style.scss */
 #facebookConnect {
   background: url("/img/icons/facebookconnect.png") no-repeat scroll 0 0 transparent;
 }
 
-/* line 776, sass/style.scss */
+/* line 777, sass/style.scss */
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }
@@ -842,17 +843,17 @@ a.cancel {
 /**
  * User Profile
  */
-/* line 785, sass/style.scss */
+/* line 786, sass/style.scss */
 #services ul {
   list-style: none;
   padding: 0;
 }
-/* line 789, sass/style.scss */
+/* line 790, sass/style.scss */
 #services ul li {
   margin: 10px;
 }
 
-/* line 795, sass/style.scss */
+/* line 796, sass/style.scss */
 #advanced-filter {
   max-height: 15px;
   -webkit-transition-property: max-height;
@@ -871,28 +872,28 @@ a.cancel {
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-/* line 800, sass/style.scss */
+/* line 801, sass/style.scss */
 #advanced-filter:hover {
   max-height: 500px;
 }
 
-/* line 805, sass/style.scss */
+/* line 806, sass/style.scss */
 #category-list {
   list-style-type: none;
   padding: 0;
   margin: 5px;
   margin-right: 15px;
 }
-/* line 811, sass/style.scss */
+/* line 812, sass/style.scss */
 #category-list label {
   display: inline-block;
 }
-/* line 815, sass/style.scss */
+/* line 816, sass/style.scss */
 #category-list label, #category-list input {
   vertical-align: middle;
 }
 
-/* line 820, sass/style.scss */
+/* line 821, sass/style.scss */
 .glow {
   -webkit-border-radius: 3px 3px;
   -moz-border-radius: 3px / 3px;
@@ -902,18 +903,18 @@ a.cancel {
   overflow: hidden;
 }
 
-/* line 825, sass/style.scss */
+/* line 826, sass/style.scss */
 .promo {
   margin: 3px;
 }
-/* line 828, sass/style.scss */
+/* line 829, sass/style.scss */
 .promo .thePromo {
   padding: 10px;
   border: 1px solid #eee;
   color: #444;
 }
 
-/* line 837, sass/style.scss */
+/* line 838, sass/style.scss */
 .tooltip {
   display: none;
   background: transparent url("/css/images/black_arrow.png");
@@ -925,12 +926,12 @@ a.cancel {
   z-index: 1000;
 }
 
-/* line 850, sass/style.scss */
+/* line 851, sass/style.scss */
 .state-progress {
   text-align: center;
   padding-top: 10px;
 }
-/* line 853, sass/style.scss */
+/* line 854, sass/style.scss */
 .state-progress span {
   font-size: 9px;
   font-weight: bold;
@@ -1151,19 +1152,19 @@ a.cancel {
   list-style-image: url(/img/icons/markers/beer_sml.png);
 }
 
-/* line 865, sass/style.scss */
+/* line 866, sass/style.scss */
 .pac-container {
   line-height: 20px;
 }
 
 /* Bootstrap override */
-/* line 870, sass/style.scss */
+/* line 871, sass/style.scss */
 .navbar-inverse .navbar-inner {
   border-color: #00B7EA;
 }
 
 @media (max-width: 767px) {
-  /* line 875, sass/style.scss */
+  /* line 876, sass/style.scss */
   .navbar-fixed-top, .navbar-fixed-bottom {
     margin-right: 0px;
     margin-left: 0px;
