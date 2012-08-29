@@ -25,7 +25,6 @@ class Bootstrap extends Aw_BootstrapAbstract {
     public function _initView() {
         $view = new Zend_View();
         $view->doctype('XHTML1_STRICT');
-        $view->headTitle("It's Business  Time");
 
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $viewRenderer->setView($view);
