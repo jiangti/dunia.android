@@ -5,6 +5,7 @@
 }
 .ui-slider .ui-slider-handle  {
 	overflow: visible !important;
+    border-radius: 11px;
 }
 .ui-slider .ui-slider-tooltip {
 	display: none;

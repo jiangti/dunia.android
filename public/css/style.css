@@ -160,17 +160,14 @@ h1 {
   list-style-image: none;
   list-style-type: none;
   margin-left: 0;
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
   white-space: nowrap;
   margin: 0 10px;
-}
-/* line 7, ../../../../../../usr/local/share/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
-#header #form ul.nav2 > li {
-  *display: inline;
 }
 /* line 124, sass/style.scss */
 #header #form #location {
@@ -264,53 +261,61 @@ h1 {
     width: auto;
   }
 }
+/* line 216, sass/style.scss */
+#locate-me {
+  position: absolute;
+  top: 50px;
+  left: 35px;
+  z-index: 10;
+}
+
 /**
  * Promos
  */
-/* line 221, sass/style.scss */
+/* line 228, sass/style.scss */
 table.promos.generic td {
   padding: 0;
 }
-/* line 224, sass/style.scss */
+/* line 231, sass/style.scss */
 table.promos.generic th.today {
   color: red;
 }
 
-/* line 229, sass/style.scss */
+/* line 236, sass/style.scss */
 .promo {
   padding: 0;
 }
-/* line 231, sass/style.scss */
+/* line 238, sass/style.scss */
 .promo .time {
   background-color: #eee;
   margin: 0;
   padding: 5px;
   font-size: 9px;
 }
-/* line 238, sass/style.scss */
+/* line 245, sass/style.scss */
 .promo .promoDescription {
   text-align: left;
   font-size: x-small;
   font-size: 9px;
 }
-/* line 243, sass/style.scss */
+/* line 250, sass/style.scss */
 .promo div {
   line-height: 100%;
 }
 
-/* line 248, sass/style.scss */
+/* line 255, sass/style.scss */
 .promoContent {
   text-align: center;
   padding: 5px;
   font-size: 11px;
 }
 
-/* line 254, sass/style.scss */
+/* line 261, sass/style.scss */
 #flag {
   text-align: right;
   margin-top: 10px;
 }
-/* line 258, sass/style.scss */
+/* line 265, sass/style.scss */
 #flag a {
   color: #1291ff;
   text-decoration: none;
@@ -318,35 +323,35 @@ table.promos.generic th.today {
   background: url(/img/icons/famfamfam/flag_red.png) no-repeat;
 }
 
-/* line 268, sass/style.scss */
+/* line 275, sass/style.scss */
 .pub-overview #content-row {
   float: left;
 }
-/* line 272, sass/style.scss */
+/* line 279, sass/style.scss */
 .pub-overview #sidebar-row {
   float: right !important;
   margin-left: auto;
 }
 @media (max-width: 767px) {
-  /* line 278, sass/style.scss */
+  /* line 285, sass/style.scss */
   .pub-overview #content-row {
     display: inline-block;
     margin-top: 20px;
     width: 100%;
   }
-  /* line 289, sass/style.scss */
+  /* line 296, sass/style.scss */
   .pub-overview #sidebar-row {
     float: none !important;
     margin-left: 0;
   }
 }
 @media (max-width: 767px) and (max-width: 480px) {
-  /* line 278, sass/style.scss */
+  /* line 285, sass/style.scss */
   .pub-overview #content-row {
     margin-top: 0px;
   }
 }
-/* line 295, sass/style.scss */
+/* line 302, sass/style.scss */
 .pub-overview h2 {
   margin-top: 10px;
   color: #555;
@@ -355,61 +360,61 @@ table.promos.generic th.today {
   font-size: 25px;
   border-bottom: 1px solid #eee;
 }
-/* line 304, sass/style.scss */
+/* line 311, sass/style.scss */
 .pub-overview h1 {
   float: left;
   margin-left: 10px;
 }
-/* line 307, sass/style.scss */
+/* line 314, sass/style.scss */
 .pub-overview h1 img {
   vertical-align: middle;
   display: inline-block;
   margin-top: -5px;
 }
 @media (max-width: 767px) {
-  /* line 304, sass/style.scss */
+  /* line 311, sass/style.scss */
   .pub-overview h1 {
     float: none;
     margin-bottom: 20px;
   }
 }
 @media (max-width: 480px) {
-  /* line 304, sass/style.scss */
+  /* line 311, sass/style.scss */
   .pub-overview h1 {
     margin-bottom: 0px;
     font-size: 26px;
   }
 }
-/* line 324, sass/style.scss */
+/* line 331, sass/style.scss */
 .pub-overview label {
   display: inline-block;
 }
-/* line 330, sass/style.scss */
+/* line 337, sass/style.scss */
 .pub-overview ul {
   list-style: none;
   padding-left: 0;
   overflow: auto;
 }
-/* line 336, sass/style.scss */
+/* line 343, sass/style.scss */
 .pub-overview .addthis_toolbox > a {
   margin: 5px;
 }
-/* line 340, sass/style.scss */
+/* line 347, sass/style.scss */
 .pub-overview #photos {
   clear: both;
   overflow: auto;
 }
-/* line 344, sass/style.scss */
+/* line 351, sass/style.scss */
 .pub-overview #photos .venuePic {
   margin: 9px;
   padding: 4px;
   border: 1px solid #ccc;
 }
-/* line 350, sass/style.scss */
+/* line 357, sass/style.scss */
 .pub-overview #photos li {
   float: left;
 }
-/* line 355, sass/style.scss */
+/* line 362, sass/style.scss */
 .pub-overview .tip-container {
   clear: both;
   overflow: auto;
@@ -418,73 +423,73 @@ table.promos.generic th.today {
   color: #444;
   margin: 10px;
 }
-/* line 363, sass/style.scss */
+/* line 370, sass/style.scss */
 .pub-overview .tip-container img {
   border: 1px solid #ccc;
   padding: 3px;
   margin-right: 10px;
 }
-/* line 369, sass/style.scss */
+/* line 376, sass/style.scss */
 .pub-overview .tip-container a {
   padding: 0;
   text-decoration: none;
   color: #2398C9;
   font-weight: bold;
 }
-/* line 376, sass/style.scss */
+/* line 383, sass/style.scss */
 .pub-overview .tip-container .date {
   color: #999;
 }
-/* line 383, sass/style.scss */
+/* line 390, sass/style.scss */
 .pub-overview #tipsWrapper ul li {
   overflow: auto;
   margin-bottom: 5px;
 }
-/* line 388, sass/style.scss */
+/* line 395, sass/style.scss */
 .pub-overview #tipsWrapper ul .separator {
   border-bottom: 1px solid #f1f1f1;
   margin: 0 10px;
 }
-/* line 394, sass/style.scss */
+/* line 401, sass/style.scss */
 .pub-overview .details {
   overflow: auto;
   margin-bottom: 20px;
 }
-/* line 395, sass/style.scss */
+/* line 402, sass/style.scss */
 .pub-overview .details #street-view {
   position: relative;
   z-index: 10;
   top: 195px;
   margin-left: 5px;
 }
-/* line 403, sass/style.scss */
+/* line 410, sass/style.scss */
 .pub-overview .details .contact .address {
   float: left;
   padding: 5px;
 }
-/* line 408, sass/style.scss */
+/* line 415, sass/style.scss */
 .pub-overview .details .contact .urls {
   float: right;
   padding: 5px;
 }
-/* line 418, sass/style.scss */
+/* line 425, sass/style.scss */
 .pub-overview .sidebar {
   height: 100%;
   border-left: solid 1px #f1f1f1;
 }
-/* line 422, sass/style.scss */
+/* line 429, sass/style.scss */
 .pub-overview .sidebar span.price {
   font-weight: bold;
   font-size: 22px;
   color: #000000;
 }
-/* line 428, sass/style.scss */
+/* line 435, sass/style.scss */
 .pub-overview .sidebar span.liquorType {
   font-family: 'Imprima', Arial, sans-serif;
   font-weight: normal;
   font-size: 20px;
 }
-/* line 434, sass/style.scss */
+/* line 441, sass/style.scss */
 .pub-overview .sidebar .liquorSize {
   font-family: 'Imprima', Arial, sans-serif;
   font-style: italic;
@@ -494,7 +499,7 @@ table.promos.generic th.today {
 /**
 * Index page (big map)
 */
-/* line 447, sass/style.scss */
+/* line 454, sass/style.scss */
 #bottom-info-bar {
   height: 25px;
   position: fixed;
@@ -511,35 +516,35 @@ table.promos.generic th.today {
   border-top-left-radius: 50px 100px;
 }
 @media (max-width: 480px) {
-  /* line 447, sass/style.scss */
+  /* line 454, sass/style.scss */
   #bottom-info-bar {
     display: none;
   }
 }
-/* line 453, sass/style.scss */
+/* line 460, sass/style.scss */
 #bottom-info-bar .summary {
   font-family: 'Imprima', Arial, sans-serif;
   font-size: 18px;
   margin-right: 20px;
 }
-/* line 454, sass/style.scss */
+/* line 461, sass/style.scss */
 #bottom-info-bar .summary img {
   vertical-align: middle;
   padding-right: 3px;
 }
-/* line 461, sass/style.scss */
+/* line 468, sass/style.scss */
 #bottom-info-bar .summary a {
   text-decoration: none;
   color: #222;
 }
 
-/* line 485, sass/style.scss */
+/* line 492, sass/style.scss */
 .overlay {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 490, sass/style.scss */
+/* line 497, sass/style.scss */
 .overlay h2 {
   margin: 0 0 5px 0;
   font-size: 24px;
@@ -550,85 +555,85 @@ table.promos.generic th.today {
   vertical-align: middle;
 }
 @media (max-width: 767px) {
-  /* line 490, sass/style.scss */
+  /* line 497, sass/style.scss */
   .overlay h2 {
     margin: 0;
     font-size: 15px;
   }
 }
-/* line 505, sass/style.scss */
+/* line 512, sass/style.scss */
 .overlay h2 img {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 512, sass/style.scss */
+/* line 519, sass/style.scss */
 .overlay .overlayContent {
   border: 1px solid rgba(104, 187, 235, 0.9);
   border-left: 0;
   border-right: 0;
   margin: 0;
 }
-/* line 518, sass/style.scss */
+/* line 525, sass/style.scss */
 .overlay .overlayContent div {
   padding: 20px 5px;
   font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
   font-size: 20px;
 }
 @media (max-width: 767px) {
-  /* line 518, sass/style.scss */
+  /* line 525, sass/style.scss */
   .overlay .overlayContent div {
     padding: 5px;
   }
 }
-/* line 528, sass/style.scss */
+/* line 535, sass/style.scss */
 .overlay .overlayContent div span.price {
   font-weight: bold;
   font-size: 30px;
 }
 @media (max-width: 767px) {
-  /* line 528, sass/style.scss */
+  /* line 535, sass/style.scss */
   .overlay .overlayContent div span.price {
     font-size: 15px;
   }
 }
-/* line 537, sass/style.scss */
+/* line 544, sass/style.scss */
 .overlay .overlayContent div span.liquorType {
   font-weight: normal;
   font-size: 24px;
 }
 @media (max-width: 767px) {
-  /* line 537, sass/style.scss */
+  /* line 544, sass/style.scss */
   .overlay .overlayContent div span.liquorType {
     font-size: 15px;
   }
 }
-/* line 546, sass/style.scss */
+/* line 553, sass/style.scss */
 .overlay .overlayContent div div.left {
   padding: 0;
 }
-/* line 550, sass/style.scss */
+/* line 557, sass/style.scss */
 .overlay .overlayContent div div.right {
   padding: 0;
   margin-left: 10px;
 }
-/* line 554, sass/style.scss */
+/* line 561, sass/style.scss */
 .overlay .overlayContent div div.right div.time, .overlay .overlayContent div div.right div.size {
   font-size: 14px;
   padding: 0;
 }
-/* line 562, sass/style.scss */
+/* line 569, sass/style.scss */
 .overlay .overlayContent div.deal {
   padding: 0;
   margin-bottom: 10px;
   overflow: auto;
 }
 @media (max-width: 767px) {
-  /* line 562, sass/style.scss */
+  /* line 569, sass/style.scss */
   .overlay .overlayContent div.deal {
     margin-bottom: 5px;
   }
 }
-/* line 571, sass/style.scss */
+/* line 578, sass/style.scss */
 .overlay .overlayContent h3 {
   text-align: center;
   color: #fff;
@@ -639,57 +644,56 @@ table.promos.generic th.today {
   margin: 0;
   padding: 0;
 }
-/* line 584, sass/style.scss */
+/* line 591, sass/style.scss */
 .overlay .overlayContent table div {
   font-size: 12px;
   padding: 0;
 }
-/* line 588, sass/style.scss */
+/* line 595, sass/style.scss */
 .overlay .overlayContent table th {
   padding: 2px 5px;
   font-variant: small-caps;
-  font-size: 14px;
 }
-/* line 595, sass/style.scss */
+/* line 601, sass/style.scss */
 .overlay .overlayContent table span.price {
   font-weight: bold;
   font-size: 22px;
   color: #000000;
 }
-/* line 601, sass/style.scss */
+/* line 607, sass/style.scss */
 .overlay .overlayContent table span.liquorType {
   font-family: 'Imprima', Arial, sans-serif;
   font-weight: normal;
   font-size: 20px;
 }
 @media (max-width: 767px) {
-  /* line 601, sass/style.scss */
+  /* line 607, sass/style.scss */
   .overlay .overlayContent table span.liquorType {
     font-size: 15px;
   }
 }
-/* line 612, sass/style.scss */
+/* line 618, sass/style.scss */
 .overlay .overlayContent table .liquorSize {
   font-family: 'Imprima', Arial, sans-serif;
   font-style: italic;
   padding: 5px;
 }
-/* line 618, sass/style.scss */
+/* line 624, sass/style.scss */
 .overlay .overlayContent table .thePromo {
   padding: 8px 4px 4px 4px;
 }
-/* line 624, sass/style.scss */
+/* line 630, sass/style.scss */
 .overlay .foot {
   margin-top: 10px;
   overflow: auto;
   position: relative;
 }
-/* line 629, sass/style.scss */
+/* line 635, sass/style.scss */
 .overlay .foot .address {
   color: #555;
   font-size: 80%;
 }
-/* line 634, sass/style.scss */
+/* line 640, sass/style.scss */
 .overlay .foot a {
   text-decoration: none;
   color: #1291ff;
@@ -698,7 +702,7 @@ table.promos.generic th.today {
   right: 0;
 }
 
-/* line 644, sass/style.scss */
+/* line 650, sass/style.scss */
 a.small-icon {
   display: block;
   width: 16px;
@@ -708,21 +712,21 @@ a.small-icon {
   text-indent: -9999px;
 }
 
-/* line 653, sass/style.scss */
+/* line 659, sass/style.scss */
 a.ok {
   background: url(/img/icons/famfamfam/accept.png) no-repeat;
 }
 
-/* line 657, sass/style.scss */
+/* line 663, sass/style.scss */
 a.cancel {
   background: url(/img/icons/famfamfam/cancel.png) no-repeat;
 }
 
-/* line 661, sass/style.scss */
+/* line 667, sass/style.scss */
 .admin-nav {
   list-style: none;
 }
-/* line 665, sass/style.scss */
+/* line 671, sass/style.scss */
 .admin-nav li a {
   font-size: 18px;
   text-decoration: none;
@@ -734,7 +738,7 @@ a.cancel {
   border-color: #ddd;
   color: #555;
 }
-/* line 677, sass/style.scss */
+/* line 683, sass/style.scss */
 .admin-nav li a.selected {
   background: #00b7ea;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -755,54 +759,52 @@ a.cancel {
   text-shadow: #2277cc 0 -1px 0;
 }
 
-/* line 704, sass/style.scss */
+/* line 710, sass/style.scss */
 #flagForm #dealSelector {
   padding: 20px;
   font-size: 15px;
   border-right: 1px solid #ccc;
   margin-right: 20px;
 }
-/* line 712, sass/style.scss */
+/* line 718, sass/style.scss */
 #flagForm #dealSubforms dd {
   margin-bottom: 10px;
 }
-/* line 717, sass/style.scss */
+/* line 723, sass/style.scss */
 #flagForm dt > label {
   font-weight: bold;
   font-size: 15px;
 }
-/* line 721, sass/style.scss */
+/* line 727, sass/style.scss */
 #flagForm label[for*='type-'] {
   font-size: 18px;
   margin: 2px 15px 2px 0;
 }
-/* line 726, sass/style.scss */
+/* line 732, sass/style.scss */
 #flagForm fieldset {
   border: 0;
   padding: 0;
 }
-/* line 731, sass/style.scss */
+/* line 737, sass/style.scss */
 #flagForm hr {
   color: #ddd;
 }
 
-/* line 736, sass/style.scss */
+/* line 742, sass/style.scss */
 .venuePic {
   margin: 10px;
   padding: 4px;
   border: 1px solid #ccc;
 }
 
-/* line 743, sass/style.scss */
+/* line 749, sass/style.scss */
 #mailshare dd {
   margin-left: 0px;
 }
-/* line 746, sass/style.scss */
+/* line 752, sass/style.scss */
 #mailshare .item {
   -webkit-border-radius: 4px 4px;
   -moz-border-radius: 4px / 4px;
-  -ms-border-radius: 4px / 4px;
-  -o-border-radius: 4px / 4px;
   border-radius: 4px / 4px;
   width: 350px;
   margin: 10px;
@@ -810,18 +812,18 @@ a.cancel {
   padding: 5px;
   background: none repeat scroll 0 0 #eee;
 }
-/* line 756, sass/style.scss */
+/* line 762, sass/style.scss */
 #mailshare form input[type=text] {
   width: 180px;
 }
-/* line 759, sass/style.scss */
+/* line 765, sass/style.scss */
 #mailshare form.done {
   -webkit-box-shadow: 0px 0px 5px green;
   -moz-box-shadow: 0px 0px 5px green;
   box-shadow: 0px 0px 5px green;
 }
 
-/* line 765, sass/style.scss */
+/* line 771, sass/style.scss */
 #facebookConnect, #signInWithTwitter {
   margin: 20px;
   display: block;
@@ -830,12 +832,12 @@ a.cancel {
   width: 169px;
 }
 
-/* line 773, sass/style.scss */
+/* line 779, sass/style.scss */
 #facebookConnect {
   background: url("/img/icons/facebookconnect.png") no-repeat scroll 0 0 transparent;
 }
 
-/* line 777, sass/style.scss */
+/* line 783, sass/style.scss */
 #signInWithTwitter {
   background: url("/img/icons/twittersignin.png") no-repeat scroll 0 0 transparent;
 }
@@ -843,78 +845,73 @@ a.cancel {
 /**
  * User Profile
  */
-/* line 786, sass/style.scss */
+/* line 792, sass/style.scss */
 #services ul {
   list-style: none;
   padding: 0;
 }
-/* line 790, sass/style.scss */
+/* line 796, sass/style.scss */
 #services ul li {
   margin: 10px;
 }
 
-/* line 796, sass/style.scss */
+/* line 802, sass/style.scss */
 #advanced-filter {
   max-height: 15px;
   -webkit-transition-property: max-height;
   -moz-transition-property: max-height;
-  -ms-transition-property: max-height;
   -o-transition-property: max-height;
   transition-property: max-height;
   -webkit-transition-duration: 1s;
   -moz-transition-duration: 1s;
-  -ms-transition-duration: 1s;
   -o-transition-duration: 1s;
   transition-duration: 1s;
   -webkit-transition-timing-function: ease-out;
   -moz-transition-timing-function: ease-out;
-  -ms-transition-timing-function: ease-out;
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-/* line 801, sass/style.scss */
+/* line 807, sass/style.scss */
 #advanced-filter:hover {
   max-height: 500px;
 }
 
-/* line 806, sass/style.scss */
+/* line 812, sass/style.scss */
 #category-list {
   list-style-type: none;
   padding: 0;
   margin: 5px;
   margin-right: 15px;
 }
-/* line 812, sass/style.scss */
+/* line 818, sass/style.scss */
 #category-list label {
   display: inline-block;
 }
-/* line 816, sass/style.scss */
+/* line 822, sass/style.scss */
 #category-list label, #category-list input {
   vertical-align: middle;
 }
 
-/* line 821, sass/style.scss */
+/* line 827, sass/style.scss */
 .glow {
   -webkit-border-radius: 3px 3px;
   -moz-border-radius: 3px / 3px;
-  -ms-border-radius: 3px / 3px;
-  -o-border-radius: 3px / 3px;
   border-radius: 3px / 3px;
   overflow: hidden;
 }
 
-/* line 826, sass/style.scss */
+/* line 832, sass/style.scss */
 .promo {
   margin: 3px;
 }
-/* line 829, sass/style.scss */
+/* line 835, sass/style.scss */
 .promo .thePromo {
   padding: 10px;
   border: 1px solid #eee;
   color: #444;
 }
 
-/* line 838, sass/style.scss */
+/* line 844, sass/style.scss */
 .tooltip {
   display: none;
   background: transparent url("/css/images/black_arrow.png");
@@ -926,12 +923,12 @@ a.cancel {
   z-index: 1000;
 }
 
-/* line 851, sass/style.scss */
+/* line 857, sass/style.scss */
 .state-progress {
   text-align: center;
   padding-top: 10px;
 }
-/* line 854, sass/style.scss */
+/* line 860, sass/style.scss */
 .state-progress span {
   font-size: 9px;
   font-weight: bold;
@@ -1152,21 +1149,26 @@ a.cancel {
   list-style-image: url(/img/icons/markers/beer_sml.png);
 }
 
-/* line 866, sass/style.scss */
+/* line 872, sass/style.scss */
 .pac-container {
   line-height: 20px;
 }
 
 /* Bootstrap override */
-/* line 871, sass/style.scss */
+/* line 877, sass/style.scss */
 .navbar-inverse .navbar-inner {
   border-color: #00B7EA;
 }
 
 @media (max-width: 767px) {
-  /* line 876, sass/style.scss */
+  /* line 882, sass/style.scss */
   .navbar-fixed-top, .navbar-fixed-bottom {
     margin-right: 0px;
     margin-left: 0px;
   }
+}
+/* line 888, sass/style.scss */
+.icon-locate {
+  background: url("/img/icons/navbar/74-location.png") no-repeat;
+  background-size: 13px 13px;
 }
