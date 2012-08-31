@@ -5,7 +5,7 @@ class Model_Controller_Action extends Zend_Controller_Action {
         parent::init();
         
         $device = Zend_Registry::get('device');
-        if ($device->getType() == 'mobile' && $device->getFeature('is_tablet') == 'false') {
+        if ($device->getType() == 'mobile' && !$device->getFeature('is_tablet')) {
             $this->view->isMobile = true;
             return true;
         } return false;
