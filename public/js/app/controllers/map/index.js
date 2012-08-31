@@ -64,9 +64,18 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
         });
 
 	    var input = document.getElementById('location');
-	    var autocomplete = new google.maps.places.Autocomplete(input);
+	    if (input) { 
+	    	var autocomplete = new google.maps.places.Autocomplete(input);
+	    	autocomplete.bindTo('bounds', AppMap.map);
+	    	
+	    	google.maps.event.addListener(autocomplete, 'place_changed', function() {
+		        var place = autocomplete.getPlace();
+		        AppMap.cleanMarkers();
+		        AppMap.map.setCenter(place.geometry.location);
+		    });
+	    }
 
-	    autocomplete.bindTo('bounds', AppMap.map);
+	    
 
 		var view = Ember.View.create({
 			templateName: 'summary-bar',
@@ -82,11 +91,7 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
 
 		view.appendTo('#summary-bar');
 
-	    google.maps.event.addListener(autocomplete, 'place_changed', function() {
-	        var place = autocomplete.getPlace();
-	        AppMap.cleanMarkers();
-	        AppMap.map.setCenter(place.geometry.location);
-	    });
+	    
 	    
 	    google.maps.event.addListener(AppMap.map, 'idle', function(event) {
 	    	AppMap.fetchBars();
