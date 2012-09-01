@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
         </a>
         <a id="logo" class="brand" href="/">Dunia</a>
-
+        <?php if(!$this->isMobile): ?>
         <form id="form" class="hidden-phone" onsubmit="return false;" style="display: inline">
             <ul class="nav2">
                 <li><?php echo $this->form->location; ?></li>
@@ -68,11 +68,15 @@
             
             
         </form>
+        <?php endif; ?>
         <?php echo $this->render('partials/nav.phtml'); ?>
     </div>
 </div>
 <div id="map_canvas" style="margin-top:-20px;height:95%;"></div>
+<?php if($this->isMobile): ?>
 <button id="locate-me" class="btn btn-icon btn-info hidden-desktop" type="button"><i class="icon-locate"></i></button>
+<?php endif; ?>
+
 
 <div id="bottom-info-bar">
 	<div class="left summary" id="summary-bar" rel="popover">

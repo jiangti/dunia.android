@@ -2,21 +2,16 @@
 class IndexController extends Model_Controller_Action {
     
 	public function indexAction() {
-        if ($this->isMobile() || $this->_getParam('mobile')) {
-            $this->_helper->layout()->setLayout('mobile');
-            $this->_helper->viewRenderer->setRender('list');
-        } else {
-            $this->_helper->layout->setLayout('map');
-            $form = new Form_Map();
-            $this->view->form = $form;
+        $this->_helper->layout->setLayout('map');
+        $form = new Form_Map();
+        $this->view->form = $form;
 
-            $user = $this->_getUser();
+        $user = $this->_getUser();
 
-            $this->view->lat  = $user->getLat();
-            $this->view->long = $user->getLong();
-            $this->view->zoom = $user->getZoom();
-        }
-        
+        $this->view->lat  = $user->getLat();
+        $this->view->long = $user->getLong();
+        $this->view->zoom = $user->getZoom();
+    
         $this->view->categories = Aw_Service_Foursquare::$categoriesName;
 	}
 	
