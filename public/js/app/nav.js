@@ -1,4 +1,4 @@
-define(['libs/jquery', 'simplemodal'], function(init) {
+define(['libs/jquery', 'jquery.simplemodal.1.4.2.min'], function(init) {
     $(document).ready(function() {
         $("#login-link").click(function() {
             var url = $(this).attr('href');
