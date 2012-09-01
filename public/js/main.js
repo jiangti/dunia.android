@@ -12,7 +12,8 @@ require.config({
     }
 });
 // Start the main app logic.
-requirejs(['libs/route', 'libs/jquery', 'libs/ember'], function(app) {
+requirejs(['libs/route', 'libs/jquery', 'libs/ember', 'libs/modernizr'], function(app) {
+	    
 		app.get("^/$", function(req) {
 			require(['app/controllers/map/index'], function(init) {
 			    init.init();
