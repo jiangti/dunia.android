@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <?php echo $this->headScript(); ?>
+
     <?php if (APPLICATION_ENV == 'production'): ?>
 	<script data-main="/js/main-build.js" src="/js/require.js"></script>
 	<?php else: ?>
@@ -26,11 +27,7 @@ $this->headLink()
 ;
 ?>
 <?php echo $this->headLink(); ?>
-<script type="text/javascript">
-<!--
-thirsty = {};
-//-->
-</script>
+
 </head>
 <body data-spy="scroll">
     <div id="fb-root"></div>

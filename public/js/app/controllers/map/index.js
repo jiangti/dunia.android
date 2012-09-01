@@ -115,5 +115,13 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
         $('#locate-me').on('click', function() {
             AppMap.locate();
         });
+
+        $('#handle').on('click', function() {
+            if ($(this).hasClass('collapsed')) {
+                $('#locate-me').css('position', 'relative');
+            } else {
+                $('#locate-me').delay(300).queue(function () {$(this).css({position: "absolute"});$(this).dequeue();});
+            }
+        });
 	}}
 });

@@ -5,15 +5,15 @@ require.config({
         'jwerty': '/contrib/jwerty/jwerty',
         'masonry': '/contrib/masonry-site/jquery.masonry',
         'google.map': 'http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places',
-        'addthis': 'http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f93fc3233f490f0&async=1&&domready=1'
+        'simplemodal': '/js/jquery.simplemodal.1.4.2.min'
     },
     shim: {
     	
     }
 });
 // Start the main app logic.
-requirejs(['libs/route', 'libs/jquery', 'libs/ember', 'libs/modernizr'], function(app) {
-	    
+requirejs(['libs/route', 'libs/jquery', 'libs/ember', 'app/nav', 'libs/modernizr'], function(app) {
+
 		app.get("^/$", function(req) {
 			require(['app/controllers/map/index'], function(init) {
 			    init.init();
@@ -38,8 +38,6 @@ requirejs(['libs/route', 'libs/jquery', 'libs/ember', 'libs/modernizr'], functio
 			});
 		});
 });
-
-
 /**
  * Utility functions
  */

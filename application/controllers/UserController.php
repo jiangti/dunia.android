@@ -5,6 +5,8 @@ class UserController extends Model_Controller_Action
 
     public function loginAction()
     {
+        $this->_helper->layout()->disableLayout();
+
         $auth = Aw_Auth::getInstance();
         if ($auth->hasIdentity()) {
             $this->redirect('/');
