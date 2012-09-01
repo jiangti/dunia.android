@@ -1,5 +1,6 @@
 define(['libs/ember'], function(Ember) {
 	return {init: function() {
+
 		var timeout = null;
 		window.Dunia = Ember.Application.create();
 	    

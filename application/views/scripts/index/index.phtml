@@ -2,7 +2,7 @@
     <div id="header" class="navbar-inner">
 
         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <a id="handle" class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -89,7 +89,7 @@
 <?php $this->placeholder('js')->captureStart(); ?>
 <script type="text/javascript">
 
-	var myOptions = {
+    var myOptions = {
 	    zoom: <?php echo $this->zoom; ?>,
 	    maxZoom: 20,
 	    center: new google.maps.LatLng('<?php echo $this->lat; ?>', '<?php echo $this->long; ?>'),

@@ -1,13 +1,16 @@
-<div class="container content">
-    <div class="row">
-
-        <div class="span6">
-            Normal login form
-        </div>
-        <div class="span6">
-            <a href="<?php echo $this->twitterAuthUrl ?>" id="signInWithTwitter">Twitter login</a>
-            <a href="<?php echo $this->facebookAuthUrl ?>" id="facebookConnect">Facebook login</a>
-
+<div id="basic-modal-dialog" class="modal-bootstrap">
+    <div class="modal-header">
+        <a class="simplemodal-close popup-close modalCloseImg" href="#"></a>
+    </div>
+    <div class="modal-body" id="basic-modal-dialog-content">
+        <div class="row-fluid">
+            <div class="span6">
+                Log in to Dunia and benefit of extra features such as being notified when your favorite pubs have new special deals!
+            </div>
+            <div class="span6">
+                <a href="<?php echo $this->twitterAuthUrl ?>" id="signInWithTwitter">Twitter login</a>
+                <a href="<?php echo $this->facebookAuthUrl ?>" id="facebookConnect">Facebook login</a>
+            </div>
         </div>
     </div>
 </div>

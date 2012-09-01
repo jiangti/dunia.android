@@ -890,3 +890,103 @@ a.cancel {
     background: url("/img/icons/navbar/74-location.png") no-repeat;
     background-size: 13px 13px;
 }
+
+/*
+ * SimpleModal Basic Modal Dialog
+ * http://www.ericmmartin.com/projects/simplemodal/
+ * http://code.google.com/p/simplemodal/
+ *
+ * Copyright (c) 2010 Eric Martin - http://ericmmartin.com
+ *
+ * Licensed under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *
+ * Revision: $Id: basic.css 257 2010-07-27 23:06:56Z emartin24 $
+ */
+
+//#basic-modal-content {display:none;}
+//
+/* Overlay */
+#simplemodal-overlay {background-color:#000;}
+//
+///* Container */
+//#simplemodal-container {
+//    width: auto;
+//    min-height: 150px;
+//
+//    color: #333;
+//    background-color: #fff;
+//    padding: 12px;
+//    @include nav-box-shadow;
+//}
+//
+//#simplemodal-container .simplemodal-data {
+//    padding:8px;
+//}
+//
+//#simplemodal-container a.modalCloseImg {
+//    background:url(/img/x.png) no-repeat;
+//    background-size: 21px 21px;
+//    width:21px;
+//    height:21px;
+//    display:inline;
+//    z-index:3200;
+//    position:absolute;
+//    top:-15px;
+//    right:-16px;
+//    cursor:pointer;
+//}
+//#simplemodal-container h3 {color:#84b8d9;}
+.popup-close {
+    position: absolute;
+    top: -15px;
+    right: -16px;
+    background:url(/img/x.png) no-repeat;
+    background-size: 21px 21px;
+    width:21px;
+    height:21px;
+}
+
+#basic-modal-dialog {
+    background-color: #f3f3f3;
+    width: auto;
+    @include nav-box-shadow;
+    max-width: 440px;
+}
+
+.modal-header {
+    margin-right: 35px;
+}
+
+.modal-footer {
+    width: 100%;
+}
+
+/* --- phone --- */
+@media all and (min-width : 0px) and (max-width : 600px) {
+
+    #basic-modal-dialog {
+        position:fixed !important;
+        top: 30px;
+        right: 20px;
+        left: 20px;
+        width: auto;
+        margin: 0 0 30px 0;
+        min-height: 200px;
+    }
+    .modal-footer {
+        margin-bottom: 40px;
+    }
+
+    .modal-content{
+        overflow-y: auto !important;
+        min-height: 290px !important;
+    }
+    .modal-postcode-form input, .modal-postcode-form select {
+        width: 45%;
+    }
+    .modal-header h1 {
+        margin-bottom: 5px;
+    }
+
+}

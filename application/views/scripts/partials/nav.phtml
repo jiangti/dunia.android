@@ -12,7 +12,7 @@
             <li><a href="/user/profile" id="profile-nav"><img src="<?php echo $user->avatar; ?>" width="23" height="23" /><?php echo $user->firstName; ?></a></li>
             <li><a href="/user/logout">Logout</a></li>
         <?php else: ?>
-            <li><a href="/user/login">Login</a></li>
+            <li><a id="login-link" href="#">Login</a></li>
         <?php endif; ?>
         <li><a href="/index/help" id="help">Help</a></li>
     </ul>
