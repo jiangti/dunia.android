@@ -73,22 +73,24 @@
 
                             <div id="tipsWrapper">
                             <script type="text/x-handlebars" data-template-name="tipsView">
-                                {{#collection tipsCollectionView}}
+                            <ul class="unstyled">
+                                {{#each App.AppController.tips}}
                                 <li>
                                     <div class="tip-container">
                                         <div class="image" style="float: left" >
-                                            <a clas {{bindAttr href="content.user.canonicalUrl"}}>
-                                            <img {{bindAttr src="content.user.photo"}} width="40" height="40"/>
+                                            <a class {{bindAttr href="user.canonicalUrl"}}>
+                                            <img {{bindAttr src="user.photo"}} width="40" height="40"/>
                                             </a>
                                         </div>
                                         <div>
-                                            <div><a {{bindAttr href="content.user.canonicalUrl"}}>{{content.user.firstName}} {{content.user.lastName}}</a> <span class="date">{{content.date}}</span></div>
-                                            <div>{{content.text}}</div>
+                                            <div><a {{bindAttr href="user.canonicalUrl"}}>{{user.firstName}} {{user.lastName}}</a> <span class="date">{{date}}</span></div>
+                                            <div>{{text}}</div>
                                         </div>
                                     </div>
                                     <div class="separator"></div>
                                 </li>
-                                {{/collection}}
+                                {{/each}}
+                           </ul>
                            </script>
                             </div>
 
