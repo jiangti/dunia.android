@@ -68,4 +68,28 @@ class Model_DbTable_Row_User extends Model_DbTable_Row_RowAbstract {
         return true;
     }
 
+    public function likesPub($idPub) {
+        $userLikesPub = new Model_DbTable_UserLikesPub();
+        return (boolean) $userLikesPub->fetchRow(array('idUser' => $this->id, 'idPub' => $idPub));
+    }
+
+    public function likePub($idPub) {
+        $userLikesPub = new Model_DbTable_UserLikesPub();
+        $row = $userLikesPub->fetchRow(array('idUser' => $this->id, 'idPub' => $idPub));
+
+        if (!$row) {
+            $row = $userLikesPub->createRow(array('idUser' => $this->id, 'idPub' => $idPub));
+            $row->save();
+        }
+    }
+
+    public function unlikePub($idPub) {
+        $userLikesPub = new Model_DbTable_UserLikesPub();
+        $row = $userLikesPub->fetchRow(array('idUser' => $this->id, 'idPub' => $idPub));
+
+        if ($row) {
+            $row->delete();
+        }
+    }
+
 }
