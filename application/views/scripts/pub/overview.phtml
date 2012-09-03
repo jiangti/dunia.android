@@ -24,7 +24,7 @@
                                 <div><a href="<?php echo $this->pub->url; ?>"><?php echo $this->pub->url; ?></a></div>
                                 <div><a href="mailto:<?php echo $this->pub->email; ?>"><?php echo $this->pub->email; ?></a></div>
                                 <?php if ($this->user): ?>
-                                    <div><a href="#" id="like" class="btn <?php if ($this->user->likesPub($this->pub->id)) { echo 'btn-success'; } ?>" data-id="<?php echo $this->pub->id; ?>"><i class="icon-thumbs-up icon-white"></i> <span class="text"><?php echo ($this->user->likesPub($this->pub->id)) ? 'Unlike' : 'Like'; ?></span></a></div>
+                                    <div><a href="#" id="like" class="btn <?php if ($this->user->likesPub($this->pub->id)) { echo 'btn-success'; } ?>" data-id="<?php echo $this->pub->id; ?>"><i class="icon-thumbs-up <?php if ($this->user->likesPub($this->pub->id)) { echo 'icon-white'; } ?>"></i> <span class="text"><?php echo ($this->user->likesPub($this->pub->id)) ? 'Unlike' : 'Like'; ?></span></a></div>
                                 <?php endif; ?>
                             </div>
                         </div>
