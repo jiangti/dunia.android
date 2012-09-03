@@ -39,6 +39,11 @@ class UserController extends Model_Controller_Action
             $this->redirect('/user/login');
         }
 
+        $session = new Zend_Session_Namespace('user');
+        $user    = $session->user;
+        $user->setTable(new Model_DbTable_User());
+
+        $this->view->user = $user;
     }
 
     public function connectAction()

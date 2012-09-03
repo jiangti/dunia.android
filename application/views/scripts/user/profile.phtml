@@ -1,25 +1,47 @@
-<?php
-    $session = new Zend_Session_Namespace('user');
-    $user = $session->user;
-    $user->setTable(new Model_DbTable_User());?>
-<div class="container_12 content">
+<div class="container content">
 
-	<h1><?php echo $user->firstName . ' ' . $user->lastName; ?></h1>
+    <div class="row">
+        <div class="span4">
+            <h1><img class="img-polaroid" src="<?php echo $this->user->avatar ? $this->user->avatar : '/img/avatar.gif'; ?>" /> <?php echo $this->user->firstName . ' ' . $this->user->lastName; ?></h1>
+        </div>
+        <div class="span8">
+            <div>
+                <h2>Pubs you like</h2>
+                <?php
+                    $pubs = $this->user->getFavoritePubs();
 
-    <div id="services">
-        <ul>
-            <?php foreach (array('facebook', 'twitter', 'foursquare') as $service): ?>
-            <li>
-                <div>
-                    <img src="/img/icons/social/<?php echo $service; ?>.png" width="32" height="32" /> <?php echo ucfirst($service); ?>
-                    <?php if ($user->hasService($service)) {
+                    if ($pubs->count()) {
+                        ?>
+                        <ul class="nav nav-tabs nav-stacked">
+                            <?php
+                            foreach ($pubs as $pub) { ?>
+                                <li><a href="/pub/overview/id/<?php echo $pub->id; ?>"><?php echo $pub->name; ?></a></li>
+                            <?php } ?>
+                        </ul>
+                    <?php
+                    } else {
+                        ?>
+                        <p>You still don't like any pub :(</p>
+                        <?php
+                    } ?>
+            </div>
+            <div id="services">
+                <h2>Connected services</h2>
+                <ul>
+                    <?php foreach (array('facebook', 'twitter', 'foursquare') as $service): ?>
+                    <li>
+                        <div>
+                            <img src="/img/icons/social/<?php echo $service; ?>.png" width="32" height="32" /> <?php echo ucfirst($service); ?>
+                            <?php if ($this->user->hasService($service)) {
 
-                    } else {?>
-                        <a href="<?php echo Model_Service::getAuthorizationUrl($service); ?>">Connect</a>
-                    <?php } ?>
-                </div>
-            </li>
-            <?php endforeach; ?>
-        </ul>
+                            } else {?>
+                                <a href="<?php echo Model_Service::getAuthorizationUrl($service); ?>">Connect</a>
+                            <?php } ?>
+                        </div>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
