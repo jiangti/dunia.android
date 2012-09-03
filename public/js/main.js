@@ -4,8 +4,7 @@ require.config({
         'jquery.slider': '/contrib/selectToUiSlider/js/selectToUISlider.jQuery',
         'jwerty': '/contrib/jwerty/jwerty',
         'masonry': '/contrib/masonry-site/jquery.masonry',
-        'google.map': 'http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places',
-        'simplemodal': '/js/jquery.simplemodal.1.4.2.min'
+        'google.map': 'http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places'
     },
     shim: {
     	

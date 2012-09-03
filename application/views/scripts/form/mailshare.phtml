@@ -20,7 +20,7 @@
 	<?php endforeach; ?>
 	</div>
 	<dd id="<?php echo ($form->getName() ? $form->getName() . '-': null); ?>submit-element">
-	<?php echo $form->submit->renderViewHelper(); ?> <a href="#" class="delete" data-mail="<?php echo $form->getRecord()->id; ?>">Delete</a>
+	<?php echo $form->submit->renderViewHelper(); ?> <a href="#" class="delete btn btn-danger" data-mail="<?php echo $form->getRecord()->id; ?>">Delete</a>
 	</dd>
 	</form>
 </div>
