@@ -4,6 +4,9 @@ class PubController extends Model_Controller_Action
 	public function init() {
 		$contextSwitch = $this->_helper->getHelper('contextSwitch');
 		$contextSwitch->addActionContext('search', 'json')->initContext();
+
+        $session = new Zend_Session_Namespace('user');
+        $this->user    = $session->user;
 	}
 	
 	public function emailAction() {
@@ -186,6 +189,7 @@ class PubController extends Model_Controller_Action
         }
         
         $this->view->changeLogs = $pub->getChangeLogs();
+        $this->view->user       = $this->user;
         $this->_share();
     }
     
@@ -281,5 +285,24 @@ class PubController extends Model_Controller_Action
         }
         $this->view->form = $form;
     }
-    
+
+    public function likeAction() {
+        $idPub   = $this->getParam('id');
+
+        if ($this->user && $idPub) {
+            $this->user->likePub($idPub);
+            exit;
+            //$user->setTable(new Model_DbTable_User());
+        }
+    }
+
+    public function unlikeAction() {
+        $idPub   = $this->getParam('id');
+
+        if ($this->user && $idPub) {
+            $this->user->unlikePub($idPub);
+            exit;
+            //$user->setTable(new Model_DbTable_User());
+        }
+    }
 }

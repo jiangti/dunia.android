@@ -12,14 +12,13 @@ abstract class Aw_Form_Abstract extends Zend_Form {
 	}
 	
 	protected function _addSubmit() {
-	    $submit = new Zend_Form_Element_Submit('submit');
+	    $submit = new Zend_Form_Element_Button('submit');
 	    $submit
     	    ->setLabel('Submit')
     	    ->setOrder(999)
-    	    ->setAttribs(array('class' => 'btn'))
+    	    ->setAttribs(array('class' => 'btn', 'type' => 'submit'))
     	;
-    	
-	    
+
 	    $this->addElements(array($submit));
 	}
 	

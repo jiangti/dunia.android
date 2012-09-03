@@ -139,7 +139,39 @@ define(['libs/ember', 'libs/jquery.lightbox-0.5', 'libs/moment.min', 'libs/jquer
 			$dt.slideDown();
 			$dd.slideDown();
 		});
-		
+
+        $('#like').click(function() {
+            var self  = $(this),
+                id    = self.attr('data-id'),
+                url   = '/pub/',
+                label = self.find('span');
+
+            if (label.text() == 'Like') {
+                url += 'like/';
+            } else {
+                url += 'unlike/';
+            }
+
+            url += 'id/' + id;
+
+            $.ajax({
+                url: url,
+                cache: false,
+                success: function() {
+                    if (label.text() == 'Like') {
+                        label.text('Unlike');
+                        self.find('i').addClass('icon-white');
+                        self.addClass('btn-success');
+                    } else {
+                        label.text('Like');
+                        self.find('i').removeClass('icon-white');
+                        self.removeClass('btn-success');
+                    }
+                }
+            });
+            return false;
+        });
+
 		//var $form = $('form.uniform');
 		//
 		//jwerty.key('alt+shift+S', function () { $form.submit(); });
