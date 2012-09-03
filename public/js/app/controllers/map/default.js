@@ -11,44 +11,45 @@ define(['libs/ember'], function(Ember) {
 	    		this.set('count', this.get('count') + 1);
 	    	}
 	    });
-	
-	    Dunia.markerProperties = Em.Object.create({
-	        now: marker.create({
-	        	name:   'now',
-	        	title:  'It\'s on now',
-	        	icon:   '/img/icons/markers/now.svg',
-                marker: new google.maps.MarkerImage('/img/icons/markers/now.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)),
-	            zIndex: 20
-	        }),
-	        earlier: marker.create({
-	        	name:   'earlier',
-	        	title:  'Missed it',
-	            icon: '/img/icons/markers/gone.svg',
-                marker: new google.maps.MarkerImage('/img/icons/markers/gone.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)),
-	            zIndex: 18
-	        }),
-	        later: marker.create({
-	        	name:   'later',
-	        	title:  'Coming soon',
-	            icon: '/img/icons/markers/coming.svg',
-                marker: new google.maps.MarkerImage('/img/icons/markers/coming.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)),
-	            zIndex: 19
-	        }),
-	        none: marker.create({
-	        	name:   'none',
-	        	title:  'Not today',
-	            icon: '/img/icons/markers/notoday.svg',
-                marker: new google.maps.MarkerImage('/img/icons/markers/notoday.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)),
-	            zIndex: 15
-	        }),
-	        zero: marker.create({
-	        	name:   'zero',
-	        	title:  'Zero',
-	            icon: '/img/icons/markers/none.svg',
-                marker: new google.maps.MarkerImage('/img/icons/markers/none.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)),
-	            zIndex: 10
-	        })
-	    });
+	    
+      	Dunia.markerProperties = Em.Object.create({
+      		now: marker.create({
+      			name:   'now',
+      			title:  'It\'s on now',
+      			icon:   (Modernizr.svg ? '/img/icons/markers/now.svg': '/img/icons/markers/half.png'),
+      			marker: (Modernizr.svg ? new google.maps.MarkerImage('/img/icons/markers/now.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)) : '/img/icons/markers/half_sml.png'),
+      			zIndex: 20
+      		}),
+      		earlier: marker.create({
+      			name:   'earlier',
+      			title:  'Missed it',
+      			icon:   (Modernizr.svg ?'/img/icons/markers/gone.svg': '/img/icons/markers/empty.png'),
+      			marker: (Modernizr.svg ? new google.maps.MarkerImage('/img/icons/markers/gone.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)): '/img/icons/markers/empty_sml.png'),
+      			zIndex: 18
+      		}),
+      		later: marker.create({
+      			name:   'later',
+      			title:  'Coming soon',
+      			icon:   (Modernizr.svg ? '/img/icons/markers/coming.svg' : '/img/icons/markers/full.png'),
+      			marker: (Modernizr.svg ? new google.maps.MarkerImage('/img/icons/markers/coming.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)) : '/img/icons/markers/full_sml.png'),
+      			zIndex: 19
+      		}),
+      		none: marker.create({
+      			name:   'none',
+      			title:  'Not today',
+      			icon:   (Modernizr.svg ? '/img/icons/markers/notoday.svg' : '/img/icons/markers/bar.black.png'),
+      			marker: (Modernizr.svg ? new google.maps.MarkerImage('/img/icons/markers/notoday.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)) : '/img/icons/markers/black_sml.png'),
+      			zIndex: 15
+      		}),
+      		zero: marker.create({
+      			name:   'zero',
+      			title:  'Zero',
+      			icon:   (Modernizr.svg ? '/img/icons/markers/none.svg' : '/img/icons/markers/bar.png'),
+      			marker: (Modernizr.svg ? new google.maps.MarkerImage('/img/icons/markers/none.svg', new google.maps.Size(29, 44), null, null, new google.maps.Size(29, 44)) : '/img/icons/markers/beer_sml.png'),
+      			zIndex: 10
+      		})
+      	});
+	    	
 	    
 	    Dunia.summary = Em.Object.create({
 	    	summaries: [

@@ -1,4 +1,4 @@
-define(['libs/jquery', 'libs/ember-0.9.8.1.min'],
+define(['libs/jquery', 'libs/handlebars-1.0.0.beta.6', 'libs/ember-1.0.pre'],
          function() {
              return Ember;
 });
