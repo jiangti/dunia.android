@@ -57,9 +57,9 @@ define(['./default', 'libs/jquery', 'libs/jquery.ui', 'jquery.slider', 'libs/boo
         google.maps.event.addListener(AppMap.map.getStreetView(), 'visible_changed', function() {
             var toggle = AppMap.map.getStreetView().getVisible();
             if (toggle == false) {
-                AppMap.setMarkersSize(29, 44);
+            	AppMap.streetView(true);
             } else {
-                AppMap.setMarkersSize(257, 390);
+            	AppMap.streetView(false);
             }
         });
 

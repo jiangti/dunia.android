@@ -68,7 +68,6 @@ define(['libs/ember'], function(Ember) {
 	        markers:    new Array(),
 	        mapMarkers: new Array(),
 	        infoWindow: new google.maps.InfoWindow(),
-
 	
 	        fetchBars: function() {
 	            var self      = this;
@@ -166,9 +165,11 @@ define(['libs/ember'], function(Ember) {
 	        setMarkersVisible: function(type, flag) {
 	        	var markers = this.get('mapMarkers');
 	            if (markers) {
-	                for (var i = 0; i < markers.length; i++ ) {
-	                	if (markers[i].type == type) markers[i].setVisible(flag);
-	                }
+	            	
+	             	$.each(markers.filterProperty('type', type), function(k, v) {
+	             		v.setVisible(flag);
+	             	});
+             	
 	            }
 	        },
 	        
@@ -188,7 +189,15 @@ define(['libs/ember'], function(Ember) {
 	                }
 	            }
 	        },
-
+	        
+	        streetView: function(flag) {
+	        	if (flag) {
+	        		this.setMarkersSize(257, 390);
+	        	} else {
+	        		this.setMarkersSize(29, 44);
+	        	}
+	        },
+	        
             setMarkersSize: function(width, height) {
                 var markers = this.get('mapMarkers');
 
@@ -300,7 +309,7 @@ define(['libs/ember'], function(Ember) {
 	                	timeout = setTimeout(function() {
 	                		infoWindow.setContent($this.html);
 	                		infoWindow.open(map, $this);
-	                	}, 400);
+	                	}, 1000);
 	                });
 	                
 	                google.maps.event.addListener(mapMarker, 'mouseout', function() {
