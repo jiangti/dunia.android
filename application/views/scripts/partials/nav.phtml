@@ -9,7 +9,7 @@
             $session = new Zend_Session_Namespace('user');
             $user    = $session->user;
         ?>
-            <li><a href="/user/profile" id="profile-nav"><img src="<?php echo $user->avatar; ?>" width="23" height="23" /><?php echo $user->firstName; ?></a></li>
+            <li><a href="/user/profile" id="profile-nav"><img src="<?php echo ($user->avatar ?: sprintf('http://www.gravatar.com/avatar/%s?s=23&d=mm&r=g', md5($user->email))); ?>" width="23" height="23" class="img-polaroid" style="width: 23px; height: 23px;" /><?php echo ($user->firstName ?: $user->email); ?></a></li>
             <li><a href="/user/logout">Logout</a></li>
         <?php else: ?>
             <li><a id="login-link" href="#">Login</a></li>
